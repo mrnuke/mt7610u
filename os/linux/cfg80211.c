@@ -156,7 +156,7 @@ static const UINT32 CipherSuites[] = {
 	The driver's regulatory notification callback.
 */
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,30))
-static INT32 CFG80211_RegNotifier(
+static void CFG80211_RegNotifier(
 	IN struct wiphy					*pWiphy,
 	IN struct regulatory_request	*pRequest);
 #else
@@ -615,6 +615,7 @@ Note:
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,36))
 static int CFG80211_OpsTxPwrSet(
 	IN struct wiphy						*pWiphy,
+	IN struct wireless_dev              *wdev,
 	IN enum nl80211_tx_power_setting	Type,
 	IN int								dBm)
 {
@@ -652,6 +653,7 @@ Note:
 */
 static int CFG80211_OpsTxPwrGet(
 	IN struct wiphy						*pWiphy,
+	IN struct wireless_dev              *wdev,
 	IN int								*pdBm)
 {
 	CFG80211DBG(RT_DEBUG_ERROR, ("80211> %s ==>\n", __FUNCTION__));
@@ -709,7 +711,7 @@ Note:
 static int CFG80211_OpsStaGet(
 	IN struct wiphy						*pWiphy,
 	IN struct net_device				*pNdev,
-	IN UINT8							*pMac,
+	IN const UINT8						*pMac,
 	IN struct station_info				*pSinfo)
 {
 	VOID *pAd;
@@ -1887,9 +1889,11 @@ struct cfg80211_ops CFG80211_Ops = {
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,32))
 	/* set the transmit power according to the parameters */
-	.set_tx_power				= CFG80211_OpsTxPwrSet,
+	.set_tx_power				= (int(*)(struct wiphy*, struct wireless_dev*,
+				enum nl80211_tx_power_setting, int)) CFG80211_OpsTxPwrSet,
 	/* store the current TX power into the dbm variable */
-	.get_tx_power				= CFG80211_OpsTxPwrGet,
+	.get_tx_power				= (int(*)(struct wiphy*, struct wireless_dev*,
+				int*)) CFG80211_OpsTxPwrGet,
 	/* configure WLAN power management */
 	.set_power_mgmt				= CFG80211_OpsPwrMgmt,
 	/* get station information for the station identified by @mac */
@@ -2160,7 +2164,7 @@ Note:
 ========================================================================
 */
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,30))
-static INT32 CFG80211_RegNotifier(
+static void CFG80211_RegNotifier(
 	IN struct wiphy					*pWiphy,
 	IN struct regulatory_request	*pRequest)
 {
@@ -2175,7 +2179,7 @@ static INT32 CFG80211_RegNotifier(
 	if (pAd == NULL)
 	{
 		DBGPRINT(RT_DEBUG_ERROR, ("crda> reg notify but pAd = NULL!"));
-		return 0;
+		return;
 	} /* End of if */
 
 	/*
@@ -2265,7 +2269,7 @@ static INT32 CFG80211_RegNotifier(
 		RTMP_DRIVER_80211_REG_NOTIFY(pAd, &RegInfo);
 	} /* End of if */
 
-	return 0;
+	return;
 } /* End of CFG80211_RegNotifier */
 
 #else
