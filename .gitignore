@@ -10,6 +10,9 @@ include/mcu/mt7650_firmware.h
 *.obj
 *.elf
 
+# Linux-specific module intermediate files
+*.o.cmd
+
 # Precompiled Headers
 *.gch
 *.pch
