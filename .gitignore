@@ -1,3 +1,9 @@
+# Generated files
+include/mcu/mrgtmp0
+include/mcu/mrgtmp1
+include/mcu/mt7610_firmware.h
+include/mcu/mt7650_firmware.h
+
 # Object files
 *.o
 *.ko
