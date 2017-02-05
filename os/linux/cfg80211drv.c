@@ -559,11 +559,7 @@ BOOLEAN CFG80211DRV_KeyAdd(
 		else if (pAd->StaCfg.wdev.WepStatus == Ndis802_11Encryption3Enabled)
 			IoctlSec.Alg = RT_CMD_STA_IOCTL_SECURITY_ALG_CCMP;
 		IoctlSec.flags = RT_CMD_STA_IOCTL_SECURITY_ENABLED;
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,37))
 		if (pKeyInfo->bPairwise == FALSE )
-#else
-		if (pKeyInfo->KeyId > 0)
-#endif	
 		{
 			if (pAd->StaCfg.GroupCipher == Ndis802_11Encryption2Enabled)
 				IoctlSec.Alg = RT_CMD_STA_IOCTL_SECURITY_ALG_TKIP;
@@ -1383,11 +1379,7 @@ VOID CFG80211_LostApInform(
 	// This is important to prevent the WARN_ON() that we are still connected to a BSS
 	// (net/wireless/core.c: WARN_ON(wdev->current_bss))
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,2,0))
 	cfg80211_disconnected(pAd->net_dev, 0, NULL, 0, true, GFP_KERNEL);
-#else
-	cfg80211_disconnected(pAd->net_dev, 0, NULL, 0, GFP_KERNEL);
-#endif
 
 	//}
 	//}

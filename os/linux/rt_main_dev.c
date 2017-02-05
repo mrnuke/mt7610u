@@ -32,10 +32,8 @@
 #include "rt_os_util.h"
 #include "rt_os_net.h"
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,24)
 #ifndef SA_SHIRQ
 #define SA_SHIRQ IRQF_SHARED
-#endif
 #endif
 
 // TODO: shiang-6590, remove it when MP
@@ -59,13 +57,8 @@ PSTRING mac = "";		     /* default 00:00:00:00:00:00 */
 PSTRING hostname = "";		     /* default CMPC */
 ULONG RTDebugLevel = RT_DEBUG_ERROR; /* Set to debug mod param in init() */
 ULONG debug = RT_DEBUG_ERROR;        /* default RT_DEBUG_ERROR */
-#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,12)
-MODULE_PARM (mac, "s");
-MODULE_PARM (debug, "l");
-#else
 module_param (mac, charp, 0);
 module_param (debug, long, 0); // RT_DEBUG_ERROR
-#endif
 MODULE_PARM_DESC (mac, "wireless mac addr");
 MODULE_PARM_DESC (debug, "log verbosity level (0: off, 1: error only [default], 2: warnings, 3: trace, 4: info, 5: loud)");
 
@@ -294,11 +287,7 @@ int rt28xx_open(VOID *dev)
 	RTMP_DRIVER_USB_DEV_GET(pAd, &pUsb_Dev);
 	RTMP_DRIVER_USB_INTF_GET(pAd, &intf);
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,32)
 	pm_usage_cnt = atomic_read(&intf->pm_usage_cnt);	
-#else
-	pm_usage_cnt = intf->pm_usage_cnt;
-#endif
 	if (pm_usage_cnt == 0)
 	{
 		int res=1;
@@ -462,9 +451,6 @@ PNET_DEV RtmpPhyNetDevInit(
 
 	RTMP_DRIVER_NET_DEV_SET(pAd, net_dev);
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,24)
-	SET_MODULE_OWNER(net_dev);
-#endif 
 
 
 
@@ -480,29 +466,12 @@ VOID *RtmpNetEthConvertDevSearch(
 	struct net_device *pNetDev;
 
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,24)
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,26)
 	struct net_device *net_dev = (struct net_device *)net_dev_;
 	struct net *net;
 	net = dev_net(net_dev);
 	
 	BUG_ON(!net);
 	for_each_netdev(net, pNetDev)
-#else
-	struct net *net;
-
-	struct net_device *net_dev = (struct net_device *)net_dev_;
-	BUG_ON(!net_dev->nd_net);
-	net = net_dev->nd_net;
-	for_each_netdev(net, pNetDev)
-#endif
-#else
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,22)
-		for_each_netdev(pNetDev)
-#else 
-	for (pNetDev = dev_base; pNetDev; pNetDev = pNetDev->next)
-#endif
-#endif
 	{
 		if ((pNetDev->type == ARPHRD_ETHER)
 			&& NdisEqualMemory(pNetDev->dev_addr, &pData[6], pNetDev->addr_len))
