@@ -34,6 +34,7 @@
 #define GNU_PACKED  __attribute__ ((packed))
 #endif /* GNU_PACKED */
 
+#include <linux/types.h>
 
 #ifdef LINUX
 /* Put platform dependent declaration here */
