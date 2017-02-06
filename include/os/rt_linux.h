@@ -970,8 +970,6 @@ extern int ra_mtd_read(int num, loff_t from, size_t len, u_char *buf);
 #define RTUSBBulkRxComplete(Status, pURB, pt_regs)               RTUSBBulkRxComplete(pURB)
 #define RTUSBBulkCmdRspEventComplete(Status, pURB, pt_regs)		 RTUSBBulkCmdRspEventComplete(pURB)
 
-/*extern void dump_urb(struct urb *purb); */
-
 #define InterlockedIncrement 	 	atomic_inc
 #define NdisInterlockedIncrement 	atomic_inc
 #define InterlockedDecrement		atomic_dec

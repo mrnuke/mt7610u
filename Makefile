@@ -372,7 +372,6 @@ endif
 
 $(MOD_NAME)-objs += \
                 os/linux/rt_usb.o\
-                os/linux/rt_usb_util.o\
                 os/linux/usb_main_dev.o
 
 ifneq ($(findstring $(RT28xx_MODE),STA APSTA),)
