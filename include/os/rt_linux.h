@@ -624,9 +624,6 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 #define RTMP_SYS_IO_WRITE32
 #endif /* RTMP_MAC_USB */
 
-#define RTMP_USB_URB_LEN_GET(__pUrb)			((struct urb *)__pUrb)->actual_length
-
-
 #define RTMP_OS_NETDEV_STATE_RUNNING(_pNetDev)	((_pNetDev)->flags & IFF_UP)
 
 #define RTMP_OS_NETDEV_GET_DEVNAME(_pNetDev)	((_pNetDev)->name)
