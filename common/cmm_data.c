@@ -243,10 +243,10 @@ static void dumpTxBlk(TX_BLK *pTxBlk)
 	========================================================================
 */
 int MiniportMMRequest(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN u8 *pData,
-	IN UINT Length)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	u8 *pData,
+	UINT Length)
 {
 	struct sk_buff * pPacket;
 	int Status = NDIS_STATUS_SUCCESS;
@@ -353,11 +353,11 @@ int MiniportMMRequest(
 	========================================================================
 */
 int MlmeHardTransmit(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN struct sk_buff * pPacket,
-	IN bool FlgDataQForce,
-	IN bool FlgIsLocked)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	struct sk_buff * pPacket,
+	bool FlgDataQForce,
+	bool FlgIsLocked)
 {
 	PACKET_INFO 	PacketInfo;
 	u8 *		pSrcBufVA;
@@ -380,9 +380,9 @@ int MlmeHardTransmit(
 
 
 int MlmeHardTransmitMgmtRing(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN struct sk_buff * pPacket)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	struct sk_buff * pPacket)
 {
 	PACKET_INFO PacketInfo;
 	u8 *pSrcBufVA;
@@ -689,8 +689,8 @@ int MlmeHardTransmitMgmtRing(
 	========================================================================
 */
 static u8 TxPktClassification(
-	IN struct rtmp_adapter*pAd,
-	IN struct sk_buff *  pPacket)
+	struct rtmp_adapter*pAd,
+	struct sk_buff *  pPacket)
 {
 	u8 		TxFrameType = TX_UNKOWN_FRAME;
 	u8 		Wcid;
@@ -894,9 +894,9 @@ bool RTMP_FillTxBlkInfo(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 
 
 bool CanDoAggregateTransmit(
-	IN struct rtmp_adapter*pAd,
-	IN struct sk_buff *pPacket,
-	IN TX_BLK		*pTxBlk)
+	struct rtmp_adapter*pAd,
+	struct sk_buff *pPacket,
+	TX_BLK		*pTxBlk)
 {
 	int minLen = LENGTH_802_3;
 
@@ -964,10 +964,10 @@ bool CanDoAggregateTransmit(
 	========================================================================
 */
 void RTMPDeQueuePacket(
-	IN struct rtmp_adapter*pAd,
-	IN bool bIntContext,
-	IN u8 QIdx,
-	IN INT Max_Tx_Packets)
+	struct rtmp_adapter*pAd,
+	bool bIntContext,
+	u8 QIdx,
+	INT Max_Tx_Packets)
 {
 	PQUEUE_ENTRY pEntry = NULL;
 	struct sk_buff * pPacket;
@@ -1180,9 +1180,9 @@ void RTMPDeQueuePacket(
 	========================================================================
 */
 USHORT	RTMPCalcDuration(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		Rate,
-	IN	ULONG			Size)
+	struct rtmp_adapter *pAd,
+	u8 		Rate,
+	ULONG			Size)
 {
 	ULONG	Duration = 0;
 
@@ -1230,7 +1230,7 @@ USHORT	RTMPCalcDuration(
 	========================================================================
 */
 void RTMPSuspendMsduTransmission(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	DBGPRINT(RT_DEBUG_TRACE,("SCANNING, suspend MSDU transmission ...\n"));
 
@@ -1269,7 +1269,7 @@ void RTMPSuspendMsduTransmission(
 	========================================================================
 */
 void RTMPResumeMsduTransmission(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	DBGPRINT(RT_DEBUG_TRACE,("SCAN done, resume MSDU transmission ...\n"));
 
@@ -1301,11 +1301,11 @@ void RTMPResumeMsduTransmission(
 
 #ifdef DOT11_N_SUPPORT
 UINT deaggregate_AMSDU_announce(
-	IN	struct rtmp_adapter *pAd,
+	struct rtmp_adapter *pAd,
 	struct sk_buff *		pPacket,
-	IN	u8 *		pData,
-	IN	ULONG			DataSize,
-	IN	u8 		OpMode)
+	u8 *		pData,
+	ULONG			DataSize,
+	u8 		OpMode)
 {
 	USHORT 			PayloadSize;
 	USHORT 			SubFrameSize;
@@ -1414,9 +1414,9 @@ UINT deaggregate_AMSDU_announce(
 
 
 UINT BA_Reorder_AMSDU_Annnounce(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	u8 		OpMode)
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	u8 		OpMode)
 {
 	u8 *		pData;
 	USHORT			DataSize;
@@ -1431,9 +1431,9 @@ UINT BA_Reorder_AMSDU_Annnounce(
 }
 
 void Indicate_AMSDU_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID)
 {
 	UINT			nMSDU;
 
@@ -1453,12 +1453,12 @@ void Indicate_AMSDU_Packet(
 	==========================================================================
 */
 void AssocParmFill(
-	IN struct rtmp_adapter *pAd,
-	IN OUT MLME_ASSOC_REQ_STRUCT *AssocReq,
-	IN u8 *                    pAddr,
-	IN USHORT                     CapabilityInfo,
-	IN ULONG                      Timeout,
-	IN USHORT                     ListenIntv)
+	struct rtmp_adapter *pAd,
+	MLME_ASSOC_REQ_STRUCT *AssocReq,
+	u8 *                    pAddr,
+	USHORT                     CapabilityInfo,
+	ULONG                      Timeout,
+	USHORT                     ListenIntv)
 {
 	memcpy(AssocReq->Addr, pAddr, ETH_ALEN);
 	/* Add mask to support 802.11b mode only */
@@ -1477,10 +1477,10 @@ void AssocParmFill(
 	==========================================================================
 */
 void DisassocParmFill(
-	IN struct rtmp_adapter *pAd,
-	IN OUT MLME_DISASSOC_REQ_STRUCT *DisassocReq,
-	IN u8 *pAddr,
-	IN USHORT Reason)
+	struct rtmp_adapter *pAd,
+	MLME_DISASSOC_REQ_STRUCT *DisassocReq,
+	u8 *pAddr,
+	USHORT Reason)
 {
 	memcpy(DisassocReq->Addr, pAddr, ETH_ALEN);
 	DisassocReq->Reason = Reason;
@@ -1488,12 +1488,12 @@ void DisassocParmFill(
 
 
 bool RTMPCheckEtherType(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	PMAC_TABLE_ENTRY pMacEntry,
-	IN	u8 		OpMode,
-	OUT u8 *pUserPriority,
-	OUT u8 *pQueIdx)
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	PMAC_TABLE_ENTRY pMacEntry,
+	u8 		OpMode,
+	u8 *pUserPriority,
+	u8 *pQueIdx)
 {
 	USHORT	TypeLen;
 	u8 Byte0, Byte1;
@@ -1678,9 +1678,9 @@ bool RTMPCheckEtherType(
 
 
 void Update_Rssi_Sample(
-	IN struct rtmp_adapter*pAd,
-	IN RSSI_SAMPLE *pRssi,
-	IN struct rxwi_nmac *pRxWI)
+	struct rtmp_adapter*pAd,
+	RSSI_SAMPLE *pRssi,
+	struct rxwi_nmac *pRxWI)
 {
 	CHAR rssi[3];
 	u8 snr[3];
@@ -1769,9 +1769,9 @@ void Update_Rssi_Sample(
 
 /* Normal legacy Rx packet indication*/
 void Indicate_Legacy_Packet(
-	IN struct rtmp_adapter*pAd,
-	IN RX_BLK *pRxBlk,
-	IN u8 FromWhichBSSID)
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk,
+	u8 FromWhichBSSID)
 {
 	struct sk_buff * pRxPacket = pRxBlk->pRxPacket;
 	u8 Header802_3[LENGTH_802_3];
@@ -1849,9 +1849,9 @@ void Indicate_Legacy_Packet(
 
 /* Normal, AMPDU or AMSDU*/
 void CmmRxnonRalinkFrameIndicate(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID)
 {
 #ifdef DOT11_N_SUPPORT
 	if (RX_BLK_TEST_FLAG(pRxBlk, fRX_AMPDU) && (pAd->CommonCfg.bDisableReordering == 0))
@@ -1876,10 +1876,10 @@ void CmmRxnonRalinkFrameIndicate(
 }
 
 void CmmRxRalinkFrameIndicate(
-	IN	struct rtmp_adapter *pAd,
-	IN	MAC_TABLE_ENTRY	*pEntry,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY	*pEntry,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID)
 {
 	u8 		Header802_3[LENGTH_802_3];
 	UINT16			Msdu2Size;
@@ -1964,8 +1964,8 @@ void CmmRxRalinkFrameIndicate(
 
 
 struct sk_buff * RTMPDeFragmentDataFrame(
-	IN struct rtmp_adapter*pAd,
-	IN RX_BLK *pRxBlk)
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk)
 {
 	HEADER_802_11 *pHeader = pRxBlk->pHeader;
 	struct sk_buff * pRxPacket = pRxBlk->pRxPacket;
@@ -2074,9 +2074,9 @@ done:
 
 
 void Indicate_EAPOL_Packet(
-	IN struct rtmp_adapter*pAd,
-	IN RX_BLK *pRxBlk,
-	IN u8 FromWhichBSSID)
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk,
+	u8 FromWhichBSSID)
 {
 	MAC_TABLE_ENTRY *pEntry = NULL;
 
@@ -2112,7 +2112,7 @@ void Indicate_EAPOL_Packet(
 
 #define BCN_TBTT_OFFSET		64	/*defer 64 us*/
 void ReSyncBeaconTime(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	u32  Offset;
 
@@ -2146,8 +2146,8 @@ void ReSyncBeaconTime(
 
 #ifdef SOFT_ENCRYPT
 bool RTMPExpandPacketForSwEncrypt(
-	IN  struct rtmp_adapter *  pAd,
-	IN	PTX_BLK			pTxBlk)
+	struct rtmp_adapter *  pAd,
+	PTX_BLK			pTxBlk)
 {
 	PACKET_INFO		PacketInfo;
 	u32	ex_head = 0, ex_tail = 0;
@@ -2170,9 +2170,9 @@ bool RTMPExpandPacketForSwEncrypt(
 }
 
 void RTMPUpdateSwCacheCipherInfo(
-	IN  struct rtmp_adapter *  pAd,
-	IN	PTX_BLK			pTxBlk,
-	IN	u8 *		pHdr)
+	struct rtmp_adapter *  pAd,
+	PTX_BLK			pTxBlk,
+	u8 *		pHdr)
 {
 	PHEADER_802_11 		pHeader_802_11;
 	PMAC_TABLE_ENTRY	pMacEntry;
@@ -2209,14 +2209,14 @@ void RTMPUpdateSwCacheCipherInfo(
 	==========================================================================
  */
 void RtmpEnqueueNullFrame(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *       pAddr,
-	IN u8         TxRate,
-	IN u8         PID,
-	IN u8         apidx,
-    IN bool       bQosNull,
-    IN bool       bEOSP,
-    IN u8         OldUP)
+	struct rtmp_adapter *pAd,
+	u8 *       pAddr,
+	u8         TxRate,
+	u8         PID,
+	u8         apidx,
+    bool       bQosNull,
+    bool       bEOSP,
+    u8         OldUP)
 {
 	PHEADER_802_11 pNullFr;
 	u8 *pFrame;
@@ -2511,8 +2511,8 @@ go_original_path:
 #endif /* WFA_VHT_PF */
 
 void StopDmaRx(
-	IN struct rtmp_adapter*pAd,
-	IN u8 Level)
+	struct rtmp_adapter*pAd,
+	u8 Level)
 {
 	struct sk_buff *	pRxPacket;
 	RX_BLK			RxBlk, *pRxBlk;
@@ -2583,8 +2583,8 @@ void StopDmaRx(
 }
 
 void StopDmaTx(
-	IN struct rtmp_adapter*pAd,
-	IN u8 Level)
+	struct rtmp_adapter*pAd,
+	u8 Level)
 {
 	u32 MacReg = 0, MTxCycle = 0;
 	u8 IdleNums = 0;

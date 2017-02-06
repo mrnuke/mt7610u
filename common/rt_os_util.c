@@ -58,14 +58,14 @@
 };
 
 void RtmpDrvMaxRateGet(
-	IN	void 				*pReserved,
-/*	IN	PHTTRANSMIT_SETTING		pHtPhyMode,
+	void 				*pReserved,
+/*	PHTTRANSMIT_SETTING		pHtPhyMode,
 */
-	IN	u8					MODE,
-	IN	u8					ShortGI,
-	IN	u8					BW,
-	IN	u8					MCS,
-	OUT	u32					*pRate)
+	u8					MODE,
+	u8					ShortGI,
+	u8					BW,
+	u8					MCS,
+	u32					*pRate)
 {
 	int rate_index = 0;
 
@@ -112,9 +112,9 @@ char *rtstrchr(const char * s, int c)
 
 
 void RtmpMeshDown(
-	IN void *pDrvCtrlBK,
-	IN bool WaitFlag,
-	IN bool  (*RtmpMeshLinkCheck)(IN void *pAd))
+	void *pDrvCtrlBK,
+	bool WaitFlag,
+	bool  (*RtmpMeshLinkCheck)(void *pAd))
 {
 }
 
@@ -122,8 +122,8 @@ void RtmpMeshDown(
 
 
 bool RtmpOsCmdDisplayLenCheck(
-	IN u32 LenSrc,
-	IN u32 Offset)
+	u32 LenSrc,
+	u32 Offset)
 {
 	if (LenSrc > (IW_PRIV_SIZE_MASK - Offset))
 		return false;
@@ -134,8 +134,8 @@ bool RtmpOsCmdDisplayLenCheck(
 
 #if defined(WPA_SUPPLICANT_SUPPORT) || defined(APCLI_WPA_SUPPLICANT_SUPPORT)
 void WpaSendMicFailureToWpaSupplicant(
-	IN struct net_device *pNetDev,
-	IN bool bUnicast)
+	struct net_device *pNetDev,
+	bool bUnicast)
 {
 	char custom[IW_CUSTOM_MAX] = {0};
 
@@ -152,9 +152,9 @@ void WpaSendMicFailureToWpaSupplicant(
 
 #ifdef NATIVE_WPA_SUPPLICANT_SUPPORT
 int wext_notify_event_assoc(
-	IN struct net_device *pNetDev,
-	IN u8 *ReqVarIEs,
-	IN u32 ReqVarIELen)
+	struct net_device *pNetDev,
+	u8 *ReqVarIEs,
+	u32 ReqVarIELen)
 {
 	char custom[IW_CUSTOM_MAX] = {0};
 
@@ -176,9 +176,9 @@ int wext_notify_event_assoc(
 #ifdef WPA_SUPPLICANT_SUPPORT
 #ifndef NATIVE_WPA_SUPPLICANT_SUPPORT
 void SendAssocIEsToWpaSupplicant(
-	IN struct net_device *pNetDev,
-	IN u8 *ReqVarIEs,
-	IN u32 ReqVarIELen)
+	struct net_device *pNetDev,
+	u8 *ReqVarIEs,
+	u32 ReqVarIELen)
 {
 	STRING custom[IW_CUSTOM_MAX] = {0};
 

@@ -938,9 +938,9 @@ typedef union _RF_MISC_STRUC{
 #endif
 
 void ral_wlan_chip_onoff(
-	IN struct rtmp_adapter *pAd,
-	IN bool bOn,
-	IN bool bResetWLAN);
+	struct rtmp_adapter *pAd,
+	bool bOn,
+	bool bResetWLAN);
 
 #define AUX_CLK_CFG		0x120C
 #define BB_PA_MODE_CFG0	0x1214

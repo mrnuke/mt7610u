@@ -73,8 +73,8 @@ void RtmpUtilInit(void)
 
 /* timeout -- ms */
 static inline void __RTMP_SetPeriodicTimer(
-	IN OS_NDIS_MINIPORT_TIMER * pTimer,
-	IN unsigned long timeout)
+	OS_NDIS_MINIPORT_TIMER * pTimer,
+	unsigned long timeout)
 {
 	timeout = ((timeout * OS_HZ) / 1000);
 	pTimer->expires = jiffies + timeout;
@@ -83,10 +83,10 @@ static inline void __RTMP_SetPeriodicTimer(
 
 /* convert NdisMInitializeTimer --> RTMP_OS_Init_Timer */
 static inline void __RTMP_OS_Init_Timer(
-	IN void *pReserved,
-	IN OS_NDIS_MINIPORT_TIMER * pTimer,
-	IN TIMER_FUNCTION function,
-	IN void *data)
+	void *pReserved,
+	OS_NDIS_MINIPORT_TIMER * pTimer,
+	TIMER_FUNCTION function,
+	void *data)
 {
 	if (!timer_pending(pTimer)) {
 		init_timer(pTimer);
@@ -96,8 +96,8 @@ static inline void __RTMP_OS_Init_Timer(
 }
 
 static inline void __RTMP_OS_Add_Timer(
-	IN OS_NDIS_MINIPORT_TIMER * pTimer,
-	IN unsigned long timeout)
+	OS_NDIS_MINIPORT_TIMER * pTimer,
+	unsigned long timeout)
 {
 	if (timer_pending(pTimer))
 		return;
@@ -108,16 +108,16 @@ static inline void __RTMP_OS_Add_Timer(
 }
 
 static inline void __RTMP_OS_Mod_Timer(
-	IN OS_NDIS_MINIPORT_TIMER * pTimer,
-	IN unsigned long timeout)
+	OS_NDIS_MINIPORT_TIMER * pTimer,
+	unsigned long timeout)
 {
 	timeout = ((timeout * OS_HZ) / 1000);
 	mod_timer(pTimer, jiffies + timeout);
 }
 
 static inline void __RTMP_OS_Del_Timer(
-	IN OS_NDIS_MINIPORT_TIMER * pTimer,
-	OUT bool *pCancelled)
+	OS_NDIS_MINIPORT_TIMER * pTimer,
+	bool *pCancelled)
 {
 	if (timer_pending(pTimer))
 		*pCancelled = del_timer_sync(pTimer);
@@ -126,7 +126,7 @@ static inline void __RTMP_OS_Del_Timer(
 }
 
 static inline void __RTMP_OS_Release_Timer(
-	IN OS_NDIS_MINIPORT_TIMER * pTimer)
+	OS_NDIS_MINIPORT_TIMER * pTimer)
 {
 	/* nothing to do */
 }
@@ -158,9 +158,9 @@ ULONG RTMPMsecsToJiffies(u32 m)
 /* pAd MUST allow to be NULL */
 
 int os_alloc_mem_suspend(
-	IN void *pReserved,
-	OUT u8 **mem,
-	IN ULONG size)
+	void *pReserved,
+	u8 **mem,
+	ULONG size)
 {
 	*mem = (u8 *) kmalloc(size, GFP_KERNEL);
 	if (*mem) {
@@ -174,12 +174,12 @@ int os_alloc_mem_suspend(
 	The allocated NDIS PACKET must be freed via RTMPFreeNdisPacket()
 */
 int RTMPAllocateNdisPacket(
-	IN void *pReserved,
-	OUT struct sk_buff * *ppPacket,
-	IN u8 *pHeader,
-	IN UINT HeaderLen,
-	IN u8 *pData,
-	IN UINT DataLen)
+	void *pReserved,
+	struct sk_buff * *ppPacket,
+	u8 *pHeader,
+	UINT HeaderLen,
+	u8 *pData,
+	UINT DataLen)
 {
 	struct sk_buff *pPacket;
 
@@ -218,8 +218,8 @@ int RTMPAllocateNdisPacket(
   ========================================================================
 */
 void RTMPFreeNdisPacket(
-	IN void *pReserved,
-	IN struct sk_buff * pPacket)
+	void *pReserved,
+	struct sk_buff * pPacket)
 {
 	dev_kfree_skb_any(pPacket);
 }
@@ -230,10 +230,10 @@ void RTMPFreeNdisPacket(
  * always reasid at the same scatter gather buffer
  */
 int Sniff2BytesFromNdisBuffer(
-	IN PNDIS_BUFFER pFirstBuffer,
-	IN u8 DesiredOffset,
-	OUT u8 *pByte0,
-	OUT u8 *pByte1)
+	PNDIS_BUFFER pFirstBuffer,
+	u8 DesiredOffset,
+	u8 *pByte0,
+	u8 *pByte1)
 {
 	*pByte0 = *(u8 *) (pFirstBuffer + DesiredOffset);
 	*pByte1 = *(u8 *) (pFirstBuffer + DesiredOffset + 1);
@@ -243,10 +243,10 @@ int Sniff2BytesFromNdisBuffer(
 
 
 void RTMP_QueryPacketInfo(
-	IN struct sk_buff * pPacket,
-	OUT PACKET_INFO *info,
-	OUT u8 **pSrcBufVA,
-	OUT UINT *pSrcBufLen)
+	struct sk_buff * pPacket,
+	PACKET_INFO *info,
+	u8 **pSrcBufVA,
+	UINT *pSrcBufLen)
 {
 	info->BufferCount = 1;
 	info->pFirstBuffer = pPacket->data;
@@ -280,9 +280,9 @@ void RTMP_QueryPacketInfo(
 
 
 struct sk_buff * DuplicatePacket(
-	IN struct net_device *pNetDev,
-	IN struct sk_buff * pPacket,
-	IN u8 FromWhichBSSID)
+	struct net_device *pNetDev,
+	struct sk_buff * pPacket,
+	u8 FromWhichBSSID)
 {
 	struct sk_buff *skb;
 	struct sk_buff * pRetPacket = NULL;
@@ -304,12 +304,12 @@ struct sk_buff * DuplicatePacket(
 
 
 struct sk_buff * duplicate_pkt(
-	IN struct net_device *pNetDev,
-	IN u8 *pHeader802_3,
-	IN UINT HdrLen,
-	IN u8 *pData,
-	IN ULONG DataSize,
-	IN u8 FromWhichBSSID)
+	struct net_device *pNetDev,
+	u8 *pHeader802_3,
+	UINT HdrLen,
+	u8 *pData,
+	ULONG DataSize,
+	u8 FromWhichBSSID)
 {
 	struct sk_buff *skb;
 	struct sk_buff * pPacket = NULL;
@@ -332,8 +332,8 @@ struct sk_buff * duplicate_pkt(
 
 #define TKIP_TX_MIC_SIZE		8
 struct sk_buff * duplicate_pkt_with_TKIP_MIC(
-	IN void *pReserved,
-	IN struct sk_buff * pPacket)
+	void *pReserved,
+	struct sk_buff * pPacket)
 {
 	struct sk_buff *skb, *newskb;
 
@@ -373,13 +373,13 @@ struct sk_buff * duplicate_pkt_with_TKIP_MIC(
 	========================================================================
 */
 bool RTMPL2FrameTxAction(
-	IN void * pCtrlBkPtr,
-	IN struct net_device *pNetDev,
-	IN RTMP_CB_8023_PACKET_ANNOUNCE _announce_802_3_packet,
-	IN u8 apidx,
-	IN u8 *pData,
-	IN u32 data_len,
-	IN	u8 		OpMode)
+	void * pCtrlBkPtr,
+	struct net_device *pNetDev,
+	RTMP_CB_8023_PACKET_ANNOUNCE _announce_802_3_packet,
+	u8 apidx,
+	u8 *pData,
+	u32 data_len,
+	u8 		OpMode)
 {
 	struct sk_buff *skb = dev_alloc_skb(data_len + 2);
 
@@ -411,10 +411,10 @@ bool RTMPL2FrameTxAction(
 
 
 struct sk_buff * ExpandPacket(
-	IN void *pReserved,
-	IN struct sk_buff * pPacket,
-	IN u32 ext_head_len,
-	IN u32 ext_tail_len)
+	void *pReserved,
+	struct sk_buff * pPacket,
+	u32 ext_head_len,
+	u32 ext_tail_len)
 {
 	struct sk_buff *skb, *newskb;
 
@@ -446,10 +446,10 @@ struct sk_buff * ExpandPacket(
 }
 
 struct sk_buff * ClonePacket(
-	IN void *pReserved,
-	IN struct sk_buff * pPacket,
-	IN u8 *pData,
-	IN ULONG DataSize)
+	void *pReserved,
+	struct sk_buff * pPacket,
+	u8 *pData,
+	ULONG DataSize)
 {
 	struct sk_buff *pRxPkt;
 	struct sk_buff *pClonedPkt;
@@ -472,10 +472,10 @@ struct sk_buff * ClonePacket(
 }
 
 void RtmpOsPktInit(
-	IN struct sk_buff * pNetPkt,
-	IN struct net_device *pNetDev,
-	IN u8 *pData,
-	IN USHORT DataSize)
+	struct sk_buff * pNetPkt,
+	struct net_device *pNetDev,
+	u8 *pData,
+	USHORT DataSize)
 {
 	struct sk_buff * pRxPkt;
 
@@ -489,16 +489,16 @@ void RtmpOsPktInit(
 
 
 void wlan_802_11_to_802_3_packet(
-	IN struct net_device *pNetDev,
-	IN u8 OpMode,
-	IN USHORT VLAN_VID,
-	IN USHORT VLAN_Priority,
-	IN struct sk_buff * pRxPacket,
-	IN u8 *pData,
-	IN ULONG DataSize,
-	IN u8 *pHeader802_3,
-	IN u8 FromWhichBSSID,
-	IN u8 *TPID)
+	struct net_device *pNetDev,
+	u8 OpMode,
+	USHORT VLAN_VID,
+	USHORT VLAN_Priority,
+	struct sk_buff * pRxPacket,
+	u8 *pData,
+	ULONG DataSize,
+	u8 *pHeader802_3,
+	u8 FromWhichBSSID,
+	u8 *TPID)
 {
 	struct sk_buff *pOSPkt;
 
@@ -548,24 +548,24 @@ INT32 ralinkrate[] = {
 
 u32 RT_RateSize = sizeof (ralinkrate);
 
-void send_monitor_packets(IN struct net_device *pNetDev,
-			  IN struct sk_buff * pRxPacket,
-			  IN PHEADER_802_11 pHeader,
-			  IN u8 * pData,
-			  IN USHORT DataSize,
-			  IN u8 L2PAD,
-			  IN u8 PHYMODE,
-			  IN u8 BW,
-			  IN u8 ShortGI,
-			  IN u8 MCS,
-			  IN u8 AMPDU,
-			  IN u8 STBC,
-			  IN u8 RSSI1,
-			  IN u8 BssMonitorFlag11n,
-			  IN u8 * pDevName,
-			  IN u8 Channel,
-			  IN u8 CentralChannel,
-			  IN u32 MaxRssi) {
+void send_monitor_packets(struct net_device *pNetDev,
+			  struct sk_buff * pRxPacket,
+			  PHEADER_802_11 pHeader,
+			  u8 * pData,
+			  USHORT DataSize,
+			  u8 L2PAD,
+			  u8 PHYMODE,
+			  u8 BW,
+			  u8 ShortGI,
+			  u8 MCS,
+			  u8 AMPDU,
+			  u8 STBC,
+			  u8 RSSI1,
+			  u8 BssMonitorFlag11n,
+			  u8 * pDevName,
+			  u8 Channel,
+			  u8 CentralChannel,
+			  u32 MaxRssi) {
 	struct sk_buff *pOSPkt;
 	wlan_ng_prism2_header *ph;
 #ifdef MONITOR_FLAG_11N_SNIFFER_SUPPORT
@@ -929,9 +929,9 @@ static inline void __RtmpOSTaskCustomize(OS_TASK *pTask)
 }
 
 static inline int __RtmpOSTaskAttach(
-	IN OS_TASK *pTask,
-	IN RTMP_OS_TASK_CALLBACK fn,
-	IN ULONG arg)
+	OS_TASK *pTask,
+	RTMP_OS_TASK_CALLBACK fn,
+	ULONG arg)
 {
 	int status = NDIS_STATUS_SUCCESS;
 #ifndef KTHREAD_SUPPORT
@@ -962,10 +962,10 @@ static inline int __RtmpOSTaskAttach(
 }
 
 static inline int __RtmpOSTaskInit(
-	IN OS_TASK *pTask,
-	IN char *pTaskName,
-	IN void *pPriv,
-	IN LIST_HEADER *pSemList)
+	OS_TASK *pTask,
+	char *pTaskName,
+	void *pPriv,
+	LIST_HEADER *pSemList)
 {
 	int len;
 
@@ -994,9 +994,9 @@ static inline int __RtmpOSTaskInit(
 }
 
 bool __RtmpOSTaskWait(
-	IN void *pReserved,
-	IN OS_TASK *pTask,
-	IN INT32 *pStatus)
+	void *pReserved,
+	OS_TASK *pTask,
+	INT32 *pStatus)
 {
 #ifdef KTHREAD_SUPPORT
 	RTMP_WAIT_EVENT_INTERRUPTIBLE((*pStatus), pTask);
@@ -1018,7 +1018,7 @@ bool __RtmpOSTaskWait(
 }
 
 
-static u32 RtmpOSWirelessEventTranslate(IN u32 eventType)
+static u32 RtmpOSWirelessEventTranslate(u32 eventType)
 {
 	switch (eventType) {
 	case RT_WLAN_EVENT_CUSTOM:
@@ -1050,12 +1050,12 @@ static u32 RtmpOSWirelessEventTranslate(IN u32 eventType)
 }
 
 int RtmpOSWrielessEventSend(
-	IN struct net_device *pNetDev,
-	IN u32 eventType,
-	IN INT flags,
-	IN u8 *pSrcMac,
-	IN u8 *pData,
-	IN u32 dataLen)
+	struct net_device *pNetDev,
+	u32 eventType,
+	INT flags,
+	u8 *pSrcMac,
+	u8 *pData,
+	u32 dataLen)
 {
 	union iwreq_data wrqu;
 
@@ -1080,13 +1080,13 @@ int RtmpOSWrielessEventSend(
 }
 
 int RtmpOSWrielessEventSendExt(
-	IN struct net_device *pNetDev,
-	IN u32 eventType,
-	IN INT flags,
-	IN u8 *pSrcMac,
-	IN u8 *pData,
-	IN u32 dataLen,
-	IN u32 family)
+	struct net_device *pNetDev,
+	u32 eventType,
+	INT flags,
+	u8 *pSrcMac,
+	u8 *pData,
+	u32 dataLen,
+	u32 family)
 {
 	union iwreq_data wrqu;
 
@@ -1112,10 +1112,10 @@ int RtmpOSWrielessEventSendExt(
 }
 
 int RtmpOSNetDevAddrSet(
-	IN u8 OpMode,
-	IN struct net_device *pNetDev,
-	IN u8 *pMacAddr,
-	IN u8 *dev_name)
+	u8 OpMode,
+	struct net_device *pNetDev,
+	u8 *pMacAddr,
+	u8 *dev_name)
 {
 	struct net_device *net_dev;
 
@@ -1143,11 +1143,11 @@ int RtmpOSNetDevAddrSet(
   *	Assign the network dev name for created Ralink WiFi interface.
   */
 static int RtmpOSNetDevRequestName(
-	IN INT32 MC_RowID,
-	IN u32 *pIoctlIF,
-	IN struct net_device *dev,
-	IN char *pPrefixStr,
-	IN INT devIdx)
+	INT32 MC_RowID,
+	u32 *pIoctlIF,
+	struct net_device *dev,
+	char *pPrefixStr,
+	INT devIdx)
 {
 	struct net_device *existNetDev;
 	STRING suffixName[IFNAMSIZ];
@@ -1215,8 +1215,8 @@ void RtmpOSNetDevFree(struct net_device *pNetDev)
 }
 
 INT RtmpOSNetDevAlloc(
-	IN struct net_device **new_dev_p,
-	IN u32 privDataSize)
+	struct net_device **new_dev_p,
+	u32 privDataSize)
 {
 	*new_dev_p = NULL;
 
@@ -1312,9 +1312,9 @@ static struct ethtool_ops RALINK_Ethtool_Ops = {
 
 
 int RtmpOSNetDevAttach(
-	IN u8 OpMode,
-	IN struct net_device *pNetDev,
-	IN RTMP_OS_NETDEV_OP_HOOK *pDevOpHook)
+	u8 OpMode,
+	struct net_device *pNetDev,
+	RTMP_OS_NETDEV_OP_HOOK *pDevOpHook)
 {
 	int ret,
 	 rtnl_locked = false;
@@ -1379,12 +1379,12 @@ int RtmpOSNetDevAttach(
 }
 
 struct net_device *RtmpOSNetDevCreate(
-	IN INT32 MC_RowID,
-	IN u32 *pIoctlIF,
-	IN INT devType,
-	IN INT devNum,
-	IN INT privMemSize,
-	IN char *pNamePrefix)
+	INT32 MC_RowID,
+	u32 *pIoctlIF,
+	INT devType,
+	INT devNum,
+	INT privMemSize,
+	char *pNamePrefix)
 {
 	struct net_device *pNetDev = NULL;
 	struct net_device_ops *pNetDevOps = NULL;
@@ -1465,11 +1465,11 @@ UINT RtmpOsWirelessExtVerGet(void)
 
 
 void RtmpDrvAllMacPrint(
-	IN void *pReserved,
-	IN u32 *pBufMac,
-	IN u32 AddrStart,
-	IN u32 AddrEnd,
-	IN u32 AddrStep)
+	void *pReserved,
+	u32 *pBufMac,
+	u32 AddrStart,
+	u32 AddrEnd,
+	u32 AddrStep)
 {
 	struct file *file_w;
 	char *fileName = "MacDump.txt";
@@ -1516,10 +1516,10 @@ void RtmpDrvAllMacPrint(
 
 
 void RtmpDrvAllE2PPrint(
-	IN void *pReserved,
-	IN USHORT *pMacContent,
-	IN u32 AddrEnd,
-	IN u32 AddrStep)
+	void *pReserved,
+	USHORT *pMacContent,
+	u32 AddrEnd,
+	u32 AddrStep)
 {
 	struct file *file_w;
 	char *fileName = "EEPROMDump.txt";
@@ -1633,7 +1633,7 @@ Return Value:
 Note:
 ========================================================================
 */
-void RtmpOsMlmeUp(IN RTMP_OS_TASK *pMlmeQTask)
+void RtmpOsMlmeUp(RTMP_OS_TASK *pMlmeQTask)
 {
 #ifdef RTMP_USB_SUPPORT
 	OS_TASK *pTask = RTMP_OS_TASK_GET(pMlmeQTask);
@@ -1669,16 +1669,16 @@ Note:
 	rt_linux.h, not rt_drv.h
 ========================================================================
 */
-INT32 RtmpOsFileIsErr(IN void *pFile)
+INT32 RtmpOsFileIsErr(void *pFile)
 {
 	return IS_FILE_OPEN_ERR(pFile);
 }
 
 int RtmpOSIRQRelease(
-	IN struct net_device *pNetDev,
-	IN u32 infType,
-	IN PPCI_DEV pci_dev,
-	IN bool *pHaveMsi)
+	struct net_device *pNetDev,
+	u32 infType,
+	PPCI_DEV pci_dev,
+	bool *pHaveMsi)
 {
 	struct net_device *net_dev = (struct net_device *)pNetDev;
 
@@ -1704,9 +1704,9 @@ Note:
 ========================================================================
 */
 void RtmpOsWlanEventSet(
-	IN void *pReserved,
-	IN bool *pCfgWEnt,
-	IN bool FlgIsWEntSup)
+	void *pReserved,
+	bool *pCfgWEnt,
+	bool FlgIsWEntSup)
 {
 /*	pAd->CommonCfg.bWirelessEvent = FlgIsWEntSup; */
 	*pCfgWEnt = FlgIsWEntSup;
@@ -1792,8 +1792,8 @@ void RtmpOsPktProtocolAssign(struct sk_buff * pNetPkt)
 
 
 bool RtmpOsStatsAlloc(
-	IN void **ppStats,
-	IN void **ppIwStats)
+	void **ppStats,
+	void **ppIwStats)
 {
 	*ppStats = kmalloc(sizeof (struct net_device_stats), GFP_ATOMIC);
 	if ((*ppStats) == NULL)
@@ -1857,8 +1857,8 @@ typedef struct __attribute__ ((packed)) _RT_IAPP_L2_UPDATE_FRAME {
 
 
 struct sk_buff * RtmpOsPktIappMakeUp(
-	IN struct net_device *pNetDev,
-	IN u8 *pMac)
+	struct net_device *pNetDev,
+	u8 *pMac)
 {
 	RT_IAPP_L2_UPDATE_FRAME frame_body;
 	INT size = sizeof (RT_IAPP_L2_UPDATE_FRAME);
@@ -2019,8 +2019,8 @@ Note:
 ========================================================================
 */
 void CFG80211OS_UnRegister(
-	IN void *pCB,
-	IN void *pNetDevOrg)
+	void *pCB,
+	void *pNetDevOrg)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct net_device *pNetDev = (struct net_device *)pNetDevOrg;
@@ -2093,11 +2093,11 @@ Note:
 ========================================================================
 */
 bool CFG80211_SupBandInit(
-	IN void *pCB,
-	IN CFG80211_BAND *pBandInfo,
-	IN void *pWiphyOrg,
-	IN void *pChannelsOrg,
-	IN void *pRatesOrg)
+	void *pCB,
+	CFG80211_BAND *pBandInfo,
+	void *pWiphyOrg,
+	void *pChannelsOrg,
+	void *pRatesOrg)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct wiphy *pWiphy = (struct wiphy *)pWiphyOrg;
@@ -2315,8 +2315,8 @@ Note:
 ========================================================================
 */
 bool CFG80211OS_SupBandReInit(
-	IN void *pCB,
-	IN CFG80211_BAND *pBandInfo)
+	void *pCB,
+	CFG80211_BAND *pBandInfo)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct wiphy *pWiphy;
@@ -2367,9 +2367,9 @@ Note:
 ========================================================================
 */
 void CFG80211OS_RegHint(
-	IN void *pCB,
-	IN u8 *pCountryIe,
-	IN ULONG CountryIeLen)
+	void *pCB,
+	u8 *pCountryIe,
+	ULONG CountryIeLen)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 
@@ -2408,19 +2408,19 @@ Note:
 ========================================================================
 */
 void CFG80211OS_RegHint11D(
-	IN void *pCB,
-	IN u8 *pCountryIe,
-	IN ULONG CountryIeLen)
+	void *pCB,
+	u8 *pCountryIe,
+	ULONG CountryIeLen)
 {
 	/* no regulatory_hint_11d() in 2.6.32 */
 }
 
 
 bool CFG80211OS_BandInfoGet(
-	IN void *pCB,
-	IN void *pWiphyOrg,
-	OUT void **ppBand24,
-	OUT void **ppBand5)
+	void *pCB,
+	void *pWiphyOrg,
+	void **ppBand24,
+	void **ppBand5)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct wiphy *pWiphy = (struct wiphy *)pWiphyOrg;
@@ -2442,9 +2442,9 @@ bool CFG80211OS_BandInfoGet(
 
 
 u32 CFG80211OS_ChanNumGet(
-	IN void 					*pCB,
-	IN void 					*pWiphyOrg,
-	IN u32					IdBand)
+	void 					*pCB,
+	void 					*pWiphyOrg,
+	u32					IdBand)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct wiphy *pWiphy = (struct wiphy *)pWiphyOrg;
@@ -2467,13 +2467,13 @@ u32 CFG80211OS_ChanNumGet(
 
 
 bool CFG80211OS_ChanInfoGet(
-	IN void 					*pCB,
-	IN void 					*pWiphyOrg,
-	IN u32					IdBand,
-	IN u32					IdChan,
-	OUT u32					*pChanId,
-	OUT u32					*pPower,
-	OUT bool 				*pFlgIsRadar)
+	void 					*pCB,
+	void 					*pWiphyOrg,
+	u32					IdBand,
+	u32					IdChan,
+	u32					*pChanId,
+	u32					*pPower,
+	bool 				*pFlgIsRadar)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct wiphy *pWiphy = (struct wiphy *)pWiphyOrg;
@@ -2529,12 +2529,12 @@ Note:
 ========================================================================
 */
 bool CFG80211OS_ChanInfoInit(
-	IN void 					*pCB,
-	IN u32					InfoIndex,
-	IN u8 				ChanId,
-	IN u8 				MaxTxPwr,
-	IN bool 				FlgIsNMode,
-	IN bool 				FlgIsBW20M)
+	void 					*pCB,
+	u32					InfoIndex,
+	u8 				ChanId,
+	u8 				MaxTxPwr,
+	bool 				FlgIsNMode,
+	bool 				FlgIsBW20M)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 	struct ieee80211_channel *pChan;
@@ -2578,13 +2578,13 @@ Note:
 ========================================================================
 */
 void CFG80211OS_Scaning(
-	IN void 					*pCB,
-	IN u32					ChanId,
-	IN u8 				*pFrame,
-	IN u32					FrameLen,
-	IN INT32					RSSI,
-	IN bool 				FlgIsNMode,
-	IN u8					BW)
+	void 					*pCB,
+	u32					ChanId,
+	u8 				*pFrame,
+	u32					FrameLen,
+	INT32					RSSI,
+	bool 				FlgIsNMode,
+	u8					BW)
 {
 	struct cfg80211_bss *ret;
 #ifdef CONFIG_STA_SUPPORT
@@ -2639,8 +2639,8 @@ Note:
 ========================================================================
 */
 void CFG80211OS_ScanEnd(
-	IN void *pCB,
-	IN bool FlgIsAborted)
+	void *pCB,
+	bool FlgIsAborted)
 {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0))
 	struct cfg80211_scan_info info = {
@@ -2684,13 +2684,13 @@ Note:
 ========================================================================
 */
 void CFG80211OS_ConnectResultInform(
-	IN void *pCB,
-	IN u8 *pBSSID,
-	IN u8 *pReqIe,
-	IN u32 ReqIeLen,
-	IN u8 *pRspIe,
-	IN u32 RspIeLen,
-	IN u8 FlgIsSuccess)
+	void *pCB,
+	u8 *pBSSID,
+	u8 *pReqIe,
+	u32 ReqIeLen,
+	u8 *pRspIe,
+	u32 RspIeLen,
+	u8 FlgIsSuccess)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 
@@ -2737,8 +2737,8 @@ Note:
 ========================================================================
 */
 void RtmpOsDCacheFlush(
-	IN ULONG AddrStart,
-	IN ULONG Size)
+	ULONG AddrStart,
+	ULONG Size)
 {
 	RTMP_UTIL_DCACHE_FLUSH(AddrStart, Size);
 }

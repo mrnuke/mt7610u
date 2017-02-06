@@ -1942,9 +1942,9 @@ const struct iw_handler_def rt28xx_iw_handler_def =
 
 
 INT rt28xx_sta_ioctl(
-	IN	struct net_device	*net_dev,
-	IN	OUT	struct ifreq	*rq,
-	IN	INT					cmd)
+	struct net_device	*net_dev,
+	struct ifreq	*rq,
+	INT					cmd)
 {
 /*	struct os_cookie *		pObj; */
 	void        		*pAd = NULL;

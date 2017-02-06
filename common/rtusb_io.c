@@ -49,7 +49,7 @@
 */
 
 static int	RTUSBFirmwareRun(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	int	Status;
 
@@ -82,7 +82,7 @@ static int	RTUSBFirmwareRun(
 */
 
 int	RTUSBVenderReset(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	int	Status;
 	DBGPRINT_RAW(RT_DEBUG_ERROR, ("-->RTUSBVenderReset\n"));
@@ -115,9 +115,9 @@ int	RTUSBVenderReset(
 	========================================================================
 */
 int	RTUSBMultiWrite_OneByte(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT			Offset,
-	IN	u8 *		pData)
+	struct rtmp_adapter *pAd,
+	USHORT			Offset,
+	u8 *		pData)
 {
 	int	Status;
 
@@ -135,10 +135,10 @@ int	RTUSBMultiWrite_OneByte(
 }
 
 int	RTUSBMultiWrite(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT			Offset,
-	IN	u8 *		pData,
-	IN	USHORT			length)
+	struct rtmp_adapter *pAd,
+	USHORT			Offset,
+	u8 *		pData,
+	USHORT			length)
 {
 	int	Status;
 
@@ -162,9 +162,9 @@ int	RTUSBMultiWrite(
 
 
 int RTUSBSingleWrite(
-	IN 	struct rtmp_adapter	*pAd,
-	IN	USHORT			Offset,
-	IN	USHORT			Value)
+	struct rtmp_adapter	*pAd,
+	USHORT			Offset,
+	USHORT			Value)
 {
 	int	Status;
 
@@ -235,9 +235,9 @@ u32 mt7610u_read32(struct rtmp_adapter *pAd, USHORT Offset)
 	========================================================================
 */
 int mt7610u_write32(
-	IN struct rtmp_adapter*pAd,
-	IN USHORT Offset,
-	IN u32 Value)
+	struct rtmp_adapter*pAd,
+	USHORT Offset,
+	u32 Value)
 {
 	int Status;
 	u32 localVal;
@@ -275,8 +275,8 @@ int mt7610u_write32(
 	========================================================================
 */
 int	RTUSBWriteRFRegister(
-	IN	struct rtmp_adapter *pAd,
-	IN	u32			Value)
+	struct rtmp_adapter *pAd,
+	u32			Value)
 {
 	RF_CSR_CFG0_STRUC PhyCsr4;
 	UINT			i = 0;
@@ -484,7 +484,7 @@ int RTUSB_VendorRequest(
 
 }
 
-int CheckGPIOHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+int CheckGPIOHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 #ifdef CONFIG_STA_SUPPORT
 
@@ -532,7 +532,7 @@ int CheckGPIOHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 }
 
 
-static int ResetBulkOutHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int ResetBulkOutHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 
 	INT32 MACValue = 0;
@@ -695,7 +695,7 @@ static int ResetBulkOutHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem 
 
 
 /* All transfers must be aborted or cancelled before attempting to reset the pipe.*/
-static int ResetBulkInHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int ResetBulkInHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	u32 MACValue;
 	int ntStatus;
@@ -812,7 +812,7 @@ static int ResetBulkInHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *
 }
 
 
-static int SetAsicWcidHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetAsicWcidHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_SET_ASIC_WCID	SetAsicWcid;
 	USHORT		offset;
@@ -848,7 +848,7 @@ static int SetAsicWcidHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *
 	return NDIS_STATUS_SUCCESS;
 }
 
-static int DelAsicWcidHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int DelAsicWcidHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_SET_ASIC_WCID SetAsicWcid;
 	SetAsicWcid = *((PRT_SET_ASIC_WCID)(CMDQelmt->buffer));
@@ -861,7 +861,7 @@ static int DelAsicWcidHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *
         return NDIS_STATUS_SUCCESS;
 }
 
-static int SetWcidSecInfoHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetWcidSecInfoHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_ASIC_WCID_SEC_INFO pInfo;
 
@@ -877,7 +877,7 @@ static int SetWcidSecInfoHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_ele
 }
 
 
-static int SetAsicWcidIVEIVHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetAsicWcidIVEIVHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_ASIC_WCID_IVEIV_ENTRY pInfo;
 
@@ -891,7 +891,7 @@ static int SetAsicWcidIVEIVHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_e
 }
 
 
-static int SetAsicWcidAttrHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetAsicWcidAttrHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_ASIC_WCID_ATTR_ENTRY pInfo;
 
@@ -906,7 +906,7 @@ static int SetAsicWcidAttrHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_el
 	return NDIS_STATUS_SUCCESS;
 }
 
-static int SETAsicSharedKeyHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SETAsicSharedKeyHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_ASIC_SHARED_KEY pInfo;
 
@@ -919,7 +919,7 @@ static int SETAsicSharedKeyHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_e
 	return NDIS_STATUS_SUCCESS;
 }
 
-static int SetAsicPairwiseKeyHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetAsicPairwiseKeyHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_ASIC_PAIRWISE_KEY pInfo;
 
@@ -932,7 +932,7 @@ static int SetAsicPairwiseKeyHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue
 }
 
 #ifdef CONFIG_STA_SUPPORT
-static int SetPortSecuredHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetPortSecuredHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	STA_PORT_SECURED(pAd);
 	return NDIS_STATUS_SUCCESS;
@@ -940,7 +940,7 @@ static int SetPortSecuredHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_ele
 #endif /* CONFIG_STA_SUPPORT */
 
 
-static int RemovePairwiseKeyHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int RemovePairwiseKeyHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	u8 Wcid = *((u8 *)(CMDQelmt->buffer));
 
@@ -949,7 +949,7 @@ static int RemovePairwiseKeyHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_
 }
 
 
-static int SetClientMACEntryHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetClientMACEntryHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_SET_ASIC_WCID pInfo;
 
@@ -959,7 +959,7 @@ static int SetClientMACEntryHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_
 }
 
 
-static int UpdateProtectHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int UpdateProtectHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	PRT_ASIC_PROTECT_INFO pAsicProtectInfo;
 
@@ -976,7 +976,7 @@ static int UpdateProtectHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem
 
 
 #ifdef CONFIG_STA_SUPPORT
-static int SetPSMBitHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetPSMBitHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
 	{
@@ -988,7 +988,7 @@ static int SetPSMBitHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CM
 }
 
 
-static int ForceWakeUpHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int ForceWakeUpHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
 		AsicForceWakeup(pAd, true);
@@ -997,7 +997,7 @@ static int ForceWakeUpHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *
 }
 
 
-static int ForceSleepAutoWakeupHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int ForceSleepAutoWakeupHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	USHORT  TbttNumToNextWakeUp;
 	USHORT  NextDtim = pAd->StaCfg.DtimPeriod;
@@ -1019,7 +1019,7 @@ static int ForceSleepAutoWakeupHdlr(IN struct rtmp_adapter *pAd, struct rtmp_que
 }
 
 
-int QkeriodicExecutHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+int QkeriodicExecutHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	StaQuickResponeForRateUpExec(NULL, pAd, NULL, NULL);
 	return NDIS_STATUS_SUCCESS;
@@ -1030,7 +1030,7 @@ int QkeriodicExecutHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMD
 
 
 #ifdef LED_CONTROL_SUPPORT
-static int SetLEDStatusHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int SetLEDStatusHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	u8 LEDStatus = *((u8 *)(CMDQelmt->buffer));
 
@@ -1049,25 +1049,25 @@ static int SetLEDStatusHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem 
 
 #ifdef LINUX
 #ifdef RT_CFG80211_SUPPORT
-static int RegHintHdlr (IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int RegHintHdlr (struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_CFG80211_CRDA_REG_HINT(pAd, CMDQelmt->buffer, CMDQelmt->bufferlength);
 	return NDIS_STATUS_SUCCESS;
 }
 
-static int RegHint11DHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int RegHint11DHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_CFG80211_CRDA_REG_HINT11D(pAd, CMDQelmt->buffer, CMDQelmt->bufferlength);
 	return NDIS_STATUS_SUCCESS;
 }
 
-static int RT_Mac80211_ScanEnd(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int RT_Mac80211_ScanEnd(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_CFG80211_SCAN_END(pAd, false);
 	return NDIS_STATUS_SUCCESS;
 }
 
-static int RT_Mac80211_ConnResultInfom(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int RT_Mac80211_ConnResultInfom(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_CFG80211_CONN_RESULT_INFORM(pAd,
 								pAd->MlmeAux.Bssid,
@@ -1079,7 +1079,7 @@ static int RT_Mac80211_ConnResultInfom(IN struct rtmp_adapter *pAd, struct rtmp_
 #endif /* RT_CFG80211_SUPPORT */
 #endif /* LINUX */
 
-static int CmdRspEventCallback(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
+static int CmdRspEventCallback(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	struct rxfce_info_cmd *pFceInfo = CMDQelmt->buffer;
 
@@ -1087,7 +1087,7 @@ static int CmdRspEventCallback(IN struct rtmp_adapter *pAd, struct rtmp_queue_el
 }
 
 
-typedef int (*CMDHdlr)(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt);
+typedef int (*CMDHdlr)(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt);
 
 static CMDHdlr CMDHdlrTable[] = {
 	ResetBulkOutHdlr,				/* CMDTHREAD_RESET_BULK_OUT*/

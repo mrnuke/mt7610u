@@ -29,9 +29,9 @@
 
 
 INT	Set_Cmm_WirelessMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg,
-	IN	bool 		FlgIsDiffMbssModeUsed)
+	struct rtmp_adapter *pAd,
+	char *		arg,
+	bool 		FlgIsDiffMbssModeUsed)
 {
 	INT	success = true;
 	success = RT_CfgSetWirelessMode(pAd, arg);
@@ -94,8 +94,8 @@ INT	Set_WirelessMode_Proc(struct rtmp_adapter*pAd, char *arg)
     ==========================================================================
 */
 INT	Set_Channel_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
  	INT		success = true;
 	u8 Channel;
@@ -165,8 +165,8 @@ INT	Set_Channel_Proc(
     ==========================================================================
 */
 INT	Set_PktAggregate_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	LONG aggre;
 
@@ -196,8 +196,8 @@ INT	Set_PktAggregate_Proc(
     ==========================================================================
 */
 INT	Set_IEEE80211H_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
     LONG ieee80211h;
 
@@ -225,8 +225,8 @@ INT	Set_IEEE80211H_Proc(
     ==========================================================================
 */
 INT Set_ExtCountryCode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 
 	if (RTMP_DRIVER_IOCTL_SANITY_CHECK(pAd, NULL) == NDIS_STATUS_SUCCESS)
@@ -264,8 +264,8 @@ INT Set_ExtCountryCode_Proc(
     ==========================================================================
 */
 INT Set_ExtDfsType_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	u8 *pDfsType = &pAd->CommonCfg.DfsType;
 	if (RTMP_DRIVER_IOCTL_SANITY_CHECK(pAd, NULL) == NDIS_STATUS_SUCCESS)
@@ -295,8 +295,8 @@ INT Set_ExtDfsType_Proc(
     ==========================================================================
 */
 INT Set_ChannelListAdd_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	CH_DESP		inChDesp;
 	PCH_REGION pChRegion = NULL;
@@ -432,8 +432,8 @@ INT Set_ChannelListAdd_Proc(
 }
 
 INT Set_ChannelListShow_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	PCH_REGION	pChRegion = NULL;
 	u8 	EntryIdx, CountryCode[3]={0};
@@ -500,8 +500,8 @@ INT Set_ChannelListShow_Proc(
 }
 
 INT Set_ChannelListDel_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	u8 EntryIdx, TargetIdx, NumOfEntry;
 	PCH_REGION	pChRegion = NULL;
@@ -612,8 +612,8 @@ INT Set_ChannelListDel_Proc(
     ==========================================================================
 */
 INT	Set_Debug_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	DBGPRINT(RT_DEBUG_TRACE, ("==>%s()\n", __FUNCTION__));
 
@@ -636,8 +636,8 @@ INT	Set_Debug_Proc(
     ==========================================================================
 */
 INT	Set_DebugFunc_Proc(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg)
+	struct rtmp_adapter*pAd,
+	char *arg)
 {
 	DBGPRINT_S(RT_DEBUG_TRACE, ("==>%s()\n", __FUNCTION__));
 	RTDebugFunc = simple_strtol(arg, 0, 10);
@@ -649,8 +649,8 @@ INT	Set_DebugFunc_Proc(
 
 
 INT	Show_DescInfo_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 
 	return true;
@@ -670,8 +670,8 @@ INT	Show_DescInfo_Proc(
     ==========================================================================
 */
 INT	Set_ResetStatCounter_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	/*u8           i;*/
 	/*MAC_TABLE_ENTRY *pEntry;*/
@@ -690,8 +690,8 @@ INT	Set_ResetStatCounter_Proc(
 
 
 bool RTMPCheckStrPrintAble(
-    IN  CHAR *pInPutStr,
-    IN  u8 strLen)
+    CHAR *pInPutStr,
+    u8 strLen)
 {
     u8 i=0;
 
@@ -726,8 +726,8 @@ bool RTMPCheckStrPrintAble(
 */
 #ifdef CONFIG_STA_SUPPORT
 void    RTMPSetDesiredRates(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  LONG            Rates)
+    struct rtmp_adapter *  pAdapter,
+    LONG            Rates)
 {
     NDIS_802_11_RATES aryRates;
 
@@ -877,8 +877,8 @@ void    RTMPSetDesiredRates(
 
 #if defined(CONFIG_STA_SUPPORT) || defined(APCLI_WPA_SUPPLICANT_SUPPORT)
 int RTMPWPARemoveKeyProc(
-	IN	struct rtmp_adapter *pAd,
-	IN	void *		pBuf)
+	struct rtmp_adapter *pAd,
+	void *		pBuf)
 {
 	PNDIS_802_11_REMOVE_KEY pKey;
 	ULONG					KeyIdx;
@@ -992,7 +992,7 @@ int RTMPWPARemoveKeyProc(
 	========================================================================
 */
 void RTMPWPARemoveAllKeys(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 
 	u8 	i;
@@ -1041,8 +1041,8 @@ void RTMPWPARemoveAllKeys(
 	========================================================================
 */
 void RTMPSetPhyMode(
-	IN struct rtmp_adapter*pAd,
-	IN ULONG phymode)
+	struct rtmp_adapter*pAd,
+	ULONG phymode)
 {
 	INT i;
 	/* the selected phymode must be supported by the RF IC encoded in E2PROM*/
@@ -1188,11 +1188,11 @@ void RTMPSetPhyMode(
 	========================================================================
 */
 void RTMPAddWcidAttributeEntry(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		BssIdx,
-	IN 	u8 	 	KeyIdx,
-	IN 	u8 	 	CipherAlg,
-	IN 	MAC_TABLE_ENTRY *pEntry)
+	struct rtmp_adapter *pAd,
+	u8 		BssIdx,
+	u8 	 	KeyIdx,
+	u8 	 	CipherAlg,
+	MAC_TABLE_ENTRY *pEntry)
 {
 	u32		WCIDAttri = 0;
 	USHORT		offset;
@@ -1350,9 +1350,9 @@ char *GetAuthMode(CHAR auth)
 #ifdef CONFIG_STA_SUPPORT
 #endif /* CONFIG_STA_SUPPORT */
 void RTMPCommSiteSurveyData(
-	IN  char *	msg,
-	IN  PBSS_ENTRY	pBss,
-	IN  u32		MsgLen)
+	char *	msg,
+	PBSS_ENTRY	pBss,
+	u32		MsgLen)
 {
 	INT         Rssi = 0;
 	UINT        Rssi_Quality = 0;
@@ -1537,8 +1537,8 @@ void RTMPCommSiteSurveyData(
 
 #define	MAC_LINE_LEN	(1+14+4+4+4+4+10+10+10+6+6)	/* "\n"+Addr+aid+psm+datatime+rxbyte+txbyte+current tx rate+last tx rate+"\n" */
 void RTMPIoctlGetMacTable(
-	IN struct rtmp_adapter *pAd,
-	IN RTMP_IOCTL_INPUT_STRUCT *wrq)
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT *wrq)
 {
 	INT i;
 /*	RT_802_11_MAC_TABLE MacTab;*/
@@ -1646,8 +1646,8 @@ LabelOK:
 
 #ifdef DOT11_N_SUPPORT
 INT	Set_BASetup_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
     u8 mac[6], tid;
 	char *token;
@@ -1701,8 +1701,8 @@ INT	Set_BASetup_Proc(
 }
 
 INT	Set_BADecline_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG bBADecline;
 
@@ -1727,8 +1727,8 @@ INT	Set_BADecline_Proc(
 }
 
 INT	Set_BAOriTearDown_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
     u8 mac[6], tid;
 	char *token;
@@ -1781,8 +1781,8 @@ INT	Set_BAOriTearDown_Proc(
 }
 
 INT	Set_BARecTearDown_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
     u8 mac[6], tid;
 	char *token;
@@ -1835,8 +1835,8 @@ INT	Set_BARecTearDown_Proc(
 }
 
 INT	Set_HtBw_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG HtBw;
 
@@ -1858,8 +1858,8 @@ INT	Set_HtBw_Proc(
 
 
 INT	Set_HtMcs_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG HtMcs, Mcs_tmp, ValidMcs = 15;
 #ifdef CONFIG_STA_SUPPORT
@@ -1922,8 +1922,8 @@ INT	Set_HtMcs_Proc(
 }
 
 INT	Set_HtGi_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG HtGi;
 
@@ -1945,8 +1945,8 @@ INT	Set_HtGi_Proc(
 
 
 INT	Set_HtTxBASize_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	u8 Size;
 
@@ -1963,8 +1963,8 @@ INT	Set_HtTxBASize_Proc(
 }
 
 INT	Set_HtDisallowTKIP_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -1986,8 +1986,8 @@ INT	Set_HtDisallowTKIP_Proc(
 }
 
 INT	Set_HtOpMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 
 	ULONG Value;
@@ -2010,8 +2010,8 @@ INT	Set_HtOpMode_Proc(
 }
 
 INT	Set_HtStbc_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 
 	ULONG Value;
@@ -2033,8 +2033,8 @@ INT	Set_HtStbc_Proc(
 }
 
 INT	Set_HtHtc_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 
 	ULONG Value;
@@ -2053,8 +2053,8 @@ INT	Set_HtHtc_Proc(
 }
 
 INT	Set_HtExtcha_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 
 	ULONG Value;
@@ -2076,8 +2076,8 @@ INT	Set_HtExtcha_Proc(
 }
 
 INT	Set_HtMpduDensity_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2096,8 +2096,8 @@ INT	Set_HtMpduDensity_Proc(
 }
 
 INT	Set_HtBaWinSize_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2123,8 +2123,8 @@ INT	Set_HtBaWinSize_Proc(
 }
 
 INT	Set_HtRdg_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2148,8 +2148,8 @@ INT	Set_HtRdg_Proc(
 }
 
 INT	Set_HtLinkAdapt_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2170,8 +2170,8 @@ INT	Set_HtLinkAdapt_Proc(
 }
 
 INT	Set_HtAmsdu_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2191,8 +2191,8 @@ INT	Set_HtAmsdu_Proc(
 }
 
 INT	Set_HtAutoBa_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2221,8 +2221,8 @@ INT	Set_HtAutoBa_Proc(
 }
 
 INT	Set_HtProtect_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2240,8 +2240,8 @@ INT	Set_HtProtect_Proc(
 }
 
 INT	Set_SendPSMPAction_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
     u8 mac[6], mode;
 	char *token;
@@ -2294,8 +2294,8 @@ INT	Set_SendPSMPAction_Proc(
 }
 
 INT	Set_HtMIMOPSmode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2315,8 +2315,8 @@ INT	Set_HtMIMOPSmode_Proc(
 
 
 INT	Set_ForceShortGI_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2338,8 +2338,8 @@ INT	Set_ForceShortGI_Proc(
 
 
 INT	Set_ForceGF_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2359,8 +2359,8 @@ INT	Set_ForceGF_Proc(
 }
 
 INT	Set_HtMimoPs_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -2380,8 +2380,8 @@ INT	Set_HtMimoPs_Proc(
 
 #ifdef DOT11N_DRAFT3
 INT Set_HT_BssCoex_Proc(
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *			pParam)
+	struct rtmp_adapter *	pAd,
+	char *			pParam)
 {
 	u8 bBssCoexEnable = simple_strtol(pParam, 0, 10);
 
@@ -2394,8 +2394,8 @@ INT Set_HT_BssCoex_Proc(
 
 
 INT Set_HT_BssCoexApCntThr_Proc(
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *			pParam)
+	struct rtmp_adapter *	pAd,
+	char *			pParam)
 {
 	pAd->CommonCfg.BssCoexApCntThr = simple_strtol(pParam, 0, 10);
 
@@ -2410,8 +2410,8 @@ INT Set_HT_BssCoexApCntThr_Proc(
 
 #ifdef DOT11_VHT_AC
 INT	Set_VhtBw_Proc(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg)
+	struct rtmp_adapter*pAd,
+	char *arg)
 {
 	ULONG vht_cw;
 	u8 cent_ch;
@@ -2468,8 +2468,8 @@ INT Set_VhtBwSignal_Proc(struct rtmp_adapter*pAd, char *arg)
 
 
 INT	Set_VhtStbc_Proc(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg)
+	struct rtmp_adapter*pAd,
+	char *arg)
 {
 	ULONG Value;
 
@@ -2641,7 +2641,7 @@ static void dbQueueDisplayPHY(USHORT phyRate)
 
 /* dbQueueDump - dump contents of debug queue*/
 static void dbQueueDump(
-	IN  struct rtmp_adapter *  pAd,
+	struct rtmp_adapter *  pAd,
 	bool decode)
 {
 	DBQUEUE_ENTRY *oldTail;
@@ -2813,8 +2813,8 @@ static void dbQueueDump(
 			dd: 0=>disable, 1=>enable, 2=>dump, 3=>clear, 4=>dump & decode
 */
 INT Set_DebugQueue_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg)
+    struct rtmp_adapter *  pAd,
+    char *        arg)
 {
     ULONG argValue = simple_strtol(arg, 0, 10);
 
@@ -2849,8 +2849,8 @@ INT Set_DebugQueue_Proc(
 		usage: iwpriv ra0 set CFOTrack=[0..8]
 */
 INT Set_CFOTrack_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg)
+    struct rtmp_adapter *  pAd,
+    char *        arg)
 {
     pAd->CommonCfg.CFOTrack = simple_strtol(arg, 0, 10);
     DBGPRINT(RT_DEBUG_TRACE, ("%s():(CFOTrack=%d)\n",
@@ -2862,8 +2862,8 @@ INT Set_CFOTrack_Proc(
 
 #ifdef DBG_CTRL_SUPPORT
 INT Set_DebugFlags_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg)
+    struct rtmp_adapter *  pAd,
+    char *        arg)
 {
     pAd->CommonCfg.DebugFlags = simple_strtol(arg, 0, 16);
 
@@ -2878,8 +2878,8 @@ INT Set_DebugFlags_Proc(
 
 
 INT Set_LongRetryLimit_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg)
+	struct rtmp_adapter *pAdapter,
+	char *		arg)
 {
 	TX_RTY_CFG_STRUC	tx_rty_cfg;
 	u8 			LongRetryLimit = (u8)simple_strtol(arg, 0, 10);
@@ -2892,8 +2892,8 @@ INT Set_LongRetryLimit_Proc(
 }
 
 INT Set_ShortRetryLimit_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg)
+	struct rtmp_adapter *pAdapter,
+	char *		arg)
 {
 	TX_RTY_CFG_STRUC	tx_rty_cfg;
 	u8 			ShortRetryLimit = (u8)simple_strtol(arg, 0, 10);
@@ -2906,8 +2906,8 @@ INT Set_ShortRetryLimit_Proc(
 }
 
 INT Set_AutoFallBack_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg)
+	struct rtmp_adapter *pAdapter,
+	char *		arg)
 {
 	return RT_CfgSetAutoFallBack(pAdapter, arg);
 }
@@ -2915,7 +2915,7 @@ INT Set_AutoFallBack_Proc(
 
 
 char *RTMPGetRalinkAuthModeStr(
-    IN  NDIS_802_11_AUTHENTICATION_MODE authMode)
+    NDIS_802_11_AUTHENTICATION_MODE authMode)
 {
 	switch(authMode)
 	{
@@ -2945,7 +2945,7 @@ char *RTMPGetRalinkAuthModeStr(
 }
 
 char *RTMPGetRalinkEncryModeStr(
-    IN  USHORT encryMode)
+    USHORT encryMode)
 {
 	switch(encryMode)
 	{
@@ -2966,8 +2966,8 @@ char *RTMPGetRalinkEncryModeStr(
 
 #ifdef APCLI_SUPPORT
  INT RTMPIoctlConnStatus(
-	IN	struct rtmp_adapter *pAd,
- 	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+ 	char *		arg)
 {
 
  	INT i=0;
@@ -3065,10 +3065,10 @@ void  getRate(HTTRANSMIT_SETTING HTSetting, ULONG* fLastTxRxRate)
 
 #ifdef DOT11_N_SUPPORT
 void assoc_ht_info_debugshow(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN u8 ht_cap_len,
-	IN HT_CAPABILITY_IE *pHTCapability)
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	u8 ht_cap_len,
+	HT_CAPABILITY_IE *pHTCapability)
 {
 	HT_CAP_INFO			*pHTCap;
 	HT_CAP_PARM		*pHTCapParm;
@@ -3120,8 +3120,8 @@ void assoc_ht_info_debugshow(
 
 
 INT	Set_BurstMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	ULONG Value;
 
@@ -3150,10 +3150,10 @@ INT	Set_BurstMode_Proc(
 
 #ifdef DOT11_VHT_AC
 void assoc_vht_info_debugshow(
-	IN struct rtmp_adapter*pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN VHT_CAP_IE *vht_cap,
-	IN VHT_OP_IE *vht_op)
+	struct rtmp_adapter*pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	VHT_CAP_IE *vht_cap,
+	VHT_OP_IE *vht_op)
 {
 	VHT_CAP_INFO *cap_info;
 	VHT_MCS_SET *mcs_set;
@@ -3205,8 +3205,8 @@ void assoc_vht_info_debugshow(
 
 
 INT Set_RateAdaptInterval(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg)
+	struct rtmp_adapter*pAd,
+	char *arg)
 {
 	u32 ra_time, ra_qtime;
 	char *token;
@@ -3246,8 +3246,8 @@ INT Set_RateAdaptInterval(
 
 
 INT Set_VcoPeriod_Proc(
-	IN struct rtmp_adapter	*pAd,
-	IN char *		arg)
+	struct rtmp_adapter	*pAd,
+	char *		arg)
 {
 	pAd->chipCap.VcoPeriod = simple_strtol(arg, 0, 10);
 

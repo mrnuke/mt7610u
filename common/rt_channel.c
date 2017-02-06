@@ -1597,7 +1597,7 @@ CH_REGION ChRegion[] =
 };
 
 static PCH_REGION GetChRegion(
-	IN u8 *CntryCode)
+	u8 *CntryCode)
 {
 	INT loop = 0;
 	PCH_REGION pChRegion = NULL;
@@ -1620,8 +1620,8 @@ static PCH_REGION GetChRegion(
 }
 
 static void ChBandCheck(
-	IN u8 PhyMode,
-	OUT u8 *pChType)
+	u8 PhyMode,
+	u8 *pChType)
 {
 	*pChType = 0;
 	if (WMODE_CAP_5G(PhyMode))
@@ -1634,11 +1634,11 @@ static void ChBandCheck(
 }
 
 static u8 FillChList(
-	IN struct rtmp_adapter *pAd,
-	IN PCH_DESP pChDesp,
-	IN u8 Offset,
-	IN u8 increment,
-	IN u8 regulatoryDomain)
+	struct rtmp_adapter *pAd,
+	PCH_DESP pChDesp,
+	u8 Offset,
+	u8 increment,
+	u8 regulatoryDomain)
 {
 	INT i, j, l;
 	u8 channel;
@@ -1701,9 +1701,9 @@ static u8 FillChList(
 
 
 static inline void CreateChList(
-	IN struct rtmp_adapter *pAd,
-	IN PCH_REGION pChRegion,
-	IN u8 Geography)
+	struct rtmp_adapter *pAd,
+	PCH_REGION pChRegion,
+	u8 Geography)
 {
 	INT i;
 	u8 offset = 0;
@@ -1757,7 +1757,7 @@ static inline void CreateChList(
 
 
 void BuildChannelListEx(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PCH_REGION pChReg;
 
@@ -1766,9 +1766,9 @@ void BuildChannelListEx(
 }
 
 void BuildBeaconChList(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pBuf,
-	OUT	PULONG pBufLen)
+	struct rtmp_adapter *pAd,
+	u8 *pBuf,
+	PULONG pBufLen)
 {
 	INT i;
 	ULONG TmpLen;
@@ -1821,8 +1821,8 @@ void BuildBeaconChList(
 
 #ifdef DOT11_N_SUPPORT
 static bool IsValidChannel(
-	IN struct rtmp_adapter *pAd,
-	IN u8 channel)
+	struct rtmp_adapter *pAd,
+	u8 channel)
 
 {
 	INT i;
@@ -1840,8 +1840,8 @@ static bool IsValidChannel(
 }
 
 static u8 GetExtCh(
-	IN u8 Channel,
-	IN u8 Direction)
+	u8 Channel,
+	u8 Direction)
 {
 	CHAR ExtCh;
 
@@ -1854,8 +1854,8 @@ static u8 GetExtCh(
 }
 
 bool N_ChannelGroupCheck(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel)
+	struct rtmp_adapter *pAd,
+	u8 Channel)
 {
 	bool RetVal = false;
 
@@ -1987,8 +1987,8 @@ u8 N_SetCenCh(struct rtmp_adapter*pAd, u8 prim_ch)
 
 
 u8 GetCuntryMaxTxPwr(
-	IN struct rtmp_adapter *pAd,
-	IN u8 channel)
+	struct rtmp_adapter *pAd,
+	u8 channel)
 {
 	int i;
 	for (i = 0; i < pAd->ChannelListNum; i++)
@@ -2006,8 +2006,8 @@ u8 GetCuntryMaxTxPwr(
 
 /* for OS_ABL */
 void RTMP_MapChannelID2KHZ(
-	IN u8 Ch,
-	OUT u32 *pFreq)
+	u8 Ch,
+	u32 *pFreq)
 {
 	int chIdx;
 	for (chIdx = 0; chIdx < CH_HZ_ID_MAP_NUM; chIdx++)
@@ -2024,8 +2024,8 @@ void RTMP_MapChannelID2KHZ(
 
 /* for OS_ABL */
 void RTMP_MapKHZ2ChannelID(
-	IN ULONG Freq,
-	OUT INT *pCh)
+	ULONG Freq,
+	INT *pCh)
 {
 	int chIdx;
 	for (chIdx = 0; chIdx < CH_HZ_ID_MAP_NUM; chIdx++)

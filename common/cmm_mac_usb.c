@@ -34,12 +34,12 @@
 
 
 static int RTMPAllocUsbBulkBufStruct(
-	IN struct rtmp_adapter*pAd,
-	IN struct urb **ppUrb,
-	IN void **ppXBuffer,
-	IN INT	bufLen,
-	IN dma_addr_t *pDmaAddr,
-	IN char *pBufName)
+	struct rtmp_adapter*pAd,
+	struct urb **ppUrb,
+	void **ppXBuffer,
+	INT	bufLen,
+	dma_addr_t *pDmaAddr,
+	char *pBufName)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
 
@@ -62,11 +62,11 @@ static int RTMPAllocUsbBulkBufStruct(
 
 
 static int RTMPFreeUsbBulkBufStruct(
-	IN struct rtmp_adapter*pAd,
-	IN struct urb **ppUrb,
-	IN u8 **ppXBuffer,
-	IN INT bufLen,
-	IN dma_addr_t data_dma)
+	struct rtmp_adapter*pAd,
+	struct urb **ppUrb,
+	u8 **ppXBuffer,
+	INT bufLen,
+	dma_addr_t data_dma)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
 
@@ -87,7 +87,7 @@ static int RTMPFreeUsbBulkBufStruct(
 
 #ifdef RESOURCE_PRE_ALLOC
 void RTMPResetTxRxRingMemory(
-	IN struct rtmp_adapter* pAd)
+	struct rtmp_adapter* pAd)
 {
 	UINT index, i, acidx;
 	PTX_CONTEXT pNullContext   = &pAd->NullContext;
@@ -205,7 +205,7 @@ Note:
 ========================================================================
 */
 void RTMPFreeTxRxRingMemory(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	UINT                i, acidx;
 	PTX_CONTEXT			pNullContext   = &pAd->NullContext;
@@ -316,7 +316,7 @@ Note:
 ========================================================================
 */
 int	NICInitRecv(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 			i;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &pAd->CmdRspEventContext;
@@ -374,7 +374,7 @@ Note:
 ========================================================================
 */
 int	NICInitTransmit(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 		i, acidx;
 	int     Status = NDIS_STATUS_SUCCESS;
@@ -549,7 +549,7 @@ Note:
 ========================================================================
 */
 int	RTMPAllocTxRxRingMemory(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	int Status = NDIS_STATUS_FAILURE;
 	PTX_CONTEXT pNullContext   = &(pAd->NullContext);
@@ -678,7 +678,7 @@ err:
 
 
 int RTMPInitTxRxRingMemory
-	(IN struct rtmp_adapter*pAd)
+	(struct rtmp_adapter*pAd)
 {
 	INT				num;
 	int		Status;
@@ -740,7 +740,7 @@ Note:
 ========================================================================
 */
 int	NICInitRecv(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 			i;
 	int			Status = NDIS_STATUS_SUCCESS;
@@ -836,7 +836,7 @@ Note:
 ========================================================================
 */
 int	NICInitTransmit(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 		i, acidx;
 	int     Status = NDIS_STATUS_SUCCESS;
@@ -1070,7 +1070,7 @@ Note:
 ========================================================================
 */
 int	RTMPAllocTxRxRingMemory(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 /*	COUNTER_802_11	pCounter = &pAd->WlanCounters;*/
 	int		Status = NDIS_STATUS_SUCCESS;
@@ -1152,7 +1152,7 @@ Note:
 ========================================================================
 */
 void RTMPFreeTxRxRingMemory(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	UINT                i, acidx;
 	PTX_CONTEXT			pNullContext   = &pAd->NullContext;
@@ -1280,7 +1280,7 @@ Note:
 ========================================================================
 */
 int	RTUSBWriteHWMACAddress(
-	IN	struct rtmp_adapter *	pAd)
+	struct rtmp_adapter *	pAd)
 {
 	MAC_DW0_STRUC	StaMacReg0;
 	MAC_DW1_STRUC	StaMacReg1;
@@ -1304,7 +1304,7 @@ int	RTUSBWriteHWMACAddress(
 }
 
 void RT28XXDMADisable(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 }
 
@@ -1323,7 +1323,7 @@ Note:
 ========================================================================
 */
 void RT28XXDMAEnable(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	WPDMA_GLO_CFG_STRUC GloCfg;
 	USB_DMA_CFG_STRUC	UsbCfg;
@@ -1377,10 +1377,10 @@ Note:
 ========================================================================
 */
 void RT28xx_UpdateBeaconToAsic(
-	IN struct rtmp_adapter	*pAd,
-	IN INT				apidx,
-	IN ULONG			FrameLen,
-	IN ULONG			UpdatePos)
+	struct rtmp_adapter	*pAd,
+	INT				apidx,
+	ULONG			FrameLen,
+	ULONG			UpdatePos)
 {
 	u8 *       	pBeaconFrame = NULL;
 	u8  			*ptr;
@@ -1464,7 +1464,7 @@ void RT28xx_UpdateBeaconToAsic(
 
 
 void RTUSBBssBeaconStop(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	BEACON_SYNC_STRUCT	*pBeaconSync;
 	int i, offset;
@@ -1504,7 +1504,7 @@ void RTUSBBssBeaconStop(
 
 
 void RTUSBBssBeaconStart(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	int apidx;
 	BEACON_SYNC_STRUCT	*pBeaconSync;
@@ -1553,7 +1553,7 @@ void RTUSBBssBeaconStart(
 
 
 void RTUSBBssBeaconInit(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	BEACON_SYNC_STRUCT	*pBeaconSync;
 	int i, j;
@@ -1597,7 +1597,7 @@ error1:
 
 
 void RTUSBBssBeaconExit(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	BEACON_SYNC_STRUCT	*pBeaconSync;
 	bool Cancelled = true;
@@ -1643,10 +1643,10 @@ void RTUSBBssBeaconExit(
     ========================================================================
 */
 void BeaconUpdateExec(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3)
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)FunctionContext;
 	LARGE_INTEGER	tsfTime_a;/*, tsfTime_b, deltaTime_exp, deltaTime_ab;*/
@@ -1729,7 +1729,7 @@ void BeaconUpdateExec(
   *
   ********************************************************************/
 void RT28xxUsbMlmeRadioOn(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
     DBGPRINT(RT_DEBUG_TRACE,("RT28xxUsbMlmeRadioOn()\n"));
 
@@ -1753,7 +1753,7 @@ void RT28xxUsbMlmeRadioOn(
 
 
 void RT28xxUsbMlmeRadioOFF(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 
 	DBGPRINT(RT_DEBUG_TRACE,("RT28xxUsbMlmeRadioOFF()\n"));
@@ -1825,8 +1825,8 @@ void RT28xxUsbMlmeRadioOFF(
 
 
 bool AsicCheckCommandOk(
-	IN struct rtmp_adapter *pAd,
-	IN u8 	 Command)
+	struct rtmp_adapter *pAd,
+	u8 	 Command)
 {
 	u32	CmdStatus, CID, i;
 	u32	ThisCIDMask = 0;

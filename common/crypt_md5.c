@@ -83,7 +83,7 @@ Note:
 ========================================================================
 */
 void RT_MD5_Init (
-    IN  MD5_CTX_STRUC *pMD5_CTX)
+    MD5_CTX_STRUC *pMD5_CTX)
 {
     memmove(pMD5_CTX->HashValue, MD5_DefaultHashValue,
         sizeof(MD5_DefaultHashValue));
@@ -109,7 +109,7 @@ Note:
 ========================================================================
 */
 void RT_MD5_Hash (
-    IN  MD5_CTX_STRUC *pMD5_CTX)
+    MD5_CTX_STRUC *pMD5_CTX)
 {
     u32 X_i;
     u32 X[16];
@@ -246,9 +246,9 @@ Note:
 ========================================================================
 */
 void RT_MD5_Append (
-    IN  MD5_CTX_STRUC *pMD5_CTX,
-    IN  const u8 Message[],
-    IN  UINT MessageLen)
+    MD5_CTX_STRUC *pMD5_CTX,
+    const u8 Message[],
+    UINT MessageLen)
 {
     UINT appendLen = 0;
     UINT diffLen = 0;
@@ -292,8 +292,8 @@ Note:
 ========================================================================
 */
 void RT_MD5_End (
-    IN  MD5_CTX_STRUC *pMD5_CTX,
-    OUT u8 DigestMessage[])
+    MD5_CTX_STRUC *pMD5_CTX,
+    u8 DigestMessage[])
 {
     UINT index;
     UINT64 message_length_bits;
@@ -337,9 +337,9 @@ Note:
 ========================================================================
 */
 void RT_MD5 (
-    IN  const u8 Message[],
-    IN  UINT MessageLen,
-    OUT u8 DigestMessage[])
+    const u8 Message[],
+    UINT MessageLen,
+    u8 DigestMessage[])
 {
     MD5_CTX_STRUC md5_ctx;
 

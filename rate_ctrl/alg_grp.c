@@ -66,9 +66,9 @@ void MlmeSetMcsGroup(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry)
 	returns the UpRate index and updates the MCS group
 */
 u8 MlmeSelectUpRate(
-	IN struct rtmp_adapter*pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RTMP_RA_GRP_TB *pCurrTxRate)
+	struct rtmp_adapter*pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RTMP_RA_GRP_TB *pCurrTxRate)
 {
 	u8 UpRateIdx = 0;
 
@@ -216,9 +216,9 @@ u8 MlmeSelectUpRate(
 		returns the DownRate index. Down Rate = CurrRateIdx if there is no valid Down Rate
 */
 u8 MlmeSelectDownRate(
-	IN struct rtmp_adapter*pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN u8 CurrRateIdx)
+	struct rtmp_adapter*pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	u8 CurrRateIdx)
 {
 	u8 DownRateIdx = PTX_RA_GRP_ENTRY(pEntry->pTable, CurrRateIdx)->downMcs;
 	RTMP_RA_GRP_TB *pDownRate;
@@ -292,10 +292,10 @@ u8 MlmeSelectDownRate(
 		mcs - table of MCS index into the Rate Table. -1 => not supported
 */
 void MlmeGetSupportedMcsAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY pEntry,
-	IN u8 mcs23GI,
-	OUT CHAR mcs[])
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY pEntry,
+	u8 mcs23GI,
+	CHAR mcs[])
 {
 	CHAR idx;
 	RTMP_RA_GRP_TB *pCurrTxRate;
@@ -480,11 +480,11 @@ void MlmeGetSupportedMcsAdapt(
 		RssiOffset - offset to apply to the Rssi
 */
 u8 MlmeSelectTxRateAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN CHAR		mcs[],
-	IN CHAR		Rssi,
-	IN CHAR		RssiOffset)
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	CHAR		mcs[],
+	CHAR		Rssi,
+	CHAR		RssiOffset)
 {
 	u8 TxRateIdx = 0;
 	u8 *pTable = pEntry->pTable;
@@ -731,10 +731,10 @@ u8 MlmeSelectTxRateAdapt(
 		TxErrorRatio - the PER
 */
 static ULONG MlmeRAEstimateThroughput(
-	IN struct rtmp_adapter*pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RTMP_RA_GRP_TB *pCurrTxRate,
-	IN ULONG TxErrorRatio)
+	struct rtmp_adapter*pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RTMP_RA_GRP_TB *pCurrTxRate,
+	ULONG TxErrorRatio)
 {
 	ULONG estTP = (100-TxErrorRatio)*pCurrTxRate->dataRate;
 
@@ -769,11 +769,11 @@ static ULONG MlmeRAEstimateThroughput(
 		true if old rate should be used
 */
 bool MlmeRAHybridRule(
-	IN struct rtmp_adapter *	pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN RTMP_RA_GRP_TB *pCurrTxRate,
-	IN ULONG			NewTxOkCount,
-	IN ULONG			TxErrorRatio)
+	struct rtmp_adapter *	pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	RTMP_RA_GRP_TB *pCurrTxRate,
+	ULONG			NewTxOkCount,
+	ULONG			TxErrorRatio)
 {
 	ULONG newTP, oldTP;
 
@@ -802,13 +802,13 @@ bool MlmeRAHybridRule(
 			pEntry->TxQuality is updated
 */
 void MlmeNewRateAdapt(
-	IN struct rtmp_adapter *	pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN u8 		UpRateIdx,
-	IN u8 		DownRateIdx,
-	IN ULONG			TrainUp,
-	IN ULONG			TrainDown,
-	IN ULONG			TxErrorRatio)
+	struct rtmp_adapter *	pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	u8 		UpRateIdx,
+	u8 		DownRateIdx,
+	ULONG			TrainUp,
+	ULONG			TrainDown,
+	ULONG			TxErrorRatio)
 {
 	USHORT		phyRateLimit20 = 0;
 	bool 	bTrainUp = false;
@@ -940,9 +940,9 @@ void MlmeNewRateAdapt(
 
 #ifdef CONFIG_STA_SUPPORT
 void StaQuickResponeForRateUpExecAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG i,
-	IN CHAR  Rssi)
+	struct rtmp_adapter *pAd,
+	ULONG i,
+	CHAR  Rssi)
 {
 	u8 *				pTable;
 	u8 				CurrRateIdx;
@@ -1184,11 +1184,11 @@ void StaQuickResponeForRateUpExecAdapt(
 
 
 void MlmeDynamicTxRateSwitchingAdapt(
-    IN struct rtmp_adapter *pAd,
-	IN ULONG i,
-	IN ULONG TxSuccess,
-	IN ULONG TxRetransmit,
-	IN ULONG TxFailCount)
+    struct rtmp_adapter *pAd,
+	ULONG i,
+	ULONG TxSuccess,
+	ULONG TxRetransmit,
+	ULONG TxFailCount)
 {
 	u8 *		  pTable;
 	u8 		  UpRateIdx, DownRateIdx, CurrRateIdx;
@@ -1454,8 +1454,8 @@ INT Set_RateTable_Proc(struct rtmp_adapter*pAd, char *arg)
 
 
 INT	Set_PerThrdAdj_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	u8 i;
 	for (i=0; i<MAX_LEN_OF_MAC_TABLE; i++){
@@ -1466,8 +1466,8 @@ INT	Set_PerThrdAdj_Proc(
 
 /* Set_LowTrafficThrd_Proc - set threshold for reverting to default MCS based on RSSI */
 INT	Set_LowTrafficThrd_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	pAd->CommonCfg.lowTrafficThrd = simple_strtol(arg, 0, 10);
 
@@ -1476,8 +1476,8 @@ INT	Set_LowTrafficThrd_Proc(
 
 /* Set_TrainUpRule_Proc - set rule for Quick DRS train up */
 INT	Set_TrainUpRule_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	pAd->CommonCfg.TrainUpRule = simple_strtol(arg, 0, 10);
 
@@ -1486,8 +1486,8 @@ INT	Set_TrainUpRule_Proc(
 
 /* Set_TrainUpRuleRSSI_Proc - set RSSI threshold for Quick DRS Hybrid train up */
 INT	Set_TrainUpRuleRSSI_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	pAd->CommonCfg.TrainUpRuleRSSI = simple_strtol(arg, 0, 10);
 
@@ -1496,8 +1496,8 @@ INT	Set_TrainUpRuleRSSI_Proc(
 
 /* Set_TrainUpLowThrd_Proc - set low threshold for Quick DRS Hybrid train up */
 INT	Set_TrainUpLowThrd_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	pAd->CommonCfg.TrainUpLowThrd = simple_strtol(arg, 0, 10);
 
@@ -1506,8 +1506,8 @@ INT	Set_TrainUpLowThrd_Proc(
 
 /* Set_TrainUpHighThrd_Proc - set high threshold for Quick DRS Hybrid train up */
 INT	Set_TrainUpHighThrd_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	pAd->CommonCfg.TrainUpHighThrd = simple_strtol(arg, 0, 10);
 

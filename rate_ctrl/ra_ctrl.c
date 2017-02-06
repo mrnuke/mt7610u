@@ -543,9 +543,9 @@ u8 RateTableVht2S[] =
 		mcs - table of MCS index into the Rate Table. -1 => not supported
 */
 void MlmeGetSupportedMcs(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pTable,
-	OUT CHAR 	mcs[])
+	struct rtmp_adapter *pAd,
+	u8 *pTable,
+	CHAR 	mcs[])
 {
 	CHAR	idx;
 	RTMP_RA_LEGACY_TB *pCurrTxRate;
@@ -609,7 +609,7 @@ void MlmeGetSupportedMcs(
 
 /*  MlmeClearTxQuality - Clear TxQuality history only for the active BF state */
 void MlmeClearTxQuality(
-	IN MAC_TABLE_ENTRY	*pEntry)
+	MAC_TABLE_ENTRY	*pEntry)
 {
 		memset(pEntry->TxQuality, 0, sizeof(pEntry->TxQuality));
 
@@ -619,7 +619,7 @@ void MlmeClearTxQuality(
 
 /*  MlmeClearAllTxQuality - Clear both BF and non-BF TxQuality history */
 void MlmeClearAllTxQuality(
-	IN MAC_TABLE_ENTRY	*pEntry)
+	MAC_TABLE_ENTRY	*pEntry)
 {
 	memset(pEntry->TxQuality, 0, sizeof(pEntry->TxQuality));
 
@@ -629,8 +629,8 @@ void MlmeClearAllTxQuality(
 
 /*  MlmeDecTxQuality - Decrement TxQuality of specified rate table entry */
 void MlmeDecTxQuality(
-	IN MAC_TABLE_ENTRY	*pEntry,
-	IN u8 		rateIndex)
+	MAC_TABLE_ENTRY	*pEntry,
+	u8 		rateIndex)
 {
 	if (pEntry->TxQuality[rateIndex])
 		pEntry->TxQuality[rateIndex]--;
@@ -638,17 +638,17 @@ void MlmeDecTxQuality(
 
 
 void MlmeSetTxQuality(
-	IN MAC_TABLE_ENTRY	*pEntry,
-	IN u8 		rateIndex,
-	IN USHORT			txQuality)
+	MAC_TABLE_ENTRY	*pEntry,
+	u8 		rateIndex,
+	USHORT			txQuality)
 {
 		pEntry->TxQuality[rateIndex] = txQuality;
 }
 
 
 USHORT MlmeGetTxQuality(
-	IN MAC_TABLE_ENTRY	*pEntry,
-	IN u8 		rateIndex)
+	MAC_TABLE_ENTRY	*pEntry,
+	u8 		rateIndex)
 {
 	return pEntry->TxQuality[rateIndex];
 }
@@ -693,9 +693,9 @@ void asic_mcs_lut_update(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry)
 
 #ifdef CONFIG_STA_SUPPORT
 void MlmeSetTxRate(
-	IN struct rtmp_adapter*pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RTMP_RA_LEGACY_TB *pTxRate)
+	struct rtmp_adapter*pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RTMP_RA_LEGACY_TB *pTxRate)
 {
 	u8 MaxMode = MODE_OFDM;
 
@@ -878,11 +878,11 @@ void MlmeSetTxRate(
 
 
 void MlmeSelectTxRateTable(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY pEntry,
-	IN u8 **ppTable,
-	IN u8 *pTableSize,
-	IN u8 *pInitTxRateIdx)
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY pEntry,
+	u8 **ppTable,
+	u8 *pTableSize,
+	u8 *pInitTxRateIdx)
 {
 	do
 	{
@@ -1306,11 +1306,11 @@ void MlmeSelectTxRateTable(
 		RssiOffset - offset to apply to the Rssi
 */
 u8 MlmeSelectTxRate(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN CHAR		mcs[],
-	IN CHAR		Rssi,
-	IN CHAR		RssiOffset)
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	CHAR		mcs[],
+	CHAR		Rssi,
+	CHAR		RssiOffset)
 {
 	u8 TxRateIdx = 0;
 	u8 *pTable = pEntry->pTable;
@@ -1533,11 +1533,11 @@ void MlmeRAInit(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry)
 		The BF percentage counters are also updated
 */
 void MlmeRALog(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN RA_LOG_TYPE		raLogType,
-	IN ULONG			TxErrorRatio,
-	IN ULONG			TxTotalCnt)
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	RA_LOG_TYPE		raLogType,
+	ULONG			TxErrorRatio,
+	ULONG			TxTotalCnt)
 {
 #ifdef TIMESTAMP_RA_LOG
 	ULONG newTime;
@@ -1611,7 +1611,7 @@ void MlmeRALog(
 
 /*  MlmeRestoreLastRate - restore last saved rate */
 void MlmeRestoreLastRate(
-	IN PMAC_TABLE_ENTRY	pEntry)
+	PMAC_TABLE_ENTRY	pEntry)
 {
 	pEntry->CurrTxRateIndex = pEntry->lastRateIdx;
 }
@@ -1620,8 +1620,8 @@ void MlmeRestoreLastRate(
 #ifdef DOT11N_SS3_SUPPORT
 /*  MlmeCheckRDG - check if RDG should be enabled or disabled */
 void MlmeCheckRDG(
-	IN struct rtmp_adapter *	pAd,
-	IN PMAC_TABLE_ENTRY	pEntry)
+	struct rtmp_adapter *	pAd,
+	PMAC_TABLE_ENTRY	pEntry)
 {
 	u8 *pTable = pEntry->pTable;
 
@@ -1761,19 +1761,19 @@ void MlmeNewTxRate(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry)
 
 
 void RTMPSetSupportMCS(
-	IN struct rtmp_adapter *pAd,
-	IN u8 OpMode,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN u8 SupRate[],
-	IN u8 SupRateLen,
-	IN u8 ExtRate[],
-	IN u8 ExtRateLen,
+	struct rtmp_adapter *pAd,
+	u8 OpMode,
+	PMAC_TABLE_ENTRY	pEntry,
+	u8 SupRate[],
+	u8 SupRateLen,
+	u8 ExtRate[],
+	u8 ExtRateLen,
 #ifdef DOT11_VHT_AC
-	IN u8 vht_cap_len,
-	IN VHT_CAP_IE *vht_cap,
+	u8 vht_cap_len,
+	VHT_CAP_IE *vht_cap,
 #endif /* DOT11_VHT_AC */
-	IN HT_CAPABILITY_IE *pHtCapability,
-	IN u8 HtCapabilityLen)
+	HT_CAPABILITY_IE *pHtCapability,
+	u8 HtCapabilityLen)
 {
 	u8 idx, SupportedRatesLen = 0;
 	u8 SupportedRates[MAX_LEN_OF_SUPPORTED_RATES];

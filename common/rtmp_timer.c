@@ -133,7 +133,7 @@ static void RtmpTimerQHandle(struct rtmp_adapter*pAd)
 
 
 INT RtmpTimerQThread(
-	IN ULONG Context)
+	ULONG Context)
 {
 	RTMP_OS_TASK	*pTask;
 	struct rtmp_adapter *pAd = NULL;
@@ -175,8 +175,8 @@ INT RtmpTimerQThread(
 
 
 RTMP_TIMER_TASK_ENTRY *RtmpTimerQInsert(
-	IN struct rtmp_adapter*pAd,
-	IN RALINK_TIMER_STRUCT *pTimer)
+	struct rtmp_adapter*pAd,
+	RALINK_TIMER_STRUCT *pTimer)
 {
 	RTMP_TIMER_TASK_ENTRY *pQNode = NULL, *pQTail;
 	unsigned long irqFlags;
@@ -213,8 +213,8 @@ RTMP_TIMER_TASK_ENTRY *RtmpTimerQInsert(
 
 
 bool RtmpTimerQRemove(
-	IN struct rtmp_adapter*pAd,
-	IN RALINK_TIMER_STRUCT *pTimer)
+	struct rtmp_adapter*pAd,
+	RALINK_TIMER_STRUCT *pTimer)
 {
 	RTMP_TIMER_TASK_ENTRY *pNode, *pPrev = NULL;
 	unsigned long irqFlags;

@@ -44,7 +44,7 @@ Note:
 ========================================================================
 */
 int	 RtmpMgmtTaskInit(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	RTMP_OS_TASK *pTask;
 	int status;
@@ -104,7 +104,7 @@ Note:
 ========================================================================
 */
 void RtmpMgmtTaskExit(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	INT			ret;
 	RTMP_OS_TASK	*pTask;
@@ -786,7 +786,7 @@ static void rtusb_ac0_dma_done_tasklet(unsigned long data)
 }
 
 int RtmpNetTaskInit(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
 
@@ -807,7 +807,7 @@ int RtmpNetTaskInit(
 }
 
 
-void RtmpNetTaskExit(IN struct rtmp_adapter*pAd)
+void RtmpNetTaskExit(struct rtmp_adapter*pAd)
 {
 	struct os_cookie *pObj;
 
@@ -842,7 +842,7 @@ Note:
 ========================================================================
 */
 INT MlmeThread(
-	IN ULONG Context)
+	ULONG Context)
 {
 	struct rtmp_adapter*pAd;
 	RTMP_OS_TASK *pTask;
@@ -908,7 +908,7 @@ Note:
 ========================================================================
 */
 INT RTUSBCmdThread(
-	IN ULONG Context)
+	ULONG Context)
 {
 	struct rtmp_adapter*pAd;
 	RTMP_OS_TASK *pTask;

@@ -152,11 +152,11 @@ typedef struct __HTTX_BUFFER{
 } HTTX_BUFFER, *PHTTX_BUFFER;
 
 
-#define EDCA_AC0_PIPE	0	/* Bulk EP1 OUT */
-#define EDCA_AC1_PIPE	1	/* Bulk EP2 OUT */
-#define EDCA_AC2_PIPE	2	/* Bulk EP3	OUT */
-#define	EDCA_AC3_PIPE	3	/* Bulk EP4 OUT */
-#define	HCCA_PIPE		4	/* Bulk EP5	OUT */
+#define EDCA_AC0_PIPE	0	/* Bulk EP1 */
+#define EDCA_AC1_PIPE	1	/* Bulk EP2 */
+#define EDCA_AC2_PIPE	2	/* Bulk EP3	*/
+#define	EDCA_AC3_PIPE	3	/* Bulk EP4 */
+#define	HCCA_PIPE		4	/* Bulk EP5	*/
 
 /* used to track driver-generated write irps */
 typedef struct _TX_CONTEXT

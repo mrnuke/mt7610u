@@ -368,8 +368,8 @@ static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 	==========================================================================
  */
 void ScanNextChannel(
-	IN struct rtmp_adapter *pAd,
-	IN u8 OpMode)
+	struct rtmp_adapter *pAd,
+	u8 OpMode)
 {
 	u8 ScanType = pAd->MlmeAux.ScanType;
 	UINT ScanTimeIn5gChannel = SHORT_CHANNEL_TIME;
@@ -510,7 +510,7 @@ void ScanNextChannel(
 
 
 bool ScanRunning(
-		IN struct rtmp_adapter *pAd)
+		struct rtmp_adapter *pAd)
 {
 	bool rv = false;
 

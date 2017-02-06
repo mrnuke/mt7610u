@@ -43,20 +43,20 @@ typedef struct {
 } MD5_CTX_STRUC, *PMD5_CTX_STRUC;
 
 void RT_MD5_Init(
-	IN MD5_CTX_STRUC * pMD5_CTX);
+	MD5_CTX_STRUC * pMD5_CTX);
 void RT_MD5_Hash(
-	IN MD5_CTX_STRUC * pMD5_CTX);
+	MD5_CTX_STRUC * pMD5_CTX);
 void RT_MD5_Append(
-	IN MD5_CTX_STRUC * pMD5_CTX,
-	IN const u8 Message[],
-	IN UINT MessageLen);
+	MD5_CTX_STRUC * pMD5_CTX,
+	const u8 Message[],
+	UINT MessageLen);
 void RT_MD5_End(
-	IN MD5_CTX_STRUC * pMD5_CTX,
-	OUT u8 DigestMessage[]);
+	MD5_CTX_STRUC * pMD5_CTX,
+	u8 DigestMessage[]);
 void RT_MD5(
-	IN const u8 Message[],
-	IN UINT MessageLen,
-	OUT u8 DigestMessage[]);
+	const u8 Message[],
+	UINT MessageLen,
+	u8 DigestMessage[]);
 #endif /* MD5_SUPPORT */
 
 

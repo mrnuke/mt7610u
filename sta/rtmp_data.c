@@ -28,10 +28,10 @@
 #include "rt_config.h"
 
 void STARxEAPOLFrameIndicate(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RX_BLK *pRxBlk,
-	IN u8 FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RX_BLK *pRxBlk,
+	u8 FromWhichBSSID)
 {
 	struct rxwi_nmac *pRxWI = pRxBlk->pRxWI;
 	u8 *pTmpBuf;
@@ -128,10 +128,10 @@ void STARxEAPOLFrameIndicate(
 
 
 void STARxDataFrameAnnounce(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RX_BLK *pRxBlk,
-	IN u8 FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RX_BLK *pRxBlk,
+	u8 FromWhichBSSID)
 {
 
 	/* non-EAP frame */
@@ -202,9 +202,9 @@ void STARxDataFrameAnnounce(
 
 /* For TKIP frame, calculate the MIC value	*/
 bool STACheckTkipMICValue(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RX_BLK * pRxBlk)
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RX_BLK * pRxBlk)
 {
 	PHEADER_802_11 pHeader = pRxBlk->pHeader;
 	u8 *pData = pRxBlk->pData;
@@ -260,8 +260,8 @@ bool STACheckTkipMICValue(
   4. set some flags with RX_BLK_SET_FLAG()
 */
 void STAHandleRxDataFrame(
-	IN struct rtmp_adapter *pAd,
-	IN RX_BLK *pRxBlk)
+	struct rtmp_adapter *pAd,
+	RX_BLK *pRxBlk)
 {
 	struct rxwi_nmac *pRxWI = pRxBlk->pRxWI;
 	struct rtmp_rxinfo *pRxInfo = pRxBlk->pRxInfo;
@@ -683,8 +683,8 @@ void STAHandleRxDataFrame(
 }
 
 void STAHandleRxMgmtFrame(
-	IN struct rtmp_adapter *pAd,
-	IN RX_BLK *pRxBlk)
+	struct rtmp_adapter *pAd,
+	RX_BLK *pRxBlk)
 {
 	struct rxwi_nmac *pRxWI = pRxBlk->pRxWI;
 	PHEADER_802_11 pHeader = pRxBlk->pHeader;
@@ -751,8 +751,8 @@ void STAHandleRxMgmtFrame(
 
 
 void STAHandleRxControlFrame(
-	IN struct rtmp_adapter *pAd,
-	IN RX_BLK *pRxBlk)
+	struct rtmp_adapter *pAd,
+	RX_BLK *pRxBlk)
 {
 #ifdef DOT11_N_SUPPORT
 	struct rxwi_nmac *pRxWI = pRxBlk->pRxWI;
@@ -945,9 +945,9 @@ bool STARxDoneInterruptHandle(struct rtmp_adapter*pAd, bool argc)
 
 
 bool STAHandleRxDonePacket(
-	IN struct rtmp_adapter*pAd,
-	IN struct sk_buff * pRxPacket,
-	IN RX_BLK *pRxBlk)
+	struct rtmp_adapter*pAd,
+	struct sk_buff * pRxPacket,
+	RX_BLK *pRxBlk)
 {
 	RXD_STRUC *pRxD;
 	struct rxwi_nmac *pRxWI;
@@ -1022,7 +1022,7 @@ bool STAHandleRxDonePacket(
 	========================================================================
 */
 void RTMPHandleTwakeupInterrupt(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	AsicForceWakeup(pAd, false);
 }
@@ -1047,8 +1047,8 @@ Note:
 ========================================================================
 */
 void STASendPackets(
-	IN struct rtmp_adapter *pAd,
-	IN struct sk_buff *pPacket)
+	struct rtmp_adapter *pAd,
+	struct sk_buff *pPacket)
 {
 	bool allowToSend = false;
 
@@ -1125,8 +1125,8 @@ Note:
 ========================================================================
 */
 int STASendPacket(
-	IN struct rtmp_adapter *pAd,
-	IN struct sk_buff * pPacket)
+	struct rtmp_adapter *pAd,
+	struct sk_buff * pPacket)
 {
 	PACKET_INFO PacketInfo;
 	u8 *pSrcBufVA;
@@ -1380,10 +1380,10 @@ int STASendPacket(
 	If no frame need to send, go to sleep, else, still wake up.
 */
 int RTMPFreeTXDRequest(
-	IN struct rtmp_adapter *pAd,
-	IN u8 QueIdx,
-	IN u8 NumberRequired,
-	IN u8 *FreeNumberIs)
+	struct rtmp_adapter *pAd,
+	u8 QueIdx,
+	u8 NumberRequired,
+	u8 *FreeNumberIs)
 {
 	/*ULONG         FreeNumber = 0; */
 	int Status = NDIS_STATUS_FAILURE;
@@ -1432,10 +1432,10 @@ int RTMPFreeTXDRequest(
 
 
 void RTMPSendNullFrame(
-	IN struct rtmp_adapter *pAd,
-	IN u8 TxRate,
-	IN bool bQosNull,
-	IN USHORT PwrMgmt)
+	struct rtmp_adapter *pAd,
+	u8 TxRate,
+	bool bQosNull,
+	USHORT PwrMgmt)
 {
 	u8 NullFrame[48];
 	ULONG Length;
@@ -1510,8 +1510,8 @@ Decide WEP bit and cipher suite to be used. Same cipher suite should be used for
 	Instead of the SharedKey, SharedKey Length may be Zero.
 */
 void STAFindCipherAlgorithm(
-	IN struct rtmp_adapter *pAd,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter *pAd,
+	TX_BLK *pTxBlk)
 {
 	NDIS_802_11_ENCRYPTION_STATUS Cipher;	/* To indicate cipher used for this packet */
 	u8 CipherAlg = CIPHER_NONE;	/* cipher alogrithm */
@@ -1678,9 +1678,9 @@ void STABuildCommon802_11Header(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 
 #ifdef DOT11_N_SUPPORT
 void STABuildCache802_11Header(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk,
-	IN u8 *pHeader)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk,
+	u8 *pHeader)
 {
 	MAC_TABLE_ENTRY *pMacEntry;
 	PHEADER_802_11 pHeader80211;
@@ -1755,8 +1755,8 @@ void STABuildCache802_11Header(
 
 
 static inline u8 *STA_Build_ARalink_Frame_Header(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk)
 {
 	u8 *pHeaderBufPtr;
 	HEADER_802_11 *pHeader_802_11;
@@ -1813,8 +1813,8 @@ static inline u8 *STA_Build_ARalink_Frame_Header(
 
 #ifdef DOT11_N_SUPPORT
 static inline u8 *STA_Build_AMSDU_Frame_Header(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk)
 {
 	u8 *pHeaderBufPtr;
 	HEADER_802_11 *pHeader_802_11;
@@ -1858,8 +1858,8 @@ static inline u8 *STA_Build_AMSDU_Frame_Header(
 
 
 void STA_AMPDU_Frame_Tx(
-	IN struct rtmp_adapter *pAd,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter *pAd,
+	TX_BLK *pTxBlk)
 {
 	HEADER_802_11 *pHeader_802_11;
 	u8 *pHeaderBufPtr;
@@ -2132,8 +2132,8 @@ void STA_AMPDU_Frame_Tx(
 }
 
 void STA_AMSDU_Frame_Tx(
-	IN struct rtmp_adapter *pAd,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter *pAd,
+	TX_BLK *pTxBlk)
 {
 	u8 *pHeaderBufPtr;
 	USHORT FreeNumber = 0;
@@ -2433,8 +2433,8 @@ void STA_Legacy_Frame_Tx(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 }
 
 void STA_ARalink_Frame_Tx(
-	IN struct rtmp_adapter *pAd,
-	IN TX_BLK * pTxBlk)
+	struct rtmp_adapter *pAd,
+	TX_BLK * pTxBlk)
 {
 	u8 *pHeaderBufPtr;
 	USHORT freeCnt = 0;
@@ -2556,8 +2556,8 @@ void STA_ARalink_Frame_Tx(
 
 
 void STA_Fragment_Frame_Tx(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk)
 {
 	HEADER_802_11 *pHeader_802_11;
 	u8 *pHeaderBufPtr;
@@ -3027,9 +3027,9 @@ int STAHardTransmit(struct rtmp_adapter*pAd, TX_BLK *pTxBlk, u8 QueIdx)
 
 
 void Sta_Announce_or_Forward_802_3_Packet(
-	IN struct rtmp_adapter *pAd,
-	IN struct sk_buff * pPacket,
-	IN u8 FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	struct sk_buff * pPacket,
+	u8 FromWhichBSSID)
 {
 	if (true
 	    ) {

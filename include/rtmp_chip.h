@@ -478,7 +478,7 @@ struct rtmp_chip_ops {
 
 
 	/* Power save */
-	void (*EnableAPMIMOPS)(struct rtmp_adapter *pAd, IN bool ReduceCorePower);
+	void (*EnableAPMIMOPS)(struct rtmp_adapter *pAd, bool ReduceCorePower);
 	void (*DisableAPMIMOPS)(struct rtmp_adapter *pAd);
 	INT (*MCU_PwrSavingOP)(struct rtmp_adapter *pAd, u32 PwrOP, u32 PwrLevel,
 							u32 ListenInterval, u32 PreTBTTLeadTime,
@@ -707,10 +707,10 @@ int RtmpChipOpsHook(void *pCB);
 void rlt_bcn_buf_init(struct rtmp_adapter *pAd);
 
 void RtmpChipWriteMemory(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT			Offset,
-	IN	u32			Value,
-	IN	u8			Unit);
+	struct rtmp_adapter *pAd,
+	USHORT			Offset,
+	u32			Value,
+	u8			Unit);
 
 bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, INT round, INT wait_us);
 INT AsicSetPreTbttInt(struct rtmp_adapter *pAd, bool enable);

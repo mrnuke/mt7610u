@@ -35,7 +35,7 @@
 bool UpdateFromGlobal = false;
 
 void VideoTurbineUpdate(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	if (UpdateFromGlobal == true)
 	{
@@ -53,7 +53,7 @@ void VideoTurbineUpdate(
 }
 
 
-void TxSwQDepthAdjust(IN struct rtmp_adapter*pAd, IN u32 qLen)
+void TxSwQDepthAdjust(struct rtmp_adapter*pAd, u32 qLen)
 {
 	ULONG IrqFlags;
 	INT qIdx;
@@ -85,7 +85,7 @@ void TxSwQDepthAdjust(IN struct rtmp_adapter*pAd, IN u32 qLen)
 
 
 void VideoTurbineDynamicTune(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	if (pAd->VideoTurbine.Enable == true)
 	{
@@ -128,7 +128,7 @@ void VideoTurbineDynamicTune(
 }
 
 u32 GetAsicDefaultRetry(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u32 RetryLimit;
 
@@ -138,25 +138,25 @@ u32 GetAsicDefaultRetry(
 }
 
 u8 GetAsicDefaultTxBA(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
         return pAd->CommonCfg.TxBASize;
 }
 
 u32 GetAsicVideoRetry(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	return pAd->VideoTurbine.TxRetryLimit;
 }
 
 u8 GetAsicVideoTxBA(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	return pAd->VideoTurbine.TxBASize;
 }
 
 void VideoConfigInit(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	pAd->VideoTurbine.Enable = false;
 	pAd->VideoTurbine.TxRetryLimit = 0x2F1F;

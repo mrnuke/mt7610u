@@ -85,12 +85,12 @@ extern int CH_HZ_ID_MAP_NUM;
 
 #ifdef EXT_BUILD_CHANNEL_LIST
 void BuildChannelListEx(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void BuildBeaconChList(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pBuf,
-	OUT	PULONG pBufLen);
+	struct rtmp_adapter *pAd,
+	u8 *pBuf,
+	PULONG pBufLen);
 #endif /* EXT_BUILD_CHANNEL_LIST */
 
 #ifdef DOT11_N_SUPPORT
@@ -101,31 +101,31 @@ bool N_ChannelGroupCheck(struct rtmp_adapter*pAd, u8 channel);
 #endif /* DOT11_N_SUPPORT */
 
 u8 GetCuntryMaxTxPwr(
-	IN struct rtmp_adapter *pAd,
-	IN u8 channel);
+	struct rtmp_adapter *pAd,
+	u8 channel);
 
 void RTMP_MapChannelID2KHZ(
-	IN u8 Ch,
-	OUT u32 *pFreq);
+	u8 Ch,
+	u32 *pFreq);
 
 void RTMP_MapKHZ2ChannelID(
-	IN ULONG Freq,
-	OUT INT *pCh);
+	ULONG Freq,
+	INT *pCh);
 
 u8 GetChannel_5GHZ(
-	IN PCH_DESC pChDesc,
-	IN u8 index);
+	PCH_DESC pChDesc,
+	u8 index);
 
 u8 GetChannel_2GHZ(
-	IN PCH_DESC pChDesc,
-	IN u8 index);
+	PCH_DESC pChDesc,
+	u8 index);
 
 u8 GetChannelFlag(
-	IN PCH_DESC pChDesc,
-	IN u8 index);
+	PCH_DESC pChDesc,
+	u8 index);
 
 UINT16 TotalChNum(
-	IN PCH_DESC pChDesc);
+	PCH_DESC pChDesc);
 
 #endif /* __CHLIST_H__ */
 

@@ -1454,7 +1454,7 @@ struct common_config {
 	bool bHardwareRadio;	/* Hardware controlled Radio enabled */
 
 #ifdef RTMP_MAC_USB
-	bool bMultipleIRP;	/* Multiple Bulk IN flag */
+	bool bMultipleIRP;	/* Multiple Bulk flag */
 	u8 NumOfBulkInIRP;	/* if bMultipleIRP == true, NumOfBulkInIRP will be 4 otherwise be 1 */
 	RT_HT_CAPABILITY SupportedHtPhy;
 	ULONG MaxPktOneTxBulk;
@@ -3140,10 +3140,10 @@ static inline void RTMPDescriptorEndianChange(u8 *pData, ULONG DescType)
 	========================================================================
 */
 static inline void RTMPFrameEndianChange(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pData,
-	IN	ULONG			Dir,
-	IN	bool 		FromRxDoneInt)
+	struct rtmp_adapter *pAd,
+	u8 *		pData,
+	ULONG			Dir,
+	bool 		FromRxDoneInt)
 {
 	PHEADER_802_11 pFrame;
 	u8 *pMacHdr;
@@ -3287,9 +3287,9 @@ static inline void RTMPFrameEndianChange(
   *	Other static inline function definitions
   **************************************************************************/
 static inline void ConvertMulticastIP2MAC(
-	IN u8 *pIpAddr,
-	IN u8 **ppMacAddr,
-	IN UINT16 ProtoType)
+	u8 *pIpAddr,
+	u8 **ppMacAddr,
+	UINT16 ProtoType)
 {
 	if (pIpAddr == NULL)
 		return;
@@ -3332,89 +3332,89 @@ char *get_bw_str(int bandwidth);
 	Private routines in rtmp_init.c
 */
 int RTMPAllocTxRxRingMemory(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 #ifdef RESOURCE_PRE_ALLOC
 int RTMPInitTxRxRingMemory(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 #endif /* RESOURCE_PRE_ALLOC */
 
 int	RTMPReadParametersHook(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 int	RTMPSetProfileParameters(
-	IN struct rtmp_adapter*pAd,
-	IN char *	pBuffer);
+	struct rtmp_adapter*pAd,
+	char *	pBuffer);
 
 INT RTMPGetKeyParameter(
-    IN char *key,
-    OUT char *dest,
-    IN INT destsize,
-    IN char *buffer,
-    IN bool bTrimSpace);
+    char *key,
+    char *dest,
+    INT destsize,
+    char *buffer,
+    bool bTrimSpace);
 
 
 
 
 #ifdef RLT_RF
 int rlt_rf_write(
-	IN struct rtmp_adapter*pAd,
-	IN u8 bank,
-	IN u8 regID,
-	IN u8 value);
+	struct rtmp_adapter*pAd,
+	u8 bank,
+	u8 regID,
+	u8 value);
 
 int rlt_rf_read(
-	IN struct rtmp_adapter*pAd,
-	IN u8 bank,
-	IN u8 regID,
-	IN u8 *pValue);
+	struct rtmp_adapter*pAd,
+	u8 bank,
+	u8 regID,
+	u8 *pValue);
 #endif /* RLT_RF */
 
 void NICReadEEPROMParameters(
-	IN  struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void NICInitAsicFromEEPROM(
-	IN  struct rtmp_adapter *      pAd);
+	struct rtmp_adapter *      pAd);
 
 int NICInitializeAdapter(
-	IN  struct rtmp_adapter *  pAd,
-	IN   bool    bHardReset);
+	struct rtmp_adapter *  pAd,
+	bool    bHardReset);
 
 int NICInitializeAsic(
-	IN  struct rtmp_adapter *  pAd,
-	IN  bool 	bHardReset);
+	struct rtmp_adapter *  pAd,
+	bool 	bHardReset);
 
 
 void RTMPRingCleanUp(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8           RingType);
+	struct rtmp_adapter *  pAd,
+	u8           RingType);
 
 void UserCfgExit(
-	IN  struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void UserCfgInit(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 int NICLoadFirmware(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void NICUpdateFifoStaCounters(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void NICUpdateRawCounters(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void NicResetRawCounters(struct rtmp_adapter*pAd);
 
 void NicGetTxRawCounters(
-	IN struct rtmp_adapter*pAd,
-	IN TX_STA_CNT0_STRUC *pStaTxCnt0,
-	IN TX_STA_CNT1_STRUC *pStaTxCnt1);
+	struct rtmp_adapter*pAd,
+	TX_STA_CNT0_STRUC *pStaTxCnt0,
+	TX_STA_CNT1_STRUC *pStaTxCnt1);
 
 ULONG RTMPCompareMemory(
-	IN  void *  pSrc1,
-	IN  void *  pSrc2,
-	IN  ULONG   Length);
+	void *  pSrc1,
+	void *  pSrc2,
+	ULONG   Length);
 
 void AtoH(
 	char *src,
@@ -3425,425 +3425,425 @@ u8 BtoH(
 	char ch);
 
 void RTMP_TimerListAdd(
-	IN	struct rtmp_adapter *		pAd,
-	IN	void 				*pRsc);
+	struct rtmp_adapter *		pAd,
+	void 				*pRsc);
 
 void RTMP_TimerListRelease(
-	IN	struct rtmp_adapter *		pAd);
+	struct rtmp_adapter *		pAd);
 
 void RTMPInitTimer(
-	IN  struct rtmp_adapter *          pAd,
-	IN  PRALINK_TIMER_STRUCT    pTimer,
-	IN  void *                  pTimerFunc,
-	IN	void *				pData,
-	IN  bool                 Repeat);
+	struct rtmp_adapter *          pAd,
+	PRALINK_TIMER_STRUCT    pTimer,
+	void *                  pTimerFunc,
+	void *				pData,
+	bool                 Repeat);
 
 void RTMPSetTimer(
-	IN  PRALINK_TIMER_STRUCT    pTimer,
-	IN  ULONG                   Value);
+	PRALINK_TIMER_STRUCT    pTimer,
+	ULONG                   Value);
 
 
 void RTMPModTimer(
-	IN	PRALINK_TIMER_STRUCT	pTimer,
-	IN	ULONG					Value);
+	PRALINK_TIMER_STRUCT	pTimer,
+	ULONG					Value);
 
 void RTMPCancelTimer(
-	IN  PRALINK_TIMER_STRUCT    pTimer,
-	OUT bool                 *pCancelled);
+	PRALINK_TIMER_STRUCT    pTimer,
+	bool                 *pCancelled);
 
 void RTMPReleaseTimer(
-	IN  PRALINK_TIMER_STRUCT    pTimer,
-	OUT bool                 *pCancelled);
+	PRALINK_TIMER_STRUCT    pTimer,
+	bool                 *pCancelled);
 
 void RTMPEnableRxTx(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void AntCfgInit(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 /* */
 /* prototype in action.c */
 /* */
 void ActionStateMachineInit(
-    IN	struct rtmp_adapter *pAd,
-    IN  STATE_MACHINE *S,
-    OUT STATE_MACHINE_FUNC Trans[]);
+    struct rtmp_adapter *pAd,
+    STATE_MACHINE *S,
+    STATE_MACHINE_FUNC Trans[]);
 
 void MlmeADDBAAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 void MlmeDELBAAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 void MlmeDLSAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 void MlmeInvalidAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 void MlmeQOSAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 #ifdef DOT11_N_SUPPORT
 void PeerAddBAReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerAddBARspAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerDelBAAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerBAAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 #endif /* DOT11_N_SUPPORT */
 
 void SendPSMPAction(
-	IN struct rtmp_adapter *pAd,
-	IN u8 		Wcid,
-	IN u8 		Psmp);
+	struct rtmp_adapter *pAd,
+	u8 		Wcid,
+	u8 		Psmp);
 
 
 void PeerRMAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerPublicAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 #ifdef CONFIG_STA_SUPPORT
 void StaPublicAction(
-	IN struct rtmp_adapter *pAd,
-	IN BSS_2040_COEXIST_IE *pBss2040CoexIE);
+	struct rtmp_adapter *pAd,
+	BSS_2040_COEXIST_IE *pBss2040CoexIE);
 #endif /* CONFIG_STA_SUPPORT */
 
 
 void PeerBSSTranAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 #ifdef DOT11_N_SUPPORT
 void PeerHTAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 #endif /* DOT11_N_SUPPORT */
 
 void PeerQOSAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 #ifdef QOS_DLS_SUPPORT
 void PeerDLSAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 #endif /* QOS_DLS_SUPPORT */
 
 #ifdef CONFIG_STA_SUPPORT
 #ifdef QOS_DLS_SUPPORT
 void DlsParmFill(
-	IN struct rtmp_adapter *pAd,
-	IN OUT MLME_DLS_REQ_STRUCT *pDlsReq,
-	IN PRT_802_11_DLS pDls,
-	IN USHORT reason);
+	struct rtmp_adapter *pAd,
+	MLME_DLS_REQ_STRUCT *pDlsReq,
+	PRT_802_11_DLS pDls,
+	USHORT reason);
 #endif /* QOS_DLS_SUPPORT */
 #endif /* CONFIG_STA_SUPPORT */
 
 #ifdef DOT11_N_SUPPORT
 void RECBATimerTimeout(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3);
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3);
 
 void ORIBATimerTimeout(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void SendRefreshBAR(
-	IN	struct rtmp_adapter *pAd,
-	IN	MAC_TABLE_ENTRY	*pEntry);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY	*pEntry);
 
 #ifdef DOT11N_DRAFT3
 void RTMP_11N_D3_TimerInit(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void SendBSS2040CoexistMgmtAction(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 Wcid,
-	IN	u8 apidx,
-	IN	u8 InfoReq);
+	struct rtmp_adapter *pAd,
+	u8 Wcid,
+	u8 apidx,
+	u8 InfoReq);
 
 void SendNotifyBWActionFrame(
-	IN struct rtmp_adapter *pAd,
-	IN u8  Wcid,
-	IN u8 apidx);
+	struct rtmp_adapter *pAd,
+	u8  Wcid,
+	u8 apidx);
 
 bool ChannelSwitchSanityCheck(
-	IN	struct rtmp_adapter *pAd,
-	IN    u8  Wcid,
-	IN    u8  NewChannel,
-	IN    u8  Secondary);
+	struct rtmp_adapter *pAd,
+	u8  Wcid,
+	u8  NewChannel,
+	u8  Secondary);
 
 void ChannelSwitchAction(
-	IN	struct rtmp_adapter *pAd,
-	IN    u8  Wcid,
-	IN    u8  Channel,
-	IN    u8  Secondary);
+	struct rtmp_adapter *pAd,
+	u8  Wcid,
+	u8  Channel,
+	u8  Secondary);
 
 ULONG BuildIntolerantChannelRep(
-	IN	struct rtmp_adapter *pAd,
-	IN    u8 * pDest);
+	struct rtmp_adapter *pAd,
+	u8 * pDest);
 
 void Update2040CoexistFrameAndNotify(
-	IN	struct rtmp_adapter *pAd,
-	IN    u8  Wcid,
-	IN	bool bAddIntolerantCha);
+	struct rtmp_adapter *pAd,
+	u8  Wcid,
+	bool bAddIntolerantCha);
 
 void Send2040CoexistAction(
-	IN	struct rtmp_adapter *pAd,
-	IN    u8  Wcid,
-	IN	bool bAddIntolerantCha);
+	struct rtmp_adapter *pAd,
+	u8  Wcid,
+	bool bAddIntolerantCha);
 
 void UpdateBssScanParm(
-	IN struct rtmp_adapter *pAd,
-	IN OVERLAP_BSS_SCAN_IE APBssScan);
+	struct rtmp_adapter *pAd,
+	OVERLAP_BSS_SCAN_IE APBssScan);
 #endif /* DOT11N_DRAFT3 */
 
 void AsicEnableRalinkBurstMode(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void AsicDisableRalinkBurstMode(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 #endif /* DOT11_N_SUPPORT */
 
 void ActHeaderInit(
-    IN	struct rtmp_adapter *pAd,
-    IN OUT PHEADER_802_11 pHdr80211,
-    IN u8 *Addr1,
-    IN u8 *Addr2,
-    IN u8 *Addr3);
+    struct rtmp_adapter *pAd,
+    PHEADER_802_11 pHdr80211,
+    u8 *Addr1,
+    u8 *Addr2,
+    u8 *Addr3);
 
 void BarHeaderInit(
-	IN	struct rtmp_adapter *pAd,
-	IN OUT PFRAME_BAR pCntlBar,
-	IN u8 *pDA,
-	IN u8 *pSA);
+	struct rtmp_adapter *pAd,
+	PFRAME_BAR pCntlBar,
+	u8 *pDA,
+	u8 *pSA);
 
 void InsertActField(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen,
-	IN u8 Category,
-	IN u8 ActCode);
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen,
+	u8 Category,
+	u8 ActCode);
 
 bool QosBADataParse(
-	IN struct rtmp_adapter *pAd,
-	IN bool bAMSDU,
-	IN u8 *p8023Header,
-	IN u8 WCID,
-	IN u8 TID,
-	IN USHORT Sequence,
-	IN u8 DataOffset,
-	IN USHORT Datasize,
-	IN UINT   CurRxIndex);
+	struct rtmp_adapter *pAd,
+	bool bAMSDU,
+	u8 *p8023Header,
+	u8 WCID,
+	u8 TID,
+	USHORT Sequence,
+	u8 DataOffset,
+	USHORT Datasize,
+	UINT   CurRxIndex);
 
 #ifdef DOT11_N_SUPPORT
 bool CntlEnqueueForRecv(
-    IN	struct rtmp_adapter *pAd,
-	IN ULONG Wcid,
-    IN ULONG MsgLen,
-	IN PFRAME_BA_REQ pMsg);
+    struct rtmp_adapter *pAd,
+	ULONG Wcid,
+    ULONG MsgLen,
+	PFRAME_BA_REQ pMsg);
 
 void BaAutoManSwitch(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 #endif /* DOT11_N_SUPPORT */
 
 void HTIOTCheck(
-	IN	struct rtmp_adapter *pAd,
-	IN    u8     BatRecIdx);
+	struct rtmp_adapter *pAd,
+	u8     BatRecIdx);
 
 /* */
 /* Private routines in rtmp_data.c */
 /* */
 bool RTMPHandleTxRingDmaDoneInterrupt(
-	IN struct rtmp_adapter *pAd,
-	IN u32 int_reg);
+	struct rtmp_adapter *pAd,
+	u32 int_reg);
 
 void RTMPHandleMgmtRingDmaDoneInterrupt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTMPHandleTBTTInterrupt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTMPHandlePreTBTTInterrupt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTMPHandleTwakeupInterrupt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTMPHandleRxCoherentInterrupt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 
 
 int STASendPacket(
-	IN  struct rtmp_adapter *pAd,
-	IN  struct sk_buff *pPacket);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *pPacket);
 
 void STASendPackets(
-	IN  struct rtmp_adapter *pAd,
-	IN  struct sk_buff *pPacketArray);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *pPacketArray);
 
 void RTMPDeQueuePacket(
-	IN struct rtmp_adapter*pAd,
-   	IN bool bIntContext,
-	IN u8 QueIdx,
-	IN INT Max_Tx_Packets);
+	struct rtmp_adapter*pAd,
+   	bool bIntContext,
+	u8 QueIdx,
+	INT Max_Tx_Packets);
 
 int	RTMPHardTransmit(
-	IN struct rtmp_adapter *pAd,
-	IN struct sk_buff *		pPacket,
-	IN  u8 		QueIdx,
-	OUT	PULONG			pFreeTXDLeft);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *		pPacket,
+	u8 		QueIdx,
+	PULONG			pFreeTXDLeft);
 
 int	STAHardTransmit(
-	IN struct rtmp_adapter *pAd,
-	IN TX_BLK			*pTxBlk,
-	IN  u8 		QueIdx);
+	struct rtmp_adapter *pAd,
+	TX_BLK			*pTxBlk,
+	u8 		QueIdx);
 
 void STARxEAPOLFrameIndicate(
-	IN	struct rtmp_adapter *pAd,
-	IN	MAC_TABLE_ENTRY	*pEntry,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY	*pEntry,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID);
 
 int RTMPFreeTXDRequest(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8           RingType,
-	IN  u8           NumberRequired,
-	IN 	u8 *         FreeNumberIs);
+	struct rtmp_adapter *  pAd,
+	u8           RingType,
+	u8           NumberRequired,
+	u8 *         FreeNumberIs);
 
 int MlmeHardTransmit(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 QueIdx,
-	IN  struct sk_buff *    pPacket,
-	IN	bool 		FlgDataQForce,
-	IN	bool 		FlgIsLocked);
+	struct rtmp_adapter *  pAd,
+	u8 QueIdx,
+	struct sk_buff *    pPacket,
+	bool 		FlgDataQForce,
+	bool 		FlgIsLocked);
 
 int MlmeHardTransmitMgmtRing(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 QueIdx,
-	IN  struct sk_buff *    pPacket);
+	struct rtmp_adapter *  pAd,
+	u8 QueIdx,
+	struct sk_buff *    pPacket);
 
 
 USHORT RTMPCalcDuration(
-	IN struct rtmp_adapter*pAd,
-	IN u8 Rate,
-	IN ULONG Size);
+	struct rtmp_adapter*pAd,
+	u8 Rate,
+	ULONG Size);
 
 void RTMPWriteTxWI(
-	IN struct rtmp_adapter*pAd,
-	IN struct txwi_nmac *pTxWI,
-	IN bool FRAG,
-	IN bool CFACK,
-	IN bool InsTimestamp,
-	IN bool AMPDU,
-	IN bool Ack,
-	IN bool NSeq, /* HW new a sequence. */
-	IN u8 BASize,
-	IN u8 WCID,
-	IN ULONG Length,
-	IN u8 PID,
-	IN u8 TID,
-	IN u8 TxRate,
-	IN u8 Txopmode,
-	IN bool CfAck,
-	IN HTTRANSMIT_SETTING *pTransmit);
+	struct rtmp_adapter*pAd,
+	struct txwi_nmac *pTxWI,
+	bool FRAG,
+	bool CFACK,
+	bool InsTimestamp,
+	bool AMPDU,
+	bool Ack,
+	bool NSeq, /* HW new a sequence. */
+	u8 BASize,
+	u8 WCID,
+	ULONG Length,
+	u8 PID,
+	u8 TID,
+	u8 TxRate,
+	u8 Txopmode,
+	bool CfAck,
+	HTTRANSMIT_SETTING *pTransmit);
 
 
 void RTMPWriteTxWI_Data(
-	IN struct rtmp_adapter*pAd,
-	INOUT struct txwi_nmac *pTxWI,
-	IN TX_BLK *pTxBlk);
+	struct rtmp_adapter*pAd,
+	struct txwi_nmac *pTxWI,
+	TX_BLK *pTxBlk);
 
 
 void RTMPWriteTxWI_Cache(
-	IN struct rtmp_adapter*pAd,
-	INOUT struct txwi_nmac *pTxWI,
-	IN TX_BLK *pTxBlk);
+	struct rtmp_adapter*pAd,
+	struct txwi_nmac *pTxWI,
+	TX_BLK *pTxBlk);
 
 void RTMPSuspendMsduTransmission(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RTMPResumeMsduTransmission(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 int MiniportMMRequest(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN u8 *pData,
-	IN UINT Length);
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	u8 *pData,
+	UINT Length);
 
 void RTMPSendNullFrame(
-	IN struct rtmp_adapter*pAd,
-	IN u8 TxRate,
-	IN bool bQosNull,
-	IN USHORT PwrMgmt);
+	struct rtmp_adapter*pAd,
+	u8 TxRate,
+	bool bQosNull,
+	USHORT PwrMgmt);
 
 #ifdef CONFIG_STA_SUPPORT
 void RTMPReportMicError(
-	IN  struct rtmp_adapter *  pAd,
-	IN  PCIPHER_KEY     pWpaKey);
+	struct rtmp_adapter *  pAd,
+	PCIPHER_KEY     pWpaKey);
 
 void WpaMicFailureReportFrame(
-	IN  struct rtmp_adapter *   pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *   pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void    WpaDisassocApAndBlockAssoc(
-    IN  void *SystemSpecific1,
-    IN  void *FunctionContext,
-    IN  void *SystemSpecific2,
-    IN  void *SystemSpecific3);
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3);
 
 void WpaStaPairwiseKeySetting(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void WpaStaGroupKeySetting(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void    WpaSendEapolStart(
-	IN	struct rtmp_adapter *pAdapter,
-	IN  u8 *         pBssid);
+	struct rtmp_adapter *pAdapter,
+	u8 *         pBssid);
 
 #endif /* CONFIG_STA_SUPPORT */
 
 
 
 bool RTMPFreeTXDUponTxDmaDone(
-	IN struct rtmp_adapter *   pAd,
-	IN u8            QueIdx);
+	struct rtmp_adapter *   pAd,
+	u8            QueIdx);
 
 bool RTMPCheckEtherType(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	PMAC_TABLE_ENTRY pMacEntry,
-	IN	u8 		OpMode,
-	OUT u8 *pUserPriority,
-	OUT u8 *pQueIdx);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	PMAC_TABLE_ENTRY pMacEntry,
+	u8 		OpMode,
+	u8 *pUserPriority,
+	u8 *pQueIdx);
 
 
 void RTMPCckBbpTuning(
-	IN	struct rtmp_adapter *pAd,
-	IN	UINT			TxRate);
+	struct rtmp_adapter *pAd,
+	UINT			TxRate);
 /* */
 /* MLME routines */
 /* */
@@ -3852,499 +3852,499 @@ void RTMPCckBbpTuning(
 void AsicExtraPowerOverMAC(struct rtmp_adapter*pAd);
 
 void AsicPercentageDeltaPower(
-	IN 		struct rtmp_adapter *		pAd,
-	IN		CHAR				Rssi,
-	INOUT	char *			pDeltaPwr,
-	INOUT	char *			pDeltaPowerByBbpR1);
+	struct rtmp_adapter *		pAd,
+	CHAR				Rssi,
+	char *			pDeltaPwr,
+	char *			pDeltaPowerByBbpR1);
 
 void AsicCompensatePowerViaBBP(
-	IN 		struct rtmp_adapter *		pAd,
-	INOUT	char *			pTotalDeltaPower);
+	struct rtmp_adapter *		pAd,
+	char *			pTotalDeltaPower);
 
 void AsicAdjustTxPower(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void 	AsicUpdateProtect(
-	IN		struct rtmp_adapter *pAd,
-	IN 		USHORT			OperaionMode,
-	IN 		u8 		SetMask,
-	IN		bool 		bDisableBGProtect,
-	IN		bool 		bNonGFExist);
+	struct rtmp_adapter *pAd,
+	USHORT			OperaionMode,
+	u8 		SetMask,
+	bool 		bDisableBGProtect,
+	bool 		bNonGFExist);
 
 void AsicSwitchChannel(
-	IN  struct rtmp_adapter *  pAd,
-	IN	u8 		Channel,
-	IN	bool 		bScan);
+	struct rtmp_adapter *  pAd,
+	u8 		Channel,
+	bool 		bScan);
 
 INT AsicSetChannel(
-	IN struct rtmp_adapter*pAd,
-	IN u8 ch,
-	IN u8 bw,
-	IN u8 ext_ch,
-	IN bool bScan);
+	struct rtmp_adapter*pAd,
+	u8 ch,
+	u8 bw,
+	u8 ext_ch,
+	bool bScan);
 
 void AsicLockChannel(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel) ;
+	struct rtmp_adapter *pAd,
+	u8 Channel) ;
 
 void AsicAntennaSelect(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8           Channel);
+	struct rtmp_adapter *  pAd,
+	u8           Channel);
 
 void AsicResetBBPAgent(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 #ifdef CONFIG_STA_SUPPORT
 void AsicSleepThenAutoWakeup(
-	IN  struct rtmp_adapter *  pAd,
-	IN  USHORT TbttNumToNextWakeUp);
+	struct rtmp_adapter *  pAd,
+	USHORT TbttNumToNextWakeUp);
 
 void AsicForceSleep(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void AsicForceWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN bool    bFromTx);
+	struct rtmp_adapter *pAd,
+	bool    bFromTx);
 #endif /* CONFIG_STA_SUPPORT */
 
 void AsicSetBssid(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *pBssid);
+	struct rtmp_adapter *  pAd,
+	u8 *pBssid);
 
 void AsicDelWcidTab(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Wcid);
+	struct rtmp_adapter *pAd,
+	u8 Wcid);
 
 void AsicSetApCliBssid(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pBssid,
-	IN u8 index);
+	struct rtmp_adapter *pAd,
+	u8 *pBssid,
+	u8 index);
 
 #ifdef MAC_REPEATER_SUPPORT
 void AsicSetExtendedMacAddr(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pMacAddr,
-	IN u32 Idx);
+	struct rtmp_adapter *pAd,
+	u8 *pMacAddr,
+	u32 Idx);
 #endif /* MAC_REPEATER_SUPPORT */
 
 #ifdef DOT11_N_SUPPORT
 void AsicEnableRDG(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void AsicDisableRDG(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 #endif /* DOT11_N_SUPPORT */
 
 void AsicDisableSync(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void AsicEnableBssSync(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void AsicEnableIbssSync(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void AsicSetEdcaParm(
-	IN struct rtmp_adapter *pAd,
-	IN PEDCA_PARM    pEdcaParm);
+	struct rtmp_adapter *pAd,
+	PEDCA_PARM    pEdcaParm);
 
 void AsicSetSlotTime(
-	IN struct rtmp_adapter *pAd,
-	IN bool bUseShortSlotTime);
+	struct rtmp_adapter *pAd,
+	bool bUseShortSlotTime);
 
 void AsicAddSharedKeyEntry(
-	IN struct rtmp_adapter *pAd,
-	IN u8         BssIndex,
-	IN u8         KeyIdx,
-	IN PCIPHER_KEY	 pCipherKey);
+	struct rtmp_adapter *pAd,
+	u8         BssIndex,
+	u8         KeyIdx,
+	PCIPHER_KEY	 pCipherKey);
 
 void AsicRemoveSharedKeyEntry(
-	IN struct rtmp_adapter *pAd,
-	IN u8         BssIndex,
-	IN u8         KeyIdx);
+	struct rtmp_adapter *pAd,
+	u8         BssIndex,
+	u8         KeyIdx);
 
 void AsicUpdateWCIDIVEIV(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT		WCID,
-	IN ULONG        uIV,
-	IN ULONG        uEIV);
+	struct rtmp_adapter *pAd,
+	USHORT		WCID,
+	ULONG        uIV,
+	ULONG        uEIV);
 
 void AsicUpdateRxWCIDTable(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT		WCID,
-	IN u8 *       pAddr);
+	struct rtmp_adapter *pAd,
+	USHORT		WCID,
+	u8 *       pAddr);
 
 void AsicUpdateWcidAttributeEntry(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		BssIdx,
-	IN 	u8 	 	KeyIdx,
-	IN 	u8 	 	CipherAlg,
-	IN	u8				Wcid,
-	IN	u8				KeyTabFlag);
+	struct rtmp_adapter *pAd,
+	u8 		BssIdx,
+	u8 	 	KeyIdx,
+	u8 	 	CipherAlg,
+	u8				Wcid,
+	u8				KeyTabFlag);
 
 void AsicAddPairwiseKeyEntry(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 		WCID,
-	IN PCIPHER_KEY		pCipherKey);
+	struct rtmp_adapter *	pAd,
+	u8 		WCID,
+	PCIPHER_KEY		pCipherKey);
 
 void AsicRemovePairwiseKeyEntry(
-	IN struct rtmp_adapter * pAd,
-	IN u8 	 Wcid);
+	struct rtmp_adapter * pAd,
+	u8 	 Wcid);
 
 void MacAddrRandomBssid(
-	IN  struct rtmp_adapter *  pAd,
-	OUT u8 *pAddr);
+	struct rtmp_adapter *  pAd,
+	u8 *pAddr);
 
 void MgtMacHeaderInit(
-	IN  struct rtmp_adapter *    pAd,
-	IN OUT PHEADER_802_11 pHdr80211,
-	IN u8 SubType,
-	IN u8 ToDs,
-	IN u8 *pDA,
-	IN u8 *pBssid);
+	struct rtmp_adapter *    pAd,
+	PHEADER_802_11 pHdr80211,
+	u8 SubType,
+	u8 ToDs,
+	u8 *pDA,
+	u8 *pBssid);
 
 void MlmeRadioOff(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void MlmeRadioOn(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 
 void BssTableInit(
-	IN BSS_TABLE *Tab);
+	BSS_TABLE *Tab);
 
 #ifdef DOT11_N_SUPPORT
 void BATableInit(
-	IN struct rtmp_adapter *pAd,
-    IN BA_TABLE *Tab);
+	struct rtmp_adapter *pAd,
+    BA_TABLE *Tab);
 
 void BATableExit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 #endif /* DOT11_N_SUPPORT */
 
 ULONG BssTableSearch(
-	IN BSS_TABLE *Tab,
-	IN u8 *pBssid,
-	IN u8 Channel);
+	BSS_TABLE *Tab,
+	u8 *pBssid,
+	u8 Channel);
 
 ULONG BssSsidTableSearch(
-	IN BSS_TABLE *Tab,
-	IN u8 *   pBssid,
-	IN u8 *   pSsid,
-	IN u8     SsidLen,
-	IN u8     Channel);
+	BSS_TABLE *Tab,
+	u8 *   pBssid,
+	u8 *   pSsid,
+	u8     SsidLen,
+	u8     Channel);
 
 ULONG BssTableSearchWithSSID(
-	IN BSS_TABLE *Tab,
-	IN u8 *   Bssid,
-	IN u8 *   pSsid,
-	IN u8     SsidLen,
-	IN u8     Channel);
+	BSS_TABLE *Tab,
+	u8 *   Bssid,
+	u8 *   pSsid,
+	u8     SsidLen,
+	u8     Channel);
 
 ULONG BssSsidTableSearchBySSID(
-	IN BSS_TABLE *Tab,
-	IN u8 * pSsid,
-	IN u8  SsidLen);
+	BSS_TABLE *Tab,
+	u8 * pSsid,
+	u8  SsidLen);
 
 void BssTableDeleteEntry(
-	IN OUT  PBSS_TABLE pTab,
-	IN      u8 *pBssid,
-	IN      u8 Channel);
+	PBSS_TABLE pTab,
+	u8 *pBssid,
+	u8 Channel);
 
 ULONG BssTableSetEntry(
-	IN struct rtmp_adapter *pAd,
-	OUT BSS_TABLE *Tab,
-	IN BCN_IE_LIST *ie_list,
-	IN CHAR Rssi,
-	IN USHORT LengthVIE,
-	IN PNDIS_802_11_VARIABLE_IEs pVIE);
+	struct rtmp_adapter *pAd,
+	BSS_TABLE *Tab,
+	BCN_IE_LIST *ie_list,
+	CHAR Rssi,
+	USHORT LengthVIE,
+	PNDIS_802_11_VARIABLE_IEs pVIE);
 
 
 #ifdef DOT11_N_SUPPORT
 void BATableInsertEntry(
-    IN	struct rtmp_adapter *pAd,
-	IN USHORT Aid,
-    IN USHORT		TimeOutValue,
-	IN USHORT		StartingSeq,
-    IN u8 TID,
-	IN u8 BAWinSize,
-	IN u8 OriginatorStatus,
-    IN bool IsRecipient);
+    struct rtmp_adapter *pAd,
+	USHORT Aid,
+    USHORT		TimeOutValue,
+	USHORT		StartingSeq,
+    u8 TID,
+	u8 BAWinSize,
+	u8 OriginatorStatus,
+    bool IsRecipient);
 
 #ifdef DOT11N_DRAFT3
 void Bss2040CoexistTimeOut(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 
 void  TriEventInit(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 INT TriEventTableSetEntry(
-	IN	struct rtmp_adapter *pAd,
-	OUT TRIGGER_EVENT_TAB *Tab,
-	IN u8 *pBssid,
-	IN HT_CAPABILITY_IE *pHtCapability,
-	IN u8 		HtCapabilityLen,
-	IN u8 		RegClass,
-	IN u8 ChannelNo);
+	struct rtmp_adapter *pAd,
+	TRIGGER_EVENT_TAB *Tab,
+	u8 *pBssid,
+	HT_CAPABILITY_IE *pHtCapability,
+	u8 		HtCapabilityLen,
+	u8 		RegClass,
+	u8 ChannelNo);
 
 #endif /* DOT11N_DRAFT3 */
 #endif /* DOT11_N_SUPPORT */
 
 void BssTableSsidSort(
-	IN  struct rtmp_adapter *  pAd,
-	OUT BSS_TABLE *OutTab,
-	IN  CHAR Ssid[],
-	IN  u8 SsidLen);
+	struct rtmp_adapter *  pAd,
+	BSS_TABLE *OutTab,
+	CHAR Ssid[],
+	u8 SsidLen);
 
 void  BssTableSortByRssi(
-	IN OUT BSS_TABLE *OutTab);
+	BSS_TABLE *OutTab);
 
 void BssCipherParse(
-	IN OUT  PBSS_ENTRY  pBss);
+	PBSS_ENTRY  pBss);
 
 int  MlmeQueueInit(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE *Queue);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE *Queue);
 
 void  MlmeQueueDestroy(
-	IN MLME_QUEUE *Queue);
+	MLME_QUEUE *Queue);
 
 bool MlmeEnqueue(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG Machine,
-	IN ULONG MsgType,
-	IN ULONG MsgLen,
-	IN void *Msg,
-	IN ULONG Priv);
+	struct rtmp_adapter *pAd,
+	ULONG Machine,
+	ULONG MsgType,
+	ULONG MsgLen,
+	void *Msg,
+	ULONG Priv);
 
 bool MlmeEnqueueForRecv(
-	IN  struct rtmp_adapter *  pAd,
-	IN ULONG Wcid,
-	IN ULONG TimeStampHigh,
-	IN ULONG TimeStampLow,
-	IN u8 Rssi0,
-	IN u8 Rssi1,
-	IN u8 Rssi2,
-	IN ULONG MsgLen,
-	IN void *Msg,
-	IN u8 Signal,
-	IN u8 OpMode);
+	struct rtmp_adapter *  pAd,
+	ULONG Wcid,
+	ULONG TimeStampHigh,
+	ULONG TimeStampLow,
+	u8 Rssi0,
+	u8 Rssi1,
+	u8 Rssi2,
+	ULONG MsgLen,
+	void *Msg,
+	u8 Signal,
+	u8 OpMode);
 
 
 bool MlmeDequeue(
-	IN MLME_QUEUE *Queue,
-	OUT MLME_QUEUE_ELEM **Elem);
+	MLME_QUEUE *Queue,
+	MLME_QUEUE_ELEM **Elem);
 
 void    MlmeRestartStateMachine(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 bool  MlmeQueueEmpty(
-	IN MLME_QUEUE *Queue);
+	MLME_QUEUE *Queue);
 
 bool  MlmeQueueFull(
-	IN MLME_QUEUE *Queue,
-	IN u8 SendId);
+	MLME_QUEUE *Queue,
+	u8 SendId);
 
 bool  MsgTypeSubst(
-	IN struct rtmp_adapter *pAd,
-	IN PFRAME_802_11 pFrame,
-	OUT INT *Machine,
-	OUT INT *MsgType);
+	struct rtmp_adapter *pAd,
+	PFRAME_802_11 pFrame,
+	INT *Machine,
+	INT *MsgType);
 
 void StateMachineInit(
-	IN STATE_MACHINE *Sm,
-	IN STATE_MACHINE_FUNC Trans[],
-	IN ULONG StNr,
-	IN ULONG MsgNr,
-	IN STATE_MACHINE_FUNC DefFunc,
-	IN ULONG InitState,
-	IN ULONG Base);
+	STATE_MACHINE *Sm,
+	STATE_MACHINE_FUNC Trans[],
+	ULONG StNr,
+	ULONG MsgNr,
+	STATE_MACHINE_FUNC DefFunc,
+	ULONG InitState,
+	ULONG Base);
 
 void StateMachineSetAction(
-	IN STATE_MACHINE *S,
-	IN ULONG St,
+	STATE_MACHINE *S,
+	ULONG St,
 	ULONG Msg,
-	IN STATE_MACHINE_FUNC F);
+	STATE_MACHINE_FUNC F);
 
 void StateMachinePerformAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN STATE_MACHINE *S,
-	IN MLME_QUEUE_ELEM *Elem,
-	IN ULONG CurrState);
+	struct rtmp_adapter *  pAd,
+	STATE_MACHINE *S,
+	MLME_QUEUE_ELEM *Elem,
+	ULONG CurrState);
 
 void Drop(
-	IN  struct rtmp_adapter *  pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void AssocStateMachineInit(
-	IN  struct rtmp_adapter *  pAd,
-	IN  STATE_MACHINE *Sm,
-	OUT STATE_MACHINE_FUNC Trans[]);
+	struct rtmp_adapter *  pAd,
+	STATE_MACHINE *Sm,
+	STATE_MACHINE_FUNC Trans[]);
 
 void ReassocTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void AssocTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void DisassocTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 /*---------------------------------------------- */
 void MlmeDisassocReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeAssocReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeReassocReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeDisassocReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerAssocRspAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerReassocRspAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerDisassocAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void DisassocTimeoutAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void AssocTimeoutAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void  ReassocTimeoutAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void  Cls3errAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *pAddr);
+	struct rtmp_adapter *  pAd,
+	u8 *pAddr);
 
 void  InvalidStateWhenAssoc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void  InvalidStateWhenReassoc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void InvalidStateWhenDisassociate(
-	IN  struct rtmp_adapter *pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 #ifdef RTMP_MAC_USB
 void MlmeCntlConfirm(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG MsgType,
-	IN USHORT Msg);
+	struct rtmp_adapter *pAd,
+	ULONG MsgType,
+	USHORT Msg);
 #endif /* RTMP_MAC_USB */
 
 void  ComposePsPoll(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void  ComposeNullFrame(
-	IN  struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void  AssocPostProc(
-	IN  struct rtmp_adapter *pAd,
-	IN  u8 *pAddr2,
-	IN  USHORT CapabilityInfo,
-	IN  USHORT Aid,
-	IN  u8 SupRate[],
-	IN  u8 SupRateLen,
-	IN  u8 ExtRate[],
-	IN  u8 ExtRateLen,
-	IN PEDCA_PARM pEdcaParm,
-	IN IE_LISTS *ie_list,
-	IN HT_CAPABILITY_IE *pHtCapability,
-	IN  u8 HtCapabilityLen,
-	IN ADD_HT_INFO_IE *pAddHtInfo);
+	struct rtmp_adapter *pAd,
+	u8 *pAddr2,
+	USHORT CapabilityInfo,
+	USHORT Aid,
+	u8 SupRate[],
+	u8 SupRateLen,
+	u8 ExtRate[],
+	u8 ExtRateLen,
+	PEDCA_PARM pEdcaParm,
+	IE_LISTS *ie_list,
+	HT_CAPABILITY_IE *pHtCapability,
+	u8 HtCapabilityLen,
+	ADD_HT_INFO_IE *pAddHtInfo);
 
 void AuthStateMachineInit(
-	IN  struct rtmp_adapter *  pAd,
-	IN PSTATE_MACHINE sm,
-	OUT STATE_MACHINE_FUNC Trans[]);
+	struct rtmp_adapter *  pAd,
+	PSTATE_MACHINE sm,
+	STATE_MACHINE_FUNC Trans[]);
 
 void AuthTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void MlmeAuthReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerAuthRspAtSeq2Action(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerAuthRspAtSeq4Action(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void AuthTimeoutAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void Cls2errAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *pAddr);
+	struct rtmp_adapter *  pAd,
+	u8 *pAddr);
 
 void MlmeDeauthReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void InvalidStateWhenAuth(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 /*============================================= */
 
 void AuthRspStateMachineInit(
-	IN  struct rtmp_adapter *  pAd,
-	IN  PSTATE_MACHINE Sm,
-	IN  STATE_MACHINE_FUNC Trans[]);
+	struct rtmp_adapter *  pAd,
+	PSTATE_MACHINE Sm,
+	STATE_MACHINE_FUNC Trans[]);
 
 void PeerDeauthAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerAuthSimpleRspGenAndSend(
-	IN  struct rtmp_adapter *  pAd,
-	IN  PHEADER_802_11  pHdr80211,
-	IN  USHORT Alg,
-	IN  USHORT Seq,
-	IN  USHORT Reason,
-	IN  USHORT Status);
+	struct rtmp_adapter *  pAd,
+	PHEADER_802_11  pHdr80211,
+	USHORT Alg,
+	USHORT Seq,
+	USHORT Reason,
+	USHORT Status);
 
 /* */
 /* Private routines in dls.c */
@@ -4353,884 +4353,884 @@ void PeerAuthSimpleRspGenAndSend(
 #ifdef CONFIG_STA_SUPPORT
 #ifdef QOS_DLS_SUPPORT
 void DlsStateMachineInit(
-    IN struct rtmp_adapter *pAd,
-    IN STATE_MACHINE *Sm,
-    OUT STATE_MACHINE_FUNC Trans[]);
+    struct rtmp_adapter *pAd,
+    STATE_MACHINE *Sm,
+    STATE_MACHINE_FUNC Trans[]);
 
 void MlmeDlsReqAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 void PeerDlsReqAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM	*Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM	*Elem);
 
 void PeerDlsRspAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM	*Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM	*Elem);
 
 void MlmeDlsTearDownAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM *Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM *Elem);
 
 void PeerDlsTearDownAction(
-    IN struct rtmp_adapter *pAd,
-    IN MLME_QUEUE_ELEM	*Elem);
+    struct rtmp_adapter *pAd,
+    MLME_QUEUE_ELEM	*Elem);
 
 void RTMPCheckDLSTimeOut(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 bool RTMPRcvFrameDLSCheck(
-	IN struct rtmp_adapter*pAd,
-	IN PHEADER_802_11 pHeader,
-	IN ULONG Len,
-	IN RXD_STRUC *pRxD);
+	struct rtmp_adapter*pAd,
+	PHEADER_802_11 pHeader,
+	ULONG Len,
+	RXD_STRUC *pRxD);
 
 INT	RTMPCheckDLSFrame(
-	IN struct rtmp_adapter*pAd,
-	IN u8 *pDA);
+	struct rtmp_adapter*pAd,
+	u8 *pDA);
 
 void RTMPSendDLSTearDownFrame(
-	IN	struct rtmp_adapter *pAd,
-	IN  u8 *         pDA);
+	struct rtmp_adapter *pAd,
+	u8 *         pDA);
 
 int RTMPSendSTAKeyRequest(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pDA);
+	struct rtmp_adapter *pAd,
+	u8 *		pDA);
 
 int RTMPSendSTAKeyHandShake(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pDA);
+	struct rtmp_adapter *pAd,
+	u8 *		pDA);
 
 void DlsTimeoutAction(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 bool MlmeDlsReqSanity(
-	IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen,
-    OUT PRT_802_11_DLS *pDLS,
-    OUT PUSHORT pReason);
+	struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen,
+    PRT_802_11_DLS *pDLS,
+    PUSHORT pReason);
 
 INT Set_DlsEntryInfo_Display_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *arg);
+	struct rtmp_adapter *pAd,
+	u8 *arg);
 
 MAC_TABLE_ENTRY *MacTableInsertDlsEntry(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *pAddr,
-	IN  UINT	DlsEntryIdx);
+	struct rtmp_adapter *  pAd,
+	u8 *pAddr,
+	UINT	DlsEntryIdx);
 
 bool MacTableDeleteDlsEntry(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT wcid,
-	IN u8 *pAddr);
+	struct rtmp_adapter *pAd,
+	USHORT wcid,
+	u8 *pAddr);
 
 MAC_TABLE_ENTRY *DlsEntryTableLookup(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pAddr,
-	IN bool bResetIdelCount);
+	struct rtmp_adapter *pAd,
+	u8 *pAddr,
+	bool bResetIdelCount);
 
 MAC_TABLE_ENTRY *DlsEntryTableLookupByWcid(
-	IN struct rtmp_adapter *pAd,
-	IN u8 wcid,
-	IN u8 *pAddr,
-	IN bool bResetIdelCount);
+	struct rtmp_adapter *pAd,
+	u8 wcid,
+	u8 *pAddr,
+	bool bResetIdelCount);
 
 INT	Set_DlsAddEntry_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_DlsTearDownEntry_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 #endif /* QOS_DLS_SUPPORT */
 #endif /* CONFIG_STA_SUPPORT */
 
 #ifdef QOS_DLS_SUPPORT
 bool PeerDlsReqSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen,
-    OUT u8 *pDA,
-    OUT u8 *pSA,
-    OUT USHORT *pCapabilityInfo,
-    OUT USHORT *pDlsTimeout,
-    OUT u8 *pRatesLen,
-    OUT u8 Rates[],
-    OUT u8 *pHtCapabilityLen,
-    OUT HT_CAPABILITY_IE *pHtCapability);
+    struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen,
+    u8 *pDA,
+    u8 *pSA,
+    USHORT *pCapabilityInfo,
+    USHORT *pDlsTimeout,
+    u8 *pRatesLen,
+    u8 Rates[],
+    u8 *pHtCapabilityLen,
+    HT_CAPABILITY_IE *pHtCapability);
 
 bool PeerDlsRspSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen,
-    OUT u8 *pDA,
-    OUT u8 *pSA,
-    OUT USHORT *pCapabilityInfo,
-    OUT USHORT *pStatus,
-    OUT u8 *pRatesLen,
-    OUT u8 Rates[],
-    OUT u8 *pHtCapabilityLen,
-    OUT HT_CAPABILITY_IE *pHtCapability);
+    struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen,
+    u8 *pDA,
+    u8 *pSA,
+    USHORT *pCapabilityInfo,
+    USHORT *pStatus,
+    u8 *pRatesLen,
+    u8 Rates[],
+    u8 *pHtCapabilityLen,
+    HT_CAPABILITY_IE *pHtCapability);
 
 bool PeerDlsTearDownSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen,
-    OUT u8 *pDA,
-    OUT u8 *pSA,
-    OUT USHORT *pReason);
+    struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen,
+    u8 *pDA,
+    u8 *pSA,
+    USHORT *pReason);
 #endif /* QOS_DLS_SUPPORT */
 
 bool PeerProbeReqSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen,
-    OUT u8 *pAddr2,
-    OUT CHAR Ssid[],
-    OUT u8 *SsidLen,
-    OUT bool *bRequestRssi);
+    struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen,
+    u8 *pAddr2,
+    CHAR Ssid[],
+    u8 *SsidLen,
+    bool *bRequestRssi);
 
 /*======================================== */
 
 void SyncStateMachineInit(
-	IN  struct rtmp_adapter *  pAd,
-	IN  STATE_MACHINE *Sm,
-	OUT STATE_MACHINE_FUNC Trans[]);
+	struct rtmp_adapter *  pAd,
+	STATE_MACHINE *Sm,
+	STATE_MACHINE_FUNC Trans[]);
 
 void BeaconTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void ScanTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void MlmeScanReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void InvalidStateWhenScan(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void InvalidStateWhenJoin(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void InvalidStateWhenStart(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerBeacon(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void EnqueueProbeRequest(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 bool ScanRunning(
-		IN struct rtmp_adapter *pAd);
+		struct rtmp_adapter *pAd);
 /*========================================= */
 
 void MlmeCntlInit(
-	IN  struct rtmp_adapter *  pAd,
-	IN  STATE_MACHINE *S,
-	OUT STATE_MACHINE_FUNC Trans[]);
+	struct rtmp_adapter *  pAd,
+	STATE_MACHINE *S,
+	STATE_MACHINE_FUNC Trans[]);
 
 void MlmeCntlMachinePerformAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  STATE_MACHINE *S,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	STATE_MACHINE *S,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlIdleProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlOidScanProc(
-	IN  struct rtmp_adapter *pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlOidSsidProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM * Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM * Elem);
 
 void CntlOidRTBssidProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM * Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM * Elem);
 
 void CntlMlmeRoamingProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM * Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM * Elem);
 
 void CntlWaitDisassocProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlWaitJoinProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlWaitReassocProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlWaitStartProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlWaitAuthProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlWaitAuthProc2(
-	IN  struct rtmp_adapter *pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void CntlWaitAssocProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 #ifdef QOS_DLS_SUPPORT
 void CntlOidDLSSetupProc(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 #endif /* QOS_DLS_SUPPORT */
 
 
 void LinkUp(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 BssType);
+	struct rtmp_adapter *  pAd,
+	u8 BssType);
 
 void LinkDown(
-	IN  struct rtmp_adapter *  pAd,
-	IN  bool         IsReqFromAP);
+	struct rtmp_adapter *  pAd,
+	bool         IsReqFromAP);
 
 void IterateOnBssTab(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void IterateOnBssTab2(
-	IN  struct rtmp_adapter *  pAd);;
+	struct rtmp_adapter *  pAd);;
 
 void JoinParmFill(
-	IN  struct rtmp_adapter *  pAd,
-	IN  OUT MLME_JOIN_REQ_STRUCT *JoinReq,
-	IN  ULONG BssIdx);
+	struct rtmp_adapter *  pAd,
+	MLME_JOIN_REQ_STRUCT *JoinReq,
+	ULONG BssIdx);
 
 void AssocParmFill(
-	IN  struct rtmp_adapter *  pAd,
-	IN OUT MLME_ASSOC_REQ_STRUCT *AssocReq,
-	IN  u8 *pAddr,
-	IN  USHORT CapabilityInfo,
-	IN  ULONG Timeout,
-	IN  USHORT ListenIntv);
+	struct rtmp_adapter *  pAd,
+	MLME_ASSOC_REQ_STRUCT *AssocReq,
+	u8 *pAddr,
+	USHORT CapabilityInfo,
+	ULONG Timeout,
+	USHORT ListenIntv);
 
 void ScanParmFill(
-	IN  struct rtmp_adapter *  pAd,
-	IN  OUT MLME_SCAN_REQ_STRUCT *ScanReq,
-	IN  STRING Ssid[],
-	IN  u8 SsidLen,
-	IN  u8 BssType,
-	IN  u8 ScanType);
+	struct rtmp_adapter *  pAd,
+	MLME_SCAN_REQ_STRUCT *ScanReq,
+	STRING Ssid[],
+	u8 SsidLen,
+	u8 BssType,
+	u8 ScanType);
 
 void DisassocParmFill(
-	IN  struct rtmp_adapter *  pAd,
-	IN  OUT MLME_DISASSOC_REQ_STRUCT *DisassocReq,
-	IN  u8 *pAddr,
-	IN  USHORT Reason);
+	struct rtmp_adapter *  pAd,
+	MLME_DISASSOC_REQ_STRUCT *DisassocReq,
+	u8 *pAddr,
+	USHORT Reason);
 
 void StartParmFill(
-	IN  struct rtmp_adapter *  pAd,
-	IN  OUT MLME_START_REQ_STRUCT *StartReq,
-	IN  CHAR Ssid[],
-	IN  u8 SsidLen);
+	struct rtmp_adapter *  pAd,
+	MLME_START_REQ_STRUCT *StartReq,
+	CHAR Ssid[],
+	u8 SsidLen);
 
 void AuthParmFill(
-	IN  struct rtmp_adapter *  pAd,
-	IN  OUT MLME_AUTH_REQ_STRUCT *AuthReq,
-	IN  u8 *pAddr,
-	IN  USHORT Alg);
+	struct rtmp_adapter *  pAd,
+	MLME_AUTH_REQ_STRUCT *AuthReq,
+	u8 *pAddr,
+	USHORT Alg);
 
 void EnqueuePsPoll(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void EnqueueBeaconFrame(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void MlmeJoinReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeScanReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeStartReqAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeForceJoinReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void MlmeForceScanReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void ScanTimeoutAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void BeaconTimeoutAtJoinAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerBeaconAtScanAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerBeaconAtJoinAction(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerBeacon(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerProbeReqAction(
-	IN  struct rtmp_adapter *pAd,
-	IN  MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem);
 
 void ScanNextChannel(
-	IN  struct rtmp_adapter *  pAd,
-	IN	u8 OpMode);
+	struct rtmp_adapter *  pAd,
+	u8 OpMode);
 
 
 ULONG MakeIbssBeacon(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 #ifdef CONFIG_STA_SUPPORT
 void InitChannelRelatedValue(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void AdjustChannelRelatedValue(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pBwFallBack,
-	IN USHORT ifIndex,
-	IN bool BandWidth,
-	IN u8 PriCh,
-	IN u8 ExtraCh);
+	struct rtmp_adapter *pAd,
+	u8 *pBwFallBack,
+	USHORT ifIndex,
+	bool BandWidth,
+	u8 PriCh,
+	u8 ExtraCh);
 #endif /* CONFIG_STA_SUPPORT */
 
 bool MlmeScanReqSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT u8 *BssType,
-	OUT CHAR ssid[],
-	OUT u8 *SsidLen,
-	OUT u8 *ScanType);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 *BssType,
+	CHAR ssid[],
+	u8 *SsidLen,
+	u8 *ScanType);
 
 
 bool PeerBeaconAndProbeRspSanity_Old(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	IN  u8 MsgChannel,
-	OUT u8 *pAddr2,
-	OUT u8 *pBssid,
-	OUT CHAR Ssid[],
-	OUT u8 *pSsidLen,
-	OUT u8 *pBssType,
-	OUT USHORT *pBeaconPeriod,
-	OUT u8 *pChannel,
-	OUT u8 *pNewChannel,
-	OUT LARGE_INTEGER *pTimestamp,
-	OUT CF_PARM *pCfParm,
-	OUT USHORT *pAtimWin,
-	OUT USHORT *pCapabilityInfo,
-	OUT u8 *pErp,
-	OUT u8 *pDtimCount,
-	OUT u8 *pDtimPeriod,
-	OUT u8 *pBcastFlag,
-	OUT u8 *pMessageToMe,
-	OUT u8 SupRate[],
-	OUT u8 *pSupRateLen,
-	OUT u8 ExtRate[],
-	OUT u8 *pExtRateLen,
-	OUT	u8 *pCkipFlag,
-	OUT	u8 *pAironetCellPowerLimit,
-	OUT PEDCA_PARM       pEdcaParm,
-	OUT PQBSS_LOAD_PARM  pQbssLoad,
-	OUT PQOS_CAPABILITY_PARM pQosCapability,
-	OUT ULONG *pRalinkIe,
-	OUT u8 	 *pHtCapabilityLen,
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 MsgChannel,
+	u8 *pAddr2,
+	u8 *pBssid,
+	CHAR Ssid[],
+	u8 *pSsidLen,
+	u8 *pBssType,
+	USHORT *pBeaconPeriod,
+	u8 *pChannel,
+	u8 *pNewChannel,
+	LARGE_INTEGER *pTimestamp,
+	CF_PARM *pCfParm,
+	USHORT *pAtimWin,
+	USHORT *pCapabilityInfo,
+	u8 *pErp,
+	u8 *pDtimCount,
+	u8 *pDtimPeriod,
+	u8 *pBcastFlag,
+	u8 *pMessageToMe,
+	u8 SupRate[],
+	u8 *pSupRateLen,
+	u8 ExtRate[],
+	u8 *pExtRateLen,
+	u8 *pCkipFlag,
+	u8 *pAironetCellPowerLimit,
+	PEDCA_PARM       pEdcaParm,
+	PQBSS_LOAD_PARM  pQbssLoad,
+	PQOS_CAPABILITY_PARM pQosCapability,
+	ULONG *pRalinkIe,
+	u8 	 *pHtCapabilityLen,
 #ifdef CONFIG_STA_SUPPORT
-	OUT u8 	 *pPreNHtCapabilityLen,
+	u8 	 *pPreNHtCapabilityLen,
 #endif /* CONFIG_STA_SUPPORT */
-	OUT HT_CAPABILITY_IE *pHtCapability,
-	OUT EXT_CAP_INFO_ELEMENT *pExtCapInfo,
-	OUT u8 	 *AddHtInfoLen,
-	OUT ADD_HT_INFO_IE *AddHtInfo,
-	OUT u8 *NewExtChannel,
-	OUT USHORT *LengthVIE,
-	OUT PNDIS_802_11_VARIABLE_IEs pVIE);
+	HT_CAPABILITY_IE *pHtCapability,
+	EXT_CAP_INFO_ELEMENT *pExtCapInfo,
+	u8 	 *AddHtInfoLen,
+	ADD_HT_INFO_IE *AddHtInfo,
+	u8 *NewExtChannel,
+	USHORT *LengthVIE,
+	PNDIS_802_11_VARIABLE_IEs pVIE);
 
 
 bool PeerBeaconAndProbeRspSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *Msg,
-	IN ULONG MsgLen,
-	IN u8  MsgChannel,
-	OUT BCN_IE_LIST *ie_list,
-	OUT USHORT *LengthVIE,
-	OUT PNDIS_802_11_VARIABLE_IEs pVIE);
+	struct rtmp_adapter *pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8  MsgChannel,
+	BCN_IE_LIST *ie_list,
+	USHORT *LengthVIE,
+	PNDIS_802_11_VARIABLE_IEs pVIE);
 
 
 #ifdef DOT11_N_SUPPORT
 #ifdef DOT11N_DRAFT3
 bool PeerBeaconAndProbeRspSanity2(
-	IN struct rtmp_adapter *pAd,
-	IN void *Msg,
-	IN ULONG MsgLen,
-	IN OVERLAP_BSS_SCAN_IE *BssScan,
-	OUT u8 	*RegClass);
+	struct rtmp_adapter *pAd,
+	void *Msg,
+	ULONG MsgLen,
+	OVERLAP_BSS_SCAN_IE *BssScan,
+	u8 	*RegClass);
 #endif /* DOT11N_DRAFT3 */
 #endif /* DOT11_N_SUPPORT */
 
 bool PeerAddBAReqActionSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *pMsg,
-    IN ULONG MsgLen,
-	OUT u8 *pAddr2);
+    struct rtmp_adapter *pAd,
+    void *pMsg,
+    ULONG MsgLen,
+	u8 *pAddr2);
 
 bool PeerAddBARspActionSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *pMsg,
-    IN ULONG MsgLen);
+    struct rtmp_adapter *pAd,
+    void *pMsg,
+    ULONG MsgLen);
 
 bool PeerDelBAActionSanity(
-    IN struct rtmp_adapter *pAd,
-    IN u8 Wcid,
-    IN void *pMsg,
-    IN ULONG MsgLen);
+    struct rtmp_adapter *pAd,
+    u8 Wcid,
+    void *pMsg,
+    ULONG MsgLen);
 
 bool MlmeAssocReqSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT u8 *pApAddr,
-	OUT USHORT *CapabilityInfo,
-	OUT ULONG *Timeout,
-	OUT USHORT *ListenIntv);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 *pApAddr,
+	USHORT *CapabilityInfo,
+	ULONG *Timeout,
+	USHORT *ListenIntv);
 
 bool MlmeAuthReqSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT u8 *pAddr,
-	OUT ULONG *Timeout,
-	OUT USHORT *Alg);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 *pAddr,
+	ULONG *Timeout,
+	USHORT *Alg);
 
 bool MlmeStartReqSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT CHAR Ssid[],
-	OUT u8 *Ssidlen);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	CHAR Ssid[],
+	u8 *Ssidlen);
 
 bool PeerAuthSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT u8 *pAddr,
-	OUT USHORT *Alg,
-	OUT USHORT *Seq,
-	OUT USHORT *Status,
-	OUT CHAR ChlgText[]);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 *pAddr,
+	USHORT *Alg,
+	USHORT *Seq,
+	USHORT *Status,
+	CHAR ChlgText[]);
 
 bool PeerAssocRspSanity(
-	IN  struct rtmp_adapter *  pAd,
-    IN void *pMsg,
-	IN  ULONG MsgLen,
-	OUT u8 *pAddr2,
-	OUT USHORT *pCapabilityInfo,
-	OUT USHORT *pStatus,
-	OUT USHORT *pAid,
-	OUT u8 SupRate[],
-	OUT u8 *pSupRateLen,
-	OUT u8 ExtRate[],
-	OUT u8 *pExtRateLen,
-    OUT HT_CAPABILITY_IE		*pHtCapability,
-    OUT ADD_HT_INFO_IE		*pAddHtInfo,	/* AP might use this additional ht info IE */
-    OUT u8 		*pHtCapabilityLen,
-    OUT u8 		*pAddHtInfoLen,
-    OUT u8 		*pNewExtChannelOffset,
-	OUT PEDCA_PARM pEdcaParm,
-	OUT EXT_CAP_INFO_ELEMENT *pExtCapInfo,
-	OUT u8 *pCkipFlag,
-	OUT IE_LISTS *ie_list);
+	struct rtmp_adapter *  pAd,
+    void *pMsg,
+	ULONG MsgLen,
+	u8 *pAddr2,
+	USHORT *pCapabilityInfo,
+	USHORT *pStatus,
+	USHORT *pAid,
+	u8 SupRate[],
+	u8 *pSupRateLen,
+	u8 ExtRate[],
+	u8 *pExtRateLen,
+    HT_CAPABILITY_IE		*pHtCapability,
+    ADD_HT_INFO_IE		*pAddHtInfo,	/* AP might use this additional ht info IE */
+    u8 		*pHtCapabilityLen,
+    u8 		*pAddHtInfoLen,
+    u8 		*pNewExtChannelOffset,
+	PEDCA_PARM pEdcaParm,
+	EXT_CAP_INFO_ELEMENT *pExtCapInfo,
+	u8 *pCkipFlag,
+	IE_LISTS *ie_list);
 
 bool PeerDisassocSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT u8 *pAddr2,
-	OUT USHORT *Reason);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 *pAddr2,
+	USHORT *Reason);
 
 bool PeerDeauthSanity(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *Msg,
-	IN  ULONG MsgLen,
-	OUT u8 *pAddr1,
-	OUT u8 *pAddr2,
-	OUT u8 *pAddr3,
-	OUT USHORT *Reason);
+	struct rtmp_adapter *  pAd,
+	void *Msg,
+	ULONG MsgLen,
+	u8 *pAddr1,
+	u8 *pAddr2,
+	u8 *pAddr3,
+	USHORT *Reason);
 
 bool GetTimBit(
-	IN  CHAR *Ptr,
-	IN  USHORT Aid,
-	OUT u8 *TimLen,
-	OUT u8 *BcastFlag,
-	OUT u8 *DtimCount,
-	OUT u8 *DtimPeriod,
-	OUT u8 *MessageToMe);
+	CHAR *Ptr,
+	USHORT Aid,
+	u8 *TimLen,
+	u8 *BcastFlag,
+	u8 *DtimCount,
+	u8 *DtimPeriod,
+	u8 *MessageToMe);
 
 u8 ChannelSanity(
-	IN struct rtmp_adapter *pAd,
-	IN u8 channel);
+	struct rtmp_adapter *pAd,
+	u8 channel);
 
 NDIS_802_11_NETWORK_TYPE NetworkTypeInUseSanity(
-	IN PBSS_ENTRY pBss);
+	PBSS_ENTRY pBss);
 
 bool MlmeDelBAReqSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen);
+    struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen);
 
 bool MlmeAddBAReqSanity(
-    IN struct rtmp_adapter *pAd,
-    IN void *Msg,
-    IN ULONG MsgLen,
-    OUT u8 *pAddr2);
+    struct rtmp_adapter *pAd,
+    void *Msg,
+    ULONG MsgLen,
+    u8 *pAddr2);
 
 ULONG MakeOutgoingFrame(
-	OUT u8 *Buffer,
-	OUT ULONG *Length, ...);
+	u8 *Buffer,
+	ULONG *Length, ...);
 
 u8 RandomByte(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void AsicUpdateAutoFallBackTable(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pTxRate);
+	struct rtmp_adapter *pAd,
+	u8 *		pTxRate);
 
 
 
 void  MlmePeriodicExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void LinkDownExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void LinkUpExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void STAMlmePeriodicExec(
 	struct rtmp_adapter *pAd);
 
 void MlmeAutoScan(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 bool MlmeValidateSSID(
-	IN u8 *pSsid,
-	IN u8  SsidLen);
+	u8 *pSsid,
+	u8  SsidLen);
 
 void MlmeCheckForRoaming(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG    Now32);
+	struct rtmp_adapter *pAd,
+	ULONG    Now32);
 
 bool MlmeCheckForFastRoaming(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 
 void MlmeCalculateChannelQuality(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY pMacEntry,
-	IN ULONG Now);
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY pMacEntry,
+	ULONG Now);
 
 void MlmeCheckPsmChange(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG    Now32);
+	struct rtmp_adapter *pAd,
+	ULONG    Now32);
 
 void MlmeSetPsmBit(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT psm);
+	struct rtmp_adapter *pAd,
+	USHORT psm);
 
 void MlmeSetTxPreamble(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT TxPreamble);
+	struct rtmp_adapter *pAd,
+	USHORT TxPreamble);
 
 void UpdateBasicRateBitmap(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void MlmeUpdateTxRates(
-	IN struct rtmp_adapter *	pAd,
-	IN 	bool 	 	bLinkUp,
-	IN	u8 		apidx);
+	struct rtmp_adapter *	pAd,
+	bool 	 	bLinkUp,
+	u8 		apidx);
 
 #ifdef DOT11_N_SUPPORT
 void MlmeUpdateHtTxRates(
-	IN struct rtmp_adapter *		pAd,
-	IN	u8 			apidx);
+	struct rtmp_adapter *		pAd,
+	u8 			apidx);
 #endif /* DOT11_N_SUPPORT */
 
 void    RTMPCheckRates(
-	IN      struct rtmp_adapter *  pAd,
-	IN OUT  u8           SupRate[],
-	IN OUT  u8           *SupRateLen);
+	struct rtmp_adapter *  pAd,
+	u8           SupRate[],
+	u8           *SupRateLen);
 
 #ifdef CONFIG_STA_SUPPORT
 bool RTMPCheckChannel(
-	IN struct rtmp_adapter *pAd,
-	IN u8 	CentralChannel,
-	IN u8 	Channel);
+	struct rtmp_adapter *pAd,
+	u8 	CentralChannel,
+	u8 	Channel);
 #endif /* CONFIG_STA_SUPPORT */
 
 bool RTMPCheckHt(
-	IN struct rtmp_adapter*pAd,
-	IN u8 Wcid,
-	INOUT HT_CAPABILITY_IE *pHtCapability,
-	INOUT ADD_HT_INFO_IE *pAddHtInfo);
+	struct rtmp_adapter*pAd,
+	u8 Wcid,
+	HT_CAPABILITY_IE *pHtCapability,
+	ADD_HT_INFO_IE *pAddHtInfo);
 
 #ifdef DOT11_VHT_AC
 bool RTMPCheckVht(
-	IN struct rtmp_adapter*pAd,
-	IN u8 Wcid,
-	IN VHT_CAP_IE *vht_cap,
-	IN VHT_OP_IE *vht_op);
+	struct rtmp_adapter*pAd,
+	u8 Wcid,
+	VHT_CAP_IE *vht_cap,
+	VHT_OP_IE *vht_op);
 #endif /* DOT11_VHT_AC */
 
 void RTMPUpdateMlmeRate(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 CHAR RTMPMaxRssi(
-	IN struct rtmp_adapter *pAd,
-	IN CHAR				Rssi0,
-	IN CHAR				Rssi1,
-	IN CHAR				Rssi2);
+	struct rtmp_adapter *pAd,
+	CHAR				Rssi0,
+	CHAR				Rssi1,
+	CHAR				Rssi2);
 
 CHAR RTMPAvgRssi(
-        IN struct rtmp_adapter *pAd,
-        IN RSSI_SAMPLE		*pRssi);
+        struct rtmp_adapter *pAd,
+        RSSI_SAMPLE		*pRssi);
 
 
 CHAR RTMPMinSnr(
-	IN struct rtmp_adapter *pAd,
-	IN CHAR				Snr0,
-	IN CHAR				Snr1);
+	struct rtmp_adapter *pAd,
+	CHAR				Snr0,
+	CHAR				Snr1);
 
 void eFusePhysicalReadRegisters(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT Offset,
-	IN	USHORT Length,
-	OUT	USHORT* pData);
+	struct rtmp_adapter *pAd,
+	USHORT Offset,
+	USHORT Length,
+	USHORT* pData);
 
 void AsicEvaluateRxAnt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void AsicRxAntEvalTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void APSDPeriodicExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 bool RTMPCheckEntryEnableAutoRateSwitch(
-	IN struct rtmp_adapter *   pAd,
-	IN PMAC_TABLE_ENTRY	pEntry);
+	struct rtmp_adapter *   pAd,
+	PMAC_TABLE_ENTRY	pEntry);
 
 u8 RTMPStaFixedTxMode(
-	IN struct rtmp_adapter *   pAd,
-	IN PMAC_TABLE_ENTRY	pEntry);
+	struct rtmp_adapter *   pAd,
+	PMAC_TABLE_ENTRY	pEntry);
 
 void RTMPUpdateLegacyTxSetting(
 		u8 			fixed_tx_mode,
 		PMAC_TABLE_ENTRY	pEntry);
 
 bool RTMPAutoRateSwitchCheck(
-	IN struct rtmp_adapter *   pAd);
+	struct rtmp_adapter *   pAd);
 
 int MlmeInit(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 
 #ifdef CONFIG_STA_SUPPORT
 #endif /* CONFIG_STA_SUPPORT */
 
 void MlmeHandler(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void MlmeHalt(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void MlmeResetRalinkCounters(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 void BuildChannelList(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 u8 FirstChannel(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 u8 NextChannel(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 channel);
+	struct rtmp_adapter *  pAd,
+	u8 channel);
 
 void ChangeToCellPowerLimit(
-	IN struct rtmp_adapter *pAd,
-	IN u8         AironetCellPowerLimit);
+	struct rtmp_adapter *pAd,
+	u8         AironetCellPowerLimit);
 
 /* */
 /* Prototypes of function definition in cmm_tkip.c */
 /* */
 void    RTMPInitMICEngine(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *         pKey,
-	IN  u8 *         pDA,
-	IN  u8 *         pSA,
-	IN  u8           UserPriority,
-	IN  u8 *         pMICKey);
+	struct rtmp_adapter *  pAd,
+	u8 *         pKey,
+	u8 *         pDA,
+	u8 *         pSA,
+	u8           UserPriority,
+	u8 *         pMICKey);
 
 bool RTMPTkipCompareMICValue(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *         pSrc,
-	IN  u8 *         pDA,
-	IN  u8 *         pSA,
-	IN  u8 *         pMICKey,
-	IN	u8 		UserPriority,
-	IN  UINT            Len);
+	struct rtmp_adapter *  pAd,
+	u8 *         pSrc,
+	u8 *         pDA,
+	u8 *         pSA,
+	u8 *         pMICKey,
+	u8 		UserPriority,
+	UINT            Len);
 
 void    RTMPCalculateMICValue(
-	IN  struct rtmp_adapter *  pAd,
-	IN  struct sk_buff *    pPacket,
-	IN  u8 *         pEncap,
-	IN  PCIPHER_KEY     pKey,
-	IN	u8 		apidx);
+	struct rtmp_adapter *  pAd,
+	struct sk_buff *    pPacket,
+	u8 *         pEncap,
+	PCIPHER_KEY     pKey,
+	u8 		apidx);
 
 void    RTMPTkipAppendByte(
-	IN  PTKIP_KEY_INFO  pTkip,
-	IN  u8           uChar);
+	PTKIP_KEY_INFO  pTkip,
+	u8           uChar);
 
 void    RTMPTkipAppend(
-	IN  PTKIP_KEY_INFO  pTkip,
-	IN  u8 *         pSrc,
-	IN  UINT            nBytes);
+	PTKIP_KEY_INFO  pTkip,
+	u8 *         pSrc,
+	UINT            nBytes);
 
 void    RTMPTkipGetMIC(
-	IN  PTKIP_KEY_INFO  pTkip);
+	PTKIP_KEY_INFO  pTkip);
 
 /* */
 /* Prototypes of function definition in cmm_cfg.c */
 /* */
 INT RT_CfgSetCountryRegion(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg,
-	IN INT				band);
+	struct rtmp_adapter *pAd,
+	char *		arg,
+	INT				band);
 
 INT RT_CfgSetWirelessMode(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 u8 cfgmode_2_wmode(u8 cfg_mode);
 u8 *wmode_2_str(u8 wmode);
 
 
 INT RT_CfgSetShortSlot(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	RT_CfgSetWepKey(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		keyString,
-	IN	CIPHER_KEY		*pSharedKey,
-	IN	INT				keyIdx);
+	struct rtmp_adapter *pAd,
+	char *		keyString,
+	CIPHER_KEY		*pSharedKey,
+	INT				keyIdx);
 
 INT RT_CfgSetWPAPSKKey(
-	IN struct rtmp_adapter*pAd,
-	IN char *	keyString,
-	IN INT			keyStringLen,
-	IN u8 	*pHashStr,
-	IN INT			hashStrLen,
-	OUT u8 *	pPMKBuf);
+	struct rtmp_adapter*pAd,
+	char *	keyString,
+	INT			keyStringLen,
+	u8 	*pHashStr,
+	INT			hashStrLen,
+	u8 *	pPMKBuf);
 
 INT	RT_CfgSetFixedTxPhyMode(
-	IN	char *		arg);
+	char *		arg);
 
 INT	RT_CfgSetMacAddress(
-	IN 	struct rtmp_adapter *	pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 INT	RT_CfgSetTxMCSProc(
-	IN	char *		arg,
-	OUT	bool 		*pAutoRate);
+	char *		arg,
+	bool 		*pAutoRate);
 
 INT	RT_CfgSetAutoFallBack(
-	IN 	struct rtmp_adapter *	pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 /* */
 /* Prototypes of function definition in cmm_info.c */
 /* */
 int RTMPWPARemoveKeyProc(
-	IN  struct rtmp_adapter *  pAd,
-	IN  void *          pBuf);
+	struct rtmp_adapter *  pAd,
+	void *          pBuf);
 
 void    RTMPWPARemoveAllKeys(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 
 bool RTMPCheckStrPrintAble(
-    IN  CHAR *pInPutStr,
-    IN  u8 strLen);
+    CHAR *pInPutStr,
+    u8 strLen);
 
 void    RTMPSetPhyMode(
-	IN  struct rtmp_adapter *  pAd,
-	IN  ULONG phymode);
+	struct rtmp_adapter *  pAd,
+	ULONG phymode);
 
 void RTMPUpdateHTIE(
-	IN	RT_HT_CAPABILITY	*pRtHt,
-	IN		u8 			*pMcsSet,
-	OUT		HT_CAPABILITY_IE *pHtCapability,
-	OUT		ADD_HT_INFO_IE		*pAddHtInfo);
+	RT_HT_CAPABILITY	*pRtHt,
+	u8 			*pMcsSet,
+	HT_CAPABILITY_IE *pHtCapability,
+	ADD_HT_INFO_IE		*pAddHtInfo);
 
 void RTMPAddWcidAttributeEntry(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		BssIdx,
-	IN 	u8 	 	KeyIdx,
-	IN 	u8 	 	CipherAlg,
-	IN 	MAC_TABLE_ENTRY *pEntry);
+	struct rtmp_adapter *pAd,
+	u8 		BssIdx,
+	u8 	 	KeyIdx,
+	u8 	 	CipherAlg,
+	MAC_TABLE_ENTRY *pEntry);
 
 char *GetEncryptType(
 	CHAR enc);
@@ -5240,12 +5240,12 @@ char *GetAuthMode(
 
 #ifdef DOT11_N_SUPPORT
 void RTMPSetHT(
-	IN	struct rtmp_adapter *pAd,
-	IN	OID_SET_HT_PHYMODE *pHTPhyMode);
+	struct rtmp_adapter *pAd,
+	OID_SET_HT_PHYMODE *pHTPhyMode);
 
 void RTMPSetIndividualHT(
-	IN	struct rtmp_adapter *	pAd,
-	IN	u8 			apidx);
+	struct rtmp_adapter *	pAd,
+	u8 			apidx);
 
 u8 get_cent_ch_by_htinfo(
 	struct rtmp_adapter*pAd,
@@ -5259,300 +5259,300 @@ INT get_ht_max_mcs(struct rtmp_adapter*pAd, u8 *desire_mcs, u8 *cap_mcs);
 #endif /* DOT11_N_SUPPORT */
 
 void RTMPDisableDesiredHtInfo(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 CHAR    ConvertToRssi(
-	IN struct rtmp_adapter * pAd,
-	IN CHAR				Rssi,
-	IN u8    RssiNumber);
+	struct rtmp_adapter * pAd,
+	CHAR				Rssi,
+	u8    RssiNumber);
 
 CHAR    ConvertToSnr(
-	IN struct rtmp_adapter * pAd,
-	IN u8 			Snr);
+	struct rtmp_adapter * pAd,
+	u8 			Snr);
 
 #ifdef DOT11N_DRAFT3
 void BuildEffectedChannelList(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 
 void DeleteEffectedChannelList(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void CntlChannelWidth(
-	IN struct rtmp_adapter *pAd,
-	IN u8 		PrimaryChannel,
-	IN u8 		CentralChannel,
-	IN u8 		ChannelWidth,
-	IN u8 		SecondaryChannelOffset);
+	struct rtmp_adapter *pAd,
+	u8 		PrimaryChannel,
+	u8 		CentralChannel,
+	u8 		ChannelWidth,
+	u8 		SecondaryChannelOffset);
 
 #endif /* DOT11N_DRAFT3 */
 
 
 void APAsicEvaluateRxAnt(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 
 void APAsicRxAntEvalTimeout(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 
 /* */
 /* function prototype in ap_wpa.c */
 /* */
 void RTMPGetTxTscFromAsic(
-	IN  struct rtmp_adapter *  pAd,
-	IN	u8 		apidx,
-	OUT	u8 *		pTxTsc);
+	struct rtmp_adapter *  pAd,
+	u8 		apidx,
+	u8 *		pTxTsc);
 
 MAC_TABLE_ENTRY *PACInquiry(
-	IN  struct rtmp_adapter *  pAd,
-	IN  ULONG           Wcid);
+	struct rtmp_adapter *  pAd,
+	ULONG           Wcid);
 
 UINT	APValidateRSNIE(
-	IN struct rtmp_adapter *   pAd,
-	IN PMAC_TABLE_ENTRY pEntry,
-	IN u8 *		pRsnIe,
-	IN u8 		rsnie_len);
+	struct rtmp_adapter *   pAd,
+	PMAC_TABLE_ENTRY pEntry,
+	u8 *		pRsnIe,
+	u8 		rsnie_len);
 
 void HandleCounterMeasure(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY  *pEntry);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY  *pEntry);
 
 void WPAStart4WayHS(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MAC_TABLE_ENTRY *pEntry,
-	IN	ULONG			TimeInterval);
+	struct rtmp_adapter *  pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	ULONG			TimeInterval);
 
 void WPAStart2WayGroupHS(
-	IN  struct rtmp_adapter *  pAd,
-	IN  MAC_TABLE_ENTRY *pEntry);
+	struct rtmp_adapter *  pAd,
+	MAC_TABLE_ENTRY *pEntry);
 
 void PeerPairMsg1Action(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY  *pEntry,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY  *pEntry,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerPairMsg2Action(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY  *pEntry,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY  *pEntry,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerPairMsg3Action(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY  *pEntry,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY  *pEntry,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerPairMsg4Action(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY  *pEntry,
-	IN MLME_QUEUE_ELEM *Elem);
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY  *pEntry,
+	MLME_QUEUE_ELEM *Elem);
 
 void PeerGroupMsg1Action(
-	IN  struct rtmp_adapter *   pAd,
-	IN  PMAC_TABLE_ENTRY pEntry,
-    IN  MLME_QUEUE_ELEM  *Elem);
+	struct rtmp_adapter *   pAd,
+	PMAC_TABLE_ENTRY pEntry,
+    MLME_QUEUE_ELEM  *Elem);
 
 void PeerGroupMsg2Action(
-	IN  struct rtmp_adapter *   pAd,
-	IN  PMAC_TABLE_ENTRY pEntry,
-	IN  void             *Msg,
-	IN  UINT             MsgLen);
+	struct rtmp_adapter *   pAd,
+	PMAC_TABLE_ENTRY pEntry,
+	void             *Msg,
+	UINT             MsgLen);
 
 void CMTimerExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void WPARetryExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void EnqueueStartForPSKExec(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3);
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3);
 
 
 void RTMPHandleSTAKey(
-    IN struct rtmp_adapter *   pAdapter,
-    IN MAC_TABLE_ENTRY  *pEntry,
-    IN MLME_QUEUE_ELEM  *Elem);
+    struct rtmp_adapter *   pAdapter,
+    MAC_TABLE_ENTRY  *pEntry,
+    MLME_QUEUE_ELEM  *Elem);
 
 void MlmeDeAuthAction(
-	IN  struct rtmp_adapter *   pAd,
-	IN  PMAC_TABLE_ENTRY pEntry,
-	IN  USHORT           Reason,
-	IN  bool          bDataFrameFirst);
+	struct rtmp_adapter *   pAd,
+	PMAC_TABLE_ENTRY pEntry,
+	USHORT           Reason,
+	bool          bDataFrameFirst);
 
 
 void GREKEYPeriodicExec(
-	IN  void *  SystemSpecific1,
-	IN  void *  FunctionContext,
-	IN  void *  SystemSpecific2,
-	IN  void *  SystemSpecific3);
+	void *  SystemSpecific1,
+	void *  FunctionContext,
+	void *  SystemSpecific2,
+	void *  SystemSpecific3);
 
 void AES_128_CMAC(
-	IN	u8 *key,
-	IN	u8 *input,
-	IN	INT		len,
-	OUT	u8 *mac);
+	u8 *key,
+	u8 *input,
+	INT		len,
+	u8 *mac);
 
 #ifdef DOT1X_SUPPORT
 void    WpaSend(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  u8 *         pPacket,
-    IN  ULONG           Len);
+    struct rtmp_adapter *  pAdapter,
+    u8 *         pPacket,
+    ULONG           Len);
 
 void RTMPAddPMKIDCache(
-	IN  struct rtmp_adapter *  		pAd,
-	IN	INT						apidx,
-	IN	u8 *			pAddr,
-	IN	u8 				*PMKID,
-	IN	u8 				*PMK);
+	struct rtmp_adapter *  		pAd,
+	INT						apidx,
+	u8 *			pAddr,
+	u8 				*PMKID,
+	u8 				*PMK);
 
 INT RTMPSearchPMKIDCache(
-	IN  struct rtmp_adapter *  pAd,
-	IN	INT				apidx,
-	IN	u8 *	pAddr);
+	struct rtmp_adapter *  pAd,
+	INT				apidx,
+	u8 *	pAddr);
 
 void RTMPDeletePMKIDCache(
-	IN  struct rtmp_adapter *  pAd,
-	IN	INT				apidx,
-	IN  INT				idx);
+	struct rtmp_adapter *  pAd,
+	INT				apidx,
+	INT				idx);
 
 void RTMPMaintainPMKIDCache(
-	IN  struct rtmp_adapter *  pAd);
+	struct rtmp_adapter *  pAd);
 #else
 #define RTMPMaintainPMKIDCache(_pAd)
 #endif /* DOT1X_SUPPORT */
 
 #ifdef RESOURCE_PRE_ALLOC
 void RTMPResetTxRxRingMemory(
-	IN  struct rtmp_adapter  *pAd);
+	struct rtmp_adapter  *pAd);
 #endif /* RESOURCE_PRE_ALLOC */
 
 void RTMPFreeTxRxRingMemory(
-    IN  struct rtmp_adapter *  pAd);
+    struct rtmp_adapter *  pAd);
 
 bool RTMP_FillTxBlkInfo(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk);
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk);
 
  void announce_802_3_packet(
-	IN	void 		*pAdSrc,
-	IN	struct sk_buff *	pPacket,
-	IN	u8 		OpMode);
+	void 		*pAdSrc,
+	struct sk_buff *	pPacket,
+	u8 		OpMode);
 
 #ifdef DOT11_N_SUPPORT
 UINT BA_Reorder_AMSDU_Annnounce(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	u8 		OpMode);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	u8 		OpMode);
 #endif /* DOT11_N_SUPPORT */
 
 struct net_device *get_netdev_from_bssid(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	u8 		FromWhichBSSID);
 
 
 #ifdef DOT11_N_SUPPORT
 void ba_flush_reordering_timeout_mpdus(
-	IN struct rtmp_adapter *pAd,
-	IN PBA_REC_ENTRY	pBAEntry,
-	IN ULONG			Now32);
+	struct rtmp_adapter *pAd,
+	PBA_REC_ENTRY	pBAEntry,
+	ULONG			Now32);
 
 
 void BAOriSessionSetUp(
-			IN struct rtmp_adapter *   pAd,
-			IN MAC_TABLE_ENTRY	*pEntry,
-			IN u8 		TID,
-			IN USHORT			TimeOut,
-			IN ULONG			DelayTime,
-			IN bool 	isForced);
+			struct rtmp_adapter *   pAd,
+			MAC_TABLE_ENTRY	*pEntry,
+			u8 		TID,
+			USHORT			TimeOut,
+			ULONG			DelayTime,
+			bool 	isForced);
 
 void BASessionTearDownALL(
-	IN OUT	struct rtmp_adapter *pAd,
-	IN		u8 Wcid);
+	struct rtmp_adapter *pAd,
+	u8 Wcid);
 
 void BAOriSessionTearDown(
-	IN OUT	struct rtmp_adapter *pAd,
-	IN		u8 		Wcid,
-	IN		u8 		TID,
-	IN		bool 		bPassive,
-	IN		bool 		bForceSend);
+	struct rtmp_adapter *pAd,
+	u8 		Wcid,
+	u8 		TID,
+	bool 		bPassive,
+	bool 		bForceSend);
 
 void BARecSessionTearDown(
-	IN OUT	struct rtmp_adapter *pAd,
-	IN		u8 		Wcid,
-	IN		u8 		TID,
-	IN		bool 		bPassive);
+	struct rtmp_adapter *pAd,
+	u8 		Wcid,
+	u8 		TID,
+	bool 		bPassive);
 #endif /* DOT11_N_SUPPORT */
 
 bool ba_reordering_resource_init(struct rtmp_adapter *pAd, int num);
 void ba_reordering_resource_release(struct rtmp_adapter *pAd);
 
 INT ComputeChecksum(
-	IN UINT PIN);
+	UINT PIN);
 
 UINT GenerateWpsPinCode(
-	IN	struct rtmp_adapter *pAd,
-    IN  bool         bFromApcli,
-	IN	u8 apidx);
+	struct rtmp_adapter *pAd,
+    bool         bFromApcli,
+	u8 apidx);
 
 
 
 
 #ifdef NINTENDO_AP
 void InitNINTENDO_TABLE(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 u8 CheckNINTENDO_TABLE(
-	IN struct rtmp_adapter *pAd,
+	struct rtmp_adapter *pAd,
 	char *pDS_Ssid,
 	u8 DS_SsidLen,
 	u8 *pDS_Addr);
 
 u8 DelNINTENDO_ENTRY(
-	IN	struct rtmp_adapter *pAd,
+	struct rtmp_adapter *pAd,
 	u8 * pDS_Addr);
 
 void RTMPIoctlNintendoCapable(
-	IN	struct rtmp_adapter *pAd,
-	IN	RTMP_IOCTL_INPUT_STRUCT			*wrq);
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT			*wrq);
 
 void RTMPIoctlNintendoGetTable(
-	IN	struct rtmp_adapter *pAd,
-	IN	RTMP_IOCTL_INPUT_STRUCT			*wrq);
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT			*wrq);
 
 void RTMPIoctlNintendoSetTable(
-	IN	struct rtmp_adapter *pAd,
-	IN	RTMP_IOCTL_INPUT_STRUCT			*wrq);
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT			*wrq);
 
 #endif /* NINTENDO_AP */
 
 bool rtstrmactohex(
-	IN char *s1,
-	IN char *s2);
+	char *s1,
+	char *s2);
 
 bool rtstrcasecmp(
-	IN char *s1,
-	IN char *s2);
+	char *s1,
+	char *s2);
 
 char *rtstrstruncasecmp(
-	IN char *s1,
-	IN char *s2);
+	char *s1,
+	char *s2);
 
 char *rtstrstr(
-	IN	const char *s1,
-	IN	const char *s2);
+	const char *s1,
+	const char *s2);
 
 char *rstrtok(
-	IN char *s,
-	IN const char *ct);
+	char *s,
+	const char *ct);
 
 int rtinet_aton(
 	const char *cp,
@@ -5560,107 +5560,107 @@ int rtinet_aton(
 
 /*//////// common ioctl functions ////////*/
 INT Set_DriverVersion_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_CountryRegion_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_CountryRegionABand_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_WirelessMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_MBSS_WirelessMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_Channel_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 INT	Set_ShortSlot_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_TxPower_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_BGProtection_Proc(
-	IN  struct rtmp_adapter *	pAd,
-	IN  char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 INT Set_TxPreamble_Proc(
-	IN  struct rtmp_adapter *	pAd,
-	IN  char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 INT Set_RTSThreshold_Proc(
-	IN  struct rtmp_adapter *	pAd,
-	IN  char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 INT Set_FragThreshold_Proc(
-	IN  struct rtmp_adapter *	pAd,
-	IN  char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 INT Set_TxBurst_Proc(
-	IN  struct rtmp_adapter *	pAd,
-	IN  char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 
 
 #ifdef AGGREGATION_SUPPORT
 INT	Set_PktAggregate_Proc(
-	IN  struct rtmp_adapter *	pAd,
-	IN  char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 #endif /* AGGREGATION_SUPPORT */
 
 INT	Set_IEEE80211H_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 #ifdef EXT_BUILD_CHANNEL_LIST
 INT Set_ExtCountryCode_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_ExtDfsType_Proc(
-    IN      struct rtmp_adapter *  pAd,
-    IN      char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 INT Set_ChannelListAdd_Proc(
-    IN      struct rtmp_adapter *  pAd,
-    IN      char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 INT Set_ChannelListShow_Proc(
-    IN      struct rtmp_adapter *pAd,
-    IN      char *		arg);
+    struct rtmp_adapter *pAd,
+    char *		arg);
 INT Set_ChannelListDel_Proc(
-    IN      struct rtmp_adapter *pAd,
-    IN      char *		arg);
+    struct rtmp_adapter *pAd,
+    char *		arg);
 #endif /* EXT_BUILD_CHANNEL_LIST */
 
 #ifdef DBG
 INT	Set_Debug_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_DebugFunc_Proc(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg);
+	struct rtmp_adapter*pAd,
+	char *arg);
 #endif
 
 INT Set_RateAdaptInterval(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg);
+	struct rtmp_adapter*pAd,
+	char *arg);
 
 
 #ifdef CFO_TRACK
 INT Set_CFOTrack_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 #ifdef CFO_TRACK
 #endif /* CFO_TRACK */
@@ -5669,165 +5669,165 @@ INT Set_CFOTrack_Proc(
 
 #ifdef DBG_CTRL_SUPPORT
 INT Set_DebugFlags_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAd,
+    char *         arg);
 
 #ifdef INCLUDE_DEBUG_QUEUE
 INT Set_DebugQueue_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 void dbQueueEnqueue(
-	IN u8 type,
-	IN u8 *data);
+	u8 type,
+	u8 *data);
 
 void dbQueueEnqueueTxFrame(
-	IN u8 *pTxWI,
-	IN u8 *pHeader_802_11);
+	u8 *pTxWI,
+	u8 *pHeader_802_11);
 
 void dbQueueEnqueueRxFrame(
-	IN u8 *pRxWI,
-	IN u8 *pHeader_802_11,
-	IN ULONG flags);
+	u8 *pRxWI,
+	u8 *pHeader_802_11,
+	ULONG flags);
 #endif /* INCLUDE_DEBUG_QUEUE */
 #endif /* DBG_CTRL_SUPPORT */
 
 INT	Show_DescInfo_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Show_MacTable_Proc(struct rtmp_adapter*pAd, char **arg);
 INT show_devinfo_proc(struct rtmp_adapter*pAd, char *arg);
 INT show_trinfo_proc(struct rtmp_adapter*pAd, char *arg);
 
 INT	Set_ResetStatCounter_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 #ifdef DOT11_N_SUPPORT
 INT	Set_BASetup_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_BADecline_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_BAOriTearDown_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_BARecTearDown_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtBw_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtMcs_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtGi_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtOpMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtStbc_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtHtc_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtExtcha_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtMpduDensity_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtBaWinSize_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtRdg_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtLinkAdapt_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtAmsdu_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtAutoBa_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtProtect_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtMimoPs_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 #ifdef DOT11N_DRAFT3
 INT Set_HT_BssCoex_Proc(
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *			pParam);
+	struct rtmp_adapter *	pAd,
+	char *			pParam);
 
 INT Set_HT_BssCoexApCntThr_Proc(
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *			pParam);
+	struct rtmp_adapter *	pAd,
+	char *			pParam);
 #endif /* DOT11N_DRAFT3 */
 
 
 
 INT	Set_ForceShortGI_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_ForceGF_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	SetCommonHT(struct rtmp_adapter*pAd);
 
 INT	Set_SendPSMPAction_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 void convert_reordering_packet_to_preAMSDU_or_802_3_packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN  u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID);
 
 INT	Set_HtMIMOPSmode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 
 INT	Set_HtTxBASize_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_HtDisallowTKIP_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_BurstMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 #endif /* DOT11_N_SUPPORT */
 
 
@@ -5840,8 +5840,8 @@ INT Set_VhtBwSignal_Proc(struct rtmp_adapter*pAd, char *arg);
 
 #ifdef APCLI_SUPPORT
 INT RTMPIoctlConnStatus(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 #endif /*APCLI_SUPPORT*/
 
@@ -5850,21 +5850,21 @@ INT RTMPIoctlConnStatus(
 
 #ifdef CONFIG_STA_SUPPORT
 void RTMPSendDLSTearDownFrame(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pDA);
+	struct rtmp_adapter *pAd,
+	u8 *		pDA);
 
 #ifdef DOT11_N_SUPPORT
 void QueryBATABLE(
-	IN  struct rtmp_adapter *pAd,
-	OUT PQUERYBA_TABLE pBAT);
+	struct rtmp_adapter *pAd,
+	PQUERYBA_TABLE pBAT);
 #endif /* DOT11_N_SUPPORT */
 
 #ifdef WPA_SUPPLICANT_SUPPORT
 INT	    WpaCheckEapCode(
-	IN  struct rtmp_adapter *  	pAd,
-	IN  u8 *			pFrame,
-	IN  USHORT				FrameLen,
-	IN  USHORT				OffSet);
+	struct rtmp_adapter *  	pAd,
+	u8 *			pFrame,
+	USHORT				FrameLen,
+	USHORT				OffSet);
 #endif /* WPA_SUPPLICANT_SUPPORT */
 #endif /* CONFIG_STA_SUPPORT */
 
@@ -5874,14 +5874,14 @@ INT	    WpaCheckEapCode(
 void Handle_BSS_Width_Trigger_Events(struct rtmp_adapter*pAd);
 
 void build_ext_channel_switch_ie(
-	IN struct rtmp_adapter*pAd,
-	IN HT_EXT_CHANNEL_SWITCH_ANNOUNCEMENT_IE *pIE);
+	struct rtmp_adapter*pAd,
+	HT_EXT_CHANNEL_SWITCH_ANNOUNCEMENT_IE *pIE);
 
 void assoc_ht_info_debugshow(
-	IN struct rtmp_adapter*pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN u8 ht_cap_len,
-	IN HT_CAPABILITY_IE *pHTCapability);
+	struct rtmp_adapter*pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	u8 ht_cap_len,
+	HT_CAPABILITY_IE *pHTCapability);
 #endif /* DOT11_N_SUPPORT */
 
 bool APRxDoneInterruptHandle(struct rtmp_adapter*pAd);
@@ -5891,37 +5891,37 @@ bool RxDoneInterruptHandle(struct rtmp_adapter*pAd);
 #ifdef DOT11_N_SUPPORT
 /* AMPDU packet indication */
 void Indicate_AMPDU_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID);
 
 /* AMSDU packet indication */
 void Indicate_AMSDU_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID);
 
 void BaReOrderingBufferMaintain(
-    IN struct rtmp_adapter *pAd);
+    struct rtmp_adapter *pAd);
 #endif /* DOT11_N_SUPPORT */
 
 /* Normal legacy Rx packet indication */
 void Indicate_Legacy_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID);
 
 void Indicate_EAPOL_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID);
 
 UINT deaggregate_AMSDU_announce(
-	IN	struct rtmp_adapter *pAd,
+	struct rtmp_adapter *pAd,
 	struct sk_buff *		pPacket,
-	IN	u8 *		pData,
-	IN	ULONG			DataSize,
-	IN	u8 		OpMode);
+	u8 *		pData,
+	ULONG			DataSize,
+	u8 		OpMode);
 
 bool CmdRspEventCallbackHandle(struct rtmp_adapter *pAd, u8 *pRspBuffer);
 
@@ -5961,19 +5961,19 @@ bool CmdRspEventCallbackHandle(struct rtmp_adapter *pAd, u8 *pRspBuffer);
 
 
 bool APFowardWirelessStaToWirelessSta(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	ULONG			FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	ULONG			FromWhichBSSID);
 
 void Announce_or_Forward_802_3_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	u8 		FromWhichBSSID);
 
 void Sta_Announce_or_Forward_802_3_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	u8 		FromWhichBSSID);
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	u8 		FromWhichBSSID);
 
 
 #ifdef CONFIG_STA_SUPPORT
@@ -5987,31 +5987,31 @@ void Sta_Announce_or_Forward_802_3_Packet(
 
 /* Normal, AMPDU or AMSDU */
 void CmmRxnonRalinkFrameIndicate(
-	IN struct rtmp_adapter*pAd,
-	IN RX_BLK *pRxBlk,
-	IN u8 FromWhichBSSID);
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk,
+	u8 FromWhichBSSID);
 
 void CmmRxRalinkFrameIndicate(
-	IN struct rtmp_adapter*pAd,
-	IN MAC_TABLE_ENTRY *pEntry,
-	IN RX_BLK *pRxBlk,
-	IN u8 FromWhichBSSID);
+	struct rtmp_adapter*pAd,
+	MAC_TABLE_ENTRY *pEntry,
+	RX_BLK *pRxBlk,
+	u8 FromWhichBSSID);
 
 void Update_Rssi_Sample(
-	IN struct rtmp_adapter*pAd,
-	IN RSSI_SAMPLE *pRssi,
-	IN struct rxwi_nmac *pRxWI);
+	struct rtmp_adapter*pAd,
+	RSSI_SAMPLE *pRssi,
+	struct rxwi_nmac *pRxWI);
 
 struct sk_buff * GetPacketFromRxRing(
-	IN struct rtmp_adapter*pAd,
-	OUT RX_BLK *pRxBlk,
-	OUT bool  *pbReschedule,
-	INOUT u32 *pRxPending,
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk,
+	bool  *pbReschedule,
+	u32 *pRxPending,
 	bool *bCmdRspPacket);
 
 struct sk_buff * RTMPDeFragmentDataFrame(
-	IN struct rtmp_adapter*pAd,
-	IN RX_BLK *pRxBlk);
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk);
 
 /*////////////////////////////////////*/
 
@@ -6072,58 +6072,58 @@ typedef struct _wlan_radiotap_header {
 
 
 void STA_MonPktSend(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk);
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk);
 
 void    RTMPSetDesiredRates(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  LONG            Rates);
+    struct rtmp_adapter *  pAdapter,
+    LONG            Rates);
 
 #endif /* CONFIG_STA_SUPPORT */
 
 INT	Set_FixedTxMode_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_LongRetryLimit_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg);
+	struct rtmp_adapter *pAdapter,
+	char *		arg);
 
 INT Set_ShortRetryLimit_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg);
+	struct rtmp_adapter *pAdapter,
+	char *		arg);
 
 INT Set_AutoFallBack_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg);
+	struct rtmp_adapter *pAdapter,
+	char *		arg);
 
 
 void RT28XXDMADisable(
-	IN struct rtmp_adapter		*pAd);
+	struct rtmp_adapter		*pAd);
 
 void RT28XXDMAEnable(
-	IN struct rtmp_adapter		*pAd);
+	struct rtmp_adapter		*pAd);
 
 void RT28xx_UpdateBeaconToAsic(
-	IN struct rtmp_adapter* pAd,
-	IN INT apidx,
-	IN ULONG BeaconLen,
-	IN ULONG UpdatePos);
+	struct rtmp_adapter* pAd,
+	INT apidx,
+	ULONG BeaconLen,
+	ULONG UpdatePos);
 
 void CfgInitHook(struct rtmp_adapter *pAd);
 
 
 int RtmpNetTaskInit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RtmpNetTaskExit(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 int RtmpMgmtTaskInit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RtmpMgmtTaskExit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void tbtt_tasklet(unsigned long data);
 
@@ -6132,127 +6132,127 @@ void tbtt_tasklet(unsigned long data);
 
 
 void AsicTurnOffRFClk(
-	IN struct rtmp_adapter *   pAd,
-	IN	u8           Channel);
+	struct rtmp_adapter *   pAd,
+	u8           Channel);
 
 
 
 #ifdef RTMP_TIMER_TASK_SUPPORT
 INT RtmpTimerQThread(
-	IN ULONG Context);
+	ULONG Context);
 
 RTMP_TIMER_TASK_ENTRY *RtmpTimerQInsert(
-	IN struct rtmp_adapter*pAd,
-	IN RALINK_TIMER_STRUCT *pTimer);
+	struct rtmp_adapter*pAd,
+	RALINK_TIMER_STRUCT *pTimer);
 
 bool RtmpTimerQRemove(
-	IN struct rtmp_adapter*pAd,
-	IN RALINK_TIMER_STRUCT *pTimer);
+	struct rtmp_adapter*pAd,
+	RALINK_TIMER_STRUCT *pTimer);
 
 void RtmpTimerQExit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RtmpTimerQInit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 #endif /* RTMP_TIMER_TASK_SUPPORT */
 
 
 #ifdef RTMP_MAC_USB
 
 int RTUSBMultiWrite(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT			Offset,
-	IN	u8 *		pData,
-	IN	USHORT			length);
+	struct rtmp_adapter *pAd,
+	USHORT			Offset,
+	u8 *		pData,
+	USHORT			length);
 
 int RTUSBMultiWrite_OneByte(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT			Offset,
-	IN	u8 *		pData);
+	struct rtmp_adapter *pAd,
+	USHORT			Offset,
+	u8 *		pData);
 
 int RTUSBWriteRFRegister(
-	IN	struct rtmp_adapter *pAd,
-	IN	u32			Value);
+	struct rtmp_adapter *pAd,
+	u32			Value);
 
 int RTUSB_VendorRequest(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		ReservedBits,
-	IN	u8 		Request,
-	IN	u16		Value,
-	IN	u16		Index,
-	IN	void *		TransferBuffer,
-	IN	u32		TransferBufferLength);
+	struct rtmp_adapter *pAd,
+	u8 		ReservedBits,
+	u8 		Request,
+	u16		Value,
+	u16		Index,
+	void *		TransferBuffer,
+	u32		TransferBufferLength);
 
 void RTUSBDequeueCmd(struct rtmp_command_queue *cmdq,
 	struct rtmp_queue_elem	*pcmdqelmt);
 
 INT RTUSBCmdThread(
-	IN ULONG Context);
+	ULONG Context);
 
 void RTUSBBssBeaconExit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RTUSBBssBeaconStop(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RTUSBBssBeaconStart(
-	IN struct rtmp_adapter* pAd);
+	struct rtmp_adapter* pAd);
 
 void RTUSBBssBeaconInit(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 int mt7610u_write32(
-	IN	struct rtmp_adapter *pAd,
-	IN	USHORT			Offset,
-	IN	u32			Value);
+	struct rtmp_adapter *pAd,
+	USHORT			Offset,
+	u32			Value);
 
 u32 mt7610u_read32(struct rtmp_adapter *pAd, USHORT Offset);
 
 int RTUSBSingleWrite(
-	IN 	struct rtmp_adapter	*pAd,
-	IN	USHORT			Offset,
-	IN	USHORT			Value);
+	struct rtmp_adapter	*pAd,
+	USHORT			Offset,
+	USHORT			Value);
 
 int	RTUSBVenderReset(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 int RTUSBSetHardWareRegister(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	void *		pBuf);
+	struct rtmp_adapter *pAdapter,
+	void *		pBuf);
 
 int RTUSBQueryHardWareRegister(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	void *		pBuf);
+	struct rtmp_adapter *pAdapter,
+	void *		pBuf);
 
 /*void CMDHandler( */
-/*    IN struct rtmp_adapter *pAd); */
+/*    struct rtmp_adapter *pAd); */
 
 int	RTUSBWriteHWMACAddress(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void MlmeSetPsm(
-	IN struct rtmp_adapter*pAd,
-	IN USHORT psm);
+	struct rtmp_adapter*pAd,
+	USHORT psm);
 
 int RTMPWPAAddKeyProc(
-	IN struct rtmp_adapter*pAd,
-	IN void *pBuf);
+	struct rtmp_adapter*pAd,
+	void *pBuf);
 
 void AsicRxAntEvalAction(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void append_pkt(
-	IN struct rtmp_adapter*pAd,
-	IN u8 *pHeader802_3,
-	IN UINT HdrLen,
-	IN u8 *pData,
-	IN ULONG DataSize,
-	OUT struct sk_buff * *ppPacket);
+	struct rtmp_adapter*pAd,
+	u8 *pHeader802_3,
+	UINT HdrLen,
+	u8 *pData,
+	ULONG DataSize,
+	struct sk_buff * *ppPacket);
 
 
 void RTUSBMlmeHardTransmit(
-	IN struct rtmp_adapter*pAd,
-	IN MGMT_STRUC *pMgmt);
+	struct rtmp_adapter*pAd,
+	MGMT_STRUC *pMgmt);
 
 INT MlmeThread(ULONG Context);
 
@@ -6261,102 +6261,102 @@ INT MlmeThread(ULONG Context);
 	Function Prototype in rtusb_data.c
 */
 int	RTUSBFreeDescRequest(
-	IN struct rtmp_adapter*pAd,
-	IN u8 BulkOutPipeId,
-	IN u32 req_cnt);
+	struct rtmp_adapter*pAd,
+	u8 BulkOutPipeId,
+	u32 req_cnt);
 
 
 bool RTUSBNeedQueueBackForAgg(
-	IN struct rtmp_adapter*pAd,
-	IN u8 	BulkOutPipeId);
+	struct rtmp_adapter*pAd,
+	u8 	BulkOutPipeId);
 
 
 USHORT RtmpUSB_WriteSingleTxResource(
-	IN	struct rtmp_adapter *pAd,
-	IN	TX_BLK			*pTxBlk,
-	IN	bool 		bIsLast,
-	OUT	USHORT			*FreeNumber);
+	struct rtmp_adapter *pAd,
+	TX_BLK			*pTxBlk,
+	bool 		bIsLast,
+	USHORT			*FreeNumber);
 
 USHORT	RtmpUSB_WriteFragTxResource(
-	IN	struct rtmp_adapter *pAd,
-	IN	TX_BLK			*pTxBlk,
-	IN	u8 		fragNum,
-	OUT	USHORT			*FreeNumber);
+	struct rtmp_adapter *pAd,
+	TX_BLK			*pTxBlk,
+	u8 		fragNum,
+	USHORT			*FreeNumber);
 
 USHORT RtmpUSB_WriteMultiTxResource(
-	IN	struct rtmp_adapter *pAd,
-	IN	TX_BLK			*pTxBlk,
-	IN	u8 		frameNum,
-	OUT	USHORT			*FreeNumber);
+	struct rtmp_adapter *pAd,
+	TX_BLK			*pTxBlk,
+	u8 		frameNum,
+	USHORT			*FreeNumber);
 
 void RtmpUSB_FinalWriteTxResource(
-	IN	struct rtmp_adapter *pAd,
-	IN	TX_BLK			*pTxBlk,
-	IN	USHORT			totalMPDUSize,
-	IN	USHORT			TxIdx);
+	struct rtmp_adapter *pAd,
+	TX_BLK			*pTxBlk,
+	USHORT			totalMPDUSize,
+	USHORT			TxIdx);
 
 void RtmpUSBDataLastTxIdx(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		QueIdx,
-	IN	USHORT			TxIdx);
+	struct rtmp_adapter *pAd,
+	u8 		QueIdx,
+	USHORT			TxIdx);
 
 void RtmpUSBDataKickOut(
-	IN	struct rtmp_adapter *pAd,
-	IN	TX_BLK			*pTxBlk,
-	IN	u8 		QueIdx);
+	struct rtmp_adapter *pAd,
+	TX_BLK			*pTxBlk,
+	u8 		QueIdx);
 
 int RtmpUSBMgmtKickOut(
-	IN struct rtmp_adapter	*pAd,
-	IN u8 			QueIdx,
-	IN struct sk_buff *		pPacket,
-	IN u8 *		pSrcBufVA,
-	IN UINT 			SrcBufLen);
+	struct rtmp_adapter	*pAd,
+	u8 			QueIdx,
+	struct sk_buff *		pPacket,
+	u8 *		pSrcBufVA,
+	UINT 			SrcBufLen);
 
 void RtmpUSBNullFrameKickOut(
-	IN struct rtmp_adapter*pAd,
-	IN u8 	QueIdx,
-	IN u8 	*pNullFrame,
-	IN u32		frameLen);
+	struct rtmp_adapter*pAd,
+	u8 	QueIdx,
+	u8 	*pNullFrame,
+	u32		frameLen);
 
 void RtmpUsbStaAsicForceWakeupTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void RT28xxUsbStaAsicForceWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN bool       bFromTx);
+	struct rtmp_adapter *pAd,
+	bool       bFromTx);
 
 void RT28xxUsbStaAsicSleepThenAutoWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT TbttNumToNextWakeUp);
+	struct rtmp_adapter *pAd,
+	USHORT TbttNumToNextWakeUp);
 
 void RT28xxUsbMlmeRadioOn(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RT28xxUsbMlmeRadioOFF(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RT28xxUsbAsicRadioOff(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 bool AsicCheckCommandOk(
-	IN struct rtmp_adapter *pAd,
-	IN u8 	 Command);
+	struct rtmp_adapter *pAd,
+	u8 	 Command);
 
 void RT28xxUsbAsicWOWEnable(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RT28xxUsbAsicWOWDisable(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 #endif /* RTMP_MAC_USB */
 
 int RTMPCheckRxError(
-	IN struct rtmp_adapter*pAd,
-	IN PHEADER_802_11 pHeader,
-	IN struct rxwi_nmac *pRxWI,
+	struct rtmp_adapter*pAd,
+	PHEADER_802_11 pHeader,
+	struct rxwi_nmac *pRxWI,
 	struct rtmp_rxinfo *pRxInfo);
 
 
@@ -6364,78 +6364,78 @@ int RTMPCheckRxError(
 
 #ifdef AP_QLOAD_SUPPORT
 void QBSS_LoadInit(
- 	IN		struct rtmp_adapter*pAd);
+ 	struct rtmp_adapter*pAd);
 
 void QBSS_LoadAlarmReset(
- 	IN		struct rtmp_adapter*pAd);
+ 	struct rtmp_adapter*pAd);
 
 void QBSS_LoadAlarmResume(
- 	IN		struct rtmp_adapter*pAd);
+ 	struct rtmp_adapter*pAd);
 
 u32 QBSS_LoadBusyTimeGet(
- 	IN		struct rtmp_adapter*pAd);
+ 	struct rtmp_adapter*pAd);
 
 bool QBSS_LoadIsAlarmIssued(
- 	IN		struct rtmp_adapter*pAd);
+ 	struct rtmp_adapter*pAd);
 
 bool QBSS_LoadIsBusyTimeAccepted(
- 	IN		struct rtmp_adapter*pAd,
-	IN		u32			BusyTime);
+ 	struct rtmp_adapter*pAd,
+	u32			BusyTime);
 
 u32 QBSS_LoadElementAppend(
- 	IN		struct rtmp_adapter*pAd,
-	OUT		u8			*buf_p);
+ 	struct rtmp_adapter*pAd,
+	u8			*buf_p);
 
 u32 QBSS_LoadElementParse(
- 	IN		struct rtmp_adapter*pAd,
-	IN		u8			*pElement,
-	OUT		UINT16			*pStationCount,
-	OUT		u8			*pChanUtil,
-	OUT		UINT16			*pAvalAdmCap);
+ 	struct rtmp_adapter*pAd,
+	u8			*pElement,
+	UINT16			*pStationCount,
+	u8			*pChanUtil,
+	UINT16			*pAvalAdmCap);
 
 void QBSS_LoadUpdate(
- 	IN		struct rtmp_adapter*pAd,
-	IN		ULONG			UpTime);
+ 	struct rtmp_adapter*pAd,
+	ULONG			UpTime);
 
 void QBSS_LoadStatusClear(
- 	IN		struct rtmp_adapter*pAd);
+ 	struct rtmp_adapter*pAd);
 
 INT	Show_QoSLoad_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 #endif /* AP_QLOAD_SUPPORT */
 
 char *RTMPGetRalinkAuthModeStr(
-    IN  NDIS_802_11_AUTHENTICATION_MODE authMode);
+    NDIS_802_11_AUTHENTICATION_MODE authMode);
 
 char *RTMPGetRalinkEncryModeStr(
-    IN  USHORT encryMode);
+    USHORT encryMode);
 /*//////////////////////////////////*/
 
 #ifdef CONFIG_STA_SUPPORT
 void AsicStaBbpTuning(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 bool StaAddMacTableEntry(
-	IN  struct rtmp_adapter *	pAd,
-	IN  PMAC_TABLE_ENTRY	pEntry,
-	IN  u8 			MaxSupportedRateIn500Kbps,
-	IN  HT_CAPABILITY_IE	*pHtCapability,
-	IN  u8 			HtCapabilityLen,
-	IN  ADD_HT_INFO_IE		*pAddHtInfo,
-	IN  u8 			AddHtInfoLen,
-	IN IE_LISTS *ie_list,
-	IN  USHORT        		CapabilityInfo);
+	struct rtmp_adapter *	pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	u8 			MaxSupportedRateIn500Kbps,
+	HT_CAPABILITY_IE	*pHtCapability,
+	u8 			HtCapabilityLen,
+	ADD_HT_INFO_IE		*pAddHtInfo,
+	u8 			AddHtInfoLen,
+	IE_LISTS *ie_list,
+	USHORT        		CapabilityInfo);
 
 
 bool AUTH_ReqSend(
-	IN  struct rtmp_adapter *		pAd,
-	IN  PMLME_QUEUE_ELEM	pElem,
-	IN  PRALINK_TIMER_STRUCT pAuthTimer,
-	IN  char *			pSMName,
-	IN  USHORT				SeqNo,
-	IN  u8 *			pNewElement,
-	IN  ULONG				ElementLen);
+	struct rtmp_adapter *		pAd,
+	PMLME_QUEUE_ELEM	pElem,
+	PRALINK_TIMER_STRUCT pAuthTimer,
+	char *			pSMName,
+	USHORT				SeqNo,
+	u8 *			pNewElement,
+	ULONG				ElementLen);
 #endif /* CONFIG_STA_SUPPORT */
 
 
@@ -6443,14 +6443,14 @@ void ReSyncBeaconTime(struct rtmp_adapter*pAd);
 
 #ifdef MFB_SUPPORT
 void MFB_PerPareMRQ(
-	IN	struct rtmp_adapter *pAd,
-	OUT	void *pBuf,
-	IN	PMAC_TABLE_ENTRY pEntry);
+	struct rtmp_adapter *pAd,
+	void *pBuf,
+	PMAC_TABLE_ENTRY pEntry);
 
 void MFB_PerPareMFB(
-	IN	struct rtmp_adapter *pAd,
-	OUT	void *pBuf,
-	IN	PMAC_TABLE_ENTRY pEntry);
+	struct rtmp_adapter *pAd,
+	void *pBuf,
+	PMAC_TABLE_ENTRY pEntry);
 #endif /* MFB_SUPPORT */
 
 #define VIRTUAL_IF_INC(__pAd) ((__pAd)->VirtualIfCnt++)
@@ -6465,85 +6465,85 @@ void MFB_PerPareMFB(
  */
 
 void RTUSBInitTxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN	PTX_CONTEXT		pTxContext,
-	IN	u8 		BulkOutPipeId,
-	IN	usb_complete_t	Func);
+	struct rtmp_adapter *pAd,
+	PTX_CONTEXT		pTxContext,
+	u8 		BulkOutPipeId,
+	usb_complete_t	Func);
 
 void RTUSBInitHTTxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN	PHT_TX_CONTEXT	pTxContext,
-	IN	u8 		BulkOutPipeId,
-	IN	ULONG			BulkOutSize,
-	IN	usb_complete_t	Func);
+	struct rtmp_adapter *pAd,
+	PHT_TX_CONTEXT	pTxContext,
+	u8 		BulkOutPipeId,
+	ULONG			BulkOutSize,
+	usb_complete_t	Func);
 
 void RTUSBInitRxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN	PRX_CONTEXT		pRxContext);
+	struct rtmp_adapter *pAd,
+	PRX_CONTEXT		pRxContext);
 
 void RTUSBCleanUpDataBulkOutQueue(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBCancelPendingBulkOutIRP(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBBulkOutDataPacket(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		BulkOutPipeId,
-	IN	u8 		Index);
+	struct rtmp_adapter *pAd,
+	u8 		BulkOutPipeId,
+	u8 		Index);
 
 void RTUSBBulkOutNullFrame(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBBulkOutRTSFrame(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBCancelPendingBulkInIRP(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBCancelPendingIRPs(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBBulkOutMLMEPacket(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		Index);
+	struct rtmp_adapter *pAd,
+	u8 		Index);
 
 void RTUSBBulkOutPsPoll(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBCleanUpMLMEBulkOutQueue(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBKickBulkOut(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBBulkReceive(
-	IN	struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void RTUSBBulkCmdRspEventReceive(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void DoBulkIn(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 void RTUSBInitRxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN  PRX_CONTEXT		pRxContext);
+	struct rtmp_adapter *pAd,
+	PRX_CONTEXT		pRxContext);
 
 void RTUSBBulkRxHandle(
-	IN unsigned long data);
+	unsigned long data);
 #endif /* RTMP_USB_SUPPORT */
 
 
 #ifdef SOFT_ENCRYPT
 bool RTMPExpandPacketForSwEncrypt(
-	IN  struct rtmp_adapter *  pAd,
-	IN	PTX_BLK			pTxBlk);
+	struct rtmp_adapter *  pAd,
+	PTX_BLK			pTxBlk);
 
 void RTMPUpdateSwCacheCipherInfo(
-	IN  struct rtmp_adapter *  pAd,
-	IN	PTX_BLK			pTxBlk,
-	IN	u8 *		pHdr);
+	struct rtmp_adapter *  pAd,
+	PTX_BLK			pTxBlk,
+	u8 *		pHdr);
 #endif /* SOFT_ENCRYPT */
 
 
@@ -6555,252 +6555,252 @@ void RTMPUpdateSwCacheCipherInfo(
 void RTInitializeCmdQ(struct rtmp_command_queue *cmdq);
 
 INT RTPCICmdThread(
-	IN ULONG Context);
+	ULONG Context);
 
 void CMDHandler(
-    IN struct rtmp_adapter *pAd);
+    struct rtmp_adapter *pAd);
 
 void RTThreadDequeueCmd(struct rtmp_command_queue *cmdq,
 	struct rtmp_queue_elem **pcmdqelmt);
 
 int RTEnqueueInternalCmd(
-	IN struct rtmp_adapter *pAd,
-	IN NDIS_OID			Oid,
-	IN void *		pInformationBuffer,
-	IN u32			InformationBufferLength);
+	struct rtmp_adapter *pAd,
+	NDIS_OID			Oid,
+	void *		pInformationBuffer,
+	u32			InformationBufferLength);
 
 #ifdef HOSTAPD_SUPPORT
 void ieee80211_notify_michael_failure(
-	IN	struct rtmp_adapter *   pAd,
-	IN	PHEADER_802_11   pHeader,
-	IN	UINT            keyix,
-	IN	INT              report);
+	struct rtmp_adapter *   pAd,
+	PHEADER_802_11   pHeader,
+	UINT            keyix,
+	INT              report);
 
 const CHAR* ether_sprintf(const u8 *mac);
 #endif/*HOSTAPD_SUPPORT*/
 
 INT WaitForAsicReady(
-	IN struct rtmp_adapter*pAd);
+	struct rtmp_adapter*pAd);
 
 bool CHAN_PropertyCheck(
-	IN struct rtmp_adapter *pAd,
-	IN u32			ChanNum,
-	IN u8 		Property);
+	struct rtmp_adapter *pAd,
+	u32			ChanNum,
+	u8 		Property);
 
 #ifdef CONFIG_STA_SUPPORT
 
 /* command */
 INT Set_SSID_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_NetworkType_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_AuthMode_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_EncrypType_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_DefaultKeyID_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_Wep_Key_Proc(struct rtmp_adapter *pAd, char *Key, INT KeyLen, INT KeyId);
 
 INT Set_Key1_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_Key2_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_Key3_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_Key4_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 INT Set_WPAPSK_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 
 INT Set_PSMode_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 #ifdef WPA_SUPPLICANT_SUPPORT
 INT Set_Wpa_Support(
-    IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+    struct rtmp_adapter *pAd,
+	char *		arg);
 #endif /* WPA_SUPPLICANT_SUPPORT */
 
 #ifdef DBG
 
 void RTMPIoctlMAC(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq);
+	struct rtmp_adapter *pAdapter,
+	RTMP_IOCTL_INPUT_STRUCT	*wrq);
 
 #endif /* DBG */
 
 
 int RTMPWPANoneAddKeyProc(
-    IN  struct rtmp_adapter *  pAd,
-    IN	void *		pBuf);
+    struct rtmp_adapter *  pAd,
+    void *		pBuf);
 
 INT Set_FragTest_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 
 #ifdef DOT11_N_SUPPORT
 INT Set_TGnWifiTest_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAd,
+    char *         arg);
 #endif /* DOT11_N_SUPPORT */
 
 INT Set_LongRetryLimit_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg);
+	struct rtmp_adapter *pAdapter,
+	char *		arg);
 
 INT Set_ShortRetryLimit_Proc(
-	IN	struct rtmp_adapter *pAdapter,
-	IN	char *		arg);
+	struct rtmp_adapter *pAdapter,
+	char *		arg);
 
 #ifdef EXT_BUILD_CHANNEL_LIST
 INT Set_Ieee80211dClientMode_Proc(
-    IN  struct rtmp_adapter *  pAdapter,
-    IN  char *         arg);
+    struct rtmp_adapter *  pAdapter,
+    char *         arg);
 #endif /* EXT_BUILD_CHANNEL_LIST */
 
 INT	Show_Adhoc_MacTable_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		extra,
-	IN	u32			size);
+	struct rtmp_adapter *pAd,
+	char *		extra,
+	u32			size);
 
 
 
 INT Set_BeaconLostTime_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 INT Set_AutoRoaming_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 INT Set_SiteSurvey_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_ForceTxBurst_Proc(
-    IN  struct rtmp_adapter *  pAd,
-    IN  char *        arg);
+    struct rtmp_adapter *  pAd,
+    char *        arg);
 
 void RTMPAddKey(
-	IN	struct rtmp_adapter *    pAd,
-	IN	PNDIS_802_11_KEY    pKey);
+	struct rtmp_adapter *    pAd,
+	PNDIS_802_11_KEY    pKey);
 
 
 void StaSiteSurvey(
-	IN	struct rtmp_adapter * 		pAd,
-	IN	PNDIS_802_11_SSID	pSsid,
-	IN	u8 			ScanType);
+	struct rtmp_adapter * 		pAd,
+	PNDIS_802_11_SSID	pSsid,
+	u8 			ScanType);
 
 void MaintainBssTable(
-	IN  struct rtmp_adapter *pAd,
-	IN OUT	BSS_TABLE *Tab,
-	IN  ULONG	MaxRxTimeDiff,
-	IN  u8 MaxSameRxTimeCount);
+	struct rtmp_adapter *pAd,
+	BSS_TABLE *Tab,
+	ULONG	MaxRxTimeDiff,
+	u8 MaxSameRxTimeCount);
 #endif /* CONFIG_STA_SUPPORT */
 
 void  getRate(
-    IN HTTRANSMIT_SETTING HTSetting,
-    OUT ULONG* fLastTxRxRate);
+    HTTRANSMIT_SETTING HTSetting,
+    ULONG* fLastTxRxRate);
 
 
 #ifdef APCLI_SUPPORT
 #ifdef APCLI_WPA_SUPPLICANT_SUPPORT
 void    ApcliSendAssocIEsToWpaSupplicant(
-    IN  struct rtmp_adapter *pAd,
-    IN UINT ifIndex);
+    struct rtmp_adapter *pAd,
+    UINT ifIndex);
 
 INT	    ApcliWpaCheckEapCode(
-	IN  struct rtmp_adapter *  		pAd,
-	IN  u8 *			pFrame,
-	IN  USHORT				FrameLen,
-	IN  USHORT				OffSet);
+	struct rtmp_adapter *  		pAd,
+	u8 *			pFrame,
+	USHORT				FrameLen,
+	USHORT				OffSet);
 
 void    ApcliWpaSendEapolStart(
-	IN	struct rtmp_adapter *pAd,
-	IN  u8 *         pBssid,
-	IN  PMAC_TABLE_ENTRY pMacEntry,
-	IN	PAPCLI_STRUCT pApCliEntry);
+	struct rtmp_adapter *pAd,
+	u8 *         pBssid,
+	PMAC_TABLE_ENTRY pMacEntry,
+	PAPCLI_STRUCT pApCliEntry);
 
 
 void ApCliRTMPSendNullFrame(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		TxRate,
-	IN	bool 		bQosNull,
-	IN PMAC_TABLE_ENTRY pMacEntry);
+	struct rtmp_adapter *pAd,
+	u8 		TxRate,
+	bool 		bQosNull,
+	PMAC_TABLE_ENTRY pMacEntry);
 
 #endif/*APCLI_WPA_SUPPLICANT_SUPPORT*/
 #endif/*APCLI_SUPPORT*/
 
 
 void RTMP_IndicateMediaState(
-	IN	struct rtmp_adapter *	pAd,
-	IN  NDIS_MEDIA_STATE	media_state);
+	struct rtmp_adapter *	pAd,
+	NDIS_MEDIA_STATE	media_state);
 
 #if defined(RT3350) || defined(RT33xx)
 void RTMP_TxEvmCalibration(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 #endif /* defined(RT3350) || defined(RT33xx) */
 
 INT RTMP_COM_IoctlHandle(
-	IN struct rtmp_adapter *pAd,
-	IN RTMP_IOCTL_INPUT_STRUCT *wrq,
-	IN INT cmd,
-	IN USHORT subcmd,
-	IN void *pData,
-	IN ULONG Data);
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT *wrq,
+	INT cmd,
+	USHORT subcmd,
+	void *pData,
+	ULONG Data);
 
 
 
 INT Set_VcoPeriod_Proc(
-	IN struct rtmp_adapter*pAd,
-	IN char *arg);
+	struct rtmp_adapter*pAd,
+	char *arg);
 
 void RtmpEnqueueNullFrame(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *       pAddr,
-	IN u8         TxRate,
-	IN u8         PID,
-	IN u8         apidx,
-    IN bool       bQosNull,
-    IN bool       bEOSP,
-    IN u8         OldUP);
+	struct rtmp_adapter *pAd,
+	u8 *       pAddr,
+	u8         TxRate,
+	u8         PID,
+	u8         apidx,
+    bool       bQosNull,
+    bool       bEOSP,
+    u8         OldUP);
 
 void RtmpCleanupPsQueue(
-	IN  struct rtmp_adapter *  pAd,
-	IN  PQUEUE_HEADER   pQueue);
+	struct rtmp_adapter *  pAd,
+	PQUEUE_HEADER   pQueue);
 
 #ifdef CONFIG_STA_SUPPORT
 bool RtmpPktPmBitCheck(
-    IN  struct rtmp_adapter *      pAd);
+    struct rtmp_adapter *      pAd);
 
 void RtmpPsActiveExtendCheck(
-	IN struct rtmp_adapter *	pAd);
+	struct rtmp_adapter *	pAd);
 
 void RtmpPsModeChange(
-	IN struct rtmp_adapter *	pAd,
-	IN u32				PsMode);
+	struct rtmp_adapter *	pAd,
+	u32				PsMode);
 #endif /* CONFIG_STA_SUPPORT */
 
 u8 dot11_2_ra_rate(u8 MaxSupportedRateIn500Kbps);
@@ -6812,17 +6812,17 @@ void MacTableReset(struct rtmp_adapter*pAd);
 MAC_TABLE_ENTRY *MacTableLookup(struct rtmp_adapter*pAd, u8 *pAddr);
 bool MacTableDeleteEntry(struct rtmp_adapter*pAd, USHORT wcid, u8 *pAddr);
 MAC_TABLE_ENTRY *MacTableInsertEntry(
-    IN struct rtmp_adapter*pAd,
-    IN u8 *pAddr,
-	IN u8 apidx,
-	IN u8 OpMode,
-	IN bool CleanAll);
+    struct rtmp_adapter*pAd,
+    u8 *pAddr,
+	u8 apidx,
+	u8 OpMode,
+	bool CleanAll);
 
 #ifdef MAC_REPEATER_SUPPORT
 MAC_TABLE_ENTRY *InsertMacRepeaterEntry(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *		pAddr,
-	IN  u8 		IfIdx);
+	struct rtmp_adapter *  pAd,
+	u8 *		pAddr,
+	u8 		IfIdx);
 #endif /* MAC_REPEATER_SUPPORT */
 
 void dumpTxWI(struct rtmp_adapter*pAd, struct txwi_nmac *pTxWI);
@@ -6856,6 +6856,6 @@ bool CmdRspEventHandle(struct rtmp_adapter*pAd);
 
 #ifdef MT76x0
 INT set_temp_sensor_proc(
-	IN struct rtmp_adapter	*pAd,
-	IN char *		arg);
+	struct rtmp_adapter	*pAd,
+	char *		arg);
 #endif /* MT76x0 */

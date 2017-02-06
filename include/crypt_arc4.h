@@ -41,18 +41,18 @@ typedef struct {
 
 /* ARC4 operations */
 void ARC4_INIT(
-	IN ARC4_CTX_STRUC * pARC4_CTX,
-	IN u8 *pKey,
-	IN UINT KeyLength);
+	ARC4_CTX_STRUC * pARC4_CTX,
+	u8 *pKey,
+	UINT KeyLength);
 
 void ARC4_Compute(
-	IN ARC4_CTX_STRUC * pARC4_CTX,
-	IN u8 InputBlock[],
-	IN UINT InputBlockSize,
-	OUT u8 OutputBlock[]);
+	ARC4_CTX_STRUC * pARC4_CTX,
+	u8 InputBlock[],
+	UINT InputBlockSize,
+	u8 OutputBlock[]);
 
 void ARC4_Discard_KeyLength(
-	IN ARC4_CTX_STRUC * pARC4_CTX,
-	IN UINT Length);
+	ARC4_CTX_STRUC * pARC4_CTX,
+	UINT Length);
 
 #endif /* __CRYPT_ARC4_H__ */

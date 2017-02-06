@@ -74,9 +74,9 @@ void dump_urb(void *purb_org)
 }
 
 void RtmpOsUsbEmptyUrbCheck(
-	IN	void 			**ppWait,
-	IN	spinlock_t		*pBulkInLock,
-	IN	u8 			*pPendingRx)
+	void 			**ppWait,
+	spinlock_t		*pBulkInLock,
+	u8 			*pPendingRx)
 {
 	u32 i = 0;
 	DECLARE_WAIT_QUEUE_HEAD(unlink_wakeup);
@@ -176,7 +176,7 @@ Note:
 ========================================================================
 */
 void *RtmpOsUsbUrbDataGet(
-	IN	void 				*pUrb)
+	void 				*pUrb)
 {
 	return RTMP_USB_URB_DATA_GET(pUrb);
 }
@@ -197,7 +197,7 @@ Note:
 ========================================================================
 */
 int RtmpOsUsbUrbStatusGet(
-	IN	void 				*pUrb)
+	void 				*pUrb)
 {
 	return RTMP_USB_URB_STATUS_GET(pUrb);
 }
@@ -218,7 +218,7 @@ Note:
 ========================================================================
 */
 ULONG RtmpOsUsbUrbLenGet(
-	IN	void 				*pUrb)
+	void 				*pUrb)
 {
 	return RTMP_USB_URB_LEN_GET(pUrb);
 }
@@ -237,7 +237,7 @@ Return Value:
 Note:
 ========================================================================
 */
-u32 RtmpOsGetUsbDevVendorID(IN void *pUsbDev) {
+u32 RtmpOsGetUsbDevVendorID(void *pUsbDev) {
 	return ((struct usb_device *) pUsbDev)->descriptor.idVendor;
 }
 
@@ -255,7 +255,7 @@ Return Value:
 Note:
 ========================================================================
 */
-u32 RtmpOsGetUsbDevProductID(IN void *pUsbDev) {
+u32 RtmpOsGetUsbDevProductID(void *pUsbDev) {
 	return ((struct usb_device *) pUsbDev)->descriptor.idProduct;
 }
 

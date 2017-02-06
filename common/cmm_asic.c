@@ -31,8 +31,8 @@
 
 #ifdef CONFIG_STA_SUPPORT
 void AsicUpdateAutoFallBackTable(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pRateTable)
+	struct rtmp_adapter *pAd,
+	u8 *		pRateTable)
 {
 	u8 				i;
 	HT_FBK_CFG0_STRUC		HtCfg0;
@@ -239,11 +239,11 @@ typedef enum _PROT_REG_IDX_{
 }PROT_REG_IDX;
 
 void AsicUpdateProtect(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT OperationMode,
-	IN u8 SetMask,
-	IN bool bDisableBGProtect,
-	IN bool bNonGFExist)
+	struct rtmp_adapter *pAd,
+	USHORT OperationMode,
+	u8 SetMask,
+	bool bDisableBGProtect,
+	bool bNonGFExist)
 {
 	PROT_CFG_STRUC	ProtCfg, ProtCfg4;
 	u32 Protect[6];
@@ -670,9 +670,9 @@ void AsicUpdateProtect(
 	==========================================================================
  */
 void AsicSwitchChannel(
-	IN struct rtmp_adapter*pAd,
-	IN u8 Channel,
-	IN bool bScan)
+	struct rtmp_adapter*pAd,
+	u8 Channel,
+	bool bScan)
 {
 	u8 bw;
 #ifdef CONFIG_STA_SUPPORT
@@ -718,8 +718,8 @@ void AsicSwitchChannel(
 	==========================================================================
  */
 void AsicLockChannel(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel)
+	struct rtmp_adapter *pAd,
+	u8 Channel)
 {
 }
 
@@ -755,8 +755,8 @@ void AsicResetBBPAgent(struct rtmp_adapter *pAd)
 	==========================================================================
  */
 void AsicSleepThenAutoWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT TbttNumToNextWakeUp)
+	struct rtmp_adapter *pAd,
+	USHORT TbttNumToNextWakeUp)
 {
 	RTMP_STA_SLEEP_THEN_AUTO_WAKEUP(pAd, TbttNumToNextWakeUp);
 }
@@ -770,7 +770,7 @@ void AsicSleepThenAutoWakeup(
 	==========================================================================
  */
 void AsicForceSleep(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 
 }
@@ -786,8 +786,8 @@ void AsicForceSleep(
 	==========================================================================
  */
 void AsicForceWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN bool    bFromTx)
+	struct rtmp_adapter *pAd,
+	bool    bFromTx)
 {
     DBGPRINT(RT_DEBUG_INFO, ("--> AsicForceWakeup \n"));
     RTMP_STA_FORCE_WAKEUP(pAd, bFromTx);
@@ -805,8 +805,8 @@ void AsicForceWakeup(
 	==========================================================================
  */
 void AsicSetBssid(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pBssid)
+	struct rtmp_adapter *pAd,
+	u8 *pBssid)
 {
 	ULONG		  Addr4;
 
@@ -839,7 +839,7 @@ void AsicSetBssid(
 	==========================================================================
  */
 void AsicEnableRDG(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	TX_LINK_CFG_STRUC	TxLinkCfg;
 	u32				Data = 0;
@@ -863,7 +863,7 @@ void AsicEnableRDG(
 	==========================================================================
  */
 void AsicDisableRDG(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	TX_LINK_CFG_STRUC	TxLinkCfg;
 	u32				Data = 0;
@@ -907,7 +907,7 @@ void AsicDisableRDG(
 	==========================================================================
  */
 void AsicDisableSync(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	BCN_TIME_CFG_STRUC csr;
 
@@ -935,7 +935,7 @@ void AsicDisableSync(
 	==========================================================================
  */
 void AsicEnableBssSync(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	BCN_TIME_CFG_STRUC csr;
 
@@ -969,7 +969,7 @@ void AsicEnableBssSync(
 	==========================================================================
  */
 void AsicEnableIbssSync(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	BCN_TIME_CFG_STRUC csr9;
 	u8 *		ptr;
@@ -1053,8 +1053,8 @@ void AsicEnableIbssSync(
 	==========================================================================
  */
 void AsicSetEdcaParm(
-	IN struct rtmp_adapter *pAd,
-	IN PEDCA_PARM	 pEdcaParm)
+	struct rtmp_adapter *pAd,
+	PEDCA_PARM	 pEdcaParm)
 {
 	EDCA_AC_CFG_STRUC   Ac0Cfg, Ac1Cfg, Ac2Cfg, Ac3Cfg;
 	AC_TXOP_CSR0_STRUC csr0;
@@ -1355,8 +1355,8 @@ void AsicSetEdcaParm(
 	==========================================================================
  */
 void 	AsicSetSlotTime(
-	IN struct rtmp_adapter *pAd,
-	IN bool bUseShortSlotTime)
+	struct rtmp_adapter *pAd,
+	bool bUseShortSlotTime)
 {
 	ULONG	SlotTime;
 	u32	RegValue = 0;
@@ -1432,10 +1432,10 @@ void 	AsicSetSlotTime(
 	========================================================================
 */
 void AsicAddSharedKeyEntry(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 	 	BssIndex,
-	IN u8 	 	KeyIdx,
-	IN PCIPHER_KEY		pCipherKey)
+	struct rtmp_adapter *	pAd,
+	u8 	 	BssIndex,
+	u8 	 	KeyIdx,
+	PCIPHER_KEY		pCipherKey)
 {
 	ULONG offset; /*, csr0;*/
 	SHAREDKEY_MODE_STRUC csr1;
@@ -1532,9 +1532,9 @@ void AsicAddSharedKeyEntry(
 
 /*	IRQL = DISPATCH_LEVEL*/
 void AsicRemoveSharedKeyEntry(
-	IN struct rtmp_adapter *pAd,
-	IN u8 	 BssIndex,
-	IN u8 	 KeyIdx)
+	struct rtmp_adapter *pAd,
+	u8 	 BssIndex,
+	u8 	 KeyIdx)
 {
 	/*ULONG SecCsr0;*/
 	SHAREDKEY_MODE_STRUC csr1;
@@ -1585,10 +1585,10 @@ void AsicRemoveSharedKeyEntry(
 }
 
 void AsicUpdateWCIDIVEIV(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT		WCID,
-	IN ULONG        uIV,
-	IN ULONG        uEIV)
+	struct rtmp_adapter *pAd,
+	USHORT		WCID,
+	ULONG        uIV,
+	ULONG        uEIV)
 {
 	ULONG	offset;
 
@@ -1603,9 +1603,9 @@ void AsicUpdateWCIDIVEIV(
 
 
 void AsicUpdateRxWCIDTable(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT		WCID,
-	IN u8 *       pAddr)
+	struct rtmp_adapter *pAd,
+	USHORT		WCID,
+	u8 *       pAddr)
 {
 	ULONG offset;
 	ULONG Addr;
@@ -1636,12 +1636,12 @@ void AsicUpdateRxWCIDTable(
 	========================================================================
 */
 void AsicUpdateWcidAttributeEntry(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		BssIdx,
-	IN 	u8 	 	KeyIdx,
-	IN 	u8 	 	CipherAlg,
-	IN	u8			Wcid,
-	IN	u8			KeyTabFlag)
+	struct rtmp_adapter *pAd,
+	u8 		BssIdx,
+	u8 	 	KeyIdx,
+	u8 	 	CipherAlg,
+	u8			Wcid,
+	u8			KeyTabFlag)
 {
 	WCID_ATTRIBUTE_STRUC WCIDAttri;
 	USHORT		offset;
@@ -1736,9 +1736,9 @@ void AsicDelWcidTab(struct rtmp_adapter*pAd, u8 wcid_idx)
 	========================================================================
 */
 void AsicAddPairwiseKeyEntry(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 		WCID,
-	IN PCIPHER_KEY		pCipherKey)
+	struct rtmp_adapter *	pAd,
+	u8 		WCID,
+	PCIPHER_KEY		pCipherKey)
 {
 	INT i;
 	ULONG 		offset;
@@ -1799,8 +1799,8 @@ void AsicAddPairwiseKeyEntry(
 	========================================================================
 */
 void AsicRemovePairwiseKeyEntry(
-	IN struct rtmp_adapter *pAd,
-	IN u8 	 Wcid)
+	struct rtmp_adapter *pAd,
+	u8 	 Wcid)
 {
 	/* Set the specific WCID attribute entry as OPEN-NONE */
 	AsicUpdateWcidAttributeEntry(pAd,
@@ -1827,8 +1827,8 @@ void AsicRemovePairwiseKeyEntry(
  */
 
 void AsicTurnOffRFClk(
-	IN struct rtmp_adapter *pAd,
-	IN	u8 	Channel)
+	struct rtmp_adapter *pAd,
+	u8 	Channel)
 {
 
 		switch (pAd->RfIcType)
@@ -1850,7 +1850,7 @@ void AsicTurnOffRFClk(
 	==========================================================================
  */
 void AsicEnableRalinkBurstMode(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u32				Data = 0;
 
@@ -1870,7 +1870,7 @@ void AsicEnableRalinkBurstMode(
 	==========================================================================
  */
 void AsicDisableRalinkBurstMode(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u32				Data = 0;
 
@@ -2011,9 +2011,9 @@ INT AsicSetChannel(struct rtmp_adapter*pAd, u8 ch, u8 bw, u8 ext_ch, bool bScan)
 	==========================================================================
  */
 void AsicSetApCliBssid(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pBssid,
-	IN u8 index)
+	struct rtmp_adapter *pAd,
+	u8 *pBssid,
+	u8 index)
 {
 	u32		  Addr4 = 0;
 
@@ -2045,9 +2045,9 @@ void AsicSetApCliBssid(
 	==========================================================================
  */
 void AsicSetExtendedMacAddr(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pMacAddr,
-	IN u32 Idx)
+	struct rtmp_adapter *pAd,
+	u8 *pMacAddr,
+	u32 Idx)
 {
 	u32		  Addr4 = 0;
 

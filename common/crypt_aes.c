@@ -244,9 +244,9 @@ Note:
 ========================================================================
 */
 void RT_AES_KeyExpansion (
-    IN u8 Key[],
-    IN UINT KeyLength,
-    INOUT AES_CTX_STRUC *paes_ctx)
+    u8 Key[],
+    UINT KeyLength,
+    AES_CTX_STRUC *paes_ctx)
 {
     UINT KeyIndex = 0;
     UINT NumberOfWordOfKey, NumberOfWordOfKeyExpansion;
@@ -335,12 +335,12 @@ Note:
 ========================================================================
 */
 void RT_AES_Encrypt (
-    IN u8 PlainBlock[],
-    IN UINT PlainBlockSize,
-    IN u8 Key[],
-    IN UINT KeyLength,
-    OUT u8 CipherBlock[],
-    INOUT UINT *CipherBlockSize)
+    u8 PlainBlock[],
+    UINT PlainBlockSize,
+    u8 Key[],
+    UINT KeyLength,
+    u8 CipherBlock[],
+    UINT *CipherBlockSize)
 {
 /*    AES_CTX_STRUC aes_ctx;
 */
@@ -521,12 +521,12 @@ Note:
 ========================================================================
 */
 void RT_AES_Decrypt (
-    IN u8 CipherBlock[],
-    IN UINT CipherBlockSize,
-    IN u8 Key[],
-    IN UINT KeyLength,
-    OUT u8 PlainBlock[],
-    INOUT UINT *PlainBlockSize)
+    u8 CipherBlock[],
+    UINT CipherBlockSize,
+    u8 Key[],
+    UINT KeyLength,
+    u8 PlainBlock[],
+    UINT *PlainBlockSize)
 {
 /*    AES_CTX_STRUC aes_ctx;
 */
@@ -690,16 +690,16 @@ Note:
 ========================================================================
 */
 void AES_CCM_MAC (
-    IN u8 Payload[],
-    IN UINT  PayloadLength,
-    IN u8 Key[],
-    IN UINT  KeyLength,
-    IN u8 Nonce[],
-    IN UINT  NonceLength,
-    IN u8 AAD[],
-    IN UINT  AADLength,
-    IN UINT  MACLength,
-    OUT u8 MACText[])
+    u8 Payload[],
+    UINT  PayloadLength,
+    u8 Key[],
+    UINT  KeyLength,
+    u8 Nonce[],
+    UINT  NonceLength,
+    u8 AAD[],
+    UINT  AADLength,
+    UINT  MACLength,
+    u8 MACText[])
 {
     u8 Block[AES_BLOCK_SIZES], Block_MAC[AES_BLOCK_SIZES];
     UINT  Block_Index = 0, ADD_Index = 0, Payload_Index = 0;
@@ -824,17 +824,17 @@ Note:
 ========================================================================
 */
 INT AES_CCM_Encrypt (
-    IN u8 PlainText[],
-    IN UINT PlainTextLength,
-    IN u8 Key[],
-    IN UINT KeyLength,
-    IN u8 Nonce[],
-    IN UINT NonceLength,
-    IN u8 AAD[],
-    IN UINT AADLength,
-    IN UINT MACLength,
-    OUT u8 CipherText[],
-    INOUT UINT *CipherTextLength)
+    u8 PlainText[],
+    UINT PlainTextLength,
+    u8 Key[],
+    UINT KeyLength,
+    u8 Nonce[],
+    UINT NonceLength,
+    u8 AAD[],
+    UINT AADLength,
+    UINT MACLength,
+    u8 CipherText[],
+    UINT *CipherTextLength)
 {
     u8 Block_MAC[AES_BLOCK_SIZES];
     u8 Block_CTR[AES_BLOCK_SIZES], Block_CTR_Cipher[AES_BLOCK_SIZES];
@@ -947,17 +947,17 @@ Note:
 ========================================================================
 */
 INT AES_CCM_Decrypt (
-    IN u8 CipherText[],
-    IN UINT  CipherTextLength,
-    IN u8 Key[],
-    IN UINT  KeyLength,
-    IN u8 Nonce[],
-    IN UINT  NonceLength,
-    IN u8 AAD[],
-    IN UINT  AADLength,
-    IN UINT  MACLength,
-    OUT u8 PlainText[],
-    INOUT UINT *PlainTextLength)
+    u8 CipherText[],
+    UINT  CipherTextLength,
+    u8 Key[],
+    UINT  KeyLength,
+    u8 Nonce[],
+    UINT  NonceLength,
+    u8 AAD[],
+    UINT  AADLength,
+    UINT  MACLength,
+    u8 PlainText[],
+    UINT *PlainTextLength)
 {
     u8 Block_MAC[AES_BLOCK_SIZES], Block_MAC_From_Cipher[AES_BLOCK_SIZES];
     u8 Block_CTR[AES_BLOCK_SIZES], Block_CTR_Cipher[AES_BLOCK_SIZES];
@@ -1071,10 +1071,10 @@ Note:
 ========================================================================
 */
 void AES_CMAC_GenerateSubKey (
-    IN u8 Key[],
-    IN UINT KeyLength,
-    OUT u8 SubKey1[],
-    OUT u8 SubKey2[])
+    u8 Key[],
+    UINT KeyLength,
+    u8 SubKey1[],
+    u8 SubKey2[])
 {
     u8 MSB_L = 0, MSB_K1 = 0, Top_Bit = 0;
     UINT  SubKey1_Length = 0;
@@ -1147,12 +1147,12 @@ Note:
 ========================================================================
 */
 void AES_CMAC (
-    IN u8 PlainText[],
-    IN UINT PlainTextLength,
-    IN u8 Key[],
-    IN UINT KeyLength,
-    OUT u8 MACText[],
-    INOUT UINT *MACTextLength)
+    u8 PlainText[],
+    UINT PlainTextLength,
+    u8 Key[],
+    UINT KeyLength,
+    u8 MACText[],
+    UINT *MACTextLength)
 {
     UINT  PlainBlockStart;
     u8 X[AES_BLOCK_SIZES], Y[AES_BLOCK_SIZES];
@@ -1237,14 +1237,14 @@ Note:
 ========================================================================
 */
 void AES_CBC_Encrypt (
-    IN u8 PlainText[],
-    IN UINT PlainTextLength,
-    IN u8 Key[],
-    IN UINT KeyLength,
-    IN u8 IV[],
-    IN UINT IVLength,
-    OUT u8 CipherText[],
-    INOUT UINT *CipherTextLength)
+    u8 PlainText[],
+    UINT PlainTextLength,
+    u8 Key[],
+    UINT KeyLength,
+    u8 IV[],
+    UINT IVLength,
+    u8 CipherText[],
+    UINT *CipherTextLength)
 {
     UINT PaddingSize, PlainBlockStart, CipherBlockStart, CipherBlockSize;
     UINT Index;
@@ -1341,14 +1341,14 @@ Note:
 ========================================================================
 */
 void AES_CBC_Decrypt (
-    IN u8 CipherText[],
-    IN UINT CipherTextLength,
-    IN u8 Key[],
-    IN UINT KeyLength,
-    IN u8 IV[],
-    IN UINT IVLength,
-    OUT u8 PlainText[],
-    INOUT UINT *PlainTextLength)
+    u8 CipherText[],
+    UINT CipherTextLength,
+    u8 Key[],
+    UINT KeyLength,
+    u8 IV[],
+    UINT IVLength,
+    u8 PlainText[],
+    UINT *PlainTextLength)
 {
     UINT PaddingSize, PlainBlockStart, CipherBlockStart, PlainBlockSize;
     UINT Index;
@@ -1432,12 +1432,12 @@ Note:
 ========================================================================
 */
 INT AES_Key_Wrap (
-    IN u8 PlainText[],
-    IN UINT  PlainTextLength,
-    IN u8 Key[],
-    IN UINT  KeyLength,
-    OUT u8 CipherText[],
-    OUT UINT *CipherTextLength)
+    u8 PlainText[],
+    UINT  PlainTextLength,
+    u8 Key[],
+    UINT  KeyLength,
+    u8 CipherText[],
+    UINT *CipherTextLength)
 {
     u8 IV[8], Block_B[16], Block_Input[16];
     u8 *pResult;
@@ -1527,12 +1527,12 @@ Note:
 ========================================================================
 */
 INT AES_Key_Unwrap (
-    IN u8 CipherText[],
-    IN UINT  CipherTextLength,
-    IN u8 Key[],
-    IN UINT  KeyLength,
-    OUT u8 PlainText[],
-    OUT UINT *PlainTextLength)
+    u8 CipherText[],
+    UINT  CipherTextLength,
+    u8 Key[],
+    UINT  KeyLength,
+    u8 PlainText[],
+    UINT *PlainTextLength)
 {
     u8 IV[8], Block_B[16], Block_Input[16];
     u8 *pResult;

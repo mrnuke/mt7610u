@@ -78,7 +78,7 @@ Note:
 ========================================================================
 */
 UINT32 BG_FTPH_PacketFromApHandle(
-	IN		struct sk_buff *	pPacket);
+	struct sk_buff *	pPacket);
 
 #endif /* __BR_FTPH_H__ */
 

@@ -167,8 +167,8 @@ u8 get_cent_ch_by_htinfo(
 	========================================================================
 */
 void RTMPSetHT(
-	IN struct rtmp_adapter*pAd,
-	IN OID_SET_HT_PHYMODE *pHTPhyMode)
+	struct rtmp_adapter*pAd,
+	OID_SET_HT_PHYMODE *pHTPhyMode)
 {
 	u8 RxStream = pAd->CommonCfg.RxStream;
 	INT bw;
@@ -404,8 +404,8 @@ void RTMPSetHT(
 	========================================================================
 */
 void RTMPSetIndividualHT(
-	IN struct rtmp_adapter*pAd,
-	IN u8 apidx)
+	struct rtmp_adapter*pAd,
+	u8 apidx)
 {
 	RT_PHY_INFO *pDesired_ht_phy = NULL;
 	u8 TxStream = pAd->CommonCfg.TxStream;
@@ -553,7 +553,7 @@ void RTMPSetIndividualHT(
 	========================================================================
 */
 void RTMPDisableDesiredHtInfo(
-	IN	struct rtmp_adapter *	pAd)
+	struct rtmp_adapter *	pAd)
 {
 
 
@@ -619,10 +619,10 @@ INT	SetCommonHT(struct rtmp_adapter*pAd)
 	========================================================================
 */
 void RTMPUpdateHTIE(
-	IN RT_HT_CAPABILITY	*pRtHt,
-	IN u8 *pMcsSet,
-	OUT HT_CAPABILITY_IE *pHtCapability,
-	OUT ADD_HT_INFO_IE *pAddHtInfo)
+	RT_HT_CAPABILITY	*pRtHt,
+	u8 *pMcsSet,
+	HT_CAPABILITY_IE *pHtCapability,
+	ADD_HT_INFO_IE *pAddHtInfo)
 {
 	memset(pHtCapability, 0, sizeof(HT_CAPABILITY_IE));
 	memset(pAddHtInfo, 0, sizeof(ADD_HT_INFO_IE));

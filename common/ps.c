@@ -45,10 +45,10 @@
 ========================================================================
 */
 int RtmpInsertPsQueue(
-	IN struct rtmp_adapter *pAd,
-	IN struct sk_buff * pPacket,
-	IN MAC_TABLE_ENTRY *pMacEntry,
-	IN u8 QueIdx)
+	struct rtmp_adapter *pAd,
+	struct sk_buff * pPacket,
+	MAC_TABLE_ENTRY *pMacEntry,
+	u8 QueIdx)
 {
 	ULONG IrqFlags;
 #ifdef UAPSD_SUPPORT
@@ -91,8 +91,8 @@ int RtmpInsertPsQueue(
 	==========================================================================
  */
 void RtmpCleanupPsQueue(
-	IN  struct rtmp_adapter *  pAd,
-	IN  PQUEUE_HEADER   pQueue)
+	struct rtmp_adapter *  pAd,
+	PQUEUE_HEADER   pQueue)
 {
 	PQUEUE_ENTRY pEntry;
 	struct sk_buff * pPacket;
@@ -123,10 +123,10 @@ void RtmpCleanupPsQueue(
   ========================================================================
 */
 void RtmpHandleRxPsPoll(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pAddr,
-	IN	USHORT			Aid,
-    IN	bool 		isActive)
+	struct rtmp_adapter *pAd,
+	u8 *		pAddr,
+	USHORT			Aid,
+    bool 		isActive)
 {
 	PQUEUE_ENTRY	  pEntry;
 	PMAC_TABLE_ENTRY  pMacEntry;
@@ -289,10 +289,10 @@ void RtmpHandleRxPsPoll(
 	==========================================================================
  */
 bool RtmpPsIndicate(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pAddr,
-	IN ULONG Wcid,
-	IN u8 Psm)
+	struct rtmp_adapter *pAd,
+	u8 *pAddr,
+	ULONG Wcid,
+	u8 Psm)
 {
 	MAC_TABLE_ENTRY *pEntry;
     u8 old_psmode;
@@ -365,7 +365,7 @@ Note:
 ========================================================================
 */
 bool RtmpPktPmBitCheck(
-    IN  struct rtmp_adapter *      pAd)
+    struct rtmp_adapter *      pAd)
 {
 	bool FlgCanPmBitSet = true;
 
@@ -379,15 +379,15 @@ bool RtmpPktPmBitCheck(
 
 
 void RtmpPsActiveExtendCheck(
-	IN struct rtmp_adapter *	pAd)
+	struct rtmp_adapter *	pAd)
 {
 	/* count down the TDLS active counter */
 }
 
 
 void RtmpPsModeChange(
-	IN struct rtmp_adapter *	pAd,
-	IN u32				PsMode)
+	struct rtmp_adapter *	pAd,
+	u32				PsMode)
 {
 	if (pAd->StaCfg.BssType == BSS_INFRA)
 	{

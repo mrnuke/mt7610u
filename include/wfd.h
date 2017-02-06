@@ -33,69 +33,69 @@
 #include "rtmp_type.h"
 
 INT Set_WfdEnable_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 #ifdef RT_CFG80211_SUPPORT
 INT Set_WfdInsertIe_Proc
 (
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *		arg);
+	struct rtmp_adapter *	pAd,
+	char *		arg);
 #endif /* RT_CFG80211_SUPPORT */
 
 INT Set_WfdDeviceType_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT Set_WfdCouple_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT Set_WfdSessionAvailable_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT Set_WfdCP_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT	Set_WfdRtspPort_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT	Set_WfdMaxThroughput_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT Set_WfdLocalIp_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 INT Set_PeerRtspPort_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg);
+    struct rtmp_adapter *	pAd,
+    char *		arg);
 
 void WfdMakeWfdIE(
-	IN	struct rtmp_adapter *pAd,
-	IN 	ULONG			WfdIeBitmap,
-	OUT	u8 *		pOutBuf,
-	OUT	PULONG			pIeLen);
+	struct rtmp_adapter *pAd,
+	ULONG			WfdIeBitmap,
+	u8 *		pOutBuf,
+	PULONG			pIeLen);
 
 ULONG InsertWfdSubelmtTlv(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 		SubId,
-	IN u8 *		pInBuffer,
-	IN u8 *		pOutBuffer,
-	IN UINT				Action);
+	struct rtmp_adapter *	pAd,
+	u8 		SubId,
+	u8 *		pInBuffer,
+	u8 *		pOutBuffer,
+	UINT				Action);
 
 void WfdParseSubElmt(
-	IN struct rtmp_adapter *	pAd,
-	IN PWFD_ENTRY_INFO	pWfdEntryInfo,
-	IN void 				*Msg,
-	IN ULONG 			MsgLen);
+	struct rtmp_adapter *	pAd,
+	PWFD_ENTRY_INFO	pWfdEntryInfo,
+	void 				*Msg,
+	ULONG 			MsgLen);
 
 void WfdCfgInit(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 #endif /* WFD_SUPPORT */
 #endif /* __WFD_H__ */

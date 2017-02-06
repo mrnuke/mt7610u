@@ -49,8 +49,8 @@ void inc_byte_array(u8 *counter, int len);
 	========================================================================
 */
 void RTMPReportMicError(
-	IN	struct rtmp_adapter *pAd,
-	IN	PCIPHER_KEY 	pWpaKey)
+	struct rtmp_adapter *pAd,
+	PCIPHER_KEY 	pWpaKey)
 {
 	ULONG	Now;
     u8   unicastKey = (pWpaKey->Type == PAIRWISE_KEY ? 1:0);
@@ -108,10 +108,10 @@ void RTMPReportMicError(
 #define	LENGTH_EAP_H    4
 /* If the received frame is EAP-Packet ,find out its EAP-Code (Request(0x01), Response(0x02), Success(0x03), Failure(0x04)). */
 INT	    WpaCheckEapCode(
-	IN  struct rtmp_adapter *  		pAd,
-	IN  u8 *			pFrame,
-	IN  USHORT				FrameLen,
-	IN  USHORT				OffSet)
+	struct rtmp_adapter *  		pAd,
+	u8 *			pFrame,
+	USHORT				FrameLen,
+	USHORT				OffSet)
 {
 
 	u8 *pData;
@@ -133,8 +133,8 @@ INT	    WpaCheckEapCode(
 #endif /* WPA_SUPPLICANT_SUPPORT */
 
 void WpaMicFailureReportFrame(
-	IN  struct rtmp_adapter *  pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *  pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 *             pOutBuffer = NULL;
 	u8               Header802_3[14];
@@ -260,10 +260,10 @@ void inc_byte_array(u8 *counter, int len)
 }
 
 void WpaDisassocApAndBlockAssoc(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3)
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3)
 {
     struct rtmp_adapter               *pAd = (struct rtmp_adapter *)FunctionContext;
     MLME_DISASSOC_REQ_STRUCT    DisassocReq;
@@ -278,7 +278,7 @@ void WpaDisassocApAndBlockAssoc(
 }
 
 void WpaStaPairwiseKeySetting(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PCIPHER_KEY pSharedKey;
 	PMAC_TABLE_ENTRY pEntry;
@@ -333,7 +333,7 @@ void WpaStaPairwiseKeySetting(
 }
 
 void WpaStaGroupKeySetting(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PCIPHER_KEY 		pSharedKey;
 
@@ -389,8 +389,8 @@ void WpaStaGroupKeySetting(
 	========================================================================
 */
 void    WpaSendEapolStart(
-	IN	struct rtmp_adapter *pAd,
-	IN  u8 *         pBssid)
+	struct rtmp_adapter *pAd,
+	u8 *         pBssid)
 {
 	IEEE8021X_FRAME		Packet;
 	u8               Header802_3[14];

@@ -157,179 +157,179 @@ extern u8 RateTableVht2S[];
 
 /* FUNCTION */
 void MlmeGetSupportedMcs(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pTable,
-	OUT CHAR mcs[]);
+	struct rtmp_adapter *pAd,
+	u8 *pTable,
+	CHAR mcs[]);
 
 u8 MlmeSelectTxRate(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN CHAR mcs[],
-	IN CHAR Rssi,
-	IN CHAR RssiOffset);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	CHAR mcs[],
+	CHAR Rssi,
+	CHAR RssiOffset);
 
 void MlmeClearTxQuality(struct _MAC_TABLE_ENTRY *pEntry);
 void MlmeClearAllTxQuality(struct _MAC_TABLE_ENTRY *pEntry);
 void MlmeDecTxQuality(struct _MAC_TABLE_ENTRY *pEntry, u8 rateIndex);
 USHORT MlmeGetTxQuality(struct _MAC_TABLE_ENTRY *pEntry, u8 rateIndex);
 void MlmeSetTxQuality(
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 rateIndex,
-	IN USHORT txQuality);
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 rateIndex,
+	USHORT txQuality);
 
 
 
 void MlmeOldRateAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 		CurrRateIdx,
-	IN u8 		UpRateIdx,
-	IN u8 		DownRateIdx,
-	IN ULONG			TrainUp,
-	IN ULONG			TrainDown,
-	IN ULONG			TxErrorRatio);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 		CurrRateIdx,
+	u8 		UpRateIdx,
+	u8 		DownRateIdx,
+	ULONG			TrainUp,
+	ULONG			TrainDown,
+	ULONG			TxErrorRatio);
 
 void MlmeRestoreLastRate(
-	IN struct _MAC_TABLE_ENTRY *pEntry);
+	struct _MAC_TABLE_ENTRY *pEntry);
 
 void MlmeCheckRDG(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry);
 
 void RTMPSetSupportMCS(
-	IN struct rtmp_adapter *pAd,
-	IN u8 OpMode,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 SupRate[],
-	IN u8 SupRateLen,
-	IN u8 ExtRate[],
-	IN u8 ExtRateLen,
+	struct rtmp_adapter *pAd,
+	u8 OpMode,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 SupRate[],
+	u8 SupRateLen,
+	u8 ExtRate[],
+	u8 ExtRateLen,
 #ifdef DOT11_VHT_AC
-	IN u8 vht_cap_len,
-	IN VHT_CAP_IE *vht_cap,
+	u8 vht_cap_len,
+	VHT_CAP_IE *vht_cap,
 #endif /* DOT11_VHT_AC */
-	IN HT_CAPABILITY_IE *pHtCapability,
-	IN u8 HtCapabilityLen);
+	HT_CAPABILITY_IE *pHtCapability,
+	u8 HtCapabilityLen);
 
 #ifdef NEW_RATE_ADAPT_SUPPORT
 void MlmeSetMcsGroup(struct rtmp_adapter *pAd, struct _MAC_TABLE_ENTRY *pEnt);
 
 u8 MlmeSelectUpRate(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN RTMP_RA_GRP_TB *pCurrTxRate);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	RTMP_RA_GRP_TB *pCurrTxRate);
 
 u8 MlmeSelectDownRate(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 		CurrRateIdx);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 		CurrRateIdx);
 
 void MlmeGetSupportedMcsAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 mcs23GI,
-	OUT CHAR 	mcs[]);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 mcs23GI,
+	CHAR 	mcs[]);
 
 u8 MlmeSelectTxRateAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN CHAR		mcs[],
-	IN CHAR		Rssi,
-	IN CHAR		RssiOffset);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	CHAR		mcs[],
+	CHAR		Rssi,
+	CHAR		RssiOffset);
 
 bool MlmeRAHybridRule(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN RTMP_RA_GRP_TB *pCurrTxRate,
-	IN ULONG			NewTxOkCount,
-	IN ULONG			TxErrorRatio);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	RTMP_RA_GRP_TB *pCurrTxRate,
+	ULONG			NewTxOkCount,
+	ULONG			TxErrorRatio);
 
 void MlmeNewRateAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 		UpRateIdx,
-	IN u8 		DownRateIdx,
-	IN ULONG			TrainUp,
-	IN ULONG			TrainDown,
-	IN ULONG			TxErrorRatio);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 		UpRateIdx,
+	u8 		DownRateIdx,
+	ULONG			TrainUp,
+	ULONG			TrainDown,
+	ULONG			TxErrorRatio);
 
 INT	Set_PerThrdAdj_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN char *arg);
+	struct rtmp_adapter *pAd,
+	char *arg);
 
 INT	Set_LowTrafficThrd_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_TrainUpRule_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_TrainUpRuleRSSI_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_TrainUpLowThrd_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT	Set_TrainUpHighThrd_Proc(
-	IN struct rtmp_adapter *pAd,
-	IN char *		arg);
+	struct rtmp_adapter *pAd,
+	char *		arg);
 
 INT Set_RateTable_Proc(
-	IN  struct rtmp_adapter *pAd,
-	IN  char *arg);
+	struct rtmp_adapter *pAd,
+	char *arg);
 
 
 #ifdef CONFIG_STA_SUPPORT
 void StaQuickResponeForRateUpExecAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG i,
-	IN CHAR Rssi);
+	struct rtmp_adapter *pAd,
+	ULONG i,
+	CHAR Rssi);
 
 void MlmeDynamicTxRateSwitchingAdapt(
-	IN struct rtmp_adapter *pAd,
-	IN ULONG i,
-	IN ULONG TxSuccess,
-	IN ULONG TxRetransmit,
-	IN ULONG TxFailCount);
+	struct rtmp_adapter *pAd,
+	ULONG i,
+	ULONG TxSuccess,
+	ULONG TxRetransmit,
+	ULONG TxFailCount);
 #endif /* CONFIG_STA_SUPPORT */
 #endif /* NEW_RATE_ADAPT_SUPPORT */
 
 
 #ifdef CONFIG_STA_SUPPORT
 void MlmeDynamicTxRateSwitching(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void StaQuickResponeForRateUpExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 
 void MlmeSetTxRate(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN RTMP_RA_LEGACY_TB *pTxRate);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	RTMP_RA_LEGACY_TB *pTxRate);
 #endif /* CONFIG_STA_SUPPORT */
 
 void MlmeRAInit(struct rtmp_adapter *pAd, struct _MAC_TABLE_ENTRY *pEntry);
 void MlmeNewTxRate(struct rtmp_adapter *pAd, struct _MAC_TABLE_ENTRY *pEntry);
 
 void MlmeRALog(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN RA_LOG_TYPE raLogType,
-	IN ULONG TxErrorRatio,
-	IN ULONG TxTotalCnt);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	RA_LOG_TYPE raLogType,
+	ULONG TxErrorRatio,
+	ULONG TxTotalCnt);
 
 void MlmeSelectTxRateTable(
-	IN struct rtmp_adapter *pAd,
-	IN struct _MAC_TABLE_ENTRY *pEntry,
-	IN u8 **ppTable,
-	IN u8 *pTableSize,
-	IN u8 *pInitTxRateIdx);
+	struct rtmp_adapter *pAd,
+	struct _MAC_TABLE_ENTRY *pEntry,
+	u8 **ppTable,
+	u8 *pTableSize,
+	u8 *pInitTxRateIdx);
 
 #endif /* __DRS_EXTR_H__ */
 

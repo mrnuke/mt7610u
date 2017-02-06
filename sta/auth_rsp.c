@@ -39,9 +39,9 @@
     ==========================================================================
  */
 void AuthRspStateMachineInit(
-	IN struct rtmp_adapter *pAd,
-	IN PSTATE_MACHINE Sm,
-	IN STATE_MACHINE_FUNC Trans[])
+	struct rtmp_adapter *pAd,
+	PSTATE_MACHINE Sm,
+	STATE_MACHINE_FUNC Trans[])
 {
 	StateMachineInit(Sm, Trans, MAX_AUTH_RSP_STATE, MAX_AUTH_RSP_MSG,
 			 (STATE_MACHINE_FUNC) Drop, AUTH_RSP_IDLE,
@@ -66,12 +66,12 @@ void AuthRspStateMachineInit(
     ==========================================================================
 */
 void PeerAuthSimpleRspGenAndSend(
-	IN struct rtmp_adapter *pAd,
-	IN PHEADER_802_11 pHdr80211,
-	IN USHORT Alg,
-	IN USHORT Seq,
-	IN USHORT Reason,
-	IN USHORT Status)
+	struct rtmp_adapter *pAd,
+	PHEADER_802_11 pHdr80211,
+	USHORT Alg,
+	USHORT Seq,
+	USHORT Reason,
+	USHORT Status)
 {
 	HEADER_802_11 AuthHdr;
 	ULONG FrameLen = 0;
@@ -105,8 +105,8 @@ void PeerAuthSimpleRspGenAndSend(
     ==========================================================================
 */
 void PeerDeauthAction(
-	IN struct rtmp_adapter *pAd,
-	IN PMLME_QUEUE_ELEM Elem)
+	struct rtmp_adapter *pAd,
+	PMLME_QUEUE_ELEM Elem)
 {
 	u8 Addr1[ETH_ALEN];
 	u8 Addr2[ETH_ALEN];

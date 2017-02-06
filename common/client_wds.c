@@ -30,7 +30,7 @@
 #include "rt_config.h"
 
 void CliWds_ProxyTabInit(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	INT idx;
 	ULONG i;
@@ -60,7 +60,7 @@ void CliWds_ProxyTabInit(
 
 
 void CliWds_ProxyTabDestory(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	INT idx;
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;
@@ -87,7 +87,7 @@ void CliWds_ProxyTabDestory(
 
 
 PCLIWDS_PROXY_ENTRY CliWdsEntyAlloc(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;
 
@@ -102,8 +102,8 @@ PCLIWDS_PROXY_ENTRY CliWdsEntyAlloc(
 
 
 void CliWdsEntyFree(
-	IN struct rtmp_adapter *pAd,
-	IN PCLIWDS_PROXY_ENTRY pCliWdsEntry)
+	struct rtmp_adapter *pAd,
+	PCLIWDS_PROXY_ENTRY pCliWdsEntry)
 {
 	RTMP_SEM_LOCK(&pAd->ApCfg.CliWdsTabLock);
 
@@ -116,8 +116,8 @@ void CliWdsEntyFree(
 
 
 u8 *CliWds_ProxyLookup(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pMac)
+	struct rtmp_adapter *pAd,
+	u8 *pMac)
 {
 	u8 HashId = (*(pMac + 5) & (CLIWDS_HASH_TAB_SIZE - 1));
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;
@@ -144,9 +144,9 @@ u8 *CliWds_ProxyLookup(
 
 
 void CliWds_ProxyTabUpdate(
-	IN struct rtmp_adapter *pAd,
-	IN SHORT Aid,
-	IN u8 *pMac)
+	struct rtmp_adapter *pAd,
+	SHORT Aid,
+	u8 *pMac)
 {
 	u8 HashId = (*(pMac + 5) & (CLIWDS_HASH_TAB_SIZE - 1));
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;
@@ -171,7 +171,7 @@ void CliWds_ProxyTabUpdate(
 
 
 void CliWds_ProxyTabMaintain(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	ULONG idx;
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;

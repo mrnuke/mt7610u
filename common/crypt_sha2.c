@@ -101,7 +101,7 @@ Note:
 ========================================================================
 */
 void RT_SHA1_Init (
-    IN  SHA1_CTX_STRUC *pSHA_CTX)
+    SHA1_CTX_STRUC *pSHA_CTX)
 {
     memmove(pSHA_CTX->HashValue, SHA1_DefaultHashValue,
         sizeof(SHA1_DefaultHashValue));
@@ -127,7 +127,7 @@ Note:
 ========================================================================
 */
 void RT_SHA1_Hash (
-    IN  SHA1_CTX_STRUC *pSHA_CTX)
+    SHA1_CTX_STRUC *pSHA_CTX)
 {
     u32 W_i,t;
     u32 W[80];
@@ -222,9 +222,9 @@ Note:
 ========================================================================
 */
 void RT_SHA1_Append (
-    IN  SHA1_CTX_STRUC *pSHA_CTX,
-    IN  const u8 Message[],
-    IN  UINT MessageLen)
+    SHA1_CTX_STRUC *pSHA_CTX,
+    const u8 Message[],
+    UINT MessageLen)
 {
     UINT appendLen = 0;
     UINT diffLen   = 0;
@@ -268,8 +268,8 @@ Note:
 ========================================================================
 */
 void RT_SHA1_End (
-    IN  SHA1_CTX_STRUC *pSHA_CTX,
-    OUT u8 DigestMessage[])
+    SHA1_CTX_STRUC *pSHA_CTX,
+    u8 DigestMessage[])
 {
     UINT index;
     UINT64 message_length_bits;
@@ -313,9 +313,9 @@ Note:
 ========================================================================
 */
 void RT_SHA1 (
-    IN  const u8 Message[],
-    IN  UINT MessageLen,
-    OUT u8 DigestMessage[])
+    const u8 Message[],
+    UINT MessageLen,
+    u8 DigestMessage[])
 {
 
     SHA1_CTX_STRUC sha_ctx;
@@ -345,7 +345,7 @@ Note:
 ========================================================================
 */
 void RT_SHA256_Init (
-    IN  SHA256_CTX_STRUC *pSHA_CTX)
+    SHA256_CTX_STRUC *pSHA_CTX)
 {
     memmove(pSHA_CTX->HashValue, SHA256_DefaultHashValue,
         sizeof(SHA256_DefaultHashValue));
@@ -371,7 +371,7 @@ Note:
 ========================================================================
 */
 void RT_SHA256_Hash (
-    IN  SHA256_CTX_STRUC *pSHA_CTX)
+    SHA256_CTX_STRUC *pSHA_CTX)
 {
     u32 W_i,t;
     u32 W[64];
@@ -445,9 +445,9 @@ Note:
 ========================================================================
 */
 void RT_SHA256_Append (
-    IN  SHA256_CTX_STRUC *pSHA_CTX,
-    IN  const u8 Message[],
-    IN  UINT MessageLen)
+    SHA256_CTX_STRUC *pSHA_CTX,
+    const u8 Message[],
+    UINT MessageLen)
 {
     UINT appendLen = 0;
     UINT diffLen   = 0;
@@ -491,8 +491,8 @@ Note:
 ========================================================================
 */
 void RT_SHA256_End (
-    IN  SHA256_CTX_STRUC *pSHA_CTX,
-    OUT u8 DigestMessage[])
+    SHA256_CTX_STRUC *pSHA_CTX,
+    u8 DigestMessage[])
 {
     UINT index;
     UINT64 message_length_bits;
@@ -536,9 +536,9 @@ Note:
 ========================================================================
 */
 void RT_SHA256 (
-    IN  const u8 Message[],
-    IN  UINT MessageLen,
-    OUT u8 DigestMessage[])
+    const u8 Message[],
+    UINT MessageLen,
+    u8 DigestMessage[])
 {
     SHA256_CTX_STRUC sha_ctx;
 

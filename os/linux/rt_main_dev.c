@@ -54,13 +54,13 @@
 /* public function prototype */
 
 /* private function prototype */
-static INT rt28xx_send_packets(IN struct sk_buff *skb_p, IN struct net_device *net_dev);
+static INT rt28xx_send_packets(struct sk_buff *skb_p, struct net_device *net_dev);
 
 
 
 
 struct net_device_stats *RT28xx_get_ether_stats(
-    IN  struct net_device *net_dev);
+    struct net_device *net_dev);
 
 
 /*
@@ -83,7 +83,7 @@ Note:
 		(3) BA Reordering: 				ba_reordering_resource_release()
 ========================================================================
 */
-int MainVirtualIF_close(IN struct net_device *net_dev)
+int MainVirtualIF_close(struct net_device *net_dev)
 {
 	struct rtmp_adapter *pAd = NULL;
 	RT_CMD_INF_UP_DOWN InfConf = { rt28xx_open, rt28xx_close };
@@ -127,7 +127,7 @@ Note:
 		(3) BA Reordering: 				ba_reordering_resource_release()
 ========================================================================
 */
-int MainVirtualIF_open(IN struct net_device *net_dev)
+int MainVirtualIF_open(struct net_device *net_dev)
 {
 	struct rtmp_adapter *pAd = NULL;
 	RT_CMD_INF_UP_DOWN InfConf = { rt28xx_open, rt28xx_close };
@@ -291,8 +291,8 @@ err:
 
 
 struct net_device *RtmpPhyNetDevInit(
-	IN void 					*pAd,
-	IN RTMP_OS_NETDEV_OP_HOOK	*pNetDevHook)
+	void 					*pAd,
+	RTMP_OS_NETDEV_OP_HOOK	*pNetDevHook)
 {
 	struct net_device	*net_dev = NULL;
 	ULONG OpMode;
@@ -383,8 +383,8 @@ Note:
 ========================================================================
 */
 static int rt28xx_send_packets(
-	IN struct sk_buff *skb_p,
-	IN struct net_device *net_dev)
+	struct sk_buff *skb_p,
+	struct net_device *net_dev)
 {
 	if (!(RTMP_OS_NETDEV_STATE_RUNNING(net_dev)))
 	{
@@ -439,9 +439,9 @@ struct iw_statistics *rt28xx_get_wireless_stats(struct net_device *net_dev)
 
 
 INT rt28xx_ioctl(
-	IN struct net_device *net_dev,
-	INOUT struct ifreq	*rq,
-	IN INT cmd)
+	struct net_device *net_dev,
+	struct ifreq	*rq,
+	INT cmd)
 {
 	struct rtmp_adapter *pAd = NULL;
 	INT ret = 0;
@@ -488,7 +488,7 @@ INT rt28xx_ioctl(
     ========================================================================
 */
 struct net_device_stats *RT28xx_get_ether_stats(
-    IN  struct net_device *net_dev)
+    struct net_device *net_dev)
 {
 	struct rtmp_adapter*pAd = NULL;
 	struct net_device_stats *pStats;
@@ -547,8 +547,8 @@ struct net_device_stats *RT28xx_get_ether_stats(
 
 
 bool RtmpPhyNetDevExit(
-	IN void 		*pAd,
-	IN struct net_device *	net_dev)
+	void 		*pAd,
+	struct net_device *	net_dev)
 {
 	/* Unregister network device */
 	if (net_dev != NULL)
@@ -567,7 +567,7 @@ bool RtmpPhyNetDevExit(
 	Device IRQ related functions.
 
  *******************************************************************************/
-int RtmpOSIRQRequest(IN struct net_device *pNetDev)
+int RtmpOSIRQRequest(struct net_device *pNetDev)
 {
 	ULONG infType;
 	struct rtmp_adapter *pAd = NULL;

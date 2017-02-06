@@ -310,7 +310,7 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_Init(
-	IN	struct rtmp_adapter *	pAd);
+	struct rtmp_adapter *	pAd);
 
 
 /*
@@ -328,7 +328,7 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_Release(
-	IN	struct rtmp_adapter *	pAd);
+	struct rtmp_adapter *	pAd);
 
 
 /*
@@ -346,7 +346,7 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void RtmpAsicSleepHandle(
-    IN  struct rtmp_adapter *      pAd);
+    struct rtmp_adapter *      pAd);
 
 /*
 ========================================================================
@@ -364,8 +364,8 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_SP_Close(
-    IN  struct rtmp_adapter *      pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry);
+    struct rtmp_adapter *      pAd,
+	MAC_TABLE_ENTRY		*pEntry);
 
 /*
 ========================================================================
@@ -383,8 +383,8 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN bool UAPSD_SP_IsClosed(
-    IN  struct rtmp_adapter *      pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry);
+    struct rtmp_adapter *      pAd,
+	MAC_TABLE_ENTRY		*pEntry);
 
 /*
 ========================================================================
@@ -403,8 +403,8 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_AllPacketDeliver(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry);
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry);
 
 
 /*
@@ -438,10 +438,10 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_AssocParse(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	IN	u8 			*pElm,
-	IN	bool 			FlgApsdCapable);
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	u8 			*pElm,
+	bool 			FlgApsdCapable);
 
 
 /*
@@ -462,10 +462,10 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_PacketEnqueue(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	IN	struct sk_buff *		pPacket,
-	IN	u32				IdAc);
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	struct sk_buff *		pPacket,
+	u32				IdAc);
 
 
 /*
@@ -485,9 +485,9 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_QoSNullTxMgmtTxDoneHandle(
-	IN	struct rtmp_adapter *	pAd,
-	IN	struct sk_buff *		pPacket,
-	IN	u8 			*pDstMac);
+	struct rtmp_adapter *	pAd,
+	struct sk_buff *		pPacket,
+	u8 			*pDstMac);
 
 
 /*
@@ -507,8 +507,8 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_QueueMaintenance(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry);
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry);
 
 
 /*
@@ -535,9 +535,9 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_SP_AUE_Handle(
-	IN struct rtmp_adapter	*pAd,
-    IN MAC_TABLE_ENTRY	*pEntry,
-	IN u8 		FlgSuccess);
+	struct rtmp_adapter	*pAd,
+    MAC_TABLE_ENTRY	*pEntry,
+	u8 		FlgSuccess);
 
 
 /*
@@ -561,7 +561,7 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_SP_CloseInRVDone(
-	IN	struct rtmp_adapter *	pAd);
+	struct rtmp_adapter *	pAd);
 
 
 /*
@@ -583,9 +583,9 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_SP_PacketCheck(
-	IN	struct rtmp_adapter *	pAd,
-	IN	struct sk_buff *		pPacket,
-	IN	u8 			*pDstMac);
+	struct rtmp_adapter *	pAd,
+	struct sk_buff *		pPacket,
+	u8 			*pDstMac);
 
 
 #ifdef UAPSD_TIMING_RECORD_FUNC
@@ -605,7 +605,7 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_TimingRecordCtrl(
-	IN	u32				Flag);
+	u32				Flag);
 
 /*
 ========================================================================
@@ -628,8 +628,8 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_TimingRecord(
-	IN	struct rtmp_adapter *	pAd,
-	IN	u32				Type);
+	struct rtmp_adapter *	pAd,
+	u32				Type);
 
 /*
 ========================================================================
@@ -647,7 +647,7 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_TimeingRecordLoopIndex(
-	IN	u32				LoopIndex);
+	u32				LoopIndex);
 #endif /* UAPSD_TIMING_RECORD_FUNC */
 
 
@@ -671,12 +671,12 @@ Note:
 ========================================================================
 */
 void UAPSD_QueueStatusGet(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	OUT	bool 			*pFlgIsAnyPktForBK,
-	OUT bool 			*pFlgIsAnyPktForBE,
-	OUT bool 			*pFlgIsAnyPktForVI,
-	OUT bool 			*pFlgIsAnyPktForVO);
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	bool 			*pFlgIsAnyPktForBK,
+	bool 			*pFlgIsAnyPktForBE,
+	bool 			*pFlgIsAnyPktForVI,
+	bool 			*pFlgIsAnyPktForVO);
 
 
 /*
@@ -696,9 +696,9 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_TriggerFrameHandle(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	IN	u8 			UpOfFrame);
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	u8 			UpOfFrame);
 
 
 #ifdef RTMP_MAC_USB
@@ -721,10 +721,10 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_TagFrame(
-	IN	struct rtmp_adapter	*pAd,
-	IN	NDIS_PACKET			*pPkt,
-	IN	u8 			Wcid,
-	IN	u32				PktOffset);
+	struct rtmp_adapter	*pAd,
+	NDIS_PACKET			*pPkt,
+	u8 			Wcid,
+	u32				PktOffset);
 
 
 /*
@@ -746,10 +746,10 @@ Note:
 ========================================================================
 */
 UAPSD_EXTERN void UAPSD_UnTagFrame(
-	IN	struct rtmp_adapter*pAd,
-	IN	u8 		AcQueId,
-	IN	u32			bulkStartPos,
-	IN	u32			bulkEnPos);
+	struct rtmp_adapter*pAd,
+	u8 		AcQueId,
+	u32			bulkStartPos,
+	u32			bulkEnPos);
 #endif /* RTMP_MAC_USB */
 
 /* End of ap_uapsd.h */

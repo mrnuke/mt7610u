@@ -159,7 +159,7 @@ typedef	struct __attribute__ ((packed)) _IV_CONTROL_
 	========================================================================
 */
 ULONG	RTMPTkipGetUInt32(
-	IN	u8 *pMICKey)
+	u8 *pMICKey)
 {
 	ULONG	res = 0;
 	INT		i;
@@ -192,8 +192,8 @@ ULONG	RTMPTkipGetUInt32(
 	========================================================================
 */
 void RTMPTkipPutUInt32(
-	IN OUT	u8 *	pDst,
-	IN		ULONG		val)
+	u8 *	pDst,
+	ULONG		val)
 {
 	INT i;
 
@@ -224,8 +224,8 @@ void RTMPTkipPutUInt32(
 	========================================================================
 */
 void RTMPTkipSetMICKey(
-	IN	PTKIP_KEY_INFO	pTkip,
-	IN	u8 *		pMICKey)
+	PTKIP_KEY_INFO	pTkip,
+	u8 *		pMICKey)
 {
 	/* Set the key */
 	pTkip->K0 = RTMPTkipGetUInt32(pMICKey);
@@ -257,8 +257,8 @@ void RTMPTkipSetMICKey(
 	========================================================================
 */
 void RTMPTkipAppendByte(
-	IN	PTKIP_KEY_INFO	pTkip,
-	IN	u8 			uChar)
+	PTKIP_KEY_INFO	pTkip,
+	u8 			uChar)
 {
 	/* Append the byte to our word-sized buffer */
 	pTkip->M |= (uChar << (8* pTkip->nBytesInM));
@@ -302,9 +302,9 @@ void RTMPTkipAppendByte(
 	========================================================================
 */
 void RTMPTkipAppend(
-	IN	PTKIP_KEY_INFO	pTkip,
-	IN	u8 *		pSrc,
-	IN	UINT			nBytes)
+	PTKIP_KEY_INFO	pTkip,
+	u8 *		pSrc,
+	UINT			nBytes)
 {
 	/* This is simple */
 	while(nBytes > 0)
@@ -333,7 +333,7 @@ void RTMPTkipAppend(
 	========================================================================
 */
 void RTMPTkipGetMIC(
-	IN	PTKIP_KEY_INFO	pTkip)
+	PTKIP_KEY_INFO	pTkip)
 {
 	/* Append the minimum padding*/
 	RTMPTkipAppendByte(pTkip, 0x5a );
@@ -374,12 +374,12 @@ void RTMPTkipGetMIC(
 	========================================================================
 */
 void RTMPInitMICEngine(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pKey,
-	IN	u8 *		pDA,
-	IN	u8 *		pSA,
-	IN  u8           UserPriority,
-	IN	u8 *		pMICKey)
+	struct rtmp_adapter *pAd,
+	u8 *		pKey,
+	u8 *		pDA,
+	u8 *		pSA,
+	u8           UserPriority,
+	u8 *		pMICKey)
 {
 	ULONG Priority = UserPriority;
 
@@ -418,13 +418,13 @@ void RTMPInitMICEngine(
 	========================================================================
 */
 bool RTMPTkipCompareMICValue(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 *		pSrc,
-	IN	u8 *		pDA,
-	IN	u8 *		pSA,
-	IN	u8 *		pMICKey,
-	IN	u8 		UserPriority,
-	IN	UINT			Len)
+	struct rtmp_adapter *pAd,
+	u8 *		pSrc,
+	u8 *		pDA,
+	u8 *		pSA,
+	u8 *		pMICKey,
+	u8 		UserPriority,
+	UINT			Len)
 {
 	u8 OldMic[8];
 	ULONG	Priority = UserPriority;
@@ -482,11 +482,11 @@ bool RTMPTkipCompareMICValue(
 	========================================================================
 */
 void RTMPCalculateMICValue(
-	IN	struct rtmp_adapter *pAd,
-	IN	struct sk_buff *	pPacket,
-	IN	u8 *		pEncap,
-	IN	PCIPHER_KEY		pKey,
-	IN	u8 		apidx)
+	struct rtmp_adapter *pAd,
+	struct sk_buff *	pPacket,
+	u8 *		pEncap,
+	PCIPHER_KEY		pKey,
+	u8 		apidx)
 {
 	PACKET_INFO		PacketInfo;
 	u8 *		pSrcBufVA;
@@ -685,12 +685,12 @@ void RTMPTkipMixKey(
 	false: Decrypt Error!
 */
 bool RTMPSoftDecryptTKIP(
-	IN 		struct rtmp_adapter *	pAd,
-	IN 		u8 *		pHdr,
-	IN 		u8    		UserPriority,
-	IN 		PCIPHER_KEY		pKey,
-	INOUT 	u8 *		pData,
-	IN 		UINT16			*DataByteCnt)
+	struct rtmp_adapter *	pAd,
+	u8 *		pHdr,
+	u8    		UserPriority,
+	PCIPHER_KEY		pKey,
+	u8 *		pData,
+	UINT16			*DataByteCnt)
 {
 	PHEADER_802_11	pFrame;
 	u8			frame_type;
@@ -858,11 +858,11 @@ bool RTMPSoftDecryptTKIP(
 	========================================================================
 */
 void TKIP_GTK_KEY_WRAP(
-    IN u8    *key,
-    IN u8 *iv,
-    IN u8    *input_text,
-    IN u32    input_len,
-    OUT u8   *output_text)
+    u8    *key,
+    u8 *iv,
+    u8    *input_text,
+    u32    input_len,
+    u8   *output_text)
 {
 	u8 ekey[LEN_KEY_DESC_IV + LEN_PTK_KEK];
 /*	ARC4_CTX_STRUC ARC4_CTX;*/
@@ -896,11 +896,11 @@ void TKIP_GTK_KEY_WRAP(
 }
 
 void TKIP_GTK_KEY_UNWRAP(
-    IN u8    *key,
-    IN u8 *iv,
-    IN u8    *input_text,
-    IN u32    input_len,
-    OUT u8   *output_text)
+    u8    *key,
+    u8 *iv,
+    u8    *input_text,
+    u32    input_len,
+    u8   *output_text)
 {
 	TKIP_GTK_KEY_WRAP(key, iv, input_text, input_len, output_text);
 }

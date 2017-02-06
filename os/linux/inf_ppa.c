@@ -32,8 +32,8 @@
 #include <linux/netdevice.h>
 
 extern INT rt28xx_send_packets(
-	IN struct sk_buff		*skb_p,
-	IN struct net_device	*net_dev);
+	struct sk_buff		*skb_p,
+	struct net_device	*net_dev);
 
 int ifx_ra_start_xmit(
 	struct net_device *rx_dev,

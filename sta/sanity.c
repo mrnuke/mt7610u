@@ -45,11 +45,11 @@ extern u8 BROADCOM_OUI[];
     ==========================================================================
  */
 bool MlmeStartReqSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *Msg,
-	IN ULONG MsgLen,
-	OUT CHAR Ssid[],
-	OUT u8 *pSsidLen)
+	struct rtmp_adapter *pAd,
+	void *Msg,
+	ULONG MsgLen,
+	CHAR Ssid[],
+	u8 *pSsidLen)
 {
 	MLME_START_REQ_STRUCT *Info;
 
@@ -79,26 +79,26 @@ bool MlmeStartReqSanity(
     ==========================================================================
  */
 bool PeerAssocRspSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *pMsg,
-	IN ULONG MsgLen,
-	OUT u8 *pAddr2,
-	OUT USHORT *pCapabilityInfo,
-	OUT USHORT *pStatus,
-	OUT USHORT *pAid,
-	OUT u8 SupRate[],
-	OUT u8 *pSupRateLen,
-	OUT u8 ExtRate[],
-	OUT u8 *pExtRateLen,
-	OUT HT_CAPABILITY_IE *pHtCapability,
-	OUT ADD_HT_INFO_IE *pAddHtInfo,	/* AP might use this additional ht info IE */
-	OUT u8 *pHtCapabilityLen,
-	OUT u8 *pAddHtInfoLen,
-	OUT u8 *pNewExtChannelOffset,
-	OUT PEDCA_PARM pEdcaParm,
-	OUT EXT_CAP_INFO_ELEMENT *pExtCapInfo,
-	OUT u8 *pCkipFlag,
-	OUT IE_LISTS *ie_list)
+	struct rtmp_adapter *pAd,
+	void *pMsg,
+	ULONG MsgLen,
+	u8 *pAddr2,
+	USHORT *pCapabilityInfo,
+	USHORT *pStatus,
+	USHORT *pAid,
+	u8 SupRate[],
+	u8 *pSupRateLen,
+	u8 ExtRate[],
+	u8 *pExtRateLen,
+	HT_CAPABILITY_IE *pHtCapability,
+	ADD_HT_INFO_IE *pAddHtInfo,	/* AP might use this additional ht info IE */
+	u8 *pHtCapabilityLen,
+	u8 *pAddHtInfoLen,
+	u8 *pNewExtChannelOffset,
+	PEDCA_PARM pEdcaParm,
+	EXT_CAP_INFO_ELEMENT *pExtCapInfo,
+	u8 *pCkipFlag,
+	IE_LISTS *ie_list)
 {
 	CHAR IeType, *Ptr;
 	PFRAME_802_11 pFrame = (PFRAME_802_11) pMsg;
@@ -285,13 +285,13 @@ bool PeerAssocRspSanity(
     ==========================================================================
  */
 bool GetTimBit(
-	IN CHAR *Ptr,
-	IN USHORT Aid,
-	OUT u8 *TimLen,
-	OUT u8 *BcastFlag,
-	OUT u8 *DtimCount,
-	OUT u8 *DtimPeriod,
-	OUT u8 *MessageToMe)
+	CHAR *Ptr,
+	USHORT Aid,
+	u8 *TimLen,
+	u8 *BcastFlag,
+	u8 *DtimCount,
+	u8 *DtimPeriod,
+	u8 *MessageToMe)
 {
 	u8 BitCntl, N1, N2, MyByte, MyBit;
 	CHAR *IdxPtr;

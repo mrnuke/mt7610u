@@ -49,7 +49,7 @@
 	==========================================================================
  */
 void MlmeDynamicTxRateSwitching(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 *				pTable;
 	u8 				TableSize = 0;
@@ -433,10 +433,10 @@ void MlmeDynamicTxRateSwitching(
 	========================================================================
 */
 void StaQuickResponeForRateUpExec(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter *		pAd = (struct rtmp_adapter *)FunctionContext;
 	ULONG					i;
@@ -681,14 +681,14 @@ void StaQuickResponeForRateUpExec(
 			pEntry->TxQuality is updated
 */
 void MlmeOldRateAdapt(
-	IN struct rtmp_adapter *	pAd,
-	IN PMAC_TABLE_ENTRY	pEntry,
-	IN u8 		CurrRateIdx,
-	IN u8 		UpRateIdx,
-	IN u8 		DownRateIdx,
-	IN ULONG			TrainUp,
-	IN ULONG			TrainDown,
-	IN ULONG			TxErrorRatio)
+	struct rtmp_adapter *	pAd,
+	PMAC_TABLE_ENTRY	pEntry,
+	u8 		CurrRateIdx,
+	u8 		UpRateIdx,
+	u8 		DownRateIdx,
+	ULONG			TrainUp,
+	ULONG			TrainDown,
+	ULONG			TxErrorRatio)
 {
 	bool bTrainUp = false;
 

@@ -42,9 +42,9 @@
 	==========================================================================
  */
 void SyncStateMachineInit(
-	IN struct rtmp_adapter *pAd,
-	IN STATE_MACHINE *Sm,
-	OUT STATE_MACHINE_FUNC Trans[])
+	struct rtmp_adapter *pAd,
+	STATE_MACHINE *Sm,
+	STATE_MACHINE_FUNC Trans[])
 {
 	StateMachineInit(Sm, Trans, MAX_SYNC_STATE, MAX_SYNC_MSG, (STATE_MACHINE_FUNC)Drop, SYNC_IDLE, SYNC_MACHINE_BASE);
 
@@ -91,10 +91,10 @@ void SyncStateMachineInit(
 	==========================================================================
  */
 void BeaconTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*)FunctionContext;
 
@@ -134,10 +134,10 @@ void BeaconTimeout(
 	==========================================================================
  */
 void ScanTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*)FunctionContext;
 
@@ -163,8 +163,8 @@ void ScanTimeout(
 
 
 void MlmeForceJoinReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	bool        TimerCancelled;
 	HEADER_802_11 Hdr80211;
@@ -285,8 +285,8 @@ void MlmeForceJoinReqAction(
 
 
 void MlmeForceScanReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8          Ssid[MAX_LEN_OF_SSID], SsidLen, ScanType, BssType;
 	bool        TimerCancelled;
@@ -407,8 +407,8 @@ void MlmeForceScanReqAction(
 	==========================================================================
  */
 void MlmeScanReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8          Ssid[MAX_LEN_OF_SSID], SsidLen, ScanType, BssType;
 	bool        TimerCancelled;
@@ -526,8 +526,8 @@ void MlmeScanReqAction(
 	==========================================================================
  */
 void MlmeJoinReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	BSS_ENTRY    *pBss;
 	bool       TimerCancelled;
@@ -698,8 +698,8 @@ void MlmeJoinReqAction(
 	==========================================================================
  */
 void MlmeStartReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 Ssid[MAX_LEN_OF_SSID], SsidLen;
 	bool TimerCancelled;
@@ -1129,8 +1129,8 @@ LabelOK:
 	==========================================================================
  */
 void PeerBeaconAtScanAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	PFRAME_802_11 pFrame;
 	USHORT LenVIE;
@@ -1275,8 +1275,8 @@ LabelOK:
 	==========================================================================
  */
 void PeerBeaconAtJoinAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	bool TimerCancelled;
 	USHORT LenVIE;
@@ -1637,8 +1637,8 @@ LabelOK:
 	==========================================================================
  */
 void PeerBeacon(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 index=0;
 	USHORT TbttNumToNextWakeUp;
@@ -2313,8 +2313,8 @@ LabelOK:
 	==========================================================================
  */
 void PeerProbeReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8         Addr2[ETH_ALEN];
 	CHAR          Ssid[MAX_LEN_OF_SSID];
@@ -2443,8 +2443,8 @@ void PeerProbeReqAction(
 }
 
 void BeaconTimeoutAtJoinAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("SYNC - BeaconTimeoutAtJoinAction\n"));
@@ -2460,8 +2460,8 @@ void BeaconTimeoutAtJoinAction(
 	==========================================================================
  */
 void ScanTimeoutAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 
 #ifdef RTMP_MAC_USB
@@ -2510,8 +2510,8 @@ void ScanTimeoutAction(
 	==========================================================================
  */
 void InvalidStateWhenScan(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 
@@ -2534,8 +2534,8 @@ void InvalidStateWhenScan(
 	==========================================================================
  */
 void InvalidStateWhenJoin(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("InvalidStateWhenJoin(state=%ld, msg=%ld). Reset SYNC machine\n",
@@ -2556,8 +2556,8 @@ void InvalidStateWhenJoin(
 	==========================================================================
  */
 void InvalidStateWhenStart(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("InvalidStateWhenStart(state=%ld). Reset SYNC machine\n", pAd->Mlme.SyncMachine.CurrState));
@@ -2575,7 +2575,7 @@ void InvalidStateWhenStart(
 	==========================================================================
  */
 void EnqueuePsPoll(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	if (pAd->StaCfg.WindowsPowerMode == Ndis802_11PowerModeLegacy_PSP)
     	pAd->PsPollFrame.FC.PwrMgmt = PWR_SAVE;
@@ -2595,7 +2595,7 @@ void EnqueuePsPoll(
 	==========================================================================
  */
 void EnqueueProbeRequest(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 *         pOutBuffer;
 	ULONG           FrameLen = 0;
@@ -2629,7 +2629,7 @@ void EnqueueProbeRequest(
 #ifdef DOT11_N_SUPPORT
 #ifdef DOT11N_DRAFT3
 void BuildEffectedChannelList(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 	EChannel[11];
 	u8 	i, j, k;
@@ -2732,7 +2732,7 @@ void BuildEffectedChannelList(
 
 
 void DeleteEffectedChannelList(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 	i;
 	/*Clear all bEffectedChannel in ChannelList array. */
@@ -2764,11 +2764,11 @@ void DeleteEffectedChannelList(
 	========================================================================
 */
 void CntlChannelWidth(
-	IN struct rtmp_adapter *pAd,
-	IN u8 prim_ch,
-	IN u8 cent_ch,
-	IN u8 ch_bw,
-	IN u8 sec_ch_offset)
+	struct rtmp_adapter *pAd,
+	u8 prim_ch,
+	u8 cent_ch,
+	u8 ch_bw,
+	u8 sec_ch_offset)
 {
 	u8 rf_channel = 0, rf_bw;
 	INT32 ext_ch;
@@ -2829,8 +2829,8 @@ void CntlChannelWidth(
     ==========================================================================
  */
 void ScanCnclAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	bool Cancelled;
 

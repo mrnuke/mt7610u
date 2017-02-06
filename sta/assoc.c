@@ -63,9 +63,9 @@ u8 CipherWpa2Template[] = {
 	==========================================================================
  */
 void AssocStateMachineInit(
-	IN struct rtmp_adapter *pAd,
-	IN STATE_MACHINE *S,
-	OUT STATE_MACHINE_FUNC Trans[])
+	struct rtmp_adapter *pAd,
+	STATE_MACHINE *S,
+	STATE_MACHINE_FUNC Trans[])
 {
 	StateMachineInit(S, Trans, MAX_ASSOC_STATE, MAX_ASSOC_MSG,
 			 (STATE_MACHINE_FUNC) Drop, ASSOC_IDLE,
@@ -157,10 +157,10 @@ void AssocStateMachineInit(
 	==========================================================================
  */
 void AssocTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*) FunctionContext;
 
@@ -186,10 +186,10 @@ void AssocTimeout(
 	==========================================================================
  */
 void ReassocTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*) FunctionContext;
 
@@ -215,10 +215,10 @@ void ReassocTimeout(
 	==========================================================================
  */
 void DisassocTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*) FunctionContext;
 
@@ -254,8 +254,8 @@ void DisassocTimeout(
 	==========================================================================
  */
 void MlmeAssocReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 ApAddr[6];
 	HEADER_802_11 AssocHdr;
@@ -668,8 +668,8 @@ void MlmeAssocReqAction(
 	==========================================================================
  */
 void MlmeReassocReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM * Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM * Elem)
 {
 	u8 ApAddr[6];
 	HEADER_802_11 ReassocHdr;
@@ -895,8 +895,8 @@ void MlmeReassocReqAction(
 	==========================================================================
  */
 void MlmeDisassocReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	PMLME_DISASSOC_REQ_STRUCT pDisassocReq;
 	HEADER_802_11 DisassocHdr;
@@ -1011,8 +1011,8 @@ void MlmeDisassocReqAction(
 	==========================================================================
  */
 void PeerAssocRspAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT CapabilityInfo, Status, Aid;
 	u8 SupRate[MAX_LEN_OF_SUPPORTED_RATES], SupRateLen;
@@ -1157,8 +1157,8 @@ void PeerAssocRspAction(
 	==========================================================================
  */
 void PeerReassocRspAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT CapabilityInfo;
 	USHORT Status;
@@ -1309,19 +1309,19 @@ void PeerReassocRspAction(
 	==========================================================================
  */
 void AssocPostProc(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pAddr2,
-	IN USHORT CapabilityInfo,
-	IN USHORT Aid,
-	IN u8 SupRate[],
-	IN u8 SupRateLen,
-	IN u8 ExtRate[],
-	IN u8 ExtRateLen,
-	IN PEDCA_PARM pEdcaParm,
-	IN IE_LISTS *ie_list,
-	IN HT_CAPABILITY_IE *pHtCapability,
-	IN u8 HtCapabilityLen,
-	IN ADD_HT_INFO_IE *pAddHtInfo)
+	struct rtmp_adapter *pAd,
+	u8 *pAddr2,
+	USHORT CapabilityInfo,
+	USHORT Aid,
+	u8 SupRate[],
+	u8 SupRateLen,
+	u8 ExtRate[],
+	u8 ExtRateLen,
+	PEDCA_PARM pEdcaParm,
+	IE_LISTS *ie_list,
+	HT_CAPABILITY_IE *pHtCapability,
+	u8 HtCapabilityLen,
+	ADD_HT_INFO_IE *pAddHtInfo)
 {				/* AP might use this additional ht info IE */
 	ULONG Idx;
 
@@ -1471,8 +1471,8 @@ void AssocPostProc(
 	==========================================================================
  */
 void PeerDisassocAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 Addr2[ETH_ALEN];
 	USHORT Reason;
@@ -1545,8 +1545,8 @@ void PeerDisassocAction(
 	==========================================================================
  */
 void AssocTimeoutAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("ASSOC - AssocTimeoutAction\n"));
@@ -1566,8 +1566,8 @@ void AssocTimeoutAction(
 	==========================================================================
  */
 void ReassocTimeoutAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("ASSOC - ReassocTimeoutAction\n"));
@@ -1587,8 +1587,8 @@ void ReassocTimeoutAction(
 	==========================================================================
  */
 void DisassocTimeoutAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("ASSOC - DisassocTimeoutAction\n"));
@@ -1599,8 +1599,8 @@ void DisassocTimeoutAction(
 }
 
 void InvalidStateWhenAssoc(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE,
@@ -1613,8 +1613,8 @@ void InvalidStateWhenAssoc(
 }
 
 void InvalidStateWhenReassoc(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE,
@@ -1627,8 +1627,8 @@ void InvalidStateWhenReassoc(
 }
 
 void InvalidStateWhenDisassociate(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE,
@@ -1654,8 +1654,8 @@ void InvalidStateWhenDisassociate(
 	==========================================================================
  */
 void Cls3errAction(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pAddr)
+	struct rtmp_adapter *pAd,
+	u8 *pAddr)
 {
 	HEADER_802_11 DisassocHdr;
 	PHEADER_802_11 pDisassocHdr;
@@ -1691,15 +1691,15 @@ void Cls3errAction(
 
 
 bool StaAddMacTableEntry(
-	IN struct rtmp_adapter *pAd,
-	IN PMAC_TABLE_ENTRY pEntry,
-	IN u8 MaxSupportedRateIn500Kbps,
-	IN HT_CAPABILITY_IE *pHtCapability,
-	IN u8 HtCapabilityLen,
-	IN ADD_HT_INFO_IE *pAddHtInfo,
-	IN u8 AddHtInfoLen,
-	IN IE_LISTS *ie_list,
-	IN USHORT CapabilityInfo)
+	struct rtmp_adapter *pAd,
+	PMAC_TABLE_ENTRY pEntry,
+	u8 MaxSupportedRateIn500Kbps,
+	HT_CAPABILITY_IE *pHtCapability,
+	u8 HtCapabilityLen,
+	ADD_HT_INFO_IE *pAddHtInfo,
+	u8 AddHtInfoLen,
+	IE_LISTS *ie_list,
+	USHORT CapabilityInfo)
 {
 	u8 MaxSupportedRate = RATE_11;
 	bool bSupportN = false;

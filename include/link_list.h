@@ -41,7 +41,7 @@ typedef struct _LIST_HEADR
 } LIST_HEADER, *PLIST_HEADER;
 
 static inline void initList(
-	IN PLIST_HEADER pList)
+	PLIST_HEADER pList)
 {
 	pList->pHead = pList->pTail = NULL;
 	pList->size = 0;
@@ -49,8 +49,8 @@ static inline void initList(
 }
 
 static inline void insertTailList(
-	IN PLIST_HEADER pList,
-	IN PLIST_ENTRY pEntry)
+	PLIST_HEADER pList,
+	PLIST_ENTRY pEntry)
 {
 	pEntry->pNext = NULL;
 	if (pList->pTail)
@@ -64,7 +64,7 @@ static inline void insertTailList(
 }
 
 static inline PLIST_ENTRY removeHeadList(
-	IN PLIST_HEADER pList)
+	PLIST_HEADER pList)
 {
 	PLIST_ENTRY pNext;
 	PLIST_ENTRY pEntry;
@@ -82,14 +82,14 @@ static inline PLIST_ENTRY removeHeadList(
 }
 
 static inline int getListSize(
-	IN PLIST_HEADER pList)
+	PLIST_HEADER pList)
 {
 	return pList->size;
 }
 
 static inline PLIST_ENTRY delEntryList(
-	IN PLIST_HEADER pList,
-	IN PLIST_ENTRY pEntry)
+	PLIST_HEADER pList,
+	PLIST_ENTRY pEntry)
 {
 	PLIST_ENTRY pCurEntry;
 	PLIST_ENTRY pPrvEntry;

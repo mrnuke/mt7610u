@@ -106,10 +106,10 @@ Note:
 ========================================================================
 */
 void RtmpChipWriteMemory(
-	IN	struct rtmp_adapter*pAd,
-	IN	USHORT			Offset,
-	IN	u32			Value,
-	IN	u8			Unit)
+	struct rtmp_adapter*pAd,
+	USHORT			Offset,
+	u32			Value,
+	u8			Unit)
 {
 	switch(Unit)
 	{
@@ -127,7 +127,7 @@ void RtmpChipWriteMemory(
 }
 
 INT WaitForAsicReady(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 	u32 mac_val = 0, reg = MAC_CSR0;
 	int idx = 0;

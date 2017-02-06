@@ -77,7 +77,7 @@ Note:
 ========================================================================
 */
 void UAPSD_Init(
-	IN	struct rtmp_adapter *	pAd)
+	struct rtmp_adapter *	pAd)
 {
     /* allocate a lock resource for SMP environment */
 	spin_lock_init(pAd, &pAd->UAPSDEOSPLock);
@@ -118,7 +118,7 @@ Note:
 ========================================================================
 */
 void UAPSD_Release(
-    IN  struct rtmp_adapter *      pAd)
+    struct rtmp_adapter *      pAd)
 {
 #ifdef UAPSD_DEBUG
 	DBGPRINT(RT_DEBUG_TRACE, ("uapsd> release a spinlock!\n"));
@@ -140,7 +140,7 @@ Note:
 ========================================================================
 */
 void RtmpAsicSleepHandle(
-    IN  struct rtmp_adapter *      pAd)
+    struct rtmp_adapter *      pAd)
 {
 	bool FlgCanAsicSleep = true;
 
@@ -174,8 +174,8 @@ Note:
 ========================================================================
 */
 void UAPSD_SP_Close(
-    IN  struct rtmp_adapter *      pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry)
+    struct rtmp_adapter *      pAd,
+	MAC_TABLE_ENTRY		*pEntry)
 {
 	if ((pEntry != NULL) && (pEntry->PsMode == PWR_SAVE))
 	{
@@ -239,8 +239,8 @@ Note:
 ========================================================================
 */
 bool UAPSD_SP_IsClosed(
-    IN  struct rtmp_adapter *      pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry)
+    struct rtmp_adapter *      pAd,
+	MAC_TABLE_ENTRY		*pEntry)
 {
 	bool FlgIsSpClosed = true;
 
@@ -273,8 +273,8 @@ Note:
 ========================================================================
 */
 void UAPSD_AllPacketDeliver(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry)
 {
 	QUEUE_HEADER *pQueApsd;
 	PQUEUE_ENTRY pQueEntry;
@@ -353,10 +353,10 @@ Note:
 ========================================================================
 */
 void UAPSD_AssocParse(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	IN	u8 			*pElm,
-	IN	bool 			FlgApsdCapable)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	u8 			*pElm,
+	bool 			FlgApsdCapable)
 {
 	PQBSS_STA_INFO_PARM  pQosInfo;
 	u8 UAPSD[4];
@@ -448,10 +448,10 @@ Note:
 ========================================================================
 */
 void UAPSD_PacketEnqueue(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	IN	struct sk_buff *		pPacket,
-	IN	u32				IdAc)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	struct sk_buff *		pPacket,
+	u32				IdAc)
 {
 	/*
 		1. the STATION is UAPSD STATION;
@@ -527,8 +527,8 @@ Note:
 ========================================================================
 */
 void UAPSD_QueueMaintenance(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry)
 {
 	QUEUE_HEADER *pQue;
 	u32 IdAc;
@@ -665,9 +665,9 @@ Note:
 ========================================================================
 */
 void UAPSD_SP_AUE_Handle(
-	IN struct rtmp_adapter	*pAd,
-    IN MAC_TABLE_ENTRY	*pEntry,
-	IN u8 		FlgSuccess)
+	struct rtmp_adapter	*pAd,
+    MAC_TABLE_ENTRY	*pEntry,
+	u8 		FlgSuccess)
 {
 #ifdef UAPSD_SP_ACCURATE
 	USHORT QueId;
@@ -855,7 +855,7 @@ Note:
 ========================================================================
 */
 void UAPSD_SP_CloseInRVDone(
-	IN	struct rtmp_adapter *	pAd)
+	struct rtmp_adapter *	pAd)
 {
 	u32 IdEntry;
 	int		FirstWcid = 0;
@@ -922,7 +922,7 @@ Note:
 ========================================================================
 */
 void UAPSD_TimingRecordCtrl(
-	IN	u32				Flag)
+	u32				Flag)
 {
 	if (gUAPSD_TimingFlag == UAPSD_TIMING_CTRL_SUSPEND)
 		return;
@@ -953,8 +953,8 @@ Note:
 ========================================================================
 */
 void UAPSD_TimingRecord(
-	IN	struct rtmp_adapter *	pAd,
-	IN	u32				Type)
+	struct rtmp_adapter *	pAd,
+	u32				Type)
 {
 	u32 Index;
 
@@ -1068,7 +1068,7 @@ Note:
 ========================================================================
 */
 void UAPSD_TimeingRecordLoopIndex(
-	IN	u32				LoopIndex)
+	u32				LoopIndex)
 {
 	gUAPSD_TimingLoopIndex = LoopIndex;
 } /* End of UAPSD_TimeingRecordLoopIndex */
@@ -1093,8 +1093,8 @@ Note:
 ========================================================================
 */
 bool UAPSD_PsPollHandle(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry)
 {
 	QUEUE_HEADER	*pAcPsQue;
 	QUEUE_HEADER	*pAcSwQue;
@@ -1248,12 +1248,12 @@ Note:
 ========================================================================
 */
 void UAPSD_QueueStatusGet(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	OUT	bool 			*pFlgIsAnyPktForBK,
-	OUT bool 			*pFlgIsAnyPktForBE,
-	OUT bool 			*pFlgIsAnyPktForVI,
-	OUT bool 			*pFlgIsAnyPktForVO)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	bool 			*pFlgIsAnyPktForBK,
+	bool 			*pFlgIsAnyPktForBE,
+	bool 			*pFlgIsAnyPktForVI,
+	bool 			*pFlgIsAnyPktForVO)
 {
 	/* init */
 	*pFlgIsAnyPktForBK = false;
@@ -1295,9 +1295,9 @@ Note:
 ========================================================================
 */
 void UAPSD_TriggerFrameHandle(
-	IN	struct rtmp_adapter *	pAd,
-	IN	MAC_TABLE_ENTRY		*pEntry,
-	IN	u8 			UpOfFrame)
+	struct rtmp_adapter *	pAd,
+	MAC_TABLE_ENTRY		*pEntry,
+	u8 			UpOfFrame)
 {
 	QUEUE_HEADER	*pAcPsQue;
 	QUEUE_HEADER	*pAcSwQue, *pLastAcSwQue;
@@ -1792,10 +1792,10 @@ Note:
 ========================================================================
 */
 void UAPSD_TagFrame(
-	IN	struct rtmp_adapter	*pAd,
-	IN	NDIS_PACKET			*pPkt,
-	IN	u8 			Wcid,
-	IN	u32				PktOffset)
+	struct rtmp_adapter	*pAd,
+	NDIS_PACKET			*pPkt,
+	u8 			Wcid,
+	u32				PktOffset)
 {
 	MAC_TABLE_ENTRY *pEntry;
 	u8 AcQueId;
@@ -1847,10 +1847,10 @@ Note:
 ========================================================================
 */
 void UAPSD_UnTagFrame(
-	IN	struct rtmp_adapter*pAd,
-	IN	u8 		AcQueId,
-	IN	u32			bulkStartPos,
-	IN	u32			bulkEnPos)
+	struct rtmp_adapter*pAd,
+	u8 		AcQueId,
+	u32			bulkStartPos,
+	u32			bulkEnPos)
 {
 	MAC_TABLE_ENTRY *pEntry;
 	u32 IdEntry;

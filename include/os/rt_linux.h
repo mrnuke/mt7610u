@@ -117,9 +117,6 @@ extern	const struct iw_handler_def rt28xx_iw_handler_def;
  ***********************************************************************************/
 #undef __inline
 #define __inline		static inline
-#define IN
-#define OUT
-#define INOUT
 
 
 /***********************************************************************************
@@ -154,7 +151,7 @@ typedef int (*HARD_START_XMIT_FUNC)(struct sk_buff *skb, struct net_device *net_
 
 /* This function will be called when query /proc */
 struct iw_statistics *rt28xx_get_wireless_stats(
-    IN struct net_device *net_dev);
+    struct net_device *net_dev);
 
 
 /***********************************************************************************
@@ -568,22 +565,22 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 /*
  * ULONG
  * RTMP_GetPhysicalAddressLow(
- *   IN NDIS_PHYSICAL_ADDRESS  PhysicalAddress);
+ *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress);
  */
 #define RTMP_GetPhysicalAddressLow(PhysicalAddress)		(PhysicalAddress)
 
 /*
  * ULONG
  * RTMP_GetPhysicalAddressHigh(
- *   IN NDIS_PHYSICAL_ADDRESS  PhysicalAddress);
+ *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress);
  */
 #define RTMP_GetPhysicalAddressHigh(PhysicalAddress)		(0)
 
 /*
  * VOID
  * RTMP_SetPhysicalAddressLow(
- *   IN NDIS_PHYSICAL_ADDRESS  PhysicalAddress,
- *   IN ULONG  Value);
+ *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress,
+ *   ULONG  Value);
  */
 #define RTMP_SetPhysicalAddressLow(PhysicalAddress, Value)	\
 			PhysicalAddress = Value;
@@ -591,8 +588,8 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 /*
  * VOID
  * RTMP_SetPhysicalAddressHigh(
- *   IN NDIS_PHYSICAL_ADDRESS  PhysicalAddress,
- *   IN ULONG  Value);
+ *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress,
+ *   ULONG  Value);
  */
 #define RTMP_SetPhysicalAddressHigh(PhysicalAddress, Value)
 
@@ -918,9 +915,9 @@ int rt28xx_packet_xmit(void *skb);
 
 
 INT rt28xx_ioctl(
-	IN	struct net_device *	net_dev,
-	IN	OUT	struct ifreq	*rq,
-	IN	INT			cmd);
+	struct net_device *	net_dev,
+	struct ifreq	*rq,
+	INT			cmd);
 
 extern int ra_mtd_write(int num, loff_t to, size_t len, const u_char *buf);
 extern int ra_mtd_read(int num, loff_t from, size_t len, u_char *buf);
@@ -1053,7 +1050,7 @@ USBHST_STATUS RTUSBBulkCmdRspEventComplete(URBCompleteStatus Status, struct urb 
 /*#endif // RTMP_USB_SUPPORT */
 
 INT RtmpOSNetDevOpsAlloc(
-	IN void **pNetDevOps);
+	void **pNetDevOps);
 
 #define RTMP_OS_MAX_SCAN_DATA_GET()		IW_SCAN_MAX_DATA
 

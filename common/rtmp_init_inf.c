@@ -428,8 +428,8 @@ void RTMPDrvSTAOpen(struct rtmp_adapter *pAd)
 }
 
 void RTMPDrvSTAClose(
-	IN struct rtmp_adapter *pAd,
-	IN struct net_device *net_dev)
+	struct rtmp_adapter *pAd,
+	struct net_device *net_dev)
 {
 	bool Cancelled;
 	u32 i = 0;

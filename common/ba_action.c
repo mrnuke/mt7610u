@@ -47,24 +47,24 @@ static void ba_mpdu_blk_free(struct rtmp_adapter *pAd, struct reordering_mpdu *m
 
 
 BA_ORI_ENTRY *BATableAllocOriEntry(
-								  IN  struct rtmp_adapter *  pAd,
-								  OUT USHORT          *Idx);
+								  struct rtmp_adapter *  pAd,
+								  USHORT          *Idx);
 
 BA_REC_ENTRY *BATableAllocRecEntry(
-								  IN  struct rtmp_adapter *  pAd,
-								  OUT USHORT          *Idx);
+								  struct rtmp_adapter *  pAd,
+								  USHORT          *Idx);
 
 void BAOriSessionSetupTimeout(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3);
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3);
 
 void BARecSessionIdleTimeout(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3);
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3);
 
 
 BUILD_TIMER_FUNCTION(BAOriSessionSetupTimeout);
@@ -74,9 +74,9 @@ BUILD_TIMER_FUNCTION(BARecSessionIdleTimeout);
 			Announce_Reordering_Packet(_pAd, _mpdu_blk);
 
 void BA_MaxWinSizeReasign(
-	IN struct rtmp_adapter *pAd,
-	IN MAC_TABLE_ENTRY  *pEntryPeer,
-	OUT u8 		*pWinSize)
+	struct rtmp_adapter *pAd,
+	MAC_TABLE_ENTRY  *pEntryPeer,
+	u8 		*pWinSize)
 {
 	u8 MaxSize;
 	u8 MaxPeerRxSize;
@@ -132,8 +132,8 @@ void BA_MaxWinSizeReasign(
 	}
 }
 
-void Announce_Reordering_Packet(IN struct rtmp_adapter *		pAd,
-								IN struct reordering_mpdu	*mpdu)
+void Announce_Reordering_Packet(struct rtmp_adapter *		pAd,
+								struct reordering_mpdu	*mpdu)
 {
 	struct sk_buff *    pPacket;
 
@@ -351,9 +351,9 @@ static void ba_mpdu_blk_free(struct rtmp_adapter *pAd, struct reordering_mpdu *m
 
 
 static USHORT ba_indicate_reordering_mpdus_in_order(
-												   IN struct rtmp_adapter *   pAd,
-												   IN PBA_REC_ENTRY    pBAEntry,
-												   IN USHORT           StartSeq)
+												   struct rtmp_adapter *   pAd,
+												   PBA_REC_ENTRY    pBAEntry,
+												   USHORT           StartSeq)
 {
 	struct reordering_mpdu *mpdu_blk;
 	USHORT  LastIndSeq = RESET_RCV_SEQ;
@@ -385,9 +385,9 @@ static USHORT ba_indicate_reordering_mpdus_in_order(
 }
 
 static void ba_indicate_reordering_mpdus_le_seq(
-											   IN struct rtmp_adapter *   pAd,
-											   IN PBA_REC_ENTRY    pBAEntry,
-											   IN USHORT           Sequence)
+											   struct rtmp_adapter *   pAd,
+											   PBA_REC_ENTRY    pBAEntry,
+											   USHORT           Sequence)
 {
 	struct reordering_mpdu *mpdu_blk;
 
@@ -414,7 +414,7 @@ static void ba_indicate_reordering_mpdus_le_seq(
 
 
 static void ba_refresh_reordering_mpdus(
-									   IN struct rtmp_adapter *   pAd,
+									   struct rtmp_adapter *   pAd,
 									   PBA_REC_ENTRY       pBAEntry)
 {
 	struct reordering_mpdu *mpdu_blk;
@@ -440,9 +440,9 @@ static void ba_refresh_reordering_mpdus(
 
 /* static */
 void ba_flush_reordering_timeout_mpdus(
-									IN struct rtmp_adapter *   pAd,
-									IN PBA_REC_ENTRY    pBAEntry,
-									IN ULONG            Now32)
+									struct rtmp_adapter *   pAd,
+									PBA_REC_ENTRY    pBAEntry,
+									ULONG            Now32)
 
 {
 	USHORT Sequence;
@@ -499,12 +499,12 @@ void ba_flush_reordering_timeout_mpdus(
  * set up BA agreement
  */
 void BAOriSessionSetUp(
-					  IN struct rtmp_adapter *   pAd,
-					  IN MAC_TABLE_ENTRY  *pEntry,
-					  IN u8            TID,
-					  IN USHORT           TimeOut,
-					  IN ULONG            DelayTime,
-					  IN bool          isForced)
+					  struct rtmp_adapter *   pAd,
+					  MAC_TABLE_ENTRY  *pEntry,
+					  u8            TID,
+					  USHORT           TimeOut,
+					  ULONG            DelayTime,
+					  bool          isForced)
 
 {
 	/*MLME_ADDBA_REQ_STRUCT	AddbaReq;*/
@@ -580,9 +580,9 @@ void BAOriSessionSetUp(
 }
 
 void BAOriSessionAdd(
-			IN struct rtmp_adapter *   pAd,
-					IN MAC_TABLE_ENTRY  *pEntry,
-			IN PFRAME_ADDBA_RSP pFrame)
+			struct rtmp_adapter *   pAd,
+					MAC_TABLE_ENTRY  *pEntry,
+			PFRAME_ADDBA_RSP pFrame)
 {
 	BA_ORI_ENTRY  *pBAEntry = NULL;
 	bool       Cancelled;
@@ -656,9 +656,9 @@ void BAOriSessionAdd(
 }
 
 bool BARecSessionAdd(
-					   IN struct rtmp_adapter *   pAd,
-					   IN MAC_TABLE_ENTRY  *pEntry,
-					   IN PFRAME_ADDBA_REQ pFrame)
+					   struct rtmp_adapter *   pAd,
+					   MAC_TABLE_ENTRY  *pEntry,
+					   PFRAME_ADDBA_REQ pFrame)
 {
 	BA_REC_ENTRY            *pBAEntry = NULL;
 	bool                 Status = true;
@@ -751,8 +751,8 @@ bool BARecSessionAdd(
 
 
 BA_REC_ENTRY *BATableAllocRecEntry(
-								  IN  struct rtmp_adapter *  pAd,
-								  OUT USHORT          *Idx)
+								  struct rtmp_adapter *  pAd,
+								  USHORT          *Idx)
 {
 	int             i;
 	BA_REC_ENTRY    *pBAEntry = NULL;
@@ -787,8 +787,8 @@ done:
 }
 
 BA_ORI_ENTRY *BATableAllocOriEntry(
-								  IN  struct rtmp_adapter *  pAd,
-								  OUT USHORT          *Idx)
+								  struct rtmp_adapter *  pAd,
+								  USHORT          *Idx)
 {
 	int             i;
 	BA_ORI_ENTRY    *pBAEntry = NULL;
@@ -822,8 +822,8 @@ done:
 
 
 void BATableFreeOriEntry(
-						IN  struct rtmp_adapter *  pAd,
-						IN  ULONG           Idx)
+						struct rtmp_adapter *  pAd,
+						ULONG           Idx)
 {
 	BA_ORI_ENTRY    *pBAEntry = NULL;
 	MAC_TABLE_ENTRY *pEntry;
@@ -862,8 +862,8 @@ void BATableFreeOriEntry(
 
 
 void BATableFreeRecEntry(
-						IN  struct rtmp_adapter *  pAd,
-						IN  ULONG           Idx)
+						struct rtmp_adapter *  pAd,
+						ULONG           Idx)
 {
 	BA_REC_ENTRY    *pBAEntry = NULL;
 	MAC_TABLE_ENTRY *pEntry;
@@ -892,11 +892,11 @@ void BATableFreeRecEntry(
 
 
 void BAOriSessionTearDown(
-						 IN OUT  struct rtmp_adapter *  pAd,
-						 IN      u8           Wcid,
-						 IN      u8           TID,
-						 IN      bool         bPassive,
-						 IN      bool         bForceSend)
+						 struct rtmp_adapter *  pAd,
+						 u8           Wcid,
+						 u8           TID,
+						 bool         bPassive,
+						 bool         bForceSend)
 {
 	ULONG           Idx = 0;
 	BA_ORI_ENTRY    *pBAEntry;
@@ -984,10 +984,10 @@ void BAOriSessionTearDown(
 }
 
 void BARecSessionTearDown(
-						 IN OUT  struct rtmp_adapter *  pAd,
-						 IN      u8           Wcid,
-						 IN      u8           TID,
-						 IN      bool         bPassive)
+						 struct rtmp_adapter *  pAd,
+						 u8           Wcid,
+						 u8           TID,
+						 bool         bPassive)
 {
 	ULONG           Idx = 0;
 	BA_REC_ENTRY    *pBAEntry;
@@ -1072,8 +1072,8 @@ void BARecSessionTearDown(
 }
 
 void BASessionTearDownALL(
-						 IN OUT  struct rtmp_adapter *pAd,
-						 IN      u8 Wcid)
+						 struct rtmp_adapter *pAd,
+						 u8 Wcid)
 {
 	int i;
 
@@ -1100,10 +1100,10 @@ void BASessionTearDownALL(
 	==========================================================================
  */
 void BAOriSessionSetupTimeout(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3)
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3)
 {
 	BA_ORI_ENTRY    *pBAEntry = (BA_ORI_ENTRY *)FunctionContext;
 	MAC_TABLE_ENTRY *pEntry;
@@ -1178,10 +1178,10 @@ void BAOriSessionSetupTimeout(
 	==========================================================================
  */
 void BARecSessionIdleTimeout(
-    IN void *SystemSpecific1,
-    IN void *FunctionContext,
-    IN void *SystemSpecific2,
-    IN void *SystemSpecific3)
+    void *SystemSpecific1,
+    void *FunctionContext,
+    void *SystemSpecific2,
+    void *SystemSpecific3)
 {
 
 	BA_REC_ENTRY    *pBAEntry = (BA_REC_ENTRY *)FunctionContext;
@@ -1207,8 +1207,8 @@ void BARecSessionIdleTimeout(
 
 
 void PeerAddBAReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 
 {
 	/*	7.4.4.1*/
@@ -1321,8 +1321,8 @@ void PeerAddBAReqAction(
 
 
 void PeerAddBARspAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 
 {
 	/*u8 	Idx, i;*/
@@ -1365,8 +1365,8 @@ void PeerAddBARspAction(
 }
 
 void PeerDelBAAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 
 {
 	/*u8 			Idx;*/
@@ -1393,10 +1393,10 @@ void PeerDelBAAction(
 
 
 bool CntlEnqueueForRecv(
-						  IN struct rtmp_adapter *	pAd,
-						  IN ULONG				Wcid,
-						  IN ULONG				MsgLen,
-						  IN PFRAME_BA_REQ		pMsg)
+						  struct rtmp_adapter *	pAd,
+						  ULONG				Wcid,
+						  ULONG				MsgLen,
+						  PFRAME_BA_REQ		pMsg)
 {
 	PFRAME_BA_REQ   pFrame = pMsg;
 	/*PRTMP_REORDERBUF	pBuffer;*/
@@ -1459,9 +1459,9 @@ bool CntlEnqueueForRecv(
 Description : Send PSMP Action frame If PSMP mode switches.
 */
 void SendPSMPAction(
-				   IN struct rtmp_adapter *	pAd,
-				   IN u8 			Wcid,
-				   IN u8 			Psmp)
+				   struct rtmp_adapter *	pAd,
+				   u8 			Wcid,
+				   u8 			Psmp)
 {
 	u8 *pOutBuffer = NULL;
 	FRAME_PSMP_ACTION Frame;
@@ -1528,9 +1528,9 @@ typedef struct __attribute__ ((packed)) _MEASUREMENT_REQ
 
 
 void convert_reordering_packet_to_preAMSDU_or_802_3_packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN  u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID)
 {
 	struct sk_buff *	pRxPkt;
 	u8 		Header802_3[LENGTH_802_3];
@@ -1592,10 +1592,10 @@ void convert_reordering_packet_to_preAMSDU_or_802_3_packet(
 	} while (0);
 
 static void ba_enqueue_reordering_packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	PBA_REC_ENTRY	pBAEntry,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	PBA_REC_ENTRY	pBAEntry,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID)
 {
 	struct reordering_mpdu *mpdu_blk;
 	UINT16	Sequence = (UINT16) pRxBlk->pHeader->Sequence;
@@ -1671,9 +1671,9 @@ static void ba_enqueue_reordering_packet(
  */
 
 void Indicate_AMPDU_Packet(
-	IN	struct rtmp_adapter *pAd,
-	IN	RX_BLK			*pRxBlk,
-	IN	u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	RX_BLK			*pRxBlk,
+	u8 		FromWhichBSSID)
 {
 	USHORT Idx;
 	PBA_REC_ENTRY pBAEntry = NULL;
@@ -1813,7 +1813,7 @@ void Indicate_AMPDU_Packet(
 }
 
 void BaReOrderingBufferMaintain(
-    IN struct rtmp_adapter *pAd)
+    struct rtmp_adapter *pAd)
 {
     ULONG Now32;
     u8 Wcid;

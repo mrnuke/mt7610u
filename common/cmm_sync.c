@@ -49,7 +49,7 @@ extern UINT16 const Country_Region_GroupNum_5GHZ;
 	==========================================================================
  */
 void BuildChannelList(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 i, j, index=0, num=0;
 	PCH_DESC pChDesc = NULL;
@@ -249,7 +249,7 @@ void BuildChannelList(
 	==========================================================================
  */
 u8 FirstChannel(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	return pAd->ChannelList[0].Channel;
 }
@@ -266,8 +266,8 @@ u8 FirstChannel(
 	==========================================================================
  */
 u8 NextChannel(
-	IN struct rtmp_adapter *pAd,
-	IN u8 channel)
+	struct rtmp_adapter *pAd,
+	u8 channel)
 {
 	int i;
 	u8 next_channel = 0;
@@ -320,8 +320,8 @@ u8 NextChannel(
 	==========================================================================
  */
 void ChangeToCellPowerLimit(
-	IN struct rtmp_adapter *pAd,
-	IN u8         AironetCellPowerLimit)
+	struct rtmp_adapter *pAd,
+	u8         AironetCellPowerLimit)
 {
 	/*
 		valud 0xFF means that hasn't found power limit information

@@ -47,9 +47,9 @@
  */
 
 void AuthStateMachineInit(
-	IN struct rtmp_adapter *pAd,
-	IN STATE_MACHINE *Sm,
-	OUT STATE_MACHINE_FUNC Trans[])
+	struct rtmp_adapter *pAd,
+	STATE_MACHINE *Sm,
+	STATE_MACHINE_FUNC Trans[])
 {
 	StateMachineInit(Sm, Trans, MAX_AUTH_STATE, MAX_AUTH_MSG,
 			 (STATE_MACHINE_FUNC) Drop, AUTH_REQ_IDLE,
@@ -89,10 +89,10 @@ void AuthStateMachineInit(
     ==========================================================================
  */
 void AuthTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*) FunctionContext;
 
@@ -120,8 +120,8 @@ void AuthTimeout(
     ==========================================================================
  */
 void MlmeAuthReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	if (AUTH_ReqSend(pAd, Elem, &pAd->MlmeAux.AuthTimer, "AUTH", 1, NULL, 0))
 		pAd->Mlme.AuthMachine.CurrState = AUTH_WAIT_SEQ2;
@@ -143,8 +143,8 @@ void MlmeAuthReqAction(
     ==========================================================================
  */
 void PeerAuthRspAtSeq2Action(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM * Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM * Elem)
 {
 	u8 Addr2[ETH_ALEN];
 	USHORT Seq, Status, RemoteStatus, Alg;
@@ -310,8 +310,8 @@ void PeerAuthRspAtSeq2Action(
     ==========================================================================
  */
 void PeerAuthRspAtSeq4Action(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 Addr2[ETH_ALEN];
 	USHORT Alg, Seq, Status;
@@ -364,8 +364,8 @@ void PeerAuthRspAtSeq4Action(
     ==========================================================================
  */
 void MlmeDeauthReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	MLME_DEAUTH_REQ_STRUCT *pInfo;
 	HEADER_802_11 DeauthHdr;
@@ -415,8 +415,8 @@ void MlmeDeauthReqAction(
     ==========================================================================
  */
 void AuthTimeoutAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("AUTH - AuthTimeoutAction\n"));
@@ -434,8 +434,8 @@ void AuthTimeoutAction(
     ==========================================================================
  */
 void InvalidStateWhenAuth(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	USHORT Status;
 	DBGPRINT(RT_DEBUG_TRACE,
@@ -459,8 +459,8 @@ void InvalidStateWhenAuth(
     ==========================================================================
  */
 void Cls2errAction(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pAddr)
+	struct rtmp_adapter *pAd,
+	u8 *pAddr)
 {
 	HEADER_802_11 DeauthHdr;
 	u8 *pOutBuffer = NULL;
@@ -485,13 +485,13 @@ void Cls2errAction(
 }
 
 bool AUTH_ReqSend(
-	IN struct rtmp_adapter *pAd,
-	IN PMLME_QUEUE_ELEM pElem,
-	IN PRALINK_TIMER_STRUCT pAuthTimer,
-	IN char *pSMName,
-	IN USHORT SeqNo,
-	IN u8 *pNewElement,
-	IN ULONG ElementLen)
+	struct rtmp_adapter *pAd,
+	PMLME_QUEUE_ELEM pElem,
+	PRALINK_TIMER_STRUCT pAuthTimer,
+	char *pSMName,
+	USHORT SeqNo,
+	u8 *pNewElement,
+	ULONG ElementLen)
 {
 	USHORT Alg, Seq, Status;
 	u8 Addr[6];

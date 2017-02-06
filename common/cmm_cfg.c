@@ -53,11 +53,11 @@ void DisplayTxAgg (struct rtmp_adapter*pAd)
 #endif /* DOT11_N_SUPPORT */
 
 static bool RT_isLegalCmdBeforeInfUp(
-       IN char *SetCmd);
+       char *SetCmd);
 
 
 INT ComputeChecksum(
-	IN UINT PIN)
+	UINT PIN)
 {
 	INT digit_s;
     UINT accum = 0;
@@ -76,9 +76,9 @@ INT ComputeChecksum(
 } /* ComputeChecksum*/
 
 UINT GenerateWpsPinCode(
-	IN	struct rtmp_adapter *pAd,
-    IN  bool         bFromApcli,
-	IN	u8 		apidx)
+	struct rtmp_adapter *pAd,
+    bool         bFromApcli,
+	u8 		apidx)
 {
 	u8 macAddr[ETH_ALEN];
 	UINT 	iPin;
@@ -134,9 +134,9 @@ char* get_bw_str(int bandwidth)
     ==========================================================================
 */
 INT RT_CfgSetCountryRegion(
-	IN struct rtmp_adapter *pAd,
-	IN char *		arg,
-	IN INT				band)
+	struct rtmp_adapter *pAd,
+	char *		arg,
+	INT				band)
 {
 	LONG region;
 	u8 *pCountryRegion;
@@ -335,7 +335,7 @@ INT RT_CfgSetWirelessMode(struct rtmp_adapter*pAd, char *arg)
 
 
 static bool RT_isLegalCmdBeforeInfUp(
-       IN char *SetCmd)
+       char *SetCmd)
 {
 		bool TestFlag;
 		TestFlag =	!strcmp(SetCmd, "Debug") ||
@@ -352,8 +352,8 @@ static bool RT_isLegalCmdBeforeInfUp(
 
 
 INT RT_CfgSetShortSlot(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	LONG ShortSlot;
 
@@ -379,10 +379,10 @@ INT RT_CfgSetShortSlot(
     ==========================================================================
 */
 INT	RT_CfgSetWepKey(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		keyString,
-	IN	CIPHER_KEY		*pSharedKey,
-	IN	INT				keyIdx)
+	struct rtmp_adapter *pAd,
+	char *		keyString,
+	CIPHER_KEY		*pSharedKey,
+	INT				keyIdx)
 {
 	INT				KeyLen;
 	INT				i;
@@ -443,12 +443,12 @@ INT	RT_CfgSetWepKey(
     ==========================================================================
 */
 INT RT_CfgSetWPAPSKKey(
-	IN struct rtmp_adapter*pAd,
-	IN char *	keyString,
-	IN INT			keyStringLen,
-	IN u8 	*pHashStr,
-	IN INT			hashStrLen,
-	OUT u8 *	pPMKBuf)
+	struct rtmp_adapter*pAd,
+	char *	keyString,
+	INT			keyStringLen,
+	u8 	*pHashStr,
+	INT			hashStrLen,
+	u8 *	pPMKBuf)
 {
 	u8 keyMaterial[40];
 
@@ -507,8 +507,8 @@ INT	RT_CfgSetFixedTxPhyMode(char *arg)
 }
 
 INT	RT_CfgSetMacAddress(
-	IN 	struct rtmp_adapter *	pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *	pAd,
+	char *		arg)
 {
 	INT	i, mac_len;
 
@@ -557,8 +557,8 @@ INT	RT_CfgSetTxMCSProc(char *arg, bool *pAutoRate)
 }
 
 INT	RT_CfgSetAutoFallBack(
-	IN 	struct rtmp_adapter *	pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *	pAd,
+	char *		arg)
 {
 	TX_RTY_CFG_STRUC tx_rty_cfg;
 	u8 AutoFallBack = (u8)simple_strtol(arg, 0, 10);
@@ -588,9 +588,9 @@ Note:
 ========================================================================
 */
 INT RtmpIoctl_rt_ioctl_giwname(
-	IN	struct rtmp_adapter		*pAd,
-	IN	void 				*pData,
-	IN	ULONG					Data)
+	struct rtmp_adapter		*pAd,
+	void 				*pData,
+	ULONG					Data)
 {
 	u8 CurOpMode = OPMODE_AP;
 
@@ -604,12 +604,12 @@ INT RtmpIoctl_rt_ioctl_giwname(
 
 
 INT RTMP_COM_IoctlHandle(
-	IN	struct rtmp_adapter *pAd,
-	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	IN	INT						cmd,
-	IN	USHORT					subcmd,
-	IN	void 				*pData,
-	IN	ULONG					Data)
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT	*wrq,
+	INT						cmd,
+	USHORT					subcmd,
+	void 				*pData,
+	ULONG					Data)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
 	INT Status = NDIS_STATUS_SUCCESS, i;
@@ -1036,8 +1036,8 @@ INT RTMP_COM_IoctlHandle(
     ==========================================================================
 */
 INT Set_SiteSurvey_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	NDIS_802_11_SSID Ssid;
 	struct os_cookie *pObj;
@@ -1088,8 +1088,8 @@ INT Set_SiteSurvey_Proc(
 
 #ifdef MT76x0
 INT set_temp_sensor_proc(
-	IN struct rtmp_adapter	*pAd,
-	IN char *		arg)
+	struct rtmp_adapter	*pAd,
+	char *		arg)
 {
 	if (simple_strtol(arg, 0, 10) == 0) {
 		pAd->chipCap.bDoTemperatureSensor = false;

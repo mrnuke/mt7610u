@@ -2610,15 +2610,15 @@ done:
 }
 
 bool get_temp_tx_alc_level(
-	IN struct rtmp_adapter *pAd,
-	IN bool enable_tx_alc,
-	IN CHAR temp_ref,
-	IN char *temp_minus_bdy,
-	IN char *temp_plus_bdy,
-	IN u8 max_bdy_level,
-	IN u8 tx_alc_step,
-	IN CHAR current_temp,
-	OUT char *comp_level)
+	struct rtmp_adapter *pAd,
+	bool enable_tx_alc,
+	CHAR temp_ref,
+	char *temp_minus_bdy,
+	char *temp_plus_bdy,
+	u8 max_bdy_level,
+	u8 tx_alc_step,
+	CHAR current_temp,
+	char *comp_level)
 {
 	INT idx = 0;
 

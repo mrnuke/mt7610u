@@ -100,10 +100,10 @@ void RTThreadDequeueCmd(struct rtmp_command_queue *cmdq,
 	========================================================================
 */
 int RTEnqueueInternalCmd(
-	IN struct rtmp_adapter *pAd,
-	IN NDIS_OID			Oid,
-	IN void *		pInformationBuffer,
-	IN u32			InformationBufferLength)
+	struct rtmp_adapter *pAd,
+	NDIS_OID			Oid,
+	void *		pInformationBuffer,
+	u32			InformationBufferLength)
 {
 	int	status;
 	struct rtmp_queue_elem *cmdqelmt = NULL;

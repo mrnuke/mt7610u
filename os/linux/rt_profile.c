@@ -107,7 +107,7 @@ static char *RT2870STA_dat =
 "PMFSHA256=0\n";
 
 int	RTMPReadParametersHook(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	INT   retval = NDIS_STATUS_FAILURE;
 	char *buffer;
@@ -149,8 +149,8 @@ int	RTMPReadParametersHook(
 }
 
 void RTMP_IndicateMediaState(
-	IN	struct rtmp_adapter *	pAd,
-	IN  NDIS_MEDIA_STATE	media_state)
+	struct rtmp_adapter *	pAd,
+	NDIS_MEDIA_STATE	media_state)
 {
 	pAd->IndicateMediaState = media_state;
 }
@@ -162,9 +162,9 @@ void tbtt_tasklet(unsigned long data)
 
 
 void announce_802_3_packet(
-	IN void *pAdSrc,
-	IN struct sk_buff * pPacket,
-	IN u8 OpMode)
+	void *pAdSrc,
+	struct sk_buff * pPacket,
+	u8 OpMode)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*)pAdSrc;
 	struct sk_buff * pRxPkt = pPacket;
@@ -184,8 +184,8 @@ void announce_802_3_packet(
 
 #ifdef CONFIG_STA_SUPPORT
 void STA_MonPktSend(
-	IN struct rtmp_adapter*pAd,
-	IN RX_BLK *pRxBlk)
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk)
 {
 	struct net_device *pNetDev;
 	struct sk_buff * pRxPacket;
@@ -299,8 +299,8 @@ void RTMPFreeAdapter(struct rtmp_adapter *pAd)
 
 
 int	RTMPSendPackets(
-	IN struct rtmp_adapter *pAd,
-	IN struct sk_buff * pPacket)
+	struct rtmp_adapter *pAd,
+	struct sk_buff * pPacket)
 {
 	INC_COUNTER64(pAd->WlanCounters.TransmitCountFrmOs);
 
@@ -345,8 +345,8 @@ done:
 
 
 struct net_device *get_netdev_from_bssid(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		FromWhichBSSID)
+	struct rtmp_adapter *pAd,
+	u8 		FromWhichBSSID)
 {
 	struct net_device *dev_p = NULL;
 

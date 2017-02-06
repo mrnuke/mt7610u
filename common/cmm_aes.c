@@ -70,9 +70,9 @@ u8 SboxTable[256] =
 };
 
 void xor_32(
-	IN  u8 * a,
-	IN  u8 * b,
-	OUT u8 * out)
+	u8 * a,
+	u8 * b,
+	u8 * out)
 {
 	INT i;
 
@@ -83,9 +83,9 @@ void xor_32(
 }
 
 void xor_128(
-	IN  u8 * a,
-	IN  u8 * b,
-	OUT u8 * out)
+	u8 * a,
+	u8 * b,
+	u8 * out)
 {
 	INT i;
 
@@ -96,14 +96,14 @@ void xor_128(
 }
 
 u8 RTMPCkipSbox(
-	IN  u8   a)
+	u8   a)
 {
 	return SboxTable[(int)a];
 }
 
 void next_key(
-	IN  u8 * key,
-	IN  INT     round)
+	u8 * key,
+	INT     round)
 {
 	u8       rcon;
 	u8       sbox_key[4];
@@ -129,8 +129,8 @@ void next_key(
 }
 
 void byte_sub(
-	IN  u8 * in,
-	OUT u8 * out)
+	u8 * in,
+	u8 * out)
 {
 	INT i;
 
@@ -155,8 +155,8 @@ void bitwise_xor(unsigned char *ina, unsigned char *inb, unsigned char *out)
 }
 
 void shift_row(
-	IN  u8 * in,
-	OUT u8 * out)
+	u8 * in,
+	u8 * out)
 {
 	out[0] =  in[0];
 	out[1] =  in[5];
@@ -177,8 +177,8 @@ void shift_row(
 }
 
 void mix_column(
-	IN  u8 * in,
-	OUT u8 * out)
+	u8 * in,
+	u8 * out)
 {
 	INT         i;
 	u8       add1b[4];
@@ -431,10 +431,10 @@ void construct_ctr_preload(
 }
 
 bool RTMPSoftDecryptAES(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pData,
-	IN ULONG	DataByteCnt,
-	IN PCIPHER_KEY	pWpaKey)
+	struct rtmp_adapter *pAd,
+	u8 *pData,
+	ULONG	DataByteCnt,
+	PCIPHER_KEY	pWpaKey)
 {
 	UINT			HeaderLen;
 	u8 		PN[6];
@@ -660,12 +660,12 @@ bool RTMPSoftDecryptAES(
 	========================================================================
 */
 void RTMPConstructCCMPAAD(
-	IN u8 *pHdr,
-	IN bool isDataFrame,
-	IN u8 a4_exists,
-	IN u8 qc_exists,
-	OUT u8 *aad_hdr,
-	OUT UINT *aad_len)
+	u8 *pHdr,
+	bool isDataFrame,
+	u8 a4_exists,
+	u8 qc_exists,
+	u8 *aad_hdr,
+	UINT *aad_len)
 {
 	UINT len = 0;
 
@@ -739,13 +739,13 @@ void RTMPConstructCCMPAAD(
 	========================================================================
 */
 void RTMPConstructCCMPNonce(
-	IN u8 *pHdr,
-	IN u8 a4_exists,
-	IN u8 qc_exists,
-	IN bool isMgmtFrame,
-	IN u8 *pn,
-	OUT u8 *nonce_hdr,
-	OUT UINT *nonce_hdr_len)
+	u8 *pHdr,
+	u8 a4_exists,
+	u8 qc_exists,
+	bool isMgmtFrame,
+	u8 *pn,
+	u8 *nonce_hdr,
+	UINT *nonce_hdr_len)
 {
 	UINT n_offset = 0;
 	INT i;
@@ -794,9 +794,9 @@ void RTMPConstructCCMPNonce(
 	========================================================================
 */
 void RTMPConstructCCMPHdr(
-        IN u8 key_idx,
-	IN u8 *pn,
-	OUT u8 *ccmp_hdr)
+        u8 key_idx,
+	u8 *pn,
+	u8 *ccmp_hdr)
 {
 	memset(ccmp_hdr, 0, LEN_CCMP_HDR);
 
@@ -823,12 +823,12 @@ void RTMPConstructCCMPHdr(
 	========================================================================
 */
 bool RTMPSoftEncryptCCMP(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pHdr,
-	IN u8 *pIV,
-	IN u8 *pKey,
-	INOUT u8 *pData,
-	IN u32 DataLen)
+	struct rtmp_adapter *pAd,
+	u8 *pHdr,
+	u8 *pIV,
+	u8 *pKey,
+	u8 *pData,
+	u32 DataLen)
 {
 	u8 frame_type, frame_subtype;
 	u8 from_ds, to_ds;
@@ -915,11 +915,11 @@ bool RTMPSoftEncryptCCMP(
 	========================================================================
 */
 bool RTMPSoftDecryptCCMP(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pHdr,
-	IN PCIPHER_KEY pKey,
-	INOUT u8 *pData,
-	INOUT UINT16 *DataLen)
+	struct rtmp_adapter *pAd,
+	u8 *pHdr,
+	PCIPHER_KEY pKey,
+	u8 *pData,
+	UINT16 *DataLen)
 {
 	u8 frame_type, frame_subtype;
 	u8 from_ds, to_ds;
@@ -1030,8 +1030,8 @@ bool RTMPSoftDecryptCCMP(
 	========================================================================
 */
 void CCMP_test_vector(
-	IN struct rtmp_adapter *pAd,
-	IN INT input)
+	struct rtmp_adapter *pAd,
+	INT input)
 {
 	u8 Key_ID = 0;
 	/*u8 A1[6] =  {0x0f, 0xd2, 0xe1, 0x28, 0xa5, 0x7c};*/

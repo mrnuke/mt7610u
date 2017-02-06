@@ -88,13 +88,13 @@ typedef union  _MCU_LEDCS_STRUC {
 	u8 			word;
 } MCU_LEDCS_STRUC, *PMCU_LEDCS_STRUC;
 
-void RTMPGetLEDSetting(IN struct rtmp_adapter*pAd);
-void RTMPInitLEDMode(IN struct rtmp_adapter*pAd);
-void RTMPExitLEDMode(IN struct rtmp_adapter*pAd);
+void RTMPGetLEDSetting(struct rtmp_adapter*pAd);
+void RTMPInitLEDMode(struct rtmp_adapter*pAd);
+void RTMPExitLEDMode(struct rtmp_adapter*pAd);
 
 void RTMPSetLEDStatus(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 		Status);
+	struct rtmp_adapter *	pAd,
+	u8 		Status);
 
 #ifdef RTMP_MAC_USB
 #define RTMPSetLED(pAd, Status)	\
@@ -114,7 +114,7 @@ struct mt7610u_led_control {
 	u8 			LedStatus;
 };
 
-void RTMPStartLEDMode(IN struct rtmp_adapter*pAd);
+void RTMPStartLEDMode(struct rtmp_adapter*pAd);
 
 #endif /* __RT_LED_H__ */
 

@@ -119,7 +119,7 @@ typedef	union _USB_DMA_CFG_STRUC {
 	struct {
 		u32 TxBusy:1;			/* USB DMA TX FSM busy. debug only */
 		u32 RxBusy:1;			/* USB DMA RX FSM busy. debug only */
-		u32 EpoutValid:6;		/* OUT endpoint data valid. debug only */
+		u32 EpoutValid:6;		/* endpoint data valid. debug only */
 		u32 TxBulkEn:1;			/* Enable USB DMA Tx */
 		u32 RxBulkEn:1;			/* Enable USB DMA Rx */
 		u32 RxBulkAggEn:1;		/* Enable Rx Bulk Aggregation */
@@ -146,7 +146,7 @@ typedef	union _USB_DMA_CFG_STRUC {
 		u32 RxBulkAggEn:1;			/* Enable Rx Bulk Aggregation */
 		u32 RxBulkEn:1;				/* Enable USB DMA Rx */
 		u32 TxBulkEn:1;				/* Enable USB DMA Tx */
-		u32 EpoutValid:6;        	/* OUT endpoint data valid */
+		u32 EpoutValid:6;        	/* endpoint data valid */
 		u32 RxBusy:1;				/* USB DMA RX FSM busy */
 		u32 TxBusy:1;				/* USB DMA TX FSM busy */
 	} field;

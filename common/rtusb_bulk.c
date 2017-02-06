@@ -44,10 +44,10 @@ u8 EpToQueue[6]={FIFO_EDCA, FIFO_EDCA, FIFO_EDCA, FIFO_EDCA, FIFO_EDCA, FIFO_MGM
 
 
 void RTUSBInitTxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN	PTX_CONTEXT		pTxContext,
-	IN	u8 		BulkOutPipeId,
-	IN	usb_complete_t	Func)
+	struct rtmp_adapter *pAd,
+	PTX_CONTEXT		pTxContext,
+	u8 		BulkOutPipeId,
+	usb_complete_t	Func)
 {
 	struct urb *			pUrb;
 	u8 *			pSrc = NULL;
@@ -89,11 +89,11 @@ void RTUSBInitTxDesc(
 }
 
 void RTUSBInitHTTxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN	PHT_TX_CONTEXT	pTxContext,
-	IN	u8 		BulkOutPipeId,
-	IN	ULONG			BulkOutSize,
-	IN	usb_complete_t	Func)
+	struct rtmp_adapter *pAd,
+	PHT_TX_CONTEXT	pTxContext,
+	u8 		BulkOutPipeId,
+	ULONG			BulkOutSize,
+	usb_complete_t	Func)
 {
 	struct urb *			pUrb;
 	u8 *			pSrc = NULL;
@@ -119,8 +119,8 @@ void RTUSBInitHTTxDesc(
 }
 
 void RTUSBInitRxDesc(
-	IN	struct rtmp_adapter *pAd,
-	IN	PRX_CONTEXT		pRxContext)
+	struct rtmp_adapter *pAd,
+	PRX_CONTEXT		pRxContext)
 {
 	struct urb *			pUrb;
 	struct os_cookie *		pObj = pAd->OS_Cookie;
@@ -172,9 +172,9 @@ void RTUSBInitRxDesc(
 
 
 void RTUSBBulkOutDataPacket(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		BulkOutPipeId,
-	IN	u8 		Index)
+	struct rtmp_adapter *pAd,
+	u8 		BulkOutPipeId,
+	u8 		Index)
 {
 
 	PHT_TX_CONTEXT	pHTTXContext;
@@ -610,7 +610,7 @@ USBHST_STATUS RTUSBBulkOutDataPacketComplete(URBCompleteStatus Status, struct ur
 	========================================================================
 */
 void RTUSBBulkOutNullFrame(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PTX_CONTEXT		pNullContext = &(pAd->NullContext);
 	struct urb *		pUrb;
@@ -691,8 +691,8 @@ USBHST_STATUS RTUSBBulkOutNullFrameComplete(URBCompleteStatus Status, struct urb
 	========================================================================
 */
 void RTUSBBulkOutMLMEPacket(
-	IN	struct rtmp_adapter *pAd,
-	IN	u8 		Index)
+	struct rtmp_adapter *pAd,
+	u8 		Index)
 {
 	PTX_CONTEXT		pMLMEContext;
 	struct urb *		pUrb;
@@ -792,7 +792,7 @@ USBHST_STATUS RTUSBBulkOutMLMEPacketComplete(URBCompleteStatus Status, struct ur
 	========================================================================
 */
 void RTUSBBulkOutPsPoll(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PTX_CONTEXT		pPsPollContext = &(pAd->PsPollContext);
 	struct urb *		pUrb;
@@ -856,7 +856,7 @@ USBHST_STATUS RTUSBBulkOutPsPollComplete(URBCompleteStatus Status, struct urb *p
 }
 
 
-void DoBulkIn(IN struct rtmp_adapter*pAd)
+void DoBulkIn(struct rtmp_adapter*pAd)
 {
 	PRX_CONTEXT		pRxContext;
 	struct urb *		pUrb;
@@ -931,7 +931,7 @@ void DoBulkIn(IN struct rtmp_adapter*pAd)
 		 fRTMP_ADAPTER_REMOVE_IN_PROGRESS)
 
 void RTUSBBulkReceive(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PRX_CONTEXT		pRxContext;
 	unsigned long	IrqFlags;
@@ -1046,7 +1046,7 @@ USBHST_STATUS RTUSBBulkRxComplete(URBCompleteStatus Status, struct urb *pURB, pr
 	========================================================================
 */
 void RTUSBKickBulkOut(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	/* BulkIn Reset will reset whole USB PHY. So we need to make sure fRTMP_ADAPTER_BULKIN_RESET not flaged.*/
 	if (!RTMP_TEST_FLAG(pAd ,fRTMP_ADAPTER_NEED_STOP_TX)
@@ -1135,7 +1135,7 @@ void RTUSBKickBulkOut(
 	========================================================================
 */
 void RTUSBCleanUpDataBulkOutQueue(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u8 		Idx;
 	PHT_TX_CONTEXT	pTxContext;
@@ -1170,7 +1170,7 @@ void RTUSBCleanUpDataBulkOutQueue(
 	========================================================================
 */
 void RTUSBCleanUpMLMEBulkOutQueue(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	DBGPRINT(RT_DEBUG_TRACE, ("--->CleanUpMLMEBulkOutQueue\n"));
 
@@ -1194,7 +1194,7 @@ void RTUSBCleanUpMLMEBulkOutQueue(
 	========================================================================
 */
 void RTUSBCancelPendingIRPs(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	RTUSBCancelPendingBulkInIRP(pAd);
 	RTUSBCancelPendingBulkOutIRP(pAd);
@@ -1214,7 +1214,7 @@ void RTUSBCancelPendingIRPs(
 	========================================================================
 */
 void RTUSBCancelPendingBulkInIRP(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PRX_CONTEXT pRxContext;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &pAd->CmdRspEventContext;
@@ -1261,7 +1261,7 @@ void RTUSBCancelPendingBulkInIRP(
 	========================================================================
 */
 void RTUSBCancelPendingBulkOutIRP(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PHT_TX_CONTEXT		pHTTXContext;
 	PTX_CONTEXT			pMLMEContext;

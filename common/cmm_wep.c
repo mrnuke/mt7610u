@@ -116,9 +116,9 @@ UINT FCSTAB_32[256] =
 	========================================================================
 */
 UINT	RTMP_CALC_FCS32(
-	IN	UINT	Fcs,
-	IN	u8 *Cp,
-	IN	INT		Len)
+	UINT	Fcs,
+	u8 *Cp,
+	INT		Len)
 {
 	while (Len--)
 	   Fcs = (((Fcs) >> 8) ^ FCSTAB_32[((Fcs) ^ (*Cp++)) & 0xff]);
@@ -149,10 +149,10 @@ UINT	RTMP_CALC_FCS32(
 	========================================================================
 */
 void RTMPInitWepEngine(
-	IN	u8 *		pIv,
-	IN	u8 *		pKey,
-	IN	u8 		KeyLen,
-	OUT	ARC4_CTX_STRUC  *pARC4_CTX)
+	u8 *		pIv,
+	u8 *		pKey,
+	u8 		KeyLen,
+	ARC4_CTX_STRUC  *pARC4_CTX)
 {
 /*	u8   seed[16];*/
 	u8 *seed = NULL;
@@ -195,9 +195,9 @@ void RTMPInitWepEngine(
 	========================================================================
 */
 void RTMPConstructWEPIVHdr(
-	IN	u8 			key_idx,
-	IN	u8 		*pn,
-	OUT	u8 		*iv_hdr)
+	u8 			key_idx,
+	u8 		*pn,
+	u8 		*iv_hdr)
 {
 	memset(iv_hdr, 0, LEN_WEP_IV_HDR);
 
@@ -225,11 +225,11 @@ void RTMPConstructWEPIVHdr(
 	========================================================================
 */
 bool RTMPSoftEncryptWEP(
-	IN 		struct rtmp_adapter *	pAd,
-	IN 		u8 *		pIvHdr,
-	IN 		PCIPHER_KEY		pKey,
-	INOUT 	u8 *		pData,
-	IN 		ULONG			DataByteCnt)
+	struct rtmp_adapter *	pAd,
+	u8 *		pIvHdr,
+	PCIPHER_KEY		pKey,
+	u8 *		pData,
+	ULONG			DataByteCnt)
 {
 	ARC4_CTX_STRUC *ARC4_CTX = NULL;
 	UINT 	FCSCRC32;
@@ -291,10 +291,10 @@ bool RTMPSoftEncryptWEP(
 	========================================================================
 */
 bool RTMPSoftDecryptWEP(
-	IN 		struct rtmp_adapter *	pAd,
-	IN 		PCIPHER_KEY		pKey,
-	INOUT 	u8 *		pData,
-	INOUT 	UINT16			*DataByteCnt)
+	struct rtmp_adapter *	pAd,
+	PCIPHER_KEY		pKey,
+	u8 *		pData,
+	UINT16			*DataByteCnt)
 {
 	/*ARC4_CTX_STRUC 	ARC4_CTX;*/
 	ARC4_CTX_STRUC 	*ARC4_CTX = NULL;

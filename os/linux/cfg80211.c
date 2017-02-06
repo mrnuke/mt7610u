@@ -118,10 +118,10 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsChannelSet(
-	IN struct wiphy					*pWiphy,
-	IN struct net_device			*pDev,
-	IN struct ieee80211_channel		*pChan,
-	IN enum nl80211_channel_type	ChannelType)
+	struct wiphy					*pWiphy,
+	struct net_device			*pDev,
+	struct ieee80211_channel		*pChan,
+	enum nl80211_channel_type	ChannelType)
 
 {
 	struct rtmp_adapter  *pAd;
@@ -199,10 +199,10 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsVirtualInfChg(
-	IN struct wiphy					*pWiphy,
-	IN struct net_device			*pNetDevIn,
-	IN enum nl80211_iftype			Type,
-	IN u32							*pFlags,
+	struct wiphy					*pWiphy,
+	struct net_device			*pNetDevIn,
+	enum nl80211_iftype			Type,
+	u32							*pFlags,
 	struct vif_params				*pParams)
 {
 	struct rtmp_adapter  *pAd;
@@ -303,8 +303,8 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsScan(
-	IN struct wiphy					*pWiphy,
-	IN struct cfg80211_scan_request *pRequest)
+	struct wiphy					*pWiphy,
+	struct cfg80211_scan_request *pRequest)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter  *pAd;
@@ -392,9 +392,9 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsIbssJoin(
-	IN struct wiphy					*pWiphy,
-	IN struct net_device			*pNdev,
-	IN struct cfg80211_ibss_params	*pParams)
+	struct wiphy					*pWiphy,
+	struct net_device			*pNdev,
+	struct cfg80211_ibss_params	*pParams)
 {
 	struct rtmp_adapter  *pAd;
 	CMD_RTPRIV_IOCTL_80211_IBSS IbssInfo;
@@ -438,8 +438,8 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsIbssLeave(
-	IN struct wiphy					*pWiphy,
-	IN struct net_device			*pNdev)
+	struct wiphy					*pWiphy,
+	struct net_device			*pNdev)
 {
 	struct rtmp_adapter  *pAd;
 
@@ -539,11 +539,11 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsStaDump(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN int								Idx,
-	IN u8							*pMac,
-	IN struct station_info				*pSinfo)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	int								Idx,
+	u8							*pMac,
+	struct station_info				*pSinfo)
 {
 	struct rtmp_adapter  *pAd;
 
@@ -583,8 +583,8 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsWiphyParamsSet(
-	IN struct wiphy						*pWiphy,
-	IN u32							Changed)
+	struct wiphy						*pWiphy,
+	u32							Changed)
 {
 	CFG80211DBG(RT_DEBUG_ERROR, ("80211> %s ==>\n", __FUNCTION__));
 	return -EOPNOTSUPP;
@@ -613,12 +613,12 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsKeyAdd(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN u8							KeyIdx,
-	IN bool								Pairwise,
-	IN const u8						*pMacAddr,
-	IN struct key_params				*pParams)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	u8							KeyIdx,
+	bool								Pairwise,
+	const u8						*pMacAddr,
+	struct key_params				*pParams)
 {
 	struct rtmp_adapter  *pAd;
 	CMD_RTPRIV_IOCTL_80211_KEY KeyInfo;
@@ -734,13 +734,13 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsKeyGet(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN u8							KeyIdx,
-	IN bool								Pairwise,
-	IN const u8						*pMacAddr,
-	IN void								*pCookie,
-	IN void								(*pCallback)(void *cookie,
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	u8							KeyIdx,
+	bool								Pairwise,
+	const u8						*pMacAddr,
+	void								*pCookie,
+	void								(*pCallback)(void *cookie,
 												 struct key_params *))
 {
 
@@ -769,11 +769,11 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsKeyDel(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN u8							KeyIdx,
-	IN bool								Pairwise,
-	IN const u8						*pMacAddr)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	u8							KeyIdx,
+	bool								Pairwise,
+	const u8						*pMacAddr)
 {
 	CFG80211DBG(RT_DEBUG_ERROR, ("80211> %s ==>\n", __FUNCTION__));
 	return -ENOTSUPP;
@@ -798,11 +798,11 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsKeyDefaultSet(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN u8							KeyIdx,
-	IN bool								Unicast,
-	IN bool								Multicast)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	u8							KeyIdx,
+	bool								Unicast,
+	bool								Multicast)
 {
 	struct rtmp_adapter  *pAd;
 
@@ -847,9 +847,9 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsConnect(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN struct cfg80211_connect_params	*pSme)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	struct cfg80211_connect_params	*pSme)
 {
 	struct rtmp_adapter  *pAd;
 	CMD_RTPRIV_IOCTL_80211_CONNECT ConnInfo;
@@ -1056,9 +1056,9 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsDisconnect(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN u16								ReasonCode)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	u16								ReasonCode)
 {
 	struct rtmp_adapter  *pAd;
 
@@ -1076,7 +1076,7 @@ static int CFG80211_OpsDisconnect(
 
 #ifdef RFKILL_HW_SUPPORT
 static int CFG80211_OpsRFKill(
-	IN struct wiphy						*pWiphy)
+	struct wiphy						*pWiphy)
 {
 	struct rtmp_adapter *pAd;
 	bool 	active;
@@ -1091,8 +1091,8 @@ static int CFG80211_OpsRFKill(
 
 
 void CFG80211_RFKillStatusUpdate(
-	IN void *						pAd,
-	IN bool 						active)
+	void *						pAd,
+	bool 						active)
 {
 	struct wiphy *pWiphy;
 	CFG80211_CB *pCfg80211_CB;
@@ -1126,10 +1126,10 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsSurveyGet(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN int								Idx,
-	IN struct survey_info				*pSurvey)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	int								Idx,
+	struct survey_info				*pSurvey)
 {
 	struct rtmp_adapter  *pAd;
 	CMD_RTPRIV_IOCTL_80211_SURVEY SurveyInfo;
@@ -1181,9 +1181,9 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsPmksaSet(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN struct cfg80211_pmksa			*pPmksa)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	struct cfg80211_pmksa			*pPmksa)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter  *pAd;
@@ -1226,9 +1226,9 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsPmksaDel(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev,
-	IN struct cfg80211_pmksa			*pPmksa)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev,
+	struct cfg80211_pmksa			*pPmksa)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter  *pAd;
@@ -1270,8 +1270,8 @@ Note:
 ========================================================================
 */
 static int CFG80211_OpsPmksaFlush(
-	IN struct wiphy						*pWiphy,
-	IN struct net_device				*pNdev)
+	struct wiphy						*pWiphy,
+	struct net_device				*pNdev)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter  *pAd;
@@ -1403,10 +1403,10 @@ Note:
 ========================================================================
 */
 static struct wireless_dev *CFG80211_WdevAlloc(
-	IN CFG80211_CB					*pCfg80211_CB,
-	IN CFG80211_BAND				*pBandInfo,
-	IN void 						*pAd,
-	IN struct device				*pDev)
+	CFG80211_CB					*pCfg80211_CB,
+	CFG80211_BAND				*pBandInfo,
+	void 						*pAd,
+	struct device				*pDev)
 {
 	struct wireless_dev *pWdev;
 	ULONG *pPriv;
@@ -1501,9 +1501,9 @@ Note:
 ========================================================================
 */
 bool CFG80211_Register(
-	IN void 					*pAd,
-	IN struct device			*pDev,
-	IN struct net_device		*pNetDev)
+	void 					*pAd,
+	struct device			*pDev,
+	struct net_device		*pNetDev)
 {
 	CFG80211_CB *pCfg80211_CB = NULL;
 	CFG80211_BAND BandInfo;

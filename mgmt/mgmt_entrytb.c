@@ -73,7 +73,7 @@ void set_entry_phy_cfg(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry)
 	==========================================================================
 */
 MAC_TABLE_ENTRY *MacTableLookup(
-	IN struct rtmp_adapter *pAd,
+	struct rtmp_adapter *pAd,
 	u8 *pAddr)
 {
 	ULONG HashIdx;
@@ -97,11 +97,11 @@ MAC_TABLE_ENTRY *MacTableLookup(
 
 
 MAC_TABLE_ENTRY *MacTableInsertEntry(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *		pAddr,
-	IN	u8 		apidx,
-	IN	u8 		OpMode,
-	IN bool CleanAll)
+	struct rtmp_adapter *  pAd,
+	u8 *		pAddr,
+	u8 		apidx,
+	u8 		OpMode,
+	bool CleanAll)
 {
 	u8 HashIdx;
 	int i, FirstWcid;
@@ -340,9 +340,9 @@ MAC_TABLE_ENTRY *MacTableInsertEntry(
 	==========================================================================
  */
 bool MacTableDeleteEntry(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT wcid,
-	IN u8 *pAddr)
+	struct rtmp_adapter *pAd,
+	USHORT wcid,
+	u8 *pAddr)
 {
 	USHORT HashIdx;
 	MAC_TABLE_ENTRY *pEntry, *pPrevEntry, *pProbeEntry;
@@ -493,7 +493,7 @@ bool MacTableDeleteEntry(
 	==========================================================================
  */
 void MacTableReset(
-	IN  struct rtmp_adapter * pAd)
+	struct rtmp_adapter * pAd)
 {
 	int         i;
 	bool     Cancelled;
@@ -530,9 +530,9 @@ void MacTableReset(
 
 #ifdef MAC_REPEATER_SUPPORT
 MAC_TABLE_ENTRY *InsertMacRepeaterEntry(
-	IN  struct rtmp_adapter *  pAd,
-	IN  u8 *		pAddr,
-	IN  u8 		IfIdx)
+	struct rtmp_adapter *  pAd,
+	u8 *		pAddr,
+	u8 		IfIdx)
 {
 	MAC_TABLE_ENTRY *pEntry = NULL;
 	PAPCLI_STRUCT pApCliEntry = NULL;

@@ -32,89 +32,89 @@
 
 /* receive a traffic indication frame */
 static void TDLS_UAPSD_PeerTrafficIndAction(
-    IN	struct rtmp_adapter *			pAd,
-    IN	MLME_QUEUE_ELEM				*pElem);
+    struct rtmp_adapter *			pAd,
+    MLME_QUEUE_ELEM				*pElem);
 /* receive a traffic response frame */
 static void TDLS_UAPSD_PeerTrafficRspAction(
-	IN	struct rtmp_adapter *			pAd,
-    IN	MLME_QUEUE_ELEM				*pElem);
+	struct rtmp_adapter *			pAd,
+    MLME_QUEUE_ELEM				*pElem);
 
 /* build the traffic indication frame */
 static ULONG TDLS_UAPSD_TrafficIndBuild(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac,
-	OUT u8 					*pFrameBuf,
-	OUT u8 					*pHeader802_3);
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac,
+	u8 					*pFrameBuf,
+	u8 					*pHeader802_3);
 /* build the traffic indication frame payload */
 static void TDLS_UAPSD_TrafficIndPayloadBuild(
-	IN	struct rtmp_adapter *			pAd,
-	OUT u8 *					pFrameBuf,
-	OUT PULONG						pFrameLen,
-	IN	PRT_802_11_TDLS				pTDLS);
+	struct rtmp_adapter *			pAd,
+	u8 *					pFrameBuf,
+	PULONG						pFrameLen,
+	PRT_802_11_TDLS				pTDLS);
 
 /* send a traffic indication frame */
 static int TDLS_UAPSD_TrafficIndSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac);
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac);
 /* send a traffic response frame */
 static int TDLS_UAPSD_TrafficRspSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac,
-	IN	u8 					PeerToken);
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac,
+	u8 					PeerToken);
 /* build the traffic response frame body */
 static void TDLS_UAPSD_TrafficRspBuild(
-	IN	struct rtmp_adapter *			pAd,
-	OUT u8 *					pFrameBuf,
-	OUT PULONG						pFrameLen,
-	IN	PRT_802_11_TDLS				pTDLS,
-	IN	u8 					PeerToken);
+	struct rtmp_adapter *			pAd,
+	u8 *					pFrameBuf,
+	PULONG						pFrameLen,
+	PRT_802_11_TDLS				pTDLS,
+	u8 					PeerToken);
 
 /* get argument number value */
 static u32 TDLS_UAPSD_CmdUtilHexGet(
-	IN	CHAR						**ppArgv);
+	CHAR						**ppArgv);
 /* get argument number value */
 static u32 TDLS_UAPSD_CmdUtilNumGet(
-	IN	CHAR						**ppArgv);
+	CHAR						**ppArgv);
 /* get argument MAC value */
 static void TDLS_UAPSD_CmdUtilMacGet(
-	IN	CHAR						**ppArgv,
-	IN	u8 					*pDevMac);
+	CHAR						**ppArgv,
+	u8 					*pDevMac);
 
 /* simulate to send a TDLS Setup request to a peer */
 static void TDLS_UAPSD_CmdSimSetupReqSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv);
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv);
 
 /* simulate to receive a TDLS Traffic response from a peer */
 static void TDLS_UAPSD_CmdSimTrafficRspRcv(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv);
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv);
 
 /* simulate to receive a TDLS Traffic indication from a peer */
 static void TDLS_UAPSD_CmdSimTrafficIndRcv(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv);
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv);
 
 /* simulate to change the power save of a peer */
 static void TDLS_UAPSD_CmdSimPeerPowerSaveChg(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv);
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv);
 
 /* simulate to change our power save */
 static void TDLS_UAPSD_CmdSimSelfPowerSaveChg(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv);
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv);
 
 /* simulate to send a TDLS Traffic response to a peer */
 static void TDLS_UAPSD_CmdSimTrafficRspSnd(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv);
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv);
 
 
 
@@ -139,8 +139,8 @@ Note:
 ========================================================================
 */
 bool TDLS_UAPSDP_Init(
-	IN	struct rtmp_adapter *			pAd,
-    IN	STATE_MACHINE				*pFSM)
+	struct rtmp_adapter *			pAd,
+    STATE_MACHINE				*pFSM)
 {
 	/* init FSM */
     StateMachineSetAction(pFSM, TDLS_IDLE, MT2_PEER_TDLS_TRAFFIC_IND,
@@ -172,7 +172,7 @@ Note:
 ========================================================================
 */
 bool TDLS_UAPSDP_Release(
-	IN	struct rtmp_adapter *			pAd)
+	struct rtmp_adapter *			pAd)
 {
 	/* free lock */
 
@@ -209,8 +209,8 @@ Note:
 ========================================================================
 */
 int TDLS_UAPSDP_TrafficIndSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac)
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac)
 {
 	int	NStatus;
 
@@ -239,7 +239,7 @@ Note:
 ========================================================================
 */
 bool TDLS_UAPSDP_AsicCanSleep(
-	IN	struct rtmp_adapter *			pAd)
+	struct rtmp_adapter *			pAd)
 {
 	RT_802_11_TDLS *pTDLS;
 	u32 IdEntry;
@@ -304,9 +304,9 @@ Note:
 ========================================================================
 */
 void TDLS_UAPSDP_PsmModeChange(
-	IN	struct rtmp_adapter *			pAd,
-	IN	USHORT						PsmOld,
-	IN	USHORT						PsmNew)
+	struct rtmp_adapter *			pAd,
+	USHORT						PsmOld,
+	USHORT						PsmNew)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	RT_802_11_TDLS *pTDLS;
@@ -397,9 +397,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdPeerInfoDisplay(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	u8 PeerMac[6];
@@ -473,9 +473,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSelfInfoDisplay(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	if (TDLS_UAPSD_ARE_WE_IN_PS(pAd))
 		printk("\n    EDCA AC UAPSD information: (POWER SAVE)\n");
@@ -542,9 +542,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdConfigure(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	pAd->CommonCfg.TDLS_bAPSDAC_BE = TDLS_UAPSD_CmdUtilNumGet(&pArgv);
 	pAd->CommonCfg.TDLS_bAPSDAC_BK = TDLS_UAPSD_CmdUtilNumGet(&pArgv);
@@ -593,8 +593,8 @@ Return Value:
 ========================================================================
 */
 INT TDLS_Ioctl(
-	IN	struct rtmp_adapter *			pAd,
-	IN	char *					pArgvIn)
+	struct rtmp_adapter *			pAd,
+	char *					pArgvIn)
 {
 	CHAR BufCmd[3] = { 0, 0, 0 };
 	CHAR *pArgv, *pParam;
@@ -727,8 +727,8 @@ Return Value:
 ========================================================================
 */
 INT Set_TdlsUapsdProc(
-	IN	struct rtmp_adapter *			pAd,
-	IN	char *					pArgvIn)
+	struct rtmp_adapter *			pAd,
+	char *					pArgvIn)
 {
 	return TDLS_Ioctl(pAd, pArgvIn);
 }
@@ -755,10 +755,10 @@ Note:
 ========================================================================
 */
 static ULONG TDLS_UAPSD_TrafficIndBuild(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac,
-	OUT u8 					*pFrameBuf,
-	OUT u8 					*pHeader802_3)
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac,
+	u8 					*pFrameBuf,
+	u8 					*pHeader802_3)
 {
 	RT_802_11_TDLS *pTDLS = NULL;
 	u8 TDLS_ETHERTYPE[] = {0x89, 0x0d};
@@ -842,10 +842,10 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_TrafficIndPayloadBuild(
-	IN	struct rtmp_adapter *			pAd,
-	OUT u8 *					pFrameBuf,
-	OUT PULONG						pFrameLen,
-	IN	PRT_802_11_TDLS				pTDLS)
+	struct rtmp_adapter *			pAd,
+	u8 *					pFrameBuf,
+	PULONG						pFrameLen,
+	PRT_802_11_TDLS				pTDLS)
 {
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
 	ULONG TempLen;
@@ -910,8 +910,8 @@ Note:
 ========================================================================
 */
 static int TDLS_UAPSD_TrafficIndSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac)
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac)
 {
 	u8 *pOutBuffer = NULL;
 	ULONG FrameLen = 0;
@@ -968,9 +968,9 @@ Note:
 ========================================================================
 */
 static int TDLS_UAPSD_TrafficRspSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	u8 					*pPeerMac,
-	IN	u8 					PeerToken)
+	struct rtmp_adapter *			pAd,
+	u8 					*pPeerMac,
+	u8 					PeerToken)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	RT_802_11_TDLS *pTDLS = NULL;
@@ -1064,11 +1064,11 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_TrafficRspBuild(
-	IN	struct rtmp_adapter *			pAd,
-	OUT u8 *					pFrameBuf,
-	OUT PULONG						pFrameLen,
-	IN	PRT_802_11_TDLS				pTDLS,
-	IN	u8 					PeerToken)
+	struct rtmp_adapter *			pAd,
+	u8 *					pFrameBuf,
+	PULONG						pFrameLen,
+	PRT_802_11_TDLS				pTDLS,
+	u8 					PeerToken)
 {
 	/* fill action code */
 	TDLS_InsertActField(pAd, (pFrameBuf + *pFrameLen), pFrameLen,
@@ -1108,8 +1108,8 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_PeerTrafficIndAction(
-    IN	struct rtmp_adapter *			pAd,
-    IN	MLME_QUEUE_ELEM				*pElem)
+    struct rtmp_adapter *			pAd,
+    MLME_QUEUE_ELEM				*pElem)
 {
 	u8 Token;
 	u8 PeerAddr[6];
@@ -1178,8 +1178,8 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_PeerTrafficRspAction(
-	IN	struct rtmp_adapter *			pAd,
-    IN	MLME_QUEUE_ELEM				*pElem)
+	struct rtmp_adapter *			pAd,
+    MLME_QUEUE_ELEM				*pElem)
 {
 	u8 Token;
 	u8 PeerAddr[6];
@@ -1257,7 +1257,7 @@ Note:
 ========================================================================
 */
 static u32 TDLS_UAPSD_CmdUtilHexGet(
-	IN	CHAR						**ppArgv)
+	CHAR						**ppArgv)
 {
 	CHAR Buf[3], *pNum;
 	u32 ID;
@@ -1314,7 +1314,7 @@ Note:
 ========================================================================
 */
 static u32 TDLS_UAPSD_CmdUtilNumGet(
-	IN	CHAR						**ppArgv)
+	CHAR						**ppArgv)
 {
 	CHAR Buf[20], *pNum;
 	u32 ID;
@@ -1360,8 +1360,8 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdUtilMacGet(
-	IN	CHAR						**ppArgv,
-	IN	u8 					*pDevMac)
+	CHAR						**ppArgv,
+	u8 					*pDevMac)
 {
 	CHAR Buf[3];
 	CHAR *pMAC = (CHAR *)(*ppArgv);
@@ -1426,9 +1426,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSimSetupReqSend(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	MLME_QUEUE_ELEM *pElem;
 	RT_802_11_TDLS TDLS, *pTDLS = &TDLS;
@@ -1539,9 +1539,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSimTrafficRspRcv(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	u8 PeerMac[6];
@@ -1608,9 +1608,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSimTrafficIndRcv(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	u8 PeerMac[6];
 	MLME_QUEUE_ELEM *pElem = NULL;
@@ -1715,9 +1715,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSimPeerPowerSaveChg(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	u8 PeerMac[6];
@@ -1771,9 +1771,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSimSelfPowerSaveChg(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	u32 PeerPsMode;
 
@@ -1812,9 +1812,9 @@ Note:
 ========================================================================
 */
 static void TDLS_UAPSD_CmdSimTrafficRspSnd(
-	IN	struct rtmp_adapter *			pAd,
-	IN	INT32						Argc,
-	IN	CHAR						*pArgv)
+	struct rtmp_adapter *			pAd,
+	INT32						Argc,
+	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	u8 PeerMac[6];

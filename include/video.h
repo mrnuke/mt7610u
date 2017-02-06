@@ -28,12 +28,12 @@
 #ifdef VIDEO_TURBINE_SUPPORT
 extern AP_VIDEO_STRUCT GLOBAL_AP_VIDEO_CONFIG;
 
-void VideoModeUpdate(IN struct rtmp_adapter *pAd);
-void VideoModeDynamicTune(IN struct rtmp_adapter *pAd);
-UINT32 GetAsicDefaultRetry(IN struct rtmp_adapter *pAd);
-u8 GetAsicDefaultTxBA(IN struct rtmp_adapter *pAd);
-UINT32 GetAsicVideoRetry(IN struct rtmp_adapter *pAd);
-u8 GetAsicVideoTxBA(IN struct rtmp_adapter *pAd);
-void VideoConfigInit(IN struct rtmp_adapter *pAd);
+void VideoModeUpdate(struct rtmp_adapter *pAd);
+void VideoModeDynamicTune(struct rtmp_adapter *pAd);
+UINT32 GetAsicDefaultRetry(struct rtmp_adapter *pAd);
+u8 GetAsicDefaultTxBA(struct rtmp_adapter *pAd);
+UINT32 GetAsicVideoRetry(struct rtmp_adapter *pAd);
+u8 GetAsicVideoTxBA(struct rtmp_adapter *pAd);
+void VideoConfigInit(struct rtmp_adapter *pAd);
 #endif /* VIDEO_TURBINE_SUPPORT */
 

@@ -40,22 +40,22 @@
 
 
 extern INT RtmpIoctl_rt_ioctl_siwauth(
-	IN      struct rtmp_adapter                   *pAd,
-	IN      void                            *pData,
-	IN      ULONG                            Data);
+	struct rtmp_adapter                   *pAd,
+	void                            *pData,
+	ULONG                            Data);
 
 extern INT RtmpIoctl_rt_ioctl_siwauth(
-	IN      struct rtmp_adapter                   *pAd,
-	IN      void                            *pData,
-	IN      ULONG                            Data);
+	struct rtmp_adapter                   *pAd,
+	void                            *pData,
+	ULONG                            Data);
 
 INT CFG80211DRV_IoctlHandle(
-	IN	void 				*pAdSrc,
-	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	IN	INT						cmd,
-	IN	USHORT					subcmd,
-	IN	void 				*pData,
-	IN	ULONG					Data)
+	void 				*pAdSrc,
+	RTMP_IOCTL_INPUT_STRUCT	*wrq,
+	INT						cmd,
+	USHORT					subcmd,
+	void 				*pData,
+	ULONG					Data)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdSrc;
 
@@ -847,8 +847,8 @@ void CFG80211DRV_SurveyGet(
 
 
 void CFG80211_UnRegister(
-	IN void 					*pAdOrg,
-	IN void 					*pNetDev)
+	void 					*pAdOrg,
+	void 					*pNetDev)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdOrg;
 
@@ -881,9 +881,9 @@ Note:
 ========================================================================
 */
 void CFG80211_BeaconCountryRegionParse(
-	IN void 					*pAdCB,
-	IN NDIS_802_11_VARIABLE_IEs	*pVIE,
-	IN UINT16					LenVIE)
+	void 					*pAdCB,
+	NDIS_802_11_VARIABLE_IEs	*pVIE,
+	UINT16					LenVIE)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 	u8 *pElement = (u8 *)pVIE;
@@ -932,9 +932,9 @@ Note:
 ========================================================================
 */
 void CFG80211_RegHint(
-	IN void 					*pAdCB,
-	IN u8 				*pCountryIe,
-	IN ULONG					CountryIeLen)
+	void 					*pAdCB,
+	u8 				*pCountryIe,
+	ULONG					CountryIeLen)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 
@@ -961,9 +961,9 @@ Note:
 ========================================================================
 */
 void CFG80211_RegHint11D(
-	IN void 					*pAdCB,
-	IN u8 				*pCountryIe,
-	IN ULONG					CountryIeLen)
+	void 					*pAdCB,
+	u8 				*pCountryIe,
+	ULONG					CountryIeLen)
 {
 	/* no regulatory_hint_11d() in 2.6.32 */
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
@@ -994,9 +994,9 @@ Note:
 ========================================================================
 */
 void CFG80211_RegRuleApply(
-	IN void 					*pAdCB,
-	IN void 					*pWiphy,
-	IN u8 				*pAlpha2)
+	void 					*pAdCB,
+	void 					*pWiphy,
+	u8 				*pAlpha2)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 	void *pBand24G, *pBand5G;
@@ -1181,12 +1181,12 @@ Note:
 ========================================================================
 */
 void CFG80211_Scaning(
-	IN void 						*pAdCB,
-	IN u32						BssIdx,
-	IN u32						ChanId,
-	IN u8 					*pFrame,
-	IN u32						FrameLen,
-	IN INT32						RSSI)
+	void 						*pAdCB,
+	u32						BssIdx,
+	u32						ChanId,
+	u8 					*pFrame,
+	u32						FrameLen,
+	INT32						RSSI)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
@@ -1252,8 +1252,8 @@ Note:
 ========================================================================
 */
 void CFG80211_ScanEnd(
-	IN void 					*pAdCB,
-	IN bool 				FlgIsAborted)
+	void 					*pAdCB,
+	bool 				FlgIsAborted)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
@@ -1305,13 +1305,13 @@ Note:
 ========================================================================
 */
 void CFG80211_ConnectResultInform(
-	IN void 					*pAdCB,
-	IN u8 				*pBSSID,
-	IN u8 				*pReqIe,
-	IN u32					ReqIeLen,
-	IN u8 				*pRspIe,
-	IN u32					RspIeLen,
-	IN u8 				FlgIsSuccess)
+	void 					*pAdCB,
+	u8 				*pBSSID,
+	u8 				*pReqIe,
+	u32					ReqIeLen,
+	u8 				*pRspIe,
+	u32					RspIeLen,
+	u8 				FlgIsSuccess)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 
@@ -1349,7 +1349,7 @@ Note:
 ========================================================================
 */
 bool CFG80211_SupBandReInit(
-	IN void 					*pAdCB)
+	void 					*pAdCB)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 	CFG80211_BAND BandInfo;
@@ -1366,8 +1366,8 @@ bool CFG80211_SupBandReInit(
 
 #ifdef RT_P2P_SPECIFIC_WIRELESS_EVENT
 INT CFG80211_SendWirelessEvent(
-	IN void                                         *pAdCB,
-	IN u8 					*pMacAddr)
+	void                                         *pAdCB,
+	u8 					*pMacAddr)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 

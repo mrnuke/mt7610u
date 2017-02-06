@@ -69,8 +69,8 @@ INT LED_Array[16][12]={
 	========================================================================
 */
 void RTMPSetLEDStatus(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 		Status)
+	struct rtmp_adapter *	pAd,
+	u8 		Status)
 {
 	/*ULONG			data; */
 	u8 		LedMode;
@@ -100,7 +100,7 @@ void RTMPSetLEDStatus(
 
 }
 
-void RTMPGetLEDSetting(IN struct rtmp_adapter*pAd)
+void RTMPGetLEDSetting(struct rtmp_adapter*pAd)
 {
 	u16 Value;
 	struct mt7610u_led_control *led_crtl = &pAd->LedCntl;
@@ -111,12 +111,12 @@ void RTMPGetLEDSetting(IN struct rtmp_adapter*pAd)
 }
 
 
-void RTMPStartLEDMode(IN struct rtmp_adapter*pAd)
+void RTMPStartLEDMode(struct rtmp_adapter*pAd)
 {
 }
 
 
-void RTMPInitLEDMode(IN struct rtmp_adapter*pAd)
+void RTMPInitLEDMode(struct rtmp_adapter*pAd)
 {
 	struct mt7610u_led_control *led_crtl = &pAd->LedCntl;
 
@@ -128,7 +128,7 @@ void RTMPInitLEDMode(IN struct rtmp_adapter*pAd)
 }
 
 
-inline void RTMPExitLEDMode(IN struct rtmp_adapter*pAd)
+inline void RTMPExitLEDMode(struct rtmp_adapter*pAd)
 {
 
 	RTMPSetLED(pAd, LED_RADIO_OFF);

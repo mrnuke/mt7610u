@@ -349,9 +349,9 @@ void MT76x0DisableTxRx(
 }
 
 void MT76x0_WLAN_ChipOnOff(
-	IN struct rtmp_adapter*pAd,
-	IN bool bOn,
-	IN bool bResetWLAN)
+	struct rtmp_adapter*pAd,
+	bool bOn,
+	bool bResetWLAN)
 {
 	union rtmp_wlan_func_ctrl WlanFunCtrl = {.word=0};
 

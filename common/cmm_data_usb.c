@@ -65,9 +65,9 @@ int RTUSBFreeDescriptorRelease(struct rtmp_adapter*pAd, u8 BulkOutPipeId)
 	========================================================================
 */
 int	RTUSBFreeDescRequest(
-	IN struct rtmp_adapter*pAd,
-	IN u8 BulkOutPipeId,
-	IN u32 req_cnt)
+	struct rtmp_adapter*pAd,
+	u8 BulkOutPipeId,
+	u32 req_cnt)
 {
 	int	 Status = NDIS_STATUS_FAILURE;
 	unsigned long IrqFlags;
@@ -174,13 +174,13 @@ bool RTUSBNeedQueueBackForAgg(struct rtmp_adapter*pAd, u8 BulkOutPipeId)
 	========================================================================
 */
 void rlt_usb_write_txinfo(
-	IN struct rtmp_adapter*pAd,
-	IN union txinfo_nmac *pTxInfo,
-	IN USHORT USBDMApktLen,
-	IN bool bWiv,
-	IN u8 QueueSel,
-	IN u8 NextValid,
-	IN u8 TxBurst)
+	struct rtmp_adapter*pAd,
+	union txinfo_nmac *pTxInfo,
+	USHORT USBDMApktLen,
+	bool bWiv,
+	u8 QueueSel,
+	u8 NextValid,
+	u8 TxBurst)
 {
 	struct txinfo_nmac_pkt *nmac_info;
 
@@ -207,9 +207,9 @@ void rlt_usb_write_txinfo(
 
 
 static void rlt_usb_update_txinfo(
-	IN struct rtmp_adapter*pAd,
-	IN union txinfo_nmac *pTxInfo,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter*pAd,
+	union txinfo_nmac *pTxInfo,
+	TX_BLK *pTxBlk)
 {
 }
 
@@ -293,9 +293,9 @@ void ComposeNullFrame(struct rtmp_adapter*pAd)
 		=>
 */
 static inline int RtmpUSBCanDoWrite(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN HT_TX_CONTEXT *pHTTXContext)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	HT_TX_CONTEXT *pHTTXContext)
 {
 	int	canWrite = NDIS_STATUS_RESOURCES;
 
@@ -344,10 +344,10 @@ static inline int RtmpUSBCanDoWrite(
 }
 
 USHORT	RtmpUSB_WriteFragTxResource(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk,
-	IN u8 fragNum,
-	OUT	USHORT *freeCnt)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk,
+	u8 fragNum,
+	USHORT *freeCnt)
 {
 	HT_TX_CONTEXT	*pHTTXContext;
 	USHORT			hwHdrLen;	/* The hwHdrLen consist of 802.11 header length plus the header padding length.*/
@@ -535,10 +535,10 @@ USHORT	RtmpUSB_WriteFragTxResource(
 
 
 USHORT RtmpUSB_WriteSingleTxResource(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk,
-	IN bool bIsLast,
-	OUT	USHORT *freeCnt)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk,
+	bool bIsLast,
+	USHORT *freeCnt)
 {
 	HT_TX_CONTEXT *pHTTXContext;
 	u32 fillOffset;
@@ -701,10 +701,10 @@ USHORT RtmpUSB_WriteSingleTxResource(
 
 
 USHORT RtmpUSB_WriteMultiTxResource(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk,
-	IN u8 frmNum,
-	OUT USHORT *freeCnt)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk,
+	u8 frmNum,
+	USHORT *freeCnt)
 {
 	HT_TX_CONTEXT *pHTTXContext;
 	USHORT hwHdrLen;	/* The hwHdrLen consist of 802.11 header length plus the header padding length.*/
@@ -834,10 +834,10 @@ done:
 
 
 void RtmpUSB_FinalWriteTxResource(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk,
-	IN USHORT totalMPDUSize,
-	IN USHORT TxIdx)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk,
+	USHORT totalMPDUSize,
+	USHORT TxIdx)
 {
 	u8 		QueIdx;
 	HT_TX_CONTEXT	*pHTTXContext;
@@ -936,9 +936,9 @@ void RtmpUSB_FinalWriteTxResource(
 
 
 void RtmpUSBDataLastTxIdx(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN USHORT TxIdx)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	USHORT TxIdx)
 {
 	/* DO nothing for USB.*/
 }
@@ -953,9 +953,9 @@ void RtmpUSBDataLastTxIdx(
 
 */
 void RtmpUSBDataKickOut(
-	IN struct rtmp_adapter*pAd,
-	IN TX_BLK *pTxBlk,
-	IN u8 QueIdx)
+	struct rtmp_adapter*pAd,
+	TX_BLK *pTxBlk,
+	u8 QueIdx)
 {
 	RTUSB_SET_BULK_FLAG(pAd, (fRTUSB_BULK_OUT_DATA_NORMAL << QueIdx));
 	RTUSBKickBulkOut(pAd);
@@ -968,11 +968,11 @@ void RtmpUSBDataKickOut(
 	This function handle RT2870 specific TxDesc and cpu index update and kick the packet out.
  */
 int RtmpUSBMgmtKickOut(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN struct sk_buff * pPacket,
-	IN u8 *pSrcBufVA,
-	IN UINT SrcBufLen)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	struct sk_buff * pPacket,
+	u8 *pSrcBufVA,
+	UINT SrcBufLen)
 {
 	union txinfo_nmac *pTxInfo;
 	ULONG BulkOutSize;
@@ -1058,10 +1058,10 @@ if (0) {
 
 
 void RtmpUSBNullFrameKickOut(
-	IN struct rtmp_adapter*pAd,
-	IN u8 QueIdx,
-	IN u8 *pNullFrame,
-	IN u32 frameLen)
+	struct rtmp_adapter*pAd,
+	u8 QueIdx,
+	u8 *pNullFrame,
+	u32 frameLen)
 {
 	if (pAd->NullContext.InUse == false)
 	{
@@ -1126,11 +1126,11 @@ Note:
 ========================================================================
 */
 struct sk_buff * GetPacketFromRxRing(
-	IN struct rtmp_adapter*pAd,
-	OUT RX_BLK *pRxBlk,
-	OUT bool *pbReschedule,
-	INOUT u32 *pRxPending,
-	OUT bool *bCmdRspPacket)
+	struct rtmp_adapter*pAd,
+	RX_BLK *pRxBlk,
+	bool *pbReschedule,
+	u32 *pRxPending,
+	bool *bCmdRspPacket)
 {
 	RX_CONTEXT *pRxContext;
 	struct sk_buff * pNetPkt;
@@ -1273,10 +1273,10 @@ label_null:
 	========================================================================
 */
 int	RTMPCheckRxError(
-	IN struct rtmp_adapter*pAd,
-	IN PHEADER_802_11 pHeader,
-	IN struct rxwi_nmac *pRxWI,
-	IN struct rtmp_rxinfo *pRxInfo)
+	struct rtmp_adapter*pAd,
+	PHEADER_802_11 pHeader,
+	struct rxwi_nmac *pRxWI,
+	struct rtmp_rxinfo *pRxInfo)
 {
 	PCIPHER_KEY pWpaKey;
 	INT dBm;
@@ -1367,10 +1367,10 @@ int	RTMPCheckRxError(
 
 
 void RtmpUsbStaAsicForceWakeupTimeout(
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3)
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3)
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*)FunctionContext;
 
@@ -1387,8 +1387,8 @@ void RtmpUsbStaAsicForceWakeupTimeout(
 
 
 void RT28xxUsbStaAsicForceWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN bool       bFromTx)
+	struct rtmp_adapter *pAd,
+	bool       bFromTx)
 {
 	bool Canceled;
 
@@ -1403,8 +1403,8 @@ void RT28xxUsbStaAsicForceWakeup(
 
 
 void RT28xxUsbStaAsicSleepThenAutoWakeup(
-	IN struct rtmp_adapter *pAd,
-	IN USHORT TbttNumToNextWakeUp)
+	struct rtmp_adapter *pAd,
+	USHORT TbttNumToNextWakeUp)
 {
 
 

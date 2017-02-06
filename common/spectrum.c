@@ -105,8 +105,8 @@ DOT11_REGULATORY_INFORMATION JapanRegulatoryInfo[] =
 
 
 u8 GetRegulatoryMaxTxPwr(
-	IN struct rtmp_adapter *pAd,
-	IN u8 channel)
+	struct rtmp_adapter *pAd,
+	u8 channel)
 {
 	ULONG RegulatoryClassLoop, ChIdx;
 	u8 RegulatoryClass;
@@ -205,7 +205,7 @@ TX_PWR_CFG TxPwrCfg[] = {
 #define MAX_TXPWR_TAB_SIZE (sizeof(TxPwrCfg) / sizeof(TX_PWR_CFG))
 
 int	MeasureReqTabInit(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	int     Status = NDIS_STATUS_SUCCESS;
 
@@ -226,7 +226,7 @@ int	MeasureReqTabInit(
 }
 
 void MeasureReqTabExit(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	if (pAd->CommonCfg.pMeasureReqTab)
 /*		kfree(pAd->CommonCfg.pMeasureReqTab);*/
@@ -237,8 +237,8 @@ void MeasureReqTabExit(
 }
 
 PMEASURE_REQ_ENTRY MeasureReqLookUp(
-	IN struct rtmp_adapter *pAd,
-	IN u8			DialogToken)
+	struct rtmp_adapter *pAd,
+	u8			DialogToken)
 {
 	UINT HashIdx;
 	PMEASURE_REQ_TAB pTab = pAd->CommonCfg.pMeasureReqTab;
@@ -273,8 +273,8 @@ PMEASURE_REQ_ENTRY MeasureReqLookUp(
 }
 
 PMEASURE_REQ_ENTRY MeasureReqInsert(
-	IN struct rtmp_adapter *pAd,
-	IN u8			DialogToken)
+	struct rtmp_adapter *pAd,
+	u8			DialogToken)
 {
 	INT i;
 	ULONG HashIdx;
@@ -372,8 +372,8 @@ PMEASURE_REQ_ENTRY MeasureReqInsert(
 }
 
 void MeasureReqDelete(
-	IN struct rtmp_adapter *pAd,
-	IN u8			DialogToken)
+	struct rtmp_adapter *pAd,
+	u8			DialogToken)
 {
 	PMEASURE_REQ_TAB pTab = pAd->CommonCfg.pMeasureReqTab;
 	PMEASURE_REQ_ENTRY pEntry = NULL;
@@ -429,7 +429,7 @@ void MeasureReqDelete(
 }
 
 int	TpcReqTabInit(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	int     Status = NDIS_STATUS_SUCCESS;
 
@@ -449,7 +449,7 @@ int	TpcReqTabInit(
 }
 
 void TpcReqTabExit(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	if (pAd->CommonCfg.pTpcReqTab)
 /*		kfree(pAd->CommonCfg.pTpcReqTab);*/
@@ -460,8 +460,8 @@ void TpcReqTabExit(
 }
 
 static PTPC_REQ_ENTRY TpcReqLookUp(
-	IN struct rtmp_adapter *pAd,
-	IN u8			DialogToken)
+	struct rtmp_adapter *pAd,
+	u8			DialogToken)
 {
 	UINT HashIdx;
 	PTPC_REQ_TAB pTab = pAd->CommonCfg.pTpcReqTab;
@@ -497,8 +497,8 @@ static PTPC_REQ_ENTRY TpcReqLookUp(
 
 
 static PTPC_REQ_ENTRY TpcReqInsert(
-	IN struct rtmp_adapter *pAd,
-	IN u8			DialogToken)
+	struct rtmp_adapter *pAd,
+	u8			DialogToken)
 {
 	INT i;
 	ULONG HashIdx;
@@ -596,8 +596,8 @@ static PTPC_REQ_ENTRY TpcReqInsert(
 }
 
 static void TpcReqDelete(
-	IN struct rtmp_adapter *pAd,
-	IN u8			DialogToken)
+	struct rtmp_adapter *pAd,
+	u8			DialogToken)
 {
 	PTPC_REQ_TAB pTab = pAd->CommonCfg.pTpcReqTab;
 	PTPC_REQ_ENTRY pEntry = NULL;
@@ -663,7 +663,7 @@ static void TpcReqDelete(
 	==========================================================================
  */
 static UINT64 GetCurrentTimeStamp(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	/* get current time stamp.*/
 	return 0;
@@ -680,8 +680,8 @@ static UINT64 GetCurrentTimeStamp(
 	==========================================================================
  */
 static u8 GetCurTxPwr(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Wcid)
+	struct rtmp_adapter *pAd,
+	u8 Wcid)
 {
 	return 16; /* 16 dBm */
 }
@@ -697,11 +697,11 @@ static u8 GetCurTxPwr(
 	==========================================================================
  */
 void InsertChannelRepIE(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen,
-	IN char *pCountry,
-	IN u8 RegulatoryClass)
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen,
+	char *pCountry,
+	u8 RegulatoryClass)
 {
 	ULONG TempLen;
 	u8 Len;
@@ -777,10 +777,10 @@ void InsertChannelRepIE(
 	==========================================================================
  */
 void InsertDialogToken(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen,
-	IN u8 DialogToken)
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen,
+	u8 DialogToken)
 {
 	ULONG TempLen;
 	MakeOutgoingFrame(pFrameBuf,	&TempLen,
@@ -805,9 +805,9 @@ void InsertDialogToken(
 	==========================================================================
  */
  static void InsertTpcReqIE(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen)
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen)
 {
 	ULONG TempLen;
 	u8 Len = 0;
@@ -838,11 +838,11 @@ void InsertDialogToken(
 	==========================================================================
  */
 void InsertTpcReportIE(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen,
-	IN u8 TxPwr,
-	IN u8 LinkMargin)
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen,
+	u8 TxPwr,
+	u8 LinkMargin)
 {
 	ULONG TempLen;
 	u8 Len = sizeof(TPC_REPORT_INFO);
@@ -884,11 +884,11 @@ void InsertTpcReportIE(
 	==========================================================================
  */
 static void InsertMeasureReqIE(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen,
-	IN u8 Len,
-	IN PMEASURE_REQ_INFO pMeasureReqIE)
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen,
+	u8 Len,
+	PMEASURE_REQ_INFO pMeasureReqIE)
 {
 	ULONG TempLen;
 	u8 ElementID = IE_MEASUREMENT_REQUEST;
@@ -922,12 +922,12 @@ static void InsertMeasureReqIE(
 	==========================================================================
  */
 static void InsertMeasureReportIE(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pFrameBuf,
-	OUT PULONG pFrameLen,
-	IN PMEASURE_REPORT_INFO pMeasureReportIE,
-	IN u8 ReportLnfoLen,
-	IN u8 * pReportInfo)
+	struct rtmp_adapter *pAd,
+	u8 *pFrameBuf,
+	PULONG pFrameLen,
+	PMEASURE_REPORT_INFO pMeasureReportIE,
+	u8 ReportLnfoLen,
+	u8 * pReportInfo)
 {
 	ULONG TempLen;
 	u8 Len;
@@ -967,16 +967,16 @@ static void InsertMeasureReportIE(
 	==========================================================================
  */
 void MakeMeasurementReqFrame(
-	IN struct rtmp_adapter *pAd,
-	OUT u8 *pOutBuffer,
-	OUT PULONG pFrameLen,
-	IN u8 TotalLen,
-	IN u8 Category,
-	IN u8 Action,
-	IN u8 MeasureToken,
-	IN u8 MeasureReqMode,
-	IN u8 MeasureReqType,
-	IN UINT16 NumOfRepetitions)
+	struct rtmp_adapter *pAd,
+	u8 *pOutBuffer,
+	PULONG pFrameLen,
+	u8 TotalLen,
+	u8 Category,
+	u8 Action,
+	u8 MeasureToken,
+	u8 MeasureReqMode,
+	u8 MeasureReqType,
+	UINT16 NumOfRepetitions)
 {
 	ULONG TempLen;
 	MEASURE_REQ_INFO MeasureReqIE;
@@ -1020,14 +1020,14 @@ void MakeMeasurementReqFrame(
 	==========================================================================
  */
 void EnqueueMeasurementRep(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pDA,
-	IN u8 DialogToken,
-	IN u8 MeasureToken,
-	IN u8 MeasureReqMode,
-	IN u8 MeasureReqType,
-	IN u8 ReportInfoLen,
-	IN u8 * pReportInfo)
+	struct rtmp_adapter *pAd,
+	u8 *pDA,
+	u8 DialogToken,
+	u8 MeasureToken,
+	u8 MeasureReqMode,
+	u8 MeasureReqType,
+	u8 ReportInfoLen,
+	u8 * pReportInfo)
 {
 	u8 *pOutBuffer = NULL;
 	ULONG FrameLen;
@@ -1078,9 +1078,9 @@ void EnqueueMeasurementRep(
 	==========================================================================
  */
 void EnqueueTPCReq(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pDA,
-	IN u8 DialogToken)
+	struct rtmp_adapter *pAd,
+	u8 *pDA,
+	u8 DialogToken)
 {
 	u8 *pOutBuffer = NULL;
 	ULONG FrameLen;
@@ -1127,11 +1127,11 @@ void EnqueueTPCReq(
 	==========================================================================
  */
 void EnqueueTPCRep(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pDA,
-	IN u8 DialogToken,
-	IN u8 TxPwr,
-	IN u8 LinkMargin)
+	struct rtmp_adapter *pAd,
+	u8 *pDA,
+	u8 DialogToken,
+	u8 TxPwr,
+	u8 LinkMargin)
 {
 	u8 *pOutBuffer = NULL;
 	ULONG FrameLen;
@@ -1166,8 +1166,8 @@ void EnqueueTPCRep(
 }
 
 static bool DfsRequirementCheck(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel)
+	struct rtmp_adapter *pAd,
+	u8 Channel)
 {
 	bool Result = false;
 	INT i;
@@ -1200,18 +1200,18 @@ static bool DfsRequirementCheck(
 }
 
 void NotifyChSwAnnToPeerAPs(
-	IN struct rtmp_adapter *pAd,
-	IN u8 *pRA,
-	IN u8 *pTA,
-	IN u8 ChSwMode,
-	IN u8 Channel)
+	struct rtmp_adapter *pAd,
+	u8 *pRA,
+	u8 *pTA,
+	u8 ChSwMode,
+	u8 Channel)
 {
 }
 
 static void StartDFSProcedure(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel,
-	IN u8 ChSwMode)
+	struct rtmp_adapter *pAd,
+	u8 Channel,
+	u8 ChSwMode)
 {
 	/* start DFS procedure*/
 	pAd->CommonCfg.Channel = Channel;
@@ -1245,10 +1245,10 @@ static void StartDFSProcedure(
     1    1        1           1            1
 */
 static bool PeerChSwAnnSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *pMsg,
-	IN ULONG MsgLen,
-	OUT PCH_SW_ANN_INFO pChSwAnnInfo)
+	struct rtmp_adapter *pAd,
+	void *pMsg,
+	ULONG MsgLen,
+	PCH_SW_ANN_INFO pChSwAnnInfo)
 {
 	PFRAME_802_11 Fr = (PFRAME_802_11)pMsg;
 	u8 *pFramePtr = Fr->Octet;
@@ -1301,12 +1301,12 @@ static bool PeerChSwAnnSanity(
 	==========================================================================
  */
 static bool PeerMeasureReqSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *pMsg,
-	IN ULONG MsgLen,
-	OUT u8 * pDialogToken,
-	OUT PMEASURE_REQ_INFO pMeasureReqInfo,
-	OUT PMEASURE_REQ pMeasureReq)
+	struct rtmp_adapter *pAd,
+	void *pMsg,
+	ULONG MsgLen,
+	u8 * pDialogToken,
+	PMEASURE_REQ_INFO pMeasureReqInfo,
+	PMEASURE_REQ pMeasureReq)
 {
 	PFRAME_802_11 Fr = (PFRAME_802_11)pMsg;
 	u8 *pFramePtr = Fr->Octet;
@@ -1393,12 +1393,12 @@ static bool PeerMeasureReqSanity(
      0          1                  2              3         4          5-7
 */
 static bool PeerMeasureReportSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *pMsg,
-	IN ULONG MsgLen,
-	OUT u8 * pDialogToken,
-	OUT PMEASURE_REPORT_INFO pMeasureReportInfo,
-	OUT u8 * pReportBuf)
+	struct rtmp_adapter *pAd,
+	void *pMsg,
+	ULONG MsgLen,
+	u8 * pDialogToken,
+	PMEASURE_REPORT_INFO pMeasureReportInfo,
+	u8 * pReportBuf)
 {
 	PFRAME_802_11 Fr = (PFRAME_802_11)pMsg;
 	u8 *pFramePtr = Fr->Octet;
@@ -1484,10 +1484,10 @@ static bool PeerMeasureReportSanity(
 	==========================================================================
  */
 static bool PeerTpcReqSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *pMsg,
-	IN ULONG MsgLen,
-	OUT u8 * pDialogToken)
+	struct rtmp_adapter *pAd,
+	void *pMsg,
+	ULONG MsgLen,
+	u8 * pDialogToken)
 {
 	PFRAME_802_11 Fr = (PFRAME_802_11)pMsg;
 	u8 *pFramePtr = Fr->Octet;
@@ -1540,11 +1540,11 @@ static bool PeerTpcReqSanity(
 	==========================================================================
  */
 static bool PeerTpcRepSanity(
-	IN struct rtmp_adapter *pAd,
-	IN void *pMsg,
-	IN ULONG MsgLen,
-	OUT u8 * pDialogToken,
-	OUT PTPC_REPORT_INFO pTpcRepInfo)
+	struct rtmp_adapter *pAd,
+	void *pMsg,
+	ULONG MsgLen,
+	u8 * pDialogToken,
+	PTPC_REPORT_INFO pTpcRepInfo)
 {
 	PFRAME_802_11 Fr = (PFRAME_802_11)pMsg;
 	u8 *pFramePtr = Fr->Octet;
@@ -1596,8 +1596,8 @@ static bool PeerTpcRepSanity(
 	==========================================================================
  */
 static void PeerChSwAnnAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	CH_SW_ANN_INFO ChSwAnnInfo;
 	PFRAME_802_11 pFr = (PFRAME_802_11)Elem->Msg;
@@ -1677,8 +1677,8 @@ static void PeerChSwAnnAction(
 	==========================================================================
  */
 static void PeerMeasureReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	PFRAME_802_11 pFr = (PFRAME_802_11)Elem->Msg;
 	u8 DialogToken;
@@ -1708,8 +1708,8 @@ static void PeerMeasureReqAction(
 	==========================================================================
  */
 static void PeerMeasureReportAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	MEASURE_REPORT_INFO MeasureReportInfo;
 	PFRAME_802_11 pFr = (PFRAME_802_11)Elem->Msg;
@@ -1777,8 +1777,8 @@ static void PeerMeasureReportAction(
 	==========================================================================
  */
 static void PeerTpcReqAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	PFRAME_802_11 pFr = (PFRAME_802_11)Elem->Msg;
 	u8 *pFramePtr = pFr->Octet;
@@ -1820,8 +1820,8 @@ static void PeerTpcReqAction(
 	==========================================================================
  */
 static void PeerTpcRepAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 	u8 DialogToken;
 	TPC_REPORT_INFO TpcRepInfo;
@@ -1854,8 +1854,8 @@ static void PeerTpcRepAction(
 	==========================================================================
  */
 void PeerSpectrumAction(
-	IN struct rtmp_adapter *pAd,
-	IN MLME_QUEUE_ELEM *Elem)
+	struct rtmp_adapter *pAd,
+	MLME_QUEUE_ELEM *Elem)
 {
 
 	u8 Action = Elem->Msg[LENGTH_802_11+1];
@@ -1927,8 +1927,8 @@ void PeerSpectrumAction(
 	==========================================================================
  */
 INT Set_MeasureReq_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	UINT Aid = 1;
 	UINT ArgIdx;
@@ -2025,8 +2025,8 @@ END_OF_MEASURE_REQ:
 }
 
 INT Set_TpcReq_Proc(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *pAd,
+	char *		arg)
 {
 	UINT Aid;
 

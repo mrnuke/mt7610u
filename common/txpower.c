@@ -55,7 +55,7 @@
  */
 
 void AsicAdjustTxPower(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	CHAR		Rssi = -127;
 	CHAR		DeltaPwr = 0;
@@ -107,10 +107,10 @@ void AsicAdjustTxPower(
 
 
 void AsicPercentageDeltaPower(
-	IN 		struct rtmp_adapter *		pAd,
-	IN		CHAR				Rssi,
-	INOUT	char *			pDeltaPwr,
-	INOUT	char *			pDeltaPowerByBbpR1)
+	struct rtmp_adapter *		pAd,
+	CHAR				Rssi,
+	char *			pDeltaPwr,
+	char *			pDeltaPowerByBbpR1)
 {
 	/*
 		Calculate delta power based on the percentage specified from UI.
@@ -165,8 +165,8 @@ void AsicPercentageDeltaPower(
 
 
 void AsicCompensatePowerViaBBP(
-	IN 		struct rtmp_adapter *		pAd,
-	INOUT	char *			pTotalDeltaPower)
+	struct rtmp_adapter *		pAd,
+	char *			pTotalDeltaPower)
 {
 	u8 mdsm_drop_pwr;
 

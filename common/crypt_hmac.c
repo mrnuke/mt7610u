@@ -49,12 +49,12 @@ Note:
 ========================================================================
 */
 void RT_HMAC_SHA1 (
-    IN  const u8 Key[],
-    IN  UINT KeyLen,
-    IN  const u8 Message[],
-    IN  UINT MessageLen,
-    OUT u8 MAC[],
-    IN  UINT MACLen)
+    const u8 Key[],
+    UINT KeyLen,
+    const u8 Message[],
+    UINT MessageLen,
+    u8 MAC[],
+    UINT MACLen)
 {
     SHA1_CTX_STRUC sha_ctx1;
     SHA1_CTX_STRUC sha_ctx2;
@@ -132,12 +132,12 @@ Note:
 ========================================================================
 */
 void RT_HMAC_SHA256 (
-    IN  const u8 Key[],
-    IN  UINT KeyLen,
-    IN  const u8 Message[],
-    IN  UINT MessageLen,
-    OUT u8 MAC[],
-    IN  UINT MACLen)
+    const u8 Key[],
+    UINT KeyLen,
+    const u8 Message[],
+    UINT MessageLen,
+    u8 MAC[],
+    UINT MACLen)
 {
     SHA256_CTX_STRUC sha_ctx1;
     SHA256_CTX_STRUC sha_ctx2;
@@ -216,12 +216,12 @@ Note:
 ========================================================================
 */
 void RT_HMAC_MD5(
-    IN  const u8 Key[],
-    IN  UINT KeyLen,
-    IN  const u8 Message[],
-    IN  UINT MessageLen,
-    OUT u8 MAC[],
-    IN  UINT MACLen)
+    const u8 Key[],
+    UINT KeyLen,
+    const u8 Message[],
+    UINT MessageLen,
+    u8 MAC[],
+    UINT MACLen)
 {
     MD5_CTX_STRUC md5_ctx1;
     MD5_CTX_STRUC md5_ctx2;

@@ -724,7 +724,7 @@ void NICReadEEPROMParameters(struct rtmp_adapter*pAd)
 	========================================================================
 */
 void NICInitAsicFromEEPROM(
-	IN	struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 #ifdef CONFIG_STA_SUPPORT
 	u32 data = 0;
@@ -831,7 +831,7 @@ void dump_pdma_reg(struct rtmp_adapter*pAd)
 
 
 
-void AsicInitBcnBuf(IN struct rtmp_adapter*pAd)
+void AsicInitBcnBuf(struct rtmp_adapter*pAd)
 {
 	int idx;
 	struct rtmp_chip_cap *pChipCap = &pAd->chipCap;
@@ -888,8 +888,8 @@ void AsicInitBcnBuf(IN struct rtmp_adapter*pAd)
 	========================================================================
 */
 int	NICInitializeAdapter(
-	IN	struct rtmp_adapter *pAd,
-	IN   bool    bHardReset)
+	struct rtmp_adapter *pAd,
+	bool    bHardReset)
 {
 	int     Status = NDIS_STATUS_SUCCESS;
 	ULONG j=0;
@@ -949,8 +949,8 @@ retry:
 	========================================================================
 */
 int	NICInitializeAsic(
-	IN	struct rtmp_adapter *pAd,
-	IN  bool 	bHardReset)
+	struct rtmp_adapter *pAd,
+	bool 	bHardReset)
 {
 	ULONG			Index = 0;
 	u32			MACValue = 0;
@@ -1202,7 +1202,7 @@ int	NICInitializeAsic(
 
 
 void NICUpdateFifoStaCounters(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	TX_STA_FIFO_STRUC	StaFifo;
 	MAC_TABLE_ENTRY		*pEntry = NULL;
@@ -1381,9 +1381,9 @@ void NICUpdateFifoStaCounters(
 	========================================================================
 */
 void NicGetTxRawCounters(
-	IN struct rtmp_adapter*pAd,
-	IN TX_STA_CNT0_STRUC *pStaTxCnt0,
-	IN TX_STA_CNT1_STRUC *pStaTxCnt1)
+	struct rtmp_adapter*pAd,
+	TX_STA_CNT0_STRUC *pStaTxCnt0,
+	TX_STA_CNT1_STRUC *pStaTxCnt1)
 {
 
 	pStaTxCnt0->word = mt7610u_read32(pAd, TX_STA_CNT0);
@@ -1445,7 +1445,7 @@ void NicResetRawCounters(struct rtmp_adapter*pAd)
 	========================================================================
 */
 void NICUpdateRawCounters(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u32	OldValue;/*, Value2;*/
 	/*ULONG	PageSum, OneSecTransmitCount;*/
@@ -1662,7 +1662,7 @@ void NICUpdateRawCounters(
 }
 
 int NICLoadFirmware(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	int	 status = NDIS_STATUS_SUCCESS;
 	ULONG Old, New, Diff;
@@ -1703,9 +1703,9 @@ int NICLoadFirmware(
 	========================================================================
 */
 ULONG	RTMPCompareMemory(
-	IN	void *pSrc1,
-	IN	void *pSrc2,
-	IN	ULONG	Length)
+	void *pSrc1,
+	void *pSrc2,
+	ULONG	Length)
 {
 	u8 *pMem1;
 	u8 *pMem2;
@@ -1751,7 +1751,7 @@ ULONG	RTMPCompareMemory(
 */
 
 void UserCfgExit(
-	IN struct rtmp_adapter*pAd)
+	struct rtmp_adapter*pAd)
 {
 #ifdef DOT11_N_SUPPORT
 	BATableExit(pAd);
@@ -2220,8 +2220,8 @@ Note:
 ========================================================================
 */
 void RTMP_TimerListAdd(
-	IN	struct rtmp_adapter *		pAd,
-	IN	void 				*pRsc)
+	struct rtmp_adapter *		pAd,
+	void 				*pRsc)
 {
 	LIST_HEADER *pRscList = &pAd->RscTimerCreateList;
 	LIST_RESOURCE_OBJ_ENTRY *pObj;
@@ -2266,7 +2266,7 @@ Note:
 ========================================================================
 */
 void RTMP_TimerListRelease(
-	IN	struct rtmp_adapter *		pAd)
+	struct rtmp_adapter *		pAd)
 {
 	LIST_HEADER *pRscList = &pAd->RscTimerCreateList;
 	LIST_RESOURCE_OBJ_ENTRY *pObj, *pObjOld;
@@ -2311,11 +2311,11 @@ void RTMP_TimerListRelease(
 	========================================================================
 */
 void RTMPInitTimer(
-	IN	struct rtmp_adapter *		pAd,
-	IN	PRALINK_TIMER_STRUCT	pTimer,
-	IN	void *				pTimerFunc,
-	IN	void *				pData,
-	IN	bool 				Repeat)
+	struct rtmp_adapter *		pAd,
+	PRALINK_TIMER_STRUCT	pTimer,
+	void *				pTimerFunc,
+	void *				pData,
+	bool 				Repeat)
 {
 	RTMP_SEM_LOCK(&TimerSemLock);
 
@@ -2359,8 +2359,8 @@ void RTMPInitTimer(
 	========================================================================
 */
 void RTMPSetTimer(
-	IN	PRALINK_TIMER_STRUCT	pTimer,
-	IN	ULONG					Value)
+	PRALINK_TIMER_STRUCT	pTimer,
+	ULONG					Value)
 {
 	RTMP_SEM_LOCK(&TimerSemLock);
 
@@ -2418,8 +2418,8 @@ void RTMPSetTimer(
 	========================================================================
 */
 void RTMPModTimer(
-	IN	PRALINK_TIMER_STRUCT	pTimer,
-	IN	ULONG					Value)
+	PRALINK_TIMER_STRUCT	pTimer,
+	ULONG					Value)
 {
 	bool Cancel;
 
@@ -2473,8 +2473,8 @@ void RTMPModTimer(
 	========================================================================
 */
 void RTMPCancelTimer(
-	IN	PRALINK_TIMER_STRUCT	pTimer,
-	OUT	bool 				*pCancelled)
+	PRALINK_TIMER_STRUCT	pTimer,
+	bool 				*pCancelled)
 {
 	RTMP_SEM_LOCK(&TimerSemLock);
 
@@ -2506,8 +2506,8 @@ void RTMPCancelTimer(
 
 
 void RTMPReleaseTimer(
-	IN	PRALINK_TIMER_STRUCT	pTimer,
-	OUT	bool 				*pCancelled)
+	PRALINK_TIMER_STRUCT	pTimer,
+	bool 				*pCancelled)
 {
 	RTMP_SEM_LOCK(&TimerSemLock);
 
@@ -2562,7 +2562,7 @@ void RTMPReleaseTimer(
 	========================================================================
 */
 void RTMPEnableRxTx(
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	u32 rx_filter_flag;
 
@@ -2609,8 +2609,8 @@ void CfgInitHook(struct rtmp_adapter *pAd)
 
 
 static INT RtmpChipOpsRegister(
-	IN struct rtmp_adapter*pAd,
-	IN INT			infType)
+	struct rtmp_adapter*pAd,
+	INT			infType)
 {
 	struct rtmp_chip_ops  *pChipOps = &pAd->chipOps;
 	struct rtmp_chip_cap *pChipCap = &pAd->chipCap;
@@ -2720,8 +2720,7 @@ bool RtmpRaDevCtrlExit(struct rtmp_adapter *pAd)
 	return true;
 }
 
-void AntCfgInit(
-IN  struct rtmp_adapter *  pAd)
+void AntCfgInit(struct rtmp_adapter *  pAd)
 {
 	{
 		if (pAd->NicConfig2.field.AntOpt== 1) /* ant selected by efuse */

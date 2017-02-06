@@ -156,34 +156,34 @@ void MT76x0_ShowDmaIndexCupIndex(
 #endif /* DBG */
 
 void MT76x0_WLAN_ChipOnOff(
-	IN struct rtmp_adapter *pAd,
-	IN bool bOn,
-	IN bool bResetWLAN);
+	struct rtmp_adapter *pAd,
+	bool bOn,
+	bool bResetWLAN);
 
 
 void MT76x0_AntennaSelCtrl(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void MT76x0_dynamic_vga_tuning(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 void MT76x0_VCO_CalibrationMode3(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel);
+	struct rtmp_adapter *pAd,
+	u8 Channel);
 
 void MT76x0_Calibration(
-	IN struct rtmp_adapter *pAd,
-	IN u8 Channel,
-	IN bool bPowerOn,
-	IN bool bDoTSSI,
-	IN bool bFullCal);
+	struct rtmp_adapter *pAd,
+	u8 Channel,
+	bool bPowerOn,
+	bool bDoTSSI,
+	bool bFullCal);
 
 void MT76x0_TempSensor(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 
 #ifdef DFS_SUPPORT
 void MT76x0_DFS_CR_Init(
-	IN struct rtmp_adapter *pAd);
+	struct rtmp_adapter *pAd);
 #endif /* DFS_SUPPORT */
 
 void mt76x0_temp_tx_alc(struct rtmp_adapter *pAd);

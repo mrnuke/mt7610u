@@ -55,23 +55,23 @@
 	========================================================================
 */
 void RTMPWriteTxWI(
-	IN struct rtmp_adapter*pAd,
-	IN struct txwi_nmac *pOutTxWI,
-	IN bool FRAG,
-	IN bool CFACK,
-	IN bool InsTimestamp,
-	IN bool AMPDU,
-	IN bool Ack,
-	IN bool NSeq,		/* HW new a sequence.*/
-	IN u8 BASize,
-	IN u8 WCID,
-	IN ULONG Length,
-	IN u8 PID,
-	IN u8 TID,
-	IN u8 TxRate,
-	IN u8 Txopmode,
-	IN bool CfAck,
-	IN HTTRANSMIT_SETTING *pTransmit)
+	struct rtmp_adapter*pAd,
+	struct txwi_nmac *pOutTxWI,
+	bool FRAG,
+	bool CFACK,
+	bool InsTimestamp,
+	bool AMPDU,
+	bool Ack,
+	bool NSeq,		/* HW new a sequence.*/
+	u8 BASize,
+	u8 WCID,
+	ULONG Length,
+	u8 PID,
+	u8 TID,
+	u8 TxRate,
+	u8 Txopmode,
+	bool CfAck,
+	HTTRANSMIT_SETTING *pTransmit)
 {
 	PMAC_TABLE_ENTRY pMac = NULL;
 	struct txwi_nmac TxWI, *pTxWI;
@@ -302,9 +302,9 @@ void RTMPWriteTxWI_Data(struct rtmp_adapter*pAd, struct txwi_nmac *pTxWI, TX_BLK
 
 
 void RTMPWriteTxWI_Cache(
-	IN struct rtmp_adapter*pAd,
-	INOUT struct txwi_nmac *pTxWI,
-	IN TX_BLK *pTxBlk)
+	struct rtmp_adapter*pAd,
+	struct txwi_nmac *pTxWI,
+	TX_BLK *pTxBlk)
 {
 	HTTRANSMIT_SETTING *pTransmit;
 	MAC_TABLE_ENTRY *pMacEntry;

@@ -77,52 +77,52 @@ INT RtmpRaDevCtrlInit(struct rtmp_adapter *pAd, RTMP_INF_TYPE infType);
 void RTMPHandleInterrupt(struct rtmp_adapter *pAd);
 
 INT RTMP_COM_IoctlHandle(
-	IN	struct rtmp_adapter *pAd,
-	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	IN	INT						cmd,
-	IN	USHORT					subcmd,
-	IN	void 				*pData,
-	IN	ULONG					Data);
+	struct rtmp_adapter *pAd,
+	RTMP_IOCTL_INPUT_STRUCT	*wrq,
+	INT						cmd,
+	USHORT					subcmd,
+	void 				*pData,
+	ULONG					Data);
 
 int	RTMPSendPackets(
-	IN	struct rtmp_adapter	*pAd,
-	IN	struct sk_buff 		*pPacket);
+	struct rtmp_adapter	*pAd,
+	struct sk_buff 		*pPacket);
 
 int MBSS_PacketSend(
-	IN	struct sk_buff *				pPktSrc,
-	IN	struct net_device *				pDev,
-	IN	RTMP_NET_PACKET_TRANSMIT	Func);
+	struct sk_buff *				pPktSrc,
+	struct net_device *				pDev,
+	RTMP_NET_PACKET_TRANSMIT	Func);
 
 int WDS_PacketSend(
-	IN	struct sk_buff *				pPktSrc,
-	IN	struct net_device *				pDev,
-	IN	RTMP_NET_PACKET_TRANSMIT	Func);
+	struct sk_buff *				pPktSrc,
+	struct net_device *				pDev,
+	RTMP_NET_PACKET_TRANSMIT	Func);
 
 int APC_PacketSend(
-	IN	struct sk_buff *				pPktSrc,
-	IN	struct net_device *				pDev,
-	IN	RTMP_NET_PACKET_TRANSMIT	Func);
+	struct sk_buff *				pPktSrc,
+	struct net_device *				pDev,
+	RTMP_NET_PACKET_TRANSMIT	Func);
 
 int MESH_PacketSend(
-	IN	struct sk_buff *				pPktSrc,
-	IN	struct net_device *				pDev,
-	IN	RTMP_NET_PACKET_TRANSMIT	Func);
+	struct sk_buff *				pPktSrc,
+	struct net_device *				pDev,
+	RTMP_NET_PACKET_TRANSMIT	Func);
 
 int P2P_PacketSend(
-	IN	struct sk_buff *				pPktSrc,
-	IN	struct net_device *				pDev,
-	IN	RTMP_NET_PACKET_TRANSMIT	Func);
+	struct sk_buff *				pPktSrc,
+	struct net_device *				pDev,
+	RTMP_NET_PACKET_TRANSMIT	Func);
 
 
 #ifdef CONFIG_STA_SUPPORT
 INT RTMP_STA_IoctlHandle(
-	IN	void 				*pAd,
-	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	IN	INT						cmd,
-	IN	USHORT					subcmd,
-	IN	void 				*pData,
-	IN	ULONG					Data,
-	IN  USHORT                  priv_flags );
+	void 				*pAd,
+	RTMP_IOCTL_INPUT_STRUCT	*wrq,
+	INT						cmd,
+	USHORT					subcmd,
+	void 				*pData,
+	ULONG					Data,
+	USHORT                  priv_flags );
 #endif /* CONFIG_STA_SUPPORT */
 
 void RTMPDrvSTAOpen(struct rtmp_adapter *pAd);
@@ -144,112 +144,112 @@ int rt28xx_open(struct net_device *net_dev);
 
 #ifdef CONFIG_STA_SUPPORT
 INT rt28xx_sta_ioctl(
-	IN	struct net_device *	net_dev,
-	IN	OUT	struct ifreq	*rq,
-	IN	INT			cmd);
+	struct net_device *	net_dev,
+	struct ifreq	*rq,
+	INT			cmd);
 #endif /* CONFIG_STA_SUPPORT */
 
 struct net_device *RtmpPhyNetDevInit(
-	IN void 					*pAd,
-	IN RTMP_OS_NETDEV_OP_HOOK	*pNetHook);
+	void 					*pAd,
+	RTMP_OS_NETDEV_OP_HOOK	*pNetHook);
 
 bool RtmpPhyNetDevExit(
-	IN void 					*pAd,
-	IN struct net_device *				net_dev);
+	void 					*pAd,
+	struct net_device *				net_dev);
 
 #endif /* RTMP_MODULE_OS && OS_ABL_FUNC_SUPPORT */
 
 
 void RT28xx_MBSS_Init(
-	IN void *pAd,
-	IN struct net_device *main_dev_p);
+	void *pAd,
+	struct net_device *main_dev_p);
 void RT28xx_MBSS_Remove(
-	IN void *pAd);
+	void *pAd);
 INT MBSS_VirtualIF_Open(
-	IN	struct net_device *		dev_p);
+	struct net_device *		dev_p);
 INT MBSS_VirtualIF_Close(
-	IN	struct net_device *		dev_p);
+	struct net_device *		dev_p);
 INT MBSS_VirtualIF_PacketSend(
-	IN struct sk_buff *			skb_p,
-	IN struct net_device *			dev_p);
+	struct sk_buff *			skb_p,
+	struct net_device *			dev_p);
 INT MBSS_VirtualIF_Ioctl(
-	IN struct net_device *			dev_p,
-	IN OUT void 			*rq_p,
-	IN INT cmd);
+	struct net_device *			dev_p,
+	void 			*rq_p,
+	INT cmd);
 
 void RT28xx_WDS_Init(
-	IN void 				*pAd,
-	IN struct net_device *			net_dev);
+	void 				*pAd,
+	struct net_device *			net_dev);
 INT WdsVirtualIFSendPackets(
-	IN struct sk_buff *			pSkb,
-	IN struct net_device *			dev);
+	struct sk_buff *			pSkb,
+	struct net_device *			dev);
 INT WdsVirtualIF_open(
-	IN	struct net_device *		dev);
+	struct net_device *		dev);
 INT WdsVirtualIF_close(
-	IN struct net_device *			dev);
+	struct net_device *			dev);
 INT WdsVirtualIF_ioctl(
-	IN struct net_device *			net_dev,
-	IN OUT void 			*rq,
-	IN INT					cmd);
+	struct net_device *			net_dev,
+	void 			*rq,
+	INT					cmd);
 void RT28xx_WDS_Remove(
-	IN void 				*pAd);
+	void 				*pAd);
 
 void RT28xx_ApCli_Init(
-	IN void 				*pAd,
-	IN struct net_device *			main_dev_p);
+	void 				*pAd,
+	struct net_device *			main_dev_p);
 INT ApCli_VirtualIF_Open(
-	IN struct net_device *			dev_p);
+	struct net_device *			dev_p);
 INT ApCli_VirtualIF_Close(
-	IN	struct net_device *		dev_p);
+	struct net_device *		dev_p);
 INT ApCli_VirtualIF_PacketSend(
-	IN struct sk_buff * 		pPktSrc,
-	IN struct net_device *			pDev);
+	struct sk_buff * 		pPktSrc,
+	struct net_device *			pDev);
 INT ApCli_VirtualIF_Ioctl(
-	IN struct net_device *			dev_p,
-	IN OUT void 			*rq_p,
-	IN INT 					cmd);
+	struct net_device *			dev_p,
+	void 			*rq_p,
+	INT 					cmd);
 void RT28xx_ApCli_Remove(
-	IN void 				*pAd);
+	void 				*pAd);
 
 void RTMP_Mesh_Init(
-	IN void 				*pAd,
-	IN struct net_device *			main_dev_p,
-	IN char *			pHostName);
+	void 				*pAd,
+	struct net_device *			main_dev_p,
+	char *			pHostName);
 void RTMP_Mesh_Remove(
-	IN void 				*pAd);
+	void 				*pAd);
 INT Mesh_VirtualIF_Open(
-	IN struct net_device *			pDev);
+	struct net_device *			pDev);
 INT Mesh_VirtualIF_Close(
-	IN	struct net_device *		pDev);
+	struct net_device *		pDev);
 INT Mesh_VirtualIF_PacketSend(
-	IN struct sk_buff * 		pPktSrc,
-	IN struct net_device *			pDev);
+	struct sk_buff * 		pPktSrc,
+	struct net_device *			pDev);
 INT Mesh_VirtualIF_Ioctl(
-	IN struct net_device *			dev_p,
-	IN OUT void 			*rq_p,
-	IN INT 					cmd);
+	struct net_device *			dev_p,
+	void 			*rq_p,
+	INT 					cmd);
 
 void RTMP_P2P_Init(
-		 IN void 		 *pAd,
-		 IN struct net_device *main_dev_p);
+		 void 		 *pAd,
+		 struct net_device *main_dev_p);
 
  INT P2P_VirtualIF_Open(
-	 IN  struct net_device * dev_p);
+	 struct net_device * dev_p);
 
  INT P2P_VirtualIF_Close(
-	 IN  struct net_device * dev_p);
+	 struct net_device * dev_p);
 
  INT P2P_VirtualIF_PacketSend(
-	 IN struct sk_buff *	 skb_p,
-	 IN struct net_device *	 dev_p);
+	 struct sk_buff *	 skb_p,
+	 struct net_device *	 dev_p);
 
  INT P2P_VirtualIF_Ioctl(
-	 IN struct net_device *		 dev_p,
-	 IN OUT void  *rq_p,
-	 IN INT cmd);
+	 struct net_device *		 dev_p,
+	 void  *rq_p,
+	 INT cmd);
 
 void RTMP_P2P_Remove(
-	IN void 			*pAd);
+	void 			*pAd);
 
 
 /* communication with RALINK DRIVER module in NET module */

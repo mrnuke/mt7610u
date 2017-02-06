@@ -34,34 +34,34 @@
 #ifdef SHA1_SUPPORT
 #define HMAC_SHA1_SUPPORT
 void RT_HMAC_SHA1(
-	IN const u8 Key[],
-	IN UINT KeyLen,
-	IN const u8 Message[],
-	IN UINT MessageLen,
-	OUT u8 MAC[],
-	IN UINT MACLen);
+	const u8 Key[],
+	UINT KeyLen,
+	const u8 Message[],
+	UINT MessageLen,
+	u8 MAC[],
+	UINT MACLen);
 #endif /* SHA1_SUPPORT */
 
 #ifdef SHA256_SUPPORT
 #define HMAC_SHA256_SUPPORT
 void RT_HMAC_SHA256(
-	IN const u8 Key[],
-	IN UINT KeyLen,
-	IN const u8 Message[],
-	IN UINT MessageLen,
-	OUT u8 MAC[],
-	IN UINT MACLen);
+	const u8 Key[],
+	UINT KeyLen,
+	const u8 Message[],
+	UINT MessageLen,
+	u8 MAC[],
+	UINT MACLen);
 #endif /* SHA256_SUPPORT */
 
 #ifdef MD5_SUPPORT
 #define HMAC_MD5_SUPPORT
 void RT_HMAC_MD5(
-	IN const u8 Key[],
-	IN UINT KeyLen,
-	IN const u8 Message[],
-	IN UINT MessageLen,
-	OUT u8 MAC[],
-	IN UINT MACLen);
+	const u8 Key[],
+	UINT KeyLen,
+	const u8 Message[],
+	UINT MessageLen,
+	u8 MAC[],
+	UINT MACLen);
 #endif /* MD5_SUPPORT */
 
 

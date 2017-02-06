@@ -78,21 +78,21 @@ static struct usb_device_id rtusb_dev_id[] = {
 MODULE_DEVICE_TABLE(usb, rtusb_dev_id);
 
 static void rt2870_disconnect(
-	IN struct usb_device *dev,
-	IN void *pAd);
+	struct usb_device *dev,
+	void *pAd);
 
 static int rt2870_probe(
-	IN struct usb_interface *intf,
-	IN struct usb_device *usb_dev,
-	IN const struct usb_device_id *dev_id,
-	IN struct rtmp_adapter  **ppAd);
+	struct usb_interface *intf,
+	struct usb_device *usb_dev,
+	const struct usb_device_id *dev_id,
+	struct rtmp_adapter  **ppAd);
 
 #ifndef PF_NOFREEZE
 #define PF_NOFREEZE  0
 #endif
 
 
-/*extern int rt28xx_close(IN struct net_device *net_dev); */
+/*extern int rt28xx_close(struct net_device *net_dev); */
 /*extern int rt28xx_open(struct net_device *net_dev); */
 
 /**************************************************************************/
@@ -140,12 +140,12 @@ static bool USBDevConfigInit(struct usb_device *dev,
 			{
 				pConfig->BulkInEpAddr[BulkInIdx++] = iface_desc->endpoint[i].desc.bEndpointAddress;
 				pConfig->BulkInMaxPacketSize = le2cpu16(iface_desc->endpoint[i].desc.wMaxPacketSize);
-				DBGPRINT_RAW(RT_DEBUG_TRACE, ("BULK IN MaxPacketSize = %d\n", pConfig->BulkInMaxPacketSize));
+				DBGPRINT_RAW(RT_DEBUG_TRACE, ("BULK MaxPacketSize = %d\n", pConfig->BulkInMaxPacketSize));
 				DBGPRINT_RAW(RT_DEBUG_TRACE, ("EP address = 0x%2x\n", iface_desc->endpoint[i].desc.bEndpointAddress));
 			}
 			else
 			{
-				DBGPRINT(RT_DEBUG_ERROR, ("Bulk IN endpoint nums large than 2\n"));
+				DBGPRINT(RT_DEBUG_ERROR, ("Bulk endpoint nums large than 2\n"));
 			}
 		}
 		else if ((iface_desc->endpoint[i].desc.bmAttributes == USB_ENDPOINT_XFER_BULK) &&
@@ -158,7 +158,7 @@ static bool USBDevConfigInit(struct usb_device *dev,
 				pConfig->BulkOutEpAddr[BulkOutIdx++] = iface_desc->endpoint[i].desc.bEndpointAddress;
 				pConfig->BulkOutMaxPacketSize = le2cpu16(iface_desc->endpoint[i].desc.wMaxPacketSize);
 
-				DBGPRINT_RAW(RT_DEBUG_TRACE, ("BULK OUT MaxPacketSize = %d\n", pConfig->BulkOutMaxPacketSize));
+				DBGPRINT_RAW(RT_DEBUG_TRACE, ("BULK MaxPacketSize = %d\n", pConfig->BulkOutMaxPacketSize));
 				DBGPRINT_RAW(RT_DEBUG_TRACE, ("EP address = 0x%2x  \n", iface_desc->endpoint[i].desc.bEndpointAddress));
 			}
 			else
@@ -231,7 +231,7 @@ struct usb_driver rtusb_driver = {
 #ifdef CONFIG_PM
 
 void RT2870RejectPendingPackets(
-	IN	void *pAd)
+	void *pAd)
 {
 	/* clear PS packets */
 	/* clear TxSw packets */

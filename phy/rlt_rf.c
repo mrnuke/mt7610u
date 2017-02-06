@@ -30,10 +30,10 @@
 #include "rt_config.h"
 
 int rlt_rf_write(
-	IN struct rtmp_adapter *pAd,
-	IN u8 bank,
-	IN u8 regID,
-	IN u8 value)
+	struct rtmp_adapter *pAd,
+	u8 bank,
+	u8 regID,
+	u8 value)
 {
 	int	 ret = 0;
 
@@ -116,10 +116,10 @@ done:
 	========================================================================
 */
 int rlt_rf_read(
-	IN struct rtmp_adapter*pAd,
-	IN u8 bank,
-	IN u8 regID,
-	IN u8 *pValue)
+	struct rtmp_adapter*pAd,
+	u8 bank,
+	u8 regID,
+	u8 *pValue)
 {
 	int	 ret = 0;
 	if (RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_MCU_SEND_IN_BAND_CMD)) {

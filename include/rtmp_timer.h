@@ -44,10 +44,10 @@
 #ifdef RTMP_TIMER_TASK_SUPPORT
 typedef void(
 	*RTMP_TIMER_TASK_HANDLE) (
-	IN void *SystemSpecific1,
-	IN void *FunctionContext,
-	IN void *SystemSpecific2,
-	IN void *SystemSpecific3);
+	void *SystemSpecific1,
+	void *FunctionContext,
+	void *SystemSpecific2,
+	void *SystemSpecific3);
 #endif /* RTMP_TIMER_TASK_SUPPORT */
 
 typedef struct _RALINK_TIMER_STRUCT {

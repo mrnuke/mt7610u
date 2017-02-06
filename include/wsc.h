@@ -80,7 +80,7 @@ typedef	struct __attribute__ ((packed)) _EAP_FRAME	{
 }	EAP_FRAME, *PEAP_FRAME;
 
 static inline bool WscCheckWSCHeader(
-    IN  u8 *             pData)
+    u8 *             pData)
 {
     PWSC_FRAME			pWsc;
 

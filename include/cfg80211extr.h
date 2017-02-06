@@ -82,12 +82,12 @@
 
 /* utilities used in DRV module */
 INT CFG80211DRV_IoctlHandle(
-	IN	void 				*pAdSrc,
-	IN	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	IN	INT						cmd,
-	IN	USHORT					subcmd,
-	IN	void 				*pData,
-	IN	ULONG					Data);
+	void 				*pAdSrc,
+	RTMP_IOCTL_INPUT_STRUCT	*wrq,
+	INT						cmd,
+	USHORT					subcmd,
+	void 				*pData,
+	ULONG					Data);
 
 bool CFG80211DRV_OpsSetChannel(
 	void 					*pAdOrg,
@@ -133,58 +133,58 @@ void CFG80211DRV_PmkidConfig(
 	void 					*pData);
 
 void CFG80211_RegHint(
-	IN void 					*pAdCB,
-	IN u8 				*pCountryIe,
-	IN ULONG					CountryIeLen);
+	void 					*pAdCB,
+	u8 				*pCountryIe,
+	ULONG					CountryIeLen);
 
 void CFG80211_RegHint11D(
-	IN void 					*pAdCB,
-	IN u8 				*pCountryIe,
-	IN ULONG					CountryIeLen);
+	void 					*pAdCB,
+	u8 				*pCountryIe,
+	ULONG					CountryIeLen);
 
 void CFG80211_ScanEnd(
-	IN void 					*pAdCB,
-	IN bool 				FlgIsAborted);
+	void 					*pAdCB,
+	bool 				FlgIsAborted);
 
 void CFG80211_ConnectResultInform(
-	IN void 					*pAdCB,
-	IN u8 				*pBSSID,
-	IN u8 				*pReqIe,
-	IN u32					ReqIeLen,
-	IN u8 				*pRspIe,
-	IN u32					RspIeLen,
-	IN u8 				FlgIsSuccess);
+	void 					*pAdCB,
+	u8 				*pBSSID,
+	u8 				*pReqIe,
+	u32					ReqIeLen,
+	u8 				*pRspIe,
+	u32					RspIeLen,
+	u8 				FlgIsSuccess);
 
 bool CFG80211_SupBandReInit(
-	IN void 					*pAdCB);
+	void 					*pAdCB);
 
 void CFG80211_RegRuleApply(
-	IN void 					*pAdCB,
-	IN void 					*pWiphy,
-	IN u8 				*pAlpha2);
+	void 					*pAdCB,
+	void 					*pWiphy,
+	u8 				*pAlpha2);
 
 void CFG80211_Scaning(
-	IN void 					*pAdCB,
-	IN u32					BssIdx,
-	IN u32					ChanId,
-	IN u8 				*pFrame,
-	IN u32					FrameLen,
-	IN INT32					RSSI);
+	void 					*pAdCB,
+	u32					BssIdx,
+	u32					ChanId,
+	u8 				*pFrame,
+	u32					FrameLen,
+	INT32					RSSI);
 
 #ifdef RFKILL_HW_SUPPORT
 void CFG80211_RFKillStatusUpdate(
-	IN void *				pAd,
-	IN bool 				active);
+	void *				pAd,
+	bool 				active);
 #endif /* RFKILL_HW_SUPPORT */
 
 void CFG80211_UnRegister(
-	IN void 					*pAdOrg,
-	IN void 					*pNetDev);
+	void 					*pAdOrg,
+	void 					*pNetDev);
 
 #ifdef RT_P2P_SPECIFIC_WIRELESS_EVENT
 INT CFG80211_SendWirelessEvent(
-	IN void                                         *pAdCB,
-	IN u8 					*pMacAddr);
+	void                                         *pAdCB,
+	u8 					*pMacAddr);
 #endif /* RT_P2P_SPECIFIC_WIRELESS_EVENT */
 
 #endif /* RT_CFG80211_SUPPORT */

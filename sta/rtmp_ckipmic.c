@@ -121,10 +121,10 @@ static const USHORT Sbox[256] =
 #define rotLeft_1(x) ((((x) << 1) | ((x) >> 15)) & 0xFFFF)
 void CKIP_key_permute
     (
-     OUT u8  *PK,           /* output permuted key */
-     IN u8 *CK,           /* input CKIP key */
-     IN u8  toDsFromDs,    /* input toDs/FromDs bits */
-     IN u8 *piv           /* input pointer to IV */
+     u8  *PK,           /* output permuted key */
+     u8 *CK,           /* input CKIP key */
+     u8  toDsFromDs,    /* input toDs/FromDs bits */
+     u8 *piv           /* input pointer to IV */
      )
 {
     int i;
@@ -167,8 +167,8 @@ void CKIP_key_permute
 
 /* prepare for calculation of a new mic */
 void RTMPCkipMicInit(
-    IN  PMIC_CONTEXT        pContext,
-    IN  u8 *             CK)
+    PMIC_CONTEXT        pContext,
+    u8 *             CK)
 {
     /* prepare for new mic calculation */
     memmove(pContext->CK, CK, sizeof(pContext->CK));
@@ -178,9 +178,9 @@ void RTMPCkipMicInit(
 
 /* add some bytes to the mic calculation */
 void RTMPMicUpdate(
-    IN  PMIC_CONTEXT        pContext,
-    IN  u8 *             pOctets,
-    IN  INT                 len)
+    PMIC_CONTEXT        pContext,
+    u8 *             pOctets,
+    INT                 len)
 {
     INT     byte_position;
     ULONG   val;
@@ -202,7 +202,7 @@ void RTMPMicUpdate(
 }
 
 ULONG RTMPMicGetCoefficient(
-    IN  PMIC_CONTEXT         pContext)
+    PMIC_CONTEXT         pContext)
 {
     u8   aes_counter[16];
     INT     coeff_position;
@@ -232,9 +232,9 @@ ULONG RTMPMicGetCoefficient(
 /* 128 bit data.                        */
 /****************************************/
 void xor_128(
-    IN  u8 * a,
-    IN  u8 * b,
-    OUT u8 * out)
+    u8 * a,
+    u8 * b,
+    u8 * out)
 {
     INT i;
 
@@ -245,15 +245,15 @@ void xor_128(
 }
 
 u8 RTMPCkipSbox(
-    IN  u8   a)
+    u8   a)
 {
     return SboxTable[(int)a];
 }
 
 void xor_32(
-    IN  u8 * a,
-    IN  u8 * b,
-    OUT u8 * out)
+    u8 * a,
+    u8 * b,
+    u8 * out)
 {
     INT i;
 
@@ -264,8 +264,8 @@ void xor_32(
 }
 
 void next_key(
-    IN  u8 * key,
-    IN  INT     round)
+    u8 * key,
+    INT     round)
 {
     u8       rcon;
     u8       sbox_key[4];
@@ -291,8 +291,8 @@ void next_key(
 }
 
 void byte_sub(
-    IN  u8 * in,
-    OUT u8 * out)
+    u8 * in,
+    u8 * out)
 {
     INT i;
 
@@ -303,8 +303,8 @@ void byte_sub(
 }
 
 void shift_row(
-    IN  u8 * in,
-    OUT u8 * out)
+    u8 * in,
+    u8 * out)
 {
     out[0] =  in[0];
     out[1] =  in[5];
@@ -325,8 +325,8 @@ void shift_row(
 }
 
 void mix_column(
-    IN  u8 * in,
-    OUT u8 * out)
+    u8 * in,
+    u8 * out)
 {
     INT         i;
     u8       add1b[4];
@@ -388,9 +388,9 @@ void mix_column(
 }
 
 void RTMPAesEncrypt(
-    IN  u8 * key,
-    IN  u8 * data,
-    IN  u8 * ciphertext)
+    u8 * key,
+    u8 * data,
+    u8 * ciphertext)
 {
     INT             round;
     INT             i;
@@ -430,8 +430,8 @@ void RTMPAesEncrypt(
 
 /* calculate the mic */
 void RTMPMicFinal(
-    IN  PMIC_CONTEXT    pContext,
-    OUT u8           digest[4])
+    PMIC_CONTEXT    pContext,
+    u8           digest[4])
 {
     INT             byte_position;
     ULONG           val;
@@ -465,12 +465,12 @@ void RTMPMicFinal(
 }
 
 void RTMPCkipInsertCMIC(
-    IN  struct rtmp_adapter *  pAd,
-    OUT u8 *         pMIC,
-    IN  u8 *         p80211hdr,
-    IN  struct sk_buff *    pPacket,
-    IN  PCIPHER_KEY     pKey,
-    IN  u8 *         mic_snap)
+    struct rtmp_adapter *  pAd,
+    u8 *         pMIC,
+    u8 *         p80211hdr,
+    struct sk_buff *    pPacket,
+    PCIPHER_KEY     pKey,
+    u8 *         mic_snap)
 {
 	PACKET_INFO		PacketInfo;
 	u8 *		pSrcBufVA;

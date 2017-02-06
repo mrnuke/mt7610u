@@ -332,7 +332,7 @@ int rtinet_aton(char const *cp, unsigned int *addr)
     ========================================================================
 */
 char *RTMPFindSection(
-    IN  char *  buffer)
+    char *  buffer)
 {
     STRING temp_buf[32];
     char * ptr;
@@ -368,11 +368,11 @@ char *RTMPFindSection(
     ========================================================================
 */
 INT RTMPGetKeyParameter(
-    IN char *key,
-    OUT char *dest,
-    IN INT destsize,
-    IN char *buffer,
-    IN bool bTrimSpace)
+    char *key,
+    char *dest,
+    INT destsize,
+    char *buffer,
+    bool bTrimSpace)
 {
 	char *pMemBuf, *temp_buf1 = NULL, *temp_buf2 = NULL;
 	char *start_ptr, *end_ptr;
@@ -463,7 +463,7 @@ INT RTMPGetKeyParameter(
     ========================================================================
 */
 
-static int rtmp_parse_key_buffer_from_file(IN  struct rtmp_adapter *pAd,IN  char *buffer,IN  ULONG KeyType,IN  INT BSSIdx,IN  INT KeyIdx)
+static int rtmp_parse_key_buffer_from_file(struct rtmp_adapter *pAd, char *buffer, ULONG KeyType, INT BSSIdx, INT KeyIdx)
 {
 	char *	keybuff;
 	/*INT			i = BSSIdx, idx = KeyIdx, retVal;*/
@@ -492,7 +492,7 @@ static int rtmp_parse_key_buffer_from_file(IN  struct rtmp_adapter *pAd,IN  char
 
 
 #ifdef CONFIG_STA_SUPPORT
-static void rtmp_read_sta_wmm_parms_from_file(IN  struct rtmp_adapter *pAd, char *tmpbuf, char *buffer)
+static void rtmp_read_sta_wmm_parms_from_file(struct rtmp_adapter *pAd, char *tmpbuf, char *buffer)
 {
 	char *				macptr;
 	INT						i=0;
@@ -595,9 +595,9 @@ static void rtmp_read_sta_wmm_parms_from_file(IN  struct rtmp_adapter *pAd, char
 
 #ifdef DOT11_VHT_AC
 static void VHTParametersHook(
-	IN struct rtmp_adapter*pAd,
-	IN char *pValueStr,
-	IN char *pInput)
+	struct rtmp_adapter*pAd,
+	char *pValueStr,
+	char *pInput)
 {
 	long Value;
 
@@ -689,9 +689,9 @@ void demo_mode_cfg(struct rtmp_adapter*pAd)
 
 #ifdef DOT11_N_SUPPORT
 static void HTParametersHook(
-	IN	struct rtmp_adapter *pAd,
-	IN	char *	  pValueStr,
-	IN	char *	  pInput)
+	struct rtmp_adapter *pAd,
+	char *	  pValueStr,
+	char *	  pInput)
 {
 	long Value;
 
@@ -1168,8 +1168,8 @@ void RTMPSetCountryCode(struct rtmp_adapter*pAd, char *CountryCode)
 
 
 int	RTMPSetProfileParameters(
-	IN struct rtmp_adapter*pAd,
-	IN char *pBuffer)
+	struct rtmp_adapter*pAd,
+	char *pBuffer)
 {
 	char *				tmpbuf;
 	ULONG					RtsThresh;

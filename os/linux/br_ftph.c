@@ -56,7 +56,7 @@
 	}
 */
 UINT32 BG_FTPH_PacketFromApHandle(
-	IN		struct sk_buff *	pPacket);
+	struct sk_buff *	pPacket);
 
 #ifdef BG_FT_OPEN_SUPPORT
 extern UINT32 (*RALINK_FP_Handle)(struct sk_buff * pPacket);
@@ -128,7 +128,7 @@ Note:
 ========================================================================
 */
 UINT32 BG_FTPH_PacketFromApHandle(
-	IN		struct sk_buff *	pPacket)
+	struct sk_buff *	pPacket)
 {
 	struct net_device	*pNetDev;
 	struct sk_buff		*pRxPkt;

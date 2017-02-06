@@ -33,8 +33,8 @@
 u8 WIFIDISPLAY_OUI[] = {0x50, 0x6f, 0x9a, 0x0a};
 
 INT Set_WfdEnable_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	bool bEnable;
 
@@ -56,8 +56,8 @@ INT Set_WfdEnable_Proc(
 
 #ifdef RT_CFG80211_SUPPORT
 INT Set_WfdInsertIe_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	bool bEnable;
 	CFG80211_CB *pCfg80211_CB = NULL;
@@ -99,8 +99,8 @@ INT Set_WfdInsertIe_Proc(
 #endif /* RT_CFG80211_SUPPORT */
 
 INT Set_WfdDeviceType_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	u8 DeviceType;
 
@@ -123,8 +123,8 @@ INT Set_WfdDeviceType_Proc(
 
 
 INT Set_WfdCouple_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	u8 coupled;
 
@@ -160,8 +160,8 @@ INT Set_WfdCouple_Proc(
 }
 
 INT Set_WfdSessionAvailable_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	if (simple_strtol(arg, 0, 10) == 0)
 		pAd->StaCfg.WfdCfg.SessionAvail= WFD_SESSION_NOT_AVAILABLE;
@@ -179,8 +179,8 @@ INT Set_WfdSessionAvailable_Proc(
 }
 
 INT Set_WfdCP_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	if (simple_strtol(arg, 0, 10) == 0)
 		pAd->StaCfg.WfdCfg.CP = WFD_CP_NOT_SUPPORT;
@@ -199,8 +199,8 @@ INT Set_WfdCP_Proc(
 
 
 INT	Set_WfdRtspPort_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	INT32 RtspPort;
 
@@ -221,8 +221,8 @@ INT	Set_WfdRtspPort_Proc(
 
 
 INT	Set_WfdMaxThroughput_Proc(
-    IN  struct rtmp_adapter *	pAd,
-    IN  char *		arg)
+    struct rtmp_adapter *	pAd,
+    char *		arg)
 {
 	INT32 Throughput;
 
@@ -242,8 +242,8 @@ INT	Set_WfdMaxThroughput_Proc(
 }
 
 INT Set_WfdLocalIp_Proc(
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *	pAd,
+	char *		arg)
 {
 	PRT_WFD_CONFIG pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u32 ip_addr;
@@ -262,8 +262,8 @@ INT Set_WfdLocalIp_Proc(
 }
 
 INT Set_PeerRtspPort_Proc(
-	IN	struct rtmp_adapter *	pAd,
-	IN	char *		arg)
+	struct rtmp_adapter *	pAd,
+	char *		arg)
 {
 	PRT_WFD_CONFIG pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u32 ip_addr;
@@ -308,10 +308,10 @@ INT Set_PeerRtspPort_Proc(
 
 
 void WfdMakeWfdIE(
-	IN	struct rtmp_adapter *pAd,
-	IN 	ULONG			WfdIeBitmap,
-	OUT	u8 *		pOutBuf,
-	OUT	PULONG			pIeLen)
+	struct rtmp_adapter *pAd,
+	ULONG			WfdIeBitmap,
+	u8 *		pOutBuf,
+	PULONG			pIeLen)
 {
 	PRT_WFD_CONFIG	pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u8 		WfdIEFixed[6] = {0xdd, 0x0c, 0x50, 0x6f, 0x9a, 0x0a};	 /* Length will be modified later */
@@ -356,11 +356,11 @@ void WfdMakeWfdIE(
 
 
 ULONG InsertWfdSubelmtTlv(
-	IN struct rtmp_adapter *	pAd,
-	IN u8 		SubId,
-	IN u8 *		pInBuffer,
-	IN u8 *		pOutBuffer,
-	IN UINT				Action)
+	struct rtmp_adapter *	pAd,
+	u8 		SubId,
+	u8 *		pInBuffer,
+	u8 *		pOutBuffer,
+	UINT				Action)
 {
 	PRT_WFD_CONFIG	pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u8 *pDest;
@@ -621,10 +621,10 @@ ULONG InsertWfdSubelmtTlv(
 }
 
 void WfdParseSubElmt(
-	IN struct rtmp_adapter *	pAd,
-	IN PWFD_ENTRY_INFO	pWfdEntryInfo,
-	IN void 			*Msg,
-	IN ULONG 			MsgLen)
+	struct rtmp_adapter *	pAd,
+	PWFD_ENTRY_INFO	pWfdEntryInfo,
+	void 			*Msg,
+	ULONG 			MsgLen)
 {
 	PWFD_COUPLED_SINK_INFO pSinkInfo;
 	PWFD_DEVICE_INFO pWfd_info;
@@ -799,7 +799,7 @@ void WfdParseSubElmt(
 
 void WfdCfgInit(
 
-	IN struct rtmp_adapter *pAd)
+	struct rtmp_adapter *pAd)
 {
 	PRT_WFD_CONFIG	pWfdcfg = &pAd->StaCfg.WfdCfg;
 
