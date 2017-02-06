@@ -36,7 +36,6 @@
 /* Put platform dependent declaration here */
 /* For example, linux type definition */
 typedef unsigned short UINT16;
-typedef unsigned long long UINT64;
 typedef short INT16;
 typedef int INT32;
 typedef long long INT64;

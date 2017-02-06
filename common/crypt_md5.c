@@ -296,7 +296,7 @@ void RT_MD5_End (
     u8 DigestMessage[])
 {
     UINT index;
-    UINT64 message_length_bits;
+    uint64_t message_length_bits;
 
     /* append 1 bits to end of the message */
     memset(pMD5_CTX->Block + pMD5_CTX->BlockLen, 0x080, 1);

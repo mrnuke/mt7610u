@@ -37,7 +37,7 @@
 #define MD5_DIGEST_SIZE   16	/* 128 bits = 16 bytes */
 typedef struct {
 	u32 HashValue[4];
-	UINT64 MessageLen;
+	uint64_t MessageLen;
 	u8 Block[MD5_BLOCK_SIZE];
 	UINT BlockLen;
 } MD5_CTX_STRUC, *PMD5_CTX_STRUC;

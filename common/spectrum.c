@@ -662,7 +662,7 @@ static void TpcReqDelete(
 	Return	: Current Time Stamp.
 	==========================================================================
  */
-static UINT64 GetCurrentTimeStamp(
+static uint64_t GetCurrentTimeStamp(
 	struct rtmp_adapter *pAd)
 {
 	/* get current time stamp.*/
@@ -1313,7 +1313,7 @@ static bool PeerMeasureReqSanity(
 	bool result = false;
 	PEID_STRUCT eid_ptr;
 	u8 *ptr;
-	UINT64 MeasureStartTime;
+	uint64_t MeasureStartTime;
 	UINT16 MeasureDuration;
 
 	/* skip 802.11 header.*/
@@ -1938,7 +1938,7 @@ INT Set_MeasureReq_Proc(
 	u8 MeasureReqToken = RandomByte(pAd);
 	u8 MeasureReqType = RM_BASIC;
 	u8 MeasureCh = 1;
-	UINT64 MeasureStartTime = GetCurrentTimeStamp(pAd);
+	uint64_t MeasureStartTime = GetCurrentTimeStamp(pAd);
 	MEASURE_REQ MeasureReq;
 	u8 TotalLen;
 

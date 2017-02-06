@@ -272,7 +272,7 @@ void RT_SHA1_End (
     u8 DigestMessage[])
 {
     UINT index;
-    UINT64 message_length_bits;
+    uint64_t message_length_bits;
 
     /* Append bit 1 to end of the message */
     memset(pSHA_CTX->Block + pSHA_CTX->BlockLen, 0x080, 1);
@@ -495,7 +495,7 @@ void RT_SHA256_End (
     u8 DigestMessage[])
 {
     UINT index;
-    UINT64 message_length_bits;
+    uint64_t message_length_bits;
 
     /* Append bit 1 to end of the message */
     memset(pSHA_CTX->Block + pSHA_CTX->BlockLen, 0x080, 1);
