@@ -322,8 +322,8 @@ typedef struct __CMD_RTPRIV_IOCTL_80211_BSS_PARM {
 } CMD_RTPRIV_IOCTL_80211_BSS_PARM;
 
 typedef struct __CMD_RTPRIV_IOCTL_80211_BEACON {
-        INT32 interval;
-        INT32 dtim_period;
+        int32_t interval;
+        int32_t dtim_period;
         u8 *beacon_head;
 		u8 *beacon_tail;
         u32 beacon_head_len; /* Before TIM IE */
@@ -342,7 +342,7 @@ typedef struct __CMD_RTPRIV_IOCTL_80211_BEACON {
 	struct cfg80211_crypto_settings crypto;
 	bool privacy;
 	u8 auth_type;
-	INT32 inactivity_timeout;
+	int32_t inactivity_timeout;
 } CMD_RTPRIV_IOCTL_80211_BEACON;
 
 typedef struct __CMD_RTPRIV_IOCTL_80211_CHAN {
@@ -385,7 +385,7 @@ typedef struct __CMD_RTPRIV_IOCTL_80211_STA {
 	u32 TxRateFlags;
 
 	u32 TxRateMCS;
-	INT32 Signal;
+	int32_t Signal;
 	u32 TxPacketCnt;
 	u32 InactiveTime;
 } CMD_RTPRIV_IOCTL_80211_STA;
@@ -625,11 +625,11 @@ typedef struct __RT_CMD_AP_IOCTL_CONFIG {
 	void *net_dev;
 	ULONG priv_flags;
 	char *pCmdData;
-	INT32 CmdId_RTPRIV_IOCTL_SET;
+	int32_t CmdId_RTPRIV_IOCTL_SET;
 	char *name;
 	INT apidx;
 
-	INT32 Status;
+	int32_t Status;
 } RT_CMD_AP_IOCTL_CONFIG;
 
 typedef struct __RT_CMD_AP_IOCTL_SSID {
@@ -637,7 +637,7 @@ typedef struct __RT_CMD_AP_IOCTL_SSID {
 	INT apidx;
 
 	char *pSsidStr;
-	INT32 length;
+	int32_t length;
 } RT_CMD_AP_IOCTL_SSID;
 
 typedef struct __RT_CMD_IOCTL_RATE {
@@ -651,7 +651,7 @@ typedef struct __RT_CMD_IOCTL_RATE {
 #define RTMP_CMD_STA_MODE_MONITOR		0x03
 
 typedef struct __RT_CMD_STA_IOCTL_FREQ {
-	INT32 m;		/* Mantissa */
+	int32_t m;		/* Mantissa */
 	INT16 e;		/* Exponent */
 } RT_CMD_STA_IOCTL_FREQ;
 
@@ -672,7 +672,7 @@ typedef struct __RT_CMD_STA_IOCTL_SCAN {
 	u8 FlgScanThisSsid;
 	u32 SsidLen;
 	CHAR *pSsid;
-	INT32 Status;
+	int32_t Status;
 } RT_CMD_STA_IOCTL_SCAN;
 
 typedef struct __RT_CMD_STA_IOCTL_BSS_TABLE {
@@ -717,7 +717,7 @@ typedef struct __RT_CMD_STA_IOCTL_SSID {
 	u8 FlgAnySsid;
 	u32 SsidLen;
 	CHAR *pSsid;
-	INT32 Status;
+	int32_t Status;
 } RT_CMD_STA_IOCTL_SSID;
 
 typedef struct __RT_CMD_STA_IOCTL_NICK_NAME {
@@ -728,8 +728,8 @@ typedef struct __RT_CMD_STA_IOCTL_NICK_NAME {
 typedef struct __RT_CMD_STA_IOCTL_SECURITY {
 	CHAR *pData;
 	uint16_t length;
-	INT32 KeyIdx;
-	INT32 MaxKeyLen;
+	int32_t KeyIdx;
+	int32_t MaxKeyLen;
 
 #define RT_CMD_STA_IOCTL_SECURITY_ALG_NONE		0x01
 #define RT_CMD_STA_IOCTL_SECURITY_ALG_WEP		0x02
@@ -749,12 +749,12 @@ typedef struct __RT_CMD_STA_IOCTL_SECURITY {
 #define RT_CMD_STA_IOCTL_SECURITY_MODE			0x20
 	uint16_t flags;
 
-	INT32 Status;
+	int32_t Status;
 } RT_CMD_STA_IOCTL_SECURITY;
 
 typedef struct __RT_CMD_STA_IOCTL_WSC_U32_ITEM {
 	u32 *pUWrq;
-	INT32 Status;
+	int32_t Status;
 } RT_CMD_STA_IOCTL_WSC_U32_ITEM;
 
 typedef struct __RT_CMD_STA_IOCTL_WSC_STR_ITEM {
@@ -762,7 +762,7 @@ typedef struct __RT_CMD_STA_IOCTL_WSC_STR_ITEM {
 	CHAR *pData;
 	u32 length;
 
-	INT32 Status;
+	int32_t Status;
 } RT_CMD_STA_IOCTL_WSC_STR_ITEM;
 
 typedef struct __RT_CMD_STA_IOCTL_SHOW {

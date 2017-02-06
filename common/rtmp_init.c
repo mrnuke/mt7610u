@@ -1208,7 +1208,7 @@ void NICUpdateFifoStaCounters(
 	MAC_TABLE_ENTRY		*pEntry = NULL;
 	u32				i = 0;
 	u8 			pid = 0, wcid = 0;
-	INT32				reTry;
+	int32_t				reTry;
 	u8 			succMCS;
 
 #ifdef RTMP_MAC_USB

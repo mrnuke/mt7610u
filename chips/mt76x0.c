@@ -2422,7 +2422,7 @@ void MT76x0_TempSensor(struct rtmp_adapter *pAd)
 	u8 rf_b7_73 = 0, rf_b0_66 = 0, rf_b0_67 = 0;
 	u32 reg_val = 0;
 	SHORT temperature = 0;
-	INT32 Dout = 0;
+	int32_t Dout = 0;
 	u32 MTxCycle = 0;
 #ifdef RTMP_MAC_USB
 	u32 ret;

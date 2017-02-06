@@ -292,7 +292,7 @@ void RtmpOSFileSeek(RTMP_OS_FD osfd, int offset);
 int RtmpOSFileRead(RTMP_OS_FD osfd, char *pDataPtr, int readLen);
 int RtmpOSFileWrite(RTMP_OS_FD osfd, char *pDataPtr, int writeLen);
 
-INT32 RtmpOsFileIsErr(
+int32_t RtmpOsFileIsErr(
 	void 				*pFile);
 
 void RtmpOSFSInfoChange(
@@ -343,7 +343,7 @@ void RtmpOSNetDevProtect(
 	bool lock_it);
 
 struct net_device *RtmpOSNetDevCreate(
-	INT32					MC_RowID,
+	int32_t					MC_RowID,
 	u32					*pIoctlIF,
 	INT 					devType,
 	INT						devNum,
@@ -412,7 +412,7 @@ void RtmpOsTaskletDataAssign(
 
 void RtmpOsTaskWakeUp(RTMP_OS_TASK *pTaskOrg);
 
-INT32 RtmpOsTaskIsKilled(RTMP_OS_TASK *pTaskOrg);
+int32_t RtmpOsTaskIsKilled(RTMP_OS_TASK *pTaskOrg);
 
 bool RtmpOsCheckTaskLegality(RTMP_OS_TASK *pTaskOrg);
 
@@ -447,11 +447,11 @@ int RtmpOSTaskInit(
 bool RtmpOSTaskWait(
 	void 				*pReserved,
 	RTMP_OS_TASK			*pTaskOrg,
-	INT32					*pStatus);
+	int32_t					*pStatus);
 
 void *RtmpOsTaskDataGet(RTMP_OS_TASK *pTaskOrg);
 
-INT32 RtmpThreadPidKill(RTMP_OS_PID	 PID);
+int32_t RtmpThreadPidKill(RTMP_OS_PID	 PID);
 
 /* OS Cache */
 void RtmpOsDCacheFlush(ULONG AddrStart, ULONG Size);
@@ -551,7 +551,7 @@ void RtmpOsPciMsiDisable(void *pDev);
 ULONG RtmpOsMaxScanDataGet(void);
 
 /* OS Interrutp */
-INT32 RtmpOsIsInInterrupt(void);
+int32_t RtmpOsIsInInterrupt(void);
 
 /* OS USB */
 void *RtmpOsUsbUrbDataGet(void *pUrb);
@@ -873,7 +873,7 @@ void CFG80211OS_Scaning(
 	u32					ChanId,
 	u8 				*pFrame,
 	u32					FrameLen,
-	INT32					RSSI,
+	int32_t					RSSI,
 	bool 				FlgIsNMode,
 	u8					BW);
 
@@ -909,7 +909,7 @@ extern ULONG RTPktOffsetData, RTPktOffsetLen, RTPktOffsetCB;
 
 extern ULONG OS_NumOfMemAlloc, OS_NumOfMemFree;
 
-extern INT32 ralinkrate[];
+extern int32_t ralinkrate[];
 extern u32 RT_RateSize;
 
 #ifdef PLATFORM_UBM_IPX8

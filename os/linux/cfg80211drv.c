@@ -1186,7 +1186,7 @@ void CFG80211_Scaning(
 	u32						ChanId,
 	u8 					*pFrame,
 	u32						FrameLen,
-	INT32						RSSI)
+	int32_t						RSSI)
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;

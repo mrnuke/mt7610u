@@ -36,7 +36,6 @@
 /* Put platform dependent declaration here */
 /* For example, linux type definition */
 typedef short INT16;
-typedef int INT32;
 
 typedef unsigned short USHORT;
 typedef unsigned int UINT;
@@ -63,11 +62,11 @@ typedef unsigned int NDIS_MEDIA_STATE;
 typedef union _LARGE_INTEGER {
 	struct {
 #ifdef RT_BIG_ENDIAN
-		INT32 HighPart;
+		int32_t HighPart;
 		UINT LowPart;
 #else
 		UINT LowPart;
-		INT32 HighPart;
+		int32_t HighPart;
 #endif
 	} u;
 	int64_t QuadPart;

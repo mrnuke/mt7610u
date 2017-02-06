@@ -651,7 +651,7 @@ struct net_device *RtmpPhyNetDevMainCreate(struct rtmp_adapter *pAd)
 	IoctlIF = pAd->IoctlIF;
 #endif /* HOSTAPD_SUPPORT */
 
-	pDevNew = RtmpOSNetDevCreate((INT32)MC_RowID, (u32 *)&IoctlIF,
+	pDevNew = RtmpOSNetDevCreate((int32_t)MC_RowID, (u32 *)&IoctlIF,
 					INT_MAIN, 0, sizeof(struct rtmp_adapter *), "wlan");
 
 #ifdef HOSTAPD_SUPPORT

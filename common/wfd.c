@@ -202,7 +202,7 @@ INT	Set_WfdRtspPort_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg)
 {
-	INT32 RtspPort;
+	int32_t RtspPort;
 
 	RtspPort = simple_strtol(arg, 0, 10);
 
@@ -224,7 +224,7 @@ INT	Set_WfdMaxThroughput_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg)
 {
-	INT32 Throughput;
+	int32_t Throughput;
 
 	Throughput = simple_strtol(arg, 0, 10);
 

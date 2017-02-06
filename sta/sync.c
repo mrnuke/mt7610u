@@ -2771,7 +2771,7 @@ void CntlChannelWidth(
 	u8 sec_ch_offset)
 {
 	u8 rf_channel = 0, rf_bw;
-	INT32 ext_ch;
+	int32_t ext_ch;
 
 
 	DBGPRINT(RT_DEBUG_TRACE, ("%s: PrimaryChannel[%d] \n",__FUNCTION__,prim_ch));

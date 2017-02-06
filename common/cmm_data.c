@@ -2345,7 +2345,7 @@ INT ip_assembly(
 	MAC_TABLE_ENTRY *pEntry)
 {
 	QUEUE_HEADER *pAC_Queue1, *pAC_Queue2;
-	INT32 *pAC_ID1, *pAC_ID2, *pAC_ID1_FragSize, *pAC_ID2_FragSize;
+	int32_t *pAC_ID1, *pAC_ID2, *pAC_ID1_FragSize, *pAC_ID2_FragSize;
 	ULONG *pAC_Jiffies1, *pAC_Jiffies2;
 	IP_V4_HDR *pIpv4Hdr, Ipv4Hdr;
 	IP_FLAGS_FRAG_OFFSET *pFlags_frag_offset, Flags_frag_offset;

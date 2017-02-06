@@ -524,7 +524,7 @@ void wlan_802_11_to_802_3_packet(
 }
 
 #ifdef CONFIG_STA_SUPPORT
-INT32 ralinkrate[] = {
+int32_t ralinkrate[] = {
 	2,  4, 11, 22,
 	12, 18, 24, 36, 48, 72, 96, 108, 109, 110, 111, 112, /* CCK and OFDM */
 	13, 26, 39, 52, 78, 104, 117, 130, 26, 52, 78, 104, 156, 208, 234, 260,
@@ -996,7 +996,7 @@ static inline int __RtmpOSTaskInit(
 bool __RtmpOSTaskWait(
 	void *pReserved,
 	OS_TASK *pTask,
-	INT32 *pStatus)
+	int32_t *pStatus)
 {
 #ifdef KTHREAD_SUPPORT
 	RTMP_WAIT_EVENT_INTERRUPTIBLE((*pStatus), pTask);
@@ -1143,7 +1143,7 @@ int RtmpOSNetDevAddrSet(
   *	Assign the network dev name for created Ralink WiFi interface.
   */
 static int RtmpOSNetDevRequestName(
-	INT32 MC_RowID,
+	int32_t MC_RowID,
 	u32 *pIoctlIF,
 	struct net_device *dev,
 	char *pPrefixStr,
@@ -1379,7 +1379,7 @@ int RtmpOSNetDevAttach(
 }
 
 struct net_device *RtmpOSNetDevCreate(
-	INT32 MC_RowID,
+	int32_t MC_RowID,
 	u32 *pIoctlIF,
 	INT devType,
 	INT devNum,
@@ -1669,7 +1669,7 @@ Note:
 	rt_linux.h, not rt_drv.h
 ========================================================================
 */
-INT32 RtmpOsFileIsErr(void *pFile)
+int32_t RtmpOsFileIsErr(void *pFile)
 {
 	return IS_FILE_OPEN_ERR(pFile);
 }
@@ -2582,7 +2582,7 @@ void CFG80211OS_Scaning(
 	u32					ChanId,
 	u8 				*pFrame,
 	u32					FrameLen,
-	INT32					RSSI,
+	int32_t					RSSI,
 	bool 				FlgIsNMode,
 	u8					BW)
 {
@@ -2956,7 +2956,7 @@ int RtmpOSTaskInit(
 }
 
 
-bool RtmpOSTaskWait(void *pReserved, RTMP_OS_TASK * pTask, INT32 *pStatus)
+bool RtmpOSTaskWait(void *pReserved, RTMP_OS_TASK * pTask, int32_t *pStatus)
 {
 	return __RtmpOSTaskWait(pReserved, pTask, pStatus);
 }

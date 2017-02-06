@@ -704,7 +704,7 @@ void MlmePeriodicExec(
 				if (IS_MT76x0(pAd) &&
 					pAd->chipCap.bDoTemperatureSensor)
 				{
-					INT32 temperature_diff = 0;
+					int32_t temperature_diff = 0;
 					/*
 						For temperature sensor
 					*/

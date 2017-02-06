@@ -83,37 +83,37 @@ static void TDLS_UAPSD_CmdUtilMacGet(
 /* simulate to send a TDLS Setup request to a peer */
 static void TDLS_UAPSD_CmdSimSetupReqSend(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv);
 
 /* simulate to receive a TDLS Traffic response from a peer */
 static void TDLS_UAPSD_CmdSimTrafficRspRcv(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv);
 
 /* simulate to receive a TDLS Traffic indication from a peer */
 static void TDLS_UAPSD_CmdSimTrafficIndRcv(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv);
 
 /* simulate to change the power save of a peer */
 static void TDLS_UAPSD_CmdSimPeerPowerSaveChg(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv);
 
 /* simulate to change our power save */
 static void TDLS_UAPSD_CmdSimSelfPowerSaveChg(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv);
 
 /* simulate to send a TDLS Traffic response to a peer */
 static void TDLS_UAPSD_CmdSimTrafficRspSnd(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv);
 
 
@@ -398,7 +398,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdPeerInfoDisplay(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
@@ -474,7 +474,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdSelfInfoDisplay(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	if (TDLS_UAPSD_ARE_WE_IN_PS(pAd))
@@ -543,7 +543,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdConfigure(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	pAd->CommonCfg.TDLS_bAPSDAC_BE = TDLS_UAPSD_CmdUtilNumGet(&pArgv);
@@ -599,7 +599,7 @@ INT TDLS_Ioctl(
 	CHAR BufCmd[3] = { 0, 0, 0 };
 	CHAR *pArgv, *pParam;
 	u32 Command;
-	INT32 Argc;
+	int32_t Argc;
 
 
 	/* init */
@@ -763,7 +763,7 @@ static ULONG TDLS_UAPSD_TrafficIndBuild(
 	RT_802_11_TDLS *pTDLS = NULL;
 	u8 TDLS_ETHERTYPE[] = {0x89, 0x0d};
 	ULONG	FrameLen = 0;
-	INT32	LinkId;
+	int32_t	LinkId;
 	bool TimerCancelled;
 
 
@@ -979,7 +979,7 @@ static int TDLS_UAPSD_TrafficRspSend(
 	u8 *pOutBuffer = NULL;
 	ULONG	FrameLen = 0;
 	ULONG	TempLen;
-	INT32	LinkId;
+	int32_t	LinkId;
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
 	int	NStatus = NDIS_STATUS_FAILURE;
 
@@ -1185,7 +1185,7 @@ static void TDLS_UAPSD_PeerTrafficRspAction(
 	u8 PeerAddr[6];
 	u8 PeerAddr1[6];
 	RT_802_11_TDLS *pTDLS;
-	INT32 LinkId = 0xff;
+	int32_t LinkId = 0xff;
 	bool TimerCancelled;
 	PFRAME_802_11 pFrame = (PFRAME_802_11)pElem->Msg;
 
@@ -1427,7 +1427,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdSimSetupReqSend(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	MLME_QUEUE_ELEM *pElem;
@@ -1540,13 +1540,13 @@ Note:
 */
 static void TDLS_UAPSD_CmdSimTrafficRspRcv(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	u8 PeerMac[6];
 	RT_802_11_TDLS *pTDLS = NULL;
-	INT32 LinkId;
+	int32_t LinkId;
 
 
 	/* get MAC address */
@@ -1609,14 +1609,14 @@ Note:
 */
 static void TDLS_UAPSD_CmdSimTrafficIndRcv(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	u8 PeerMac[6];
 	MLME_QUEUE_ELEM *pElem = NULL;
 	u8 *pOutBuffer = NULL;
 	ULONG FrameLen = 0;
-	INT32 LinkId;
+	int32_t LinkId;
 	RT_802_11_TDLS *pTDLS = NULL;
 	int	NStatus = NDIS_STATUS_SUCCESS;
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
@@ -1716,7 +1716,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdSimPeerPowerSaveChg(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
@@ -1772,7 +1772,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdSimSelfPowerSaveChg(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	u32 PeerPsMode;
@@ -1813,7 +1813,7 @@ Note:
 */
 static void TDLS_UAPSD_CmdSimTrafficRspSnd(
 	struct rtmp_adapter *			pAd,
-	INT32						Argc,
+	int32_t						Argc,
 	CHAR						*pArgv)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;

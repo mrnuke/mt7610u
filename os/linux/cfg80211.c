@@ -854,12 +854,12 @@ static int CFG80211_OpsConnect(
 	struct rtmp_adapter  *pAd;
 	CMD_RTPRIV_IOCTL_80211_CONNECT ConnInfo;
 	struct ieee80211_channel *pChannel = pSme->channel;
-	INT32 Pairwise = 0;
-	INT32 Groupwise = 0;
-	INT32 Keymgmt = 0;
-//	INT32 WpaVersion = NL80211_WPA_VERSION_2;
-	INT32 WpaVersion = 0;
-	INT32 Chan = -1, Idx;
+	int32_t Pairwise = 0;
+	int32_t Groupwise = 0;
+	int32_t Keymgmt = 0;
+//	int32_t WpaVersion = NL80211_WPA_VERSION_2;
+	int32_t WpaVersion = 0;
+	int32_t Chan = -1, Idx;
 
 	CFG80211DBG(RT_DEBUG_ERROR, ("80211 [CONNECT TEST]> %s ==>\n", __FUNCTION__));
 

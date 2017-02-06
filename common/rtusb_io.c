@@ -535,7 +535,7 @@ int CheckGPIOHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 static int ResetBulkOutHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 
-	INT32 MACValue = 0;
+	int32_t MACValue = 0;
 	u8 Index = 0;
 	int ret=0;
 	PHT_TX_CONTEXT	pHTTXContext;

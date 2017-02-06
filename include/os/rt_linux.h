@@ -979,7 +979,7 @@ extern int ra_mtd_read(int num, loff_t from, size_t len, u_char *buf);
 #define InterlockedExchange			atomic_set
 
 typedef void USBHST_STATUS;
-typedef INT32 URBCompleteStatus;
+typedef int32_t URBCompleteStatus;
 typedef struct pt_regs pregs;
 
 USBHST_STATUS RTUSBBulkOutDataPacketComplete(URBCompleteStatus Status, struct urb *pURB, pregs *pt_regs);

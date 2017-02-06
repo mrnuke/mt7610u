@@ -541,7 +541,7 @@ typedef struct _RTMP_RX_RING {
 	RTMP_DMACB Cell[RX_RING_SIZE];
 	u32 RxCpuIdx;
 	u32 RxDmaIdx;
-	INT32 RxSwReadIdx;	/* software next read index */
+	int32_t RxSwReadIdx;	/* software next read index */
 } RTMP_RX_RING, *PRTMP_RX_RING;
 
 typedef struct _RTMP_MGMT_RING {
@@ -1637,7 +1637,7 @@ typedef struct _STA_ADMIN_CONFIG {
 	u8 LastSNR1;		/* last received BEACON's SNR for 2nd  antenna */
 #ifdef DOT11N_SS3_SUPPORT
 	u8 LastSNR2;		/* last received BEACON's SNR for 3nd  antenna */
-	INT32 BF_SNR[3];	/* Last RXWI BF SNR. Units=0.25 dB */
+	int32_t BF_SNR[3];	/* Last RXWI BF SNR. Units=0.25 dB */
 #endif /* DOT11N_SS3_SUPPORT */
 	RSSI_SAMPLE RssiSample;
 	ULONG NumOfAvgRssiSample;
@@ -1826,8 +1826,8 @@ typedef struct _STA_ACTIVE_CONFIG {
 #ifdef IP_ASSEMBLY
 struct ip_frag_q{
 	QUEUE_HEADER ip_queue[4];
-	INT32 ip_id[4];
-	INT32 ip_id_FragSize[4];
+	int32_t ip_id[4];
+	int32_t ip_id_FragSize[4];
 	ULONG ip_pkt_jiffies[4];
 };
 #endif /* IP_ASSEMBLY */
@@ -2106,13 +2106,13 @@ bool SupportHTMCS[MAX_LEN_OF_HT_RATES];
 #ifdef WFA_VHT_PF
 #ifdef IP_ASSEMBLY
 	QUEUE_HEADER ip_queue1[4];
-	INT32 ip_id1[4];
-	INT32 ip_id1_FragSize[4];
+	int32_t ip_id1[4];
+	int32_t ip_id1_FragSize[4];
 	ULONG ip_pkt1_jiffies[4];
 
 	QUEUE_HEADER ip_queue2[4];
-	INT32 ip_id2[4];
-	INT32 ip_id2_FragSize[4];
+	int32_t ip_id2[4];
+	int32_t ip_id2_FragSize[4];
 	ULONG ip_pkt2_jiffies[4];
 
 	struct ip_frag_q ip_fragQ[2];

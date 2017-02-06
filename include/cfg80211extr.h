@@ -169,7 +169,7 @@ void CFG80211_Scaning(
 	u32					ChanId,
 	u8 				*pFrame,
 	u32					FrameLen,
-	INT32					RSSI);
+	int32_t					RSSI);
 
 #ifdef RFKILL_HW_SUPPORT
 void CFG80211_RFKillStatusUpdate(

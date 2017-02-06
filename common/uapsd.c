@@ -280,7 +280,7 @@ void UAPSD_AllPacketDeliver(
 	PQUEUE_ENTRY pQueEntry;
 	u8 QueIdList[WMM_NUM_OF_AC] = { QID_AC_BE, QID_AC_BK,
                                          QID_AC_VI, QID_AC_VO };
-	INT32 IdAc, QueId; /* must be signed, can not be unsigned */
+	int32_t IdAc, QueId; /* must be signed, can not be unsigned */
 
 
 	RTMP_SEM_LOCK(&pAd->UAPSDEOSPLock);
@@ -1110,7 +1110,7 @@ bool UAPSD_PsPollHandle(
 	u8 QueIdList[WMM_NUM_OF_AC] = { QID_AC_BE, QID_AC_BK,
                                             QID_AC_VI, QID_AC_VO };
 	bool FlgQueEmpty;
-	INT32	IdAc; /* must be signed, can not use unsigned */
+	int32_t	IdAc; /* must be signed, can not use unsigned */
 	u32	Aid, QueId;
 
 
@@ -1320,7 +1320,7 @@ void UAPSD_TriggerFrameHandle(
 	bool FlgNullSnd;
 	bool FlgMgmtFrame;
 	u32	Aid, QueId;
-	INT32	IdAc; /* must be signed, can not use unsigned */
+	int32_t	IdAc; /* must be signed, can not use unsigned */
 /*	ULONG    FlgIrq; */
 
 #ifdef UAPSD_SP_ACCURATE
