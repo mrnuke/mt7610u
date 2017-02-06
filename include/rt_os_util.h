@@ -749,10 +749,6 @@ void CFG80211OS_Scaning(
 	IN bool 				FlgIsNMode,
 	IN u8					BW);
 
-void CFG80211OS_ScanEnd(
-	IN void 					*pCB,
-	IN bool 				FlgIsAborted);
-
 void CFG80211OS_ConnectResultInform(
 	IN void 					*pCB,
 	IN u8 				*pBSSID,
