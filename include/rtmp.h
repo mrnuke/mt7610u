@@ -6064,7 +6064,7 @@ enum ieee80211_radiotap_type {
 
 typedef struct _wlan_radiotap_header {
 	ieee80211_radiotap_header wt_ihdr;
-	INT64 wt_tsft;
+	int64_t wt_tsft;
 	u8 wt_flags;
 	u8 wt_rate;
 } wlan_radiotap_header;

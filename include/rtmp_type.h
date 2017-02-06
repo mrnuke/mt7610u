@@ -38,7 +38,6 @@
 typedef unsigned short UINT16;
 typedef short INT16;
 typedef int INT32;
-typedef long long INT64;
 
 typedef unsigned short USHORT;
 typedef unsigned int UINT;
@@ -72,7 +71,7 @@ typedef union _LARGE_INTEGER {
 		INT32 HighPart;
 #endif
 	} u;
-	INT64 QuadPart;
+	int64_t QuadPart;
 } LARGE_INTEGER;
 
 
