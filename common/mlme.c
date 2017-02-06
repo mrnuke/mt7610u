@@ -941,7 +941,7 @@ void STAMlmePeriodicExec(
 			(RTMP_TIME_AFTER(pAd->Mlme.Now32, pAd->StaCfg.LastBeaconRxTime + (1*OS_HZ))))
 		{
 			unsigned long BPtoJiffies;
-			LONG timeDiff;
+			long timeDiff;
 
 			BPtoJiffies = (((pAd->CommonCfg.BeaconPeriod * 1024 / 1000) * OS_HZ) / 1000);
 			timeDiff = (pAd->Mlme.Now32 - pAd->StaCfg.LastBeaconRxTime) / BPtoJiffies;
@@ -1608,7 +1608,7 @@ void MlmeSetTxPreamble(
 	csr4.word = mt7610u_read32(pAd, AUTO_RSP_CFG);
 	if (TxPreamble == Rt802_11PreambleLong)
 	{
-		DBGPRINT(RT_DEBUG_TRACE, ("MlmeSetTxPreamble (= LONG PREAMBLE)\n"));
+		DBGPRINT(RT_DEBUG_TRACE, ("MlmeSetTxPreamble (= long PREAMBLE)\n"));
 		OPSTATUS_CLEAR_FLAG(pAd, fOP_STATUS_SHORT_PREAMBLE_INUSED);
 		csr4.field.AutoResponderPreamble = 0;
 	}

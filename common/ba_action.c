@@ -1788,7 +1788,7 @@ void Indicate_AMPDU_Packet(
 	/* V. Receive seq surpasses Win(lastseq + nMSDU). So refresh all reorder buffer*/
 	else
 	{
-		LONG WinStartSeq, TmpSeq;
+		long WinStartSeq, TmpSeq;
 
 
 		TmpSeq = Sequence - (pBAEntry->BAWinSize) -1;

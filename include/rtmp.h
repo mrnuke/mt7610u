@@ -6077,7 +6077,7 @@ void STA_MonPktSend(
 
 void    RTMPSetDesiredRates(
     struct rtmp_adapter *  pAdapter,
-    LONG            Rates);
+    long            Rates);
 
 #endif /* CONFIG_STA_SUPPORT */
 

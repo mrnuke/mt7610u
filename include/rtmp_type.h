@@ -46,7 +46,6 @@ typedef signed char CHAR;
 
 typedef signed short SHORT;
 typedef signed int INT;
-typedef signed long LONG;
 
 #ifdef LINUX
 #endif /* LINUX */

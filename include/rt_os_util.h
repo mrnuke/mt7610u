@@ -228,7 +228,7 @@ void RtmpOsPktDataPtrAssign(
 
 void RtmpOsPktLenAssign(
 	struct sk_buff *			pNetPkt,
-	LONG					Len);
+	long					Len);
 
 void RtmpOsPktTailAdjust(
 	struct sk_buff *			pNetPkt,
@@ -561,9 +561,9 @@ unsigned long RtmpOsUsbUrbLenGet(void *pUrb);
 /* OS Atomic */
 bool RtmpOsAtomicInit(RTMP_OS_ATOMIC *pAtomic, LIST_HEADER *pAtomicList);
 void RtmpOsAtomicDestroy(RTMP_OS_ATOMIC *pAtomic);
-LONG RtmpOsAtomicRead(RTMP_OS_ATOMIC *pAtomic);
+long RtmpOsAtomicRead(RTMP_OS_ATOMIC *pAtomic);
 void RtmpOsAtomicDec(RTMP_OS_ATOMIC *pAtomic);
-void RtmpOsAtomicInterlockedExchange(RTMP_OS_ATOMIC *pAtomicSrc, LONG Value);
+void RtmpOsAtomicInterlockedExchange(RTMP_OS_ATOMIC *pAtomicSrc, long Value);
 
 int RtmpOSWrielessEventSend(
 	struct net_device *			pNetDev,

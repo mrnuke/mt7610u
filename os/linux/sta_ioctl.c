@@ -153,7 +153,7 @@ int rt_ioctl_siwmode(struct net_device *dev,
 		   __u32 *mode, char *extra)
 {
 	void *pAd = NULL;
-	LONG Mode;
+	long Mode;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 

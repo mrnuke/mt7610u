@@ -168,7 +168,7 @@ INT	Set_PktAggregate_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	LONG aggre;
+	long aggre;
 
 	aggre = simple_strtol(arg, 0, 10);
 
@@ -199,7 +199,7 @@ INT	Set_IEEE80211H_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-    LONG ieee80211h;
+    long ieee80211h;
 
 	ieee80211h = simple_strtol(arg, 0, 10);
 
@@ -727,7 +727,7 @@ bool RTMPCheckStrPrintAble(
 #ifdef CONFIG_STA_SUPPORT
 void    RTMPSetDesiredRates(
     struct rtmp_adapter *  pAdapter,
-    LONG            Rates)
+    long            Rates)
 {
     NDIS_802_11_RATES aryRates;
 
@@ -1893,13 +1893,13 @@ INT	Set_HtMcs_Proc(
 				(HtMcs <= 3) &&
 				(pAd->StaCfg.DesiredTransmitSetting.field.FixedTxMode == FIXED_TXMODE_CCK))
 			{
-				RTMPSetDesiredRates(pAd, (LONG) (RateIdToMbps[HtMcs] * 1000000));
+				RTMPSetDesiredRates(pAd, (long) (RateIdToMbps[HtMcs] * 1000000));
 			}
 			else if ((pAd->StaCfg.DesiredTransmitSetting.field.MCS != MCS_AUTO) &&
 					(HtMcs <= 7) &&
 	            			(pAd->StaCfg.DesiredTransmitSetting.field.FixedTxMode == FIXED_TXMODE_OFDM))
 			{
-				RTMPSetDesiredRates(pAd, (LONG) (RateIdToMbps[HtMcs+4] * 1000000));
+				RTMPSetDesiredRates(pAd, (long) (RateIdToMbps[HtMcs+4] * 1000000));
 			}
 			else
 				bAutoRate = true;

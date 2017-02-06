@@ -2102,7 +2102,7 @@ void PeerBeacon(
 					ERP_IS_USE_BARKER_PREAMBLE(ie_list->Erp))
 				{
 					MlmeSetTxPreamble(pAd, Rt802_11PreambleLong);
-					DBGPRINT(RT_DEBUG_TRACE, ("SYNC - AP forced to use LONG preamble\n"));
+					DBGPRINT(RT_DEBUG_TRACE, ("SYNC - AP forced to use long preamble\n"));
 				}
 
 				if (OPSTATUS_TEST_FLAG(pAd, fOP_STATUS_WMM_INUSED)    &&

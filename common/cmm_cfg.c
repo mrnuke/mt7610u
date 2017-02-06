@@ -138,7 +138,7 @@ INT RT_CfgSetCountryRegion(
 	char *		arg,
 	INT				band)
 {
-	LONG region;
+	long region;
 	u8 *pCountryRegion;
 
 	region = simple_strtol(arg, 0, 10);
@@ -295,7 +295,7 @@ bool wmode_band_equal(u8 smode, u8 tmode)
 */
 INT RT_CfgSetWirelessMode(struct rtmp_adapter*pAd, char *arg)
 {
-	LONG cfg_mode;
+	long cfg_mode;
 	u8 wmode, *mode_str;
 
 
@@ -355,7 +355,7 @@ INT RT_CfgSetShortSlot(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	LONG ShortSlot;
+	long ShortSlot;
 
 	ShortSlot = simple_strtol(arg, 0, 10);
 
