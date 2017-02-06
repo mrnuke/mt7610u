@@ -51,7 +51,7 @@ u8 GetRegulatoryMaxTxPwr(
 void MakeMeasurementReqFrame(
 	struct rtmp_adapter *pAd,
 	u8 *pOutBuffer,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 TotalLen,
 	u8 Category,
 	u8 Action,
@@ -177,21 +177,21 @@ void MeasureReqDelete(
 void InsertChannelRepIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	char *pCountry,
 	u8 RegulatoryClass);
 
 void InsertTpcReportIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 TxPwr,
 	u8 LinkMargin);
 
 void InsertDialogToken(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 DialogToken);
 
 int	TpcReqTabInit(
@@ -210,6 +210,6 @@ void NotifyChSwAnnToPeerAPs(
 void RguClass_BuildBcnChList(
 	struct rtmp_adapter *pAd,
 	u8 *pBuf,
-	PULONG pBufLen);
+	unsigned long *pBufLen);
 #endif /* __SPECTRUM_H__ */
 

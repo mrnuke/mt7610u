@@ -1077,7 +1077,7 @@ void BarHeaderInit(
 void InsertActField(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 Category,
 	u8 ActCode)
 {

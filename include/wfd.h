@@ -79,7 +79,7 @@ void WfdMakeWfdIE(
 	struct rtmp_adapter *pAd,
 	ULONG			WfdIeBitmap,
 	u8 *		pOutBuf,
-	PULONG			pIeLen);
+	unsigned long			*pIeLen);
 
 ULONG InsertWfdSubelmtTlv(
 	struct rtmp_adapter *	pAd,

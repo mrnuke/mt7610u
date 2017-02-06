@@ -311,7 +311,7 @@ void WfdMakeWfdIE(
 	struct rtmp_adapter *pAd,
 	ULONG			WfdIeBitmap,
 	u8 *		pOutBuf,
-	PULONG			pIeLen)
+	unsigned long			*pIeLen)
 {
 	PRT_WFD_CONFIG	pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u8 		WfdIEFixed[6] = {0xdd, 0x0c, 0x50, 0x6f, 0x9a, 0x0a};	 /* Length will be modified later */

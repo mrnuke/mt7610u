@@ -49,7 +49,7 @@ static ULONG TDLS_UAPSD_TrafficIndBuild(
 static void TDLS_UAPSD_TrafficIndPayloadBuild(
 	struct rtmp_adapter *			pAd,
 	u8 *					pFrameBuf,
-	PULONG						pFrameLen,
+	unsigned long				*pFrameLen,
 	PRT_802_11_TDLS				pTDLS);
 
 /* send a traffic indication frame */
@@ -65,7 +65,7 @@ static int TDLS_UAPSD_TrafficRspSend(
 static void TDLS_UAPSD_TrafficRspBuild(
 	struct rtmp_adapter *			pAd,
 	u8 *					pFrameBuf,
-	PULONG						pFrameLen,
+	unsigned long				*pFrameLen,
 	PRT_802_11_TDLS				pTDLS,
 	u8 					PeerToken);
 
@@ -844,7 +844,7 @@ Note:
 static void TDLS_UAPSD_TrafficIndPayloadBuild(
 	struct rtmp_adapter *			pAd,
 	u8 *					pFrameBuf,
-	PULONG						pFrameLen,
+	unsigned long				*pFrameLen,
 	PRT_802_11_TDLS				pTDLS)
 {
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
@@ -1066,7 +1066,7 @@ Note:
 static void TDLS_UAPSD_TrafficRspBuild(
 	struct rtmp_adapter *			pAd,
 	u8 *					pFrameBuf,
-	PULONG						pFrameLen,
+	unsigned long				*pFrameLen,
 	PRT_802_11_TDLS				pTDLS,
 	u8 					PeerToken)
 {

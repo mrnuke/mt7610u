@@ -1768,7 +1768,7 @@ void BuildChannelListEx(
 void BuildBeaconChList(
 	struct rtmp_adapter *pAd,
 	u8 *pBuf,
-	PULONG pBufLen)
+	unsigned long *pBufLen)
 {
 	INT i;
 	ULONG TmpLen;

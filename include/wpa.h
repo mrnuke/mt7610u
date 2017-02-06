@@ -214,7 +214,7 @@ void WpaShowAllsuite(
 
 void RTMPInsertRSNIE(
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 * rsnie_ptr,
 	u8 rsnie_len,
 	u8 * pmkid_ptr,

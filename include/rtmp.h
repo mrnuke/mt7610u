@@ -343,12 +343,12 @@ void DisplayTxAgg (struct rtmp_adapter*pAd);
 typedef struct _RTMP_SCATTER_GATHER_ELEMENT {
 	void *Address;
 	ULONG Length;
-	PULONG Reserved;
+	unsigned long *Reserved;
 } RTMP_SCATTER_GATHER_ELEMENT, *PRTMP_SCATTER_GATHER_ELEMENT;
 
 typedef struct _RTMP_SCATTER_GATHER_LIST {
 	ULONG NumberOfElements;
-	PULONG Reserved;
+	unsigned long *Reserved;
 	RTMP_SCATTER_GATHER_ELEMENT Elements[NIC_MAX_PHYS_BUF_COUNT];
 } RTMP_SCATTER_GATHER_LIST, *PRTMP_SCATTER_GATHER_LIST;
 
@@ -3641,7 +3641,7 @@ void BarHeaderInit(
 void InsertActField(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 Category,
 	u8 ActCode);
 
@@ -3713,7 +3713,7 @@ int	RTMPHardTransmit(
 	struct rtmp_adapter *pAd,
 	struct sk_buff *		pPacket,
 	u8 		QueIdx,
-	PULONG			pFreeTXDLeft);
+	unsigned long			*pFreeTXDLeft);
 
 int	STAHardTransmit(
 	struct rtmp_adapter *pAd,

@@ -699,7 +699,7 @@ static u8 GetCurTxPwr(
 void InsertChannelRepIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	char *pCountry,
 	u8 RegulatoryClass)
 {
@@ -779,7 +779,7 @@ void InsertChannelRepIE(
 void InsertDialogToken(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 DialogToken)
 {
 	ULONG TempLen;
@@ -807,7 +807,7 @@ void InsertDialogToken(
  static void InsertTpcReqIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen)
+	unsigned long *pFrameLen)
 {
 	ULONG TempLen;
 	u8 Len = 0;
@@ -840,7 +840,7 @@ void InsertDialogToken(
 void InsertTpcReportIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 TxPwr,
 	u8 LinkMargin)
 {
@@ -886,7 +886,7 @@ void InsertTpcReportIE(
 static void InsertMeasureReqIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 Len,
 	PMEASURE_REQ_INFO pMeasureReqIE)
 {
@@ -924,7 +924,7 @@ static void InsertMeasureReqIE(
 static void InsertMeasureReportIE(
 	struct rtmp_adapter *pAd,
 	u8 *pFrameBuf,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	PMEASURE_REPORT_INFO pMeasureReportIE,
 	u8 ReportLnfoLen,
 	u8 * pReportInfo)
@@ -969,7 +969,7 @@ static void InsertMeasureReportIE(
 void MakeMeasurementReqFrame(
 	struct rtmp_adapter *pAd,
 	u8 *pOutBuffer,
-	PULONG pFrameLen,
+	unsigned long *pFrameLen,
 	u8 TotalLen,
 	u8 Category,
 	u8 Action,

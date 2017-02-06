@@ -90,7 +90,7 @@ void BuildChannelListEx(
 void BuildBeaconChList(
 	struct rtmp_adapter *pAd,
 	u8 *pBuf,
-	PULONG pBufLen);
+	unsigned long *pBufLen);
 #endif /* EXT_BUILD_CHANNEL_LIST */
 
 #ifdef DOT11_N_SUPPORT

@@ -55,7 +55,6 @@ typedef signed long LONG;
 #endif /* LINUX */
 
 typedef USHORT *PUSHORT;
-typedef ULONG *PULONG;
 
 typedef unsigned int NDIS_MEDIA_STATE;
 
