@@ -810,7 +810,7 @@ void MlmeNewRateAdapt(
 	unsigned long			TrainDown,
 	unsigned long			TxErrorRatio)
 {
-	USHORT		phyRateLimit20 = 0;
+	unsigned short		phyRateLimit20 = 0;
 	bool 	bTrainUp = false;
 	u8 *pTable = pEntry->pTable;
 	u8 CurrRateIdx = pEntry->CurrTxRateIndex;

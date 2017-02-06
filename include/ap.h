@@ -104,7 +104,7 @@ bool APCheckClass2Class3Error(
 void APHandleRxPsPoll(
 	struct rtmp_adapter *pAd,
 	u8 *		pAddr,
-	USHORT			Aid,
+	unsigned short			Aid,
     bool 		isActive);
 
 void    RTMPDescriptorEndianChange(
@@ -128,13 +128,13 @@ void APAssocStateMachineInit(
 void MbssKickOutStas(
 	struct rtmp_adapter *pAd,
 	INT apidx,
-	USHORT Reason);
+	unsigned short Reason);
 
 void APMlmeKickOutSta(
     struct rtmp_adapter *pAd,
 	u8 *pStaAddr,
 	u8 Wcid,
-	USHORT Reason);
+	unsigned short Reason);
 
 
 
@@ -323,7 +323,7 @@ MAC_TABLE_ENTRY *APSsPsInquiry(
     struct rtmp_adapter *  pAd,
     u8 *         pAddr,
     SST             *Sst,
-    USHORT          *Aid,
+    unsigned short          *Aid,
     u8           *PsMode,
     u8           *Rate);
 
@@ -377,7 +377,7 @@ bool PeerDisassocReqSanity(
     unsigned long MsgLen,
     u8 *pAddr2,
     uint16_t	*SeqNum,
-    USHORT *Reason);
+    unsigned short *Reason);
 
 bool PeerDeauthReqSanity(
     struct rtmp_adapter *pAd,
@@ -385,7 +385,7 @@ bool PeerDeauthReqSanity(
     unsigned long MsgLen,
     u8 *pAddr2,
    	uint16_t	*SeqNum,
-    USHORT *Reason);
+    unsigned short *Reason);
 
 bool APPeerAuthSanity(
     struct rtmp_adapter *pAd,
@@ -393,9 +393,9 @@ bool APPeerAuthSanity(
     unsigned long MsgLen,
 	u8 *pAddr1,
     u8 *pAddr2,
-    USHORT *Alg,
-    USHORT *Seq,
-    USHORT *Status,
+    unsigned short *Alg,
+    unsigned short *Seq,
+    unsigned short *Status,
     CHAR *ChlgText
 	);
 

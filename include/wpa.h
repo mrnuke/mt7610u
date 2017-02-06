@@ -200,7 +200,7 @@ int RtmpPasswordHash(
 	u8 * data,
 	INT data_len,
 	u8 * output,
-	USHORT len);
+	unsigned short len);
 
 u8 * WPA_ExtractSuiteFromRSNIE(
 	u8 * rsnie,

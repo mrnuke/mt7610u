@@ -305,8 +305,8 @@ Note:
 */
 void TDLS_UAPSDP_PsmModeChange(
 	struct rtmp_adapter *			pAd,
-	USHORT						PsmOld,
-	USHORT						PsmNew)
+	unsigned short						PsmOld,
+	unsigned short						PsmNew)
 {
 	MAC_TABLE_ENTRY	*pMacEntry;
 	RT_802_11_TDLS *pTDLS;
@@ -1501,7 +1501,7 @@ static void TDLS_UAPSD_CmdSimSetupReqSend(
 	memcpy(pElem->Msg + LENGTH_802_11 + LENGTH_802_1_H,
 			pOutBuffer, 3);
 	/* status code = 0x00 00 (2B) */
-	*(USHORT *)(pElem->Msg + LENGTH_802_11 + LENGTH_802_1_H + 3) = 0x00;
+	*(unsigned short *)(pElem->Msg + LENGTH_802_11 + LENGTH_802_1_H + 3) = 0x00;
 
 	/* copy others */
 	memcpy(pElem->Msg + LENGTH_802_11 + LENGTH_802_1_H + 3 + 2,

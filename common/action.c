@@ -156,11 +156,11 @@ void MlmeADDBAAction(
 			BA_PARM		tmpBaParm;
 
 			memmove((u8 *)(&tmpBaParm), (u8 *)(&Frame.BaParm), sizeof(BA_PARM));
-			*(USHORT *)(&tmpBaParm) = cpu2le16(*(USHORT *)(&tmpBaParm));
+			*(unsigned short *)(&tmpBaParm) = cpu2le16(*(unsigned short *)(&tmpBaParm));
 			memmove((u8 *)(&Frame.BaParm), (u8 *)(&tmpBaParm), sizeof(BA_PARM));
 		}
 #else
-		*(USHORT *)(&(Frame.BaParm)) = cpu2le16((*(USHORT *)(&(Frame.BaParm))));
+		*(unsigned short *)(&(Frame.BaParm)) = cpu2le16((*(unsigned short *)(&(Frame.BaParm))));
 #endif /* UNALIGNMENT_SUPPORT */
 
 		Frame.TimeOutValue = cpu2le16(Frame.TimeOutValue);
@@ -267,7 +267,7 @@ void MlmeDELBAAction(
 		Frame.DelbaParm.Initiator = pInfo->Initiator;
 		Frame.DelbaParm.TID = pInfo->TID;
 		Frame.ReasonCode = 39; /* Time Out*/
-		*(USHORT *)(&Frame.DelbaParm) = cpu2le16(*(USHORT *)(&Frame.DelbaParm));
+		*(unsigned short *)(&Frame.DelbaParm) = cpu2le16(*(unsigned short *)(&Frame.DelbaParm));
 		Frame.ReasonCode = cpu2le16(Frame.ReasonCode);
 
 		MakeOutgoingFrame(pOutBuffer,               &FrameLen,
@@ -940,7 +940,7 @@ void ORIBATimerTimeout(
 /*	unsigned long			FrameLen;*/
 /*	int 	NStatus;*/
 /*	u8 *		pOutBuffer = NULL;*/
-/*	USHORT			Sequence;*/
+/*	unsigned short			Sequence;*/
 	u8 		TID;
 
 	total = pAd->MacTab.Size * NUM_OF_TID;
@@ -966,9 +966,9 @@ void SendRefreshBAR(
 	FRAME_BAR		FrameBar;
 	unsigned long			FrameLen;
 	u8 *		pOutBuffer = NULL;
-	USHORT			Sequence;
+	unsigned short			Sequence;
 	u8 		i, TID;
-	USHORT			idx;
+	unsigned short			idx;
 	BA_ORI_ENTRY	*pBAEntry;
 
 	for (i = 0; i <NUM_OF_TID; i++)
@@ -1043,7 +1043,7 @@ void BarHeaderInit(
 	u8 *pDA,
 	u8 *pSA)
 {
-/*	USHORT	Duration;*/
+/*	unsigned short	Duration;*/
 
 	memset(pCntlBar, 0, sizeof(FRAME_BAR));
 	pCntlBar->FC.Type = BTYPE_CNTL;

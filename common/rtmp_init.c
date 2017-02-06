@@ -729,7 +729,7 @@ void NICInitAsicFromEEPROM(
 #ifdef CONFIG_STA_SUPPORT
 	u32 data = 0;
 #endif /* CONFIG_STA_SUPPORT */
-	USHORT i;
+	unsigned short i;
 	EEPROM_NIC_CONFIG2_STRUC NicConfig2;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("--> NICInitAsicFromEEPROM\n"));
@@ -861,7 +861,7 @@ void AsicInitBcnBuf(struct rtmp_adapter*pAd)
 		};
 		for (idx = 0; idx < 4; idx ++)
 		{
-			mt7610u_write32(pAd, (USHORT)bcn_mac_reg_tb[idx].Register,
+			mt7610u_write32(pAd, (unsigned short)bcn_mac_reg_tb[idx].Register,
 									bcn_mac_reg_tb[idx].Value);
 		}
 	}

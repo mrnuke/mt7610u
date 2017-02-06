@@ -208,7 +208,7 @@ bool STACheckTkipMICValue(
 {
 	PHEADER_802_11 pHeader = pRxBlk->pHeader;
 	u8 *pData = pRxBlk->pData;
-	USHORT DataSize = pRxBlk->DataSize;
+	unsigned short DataSize = pRxBlk->DataSize;
 	u8 UserPriority = pRxBlk->UserPriority;
 	PCIPHER_KEY pWpaKey;
 	u8 *pDA, *pSA;
@@ -1165,7 +1165,7 @@ int STASendPacket(
 	{
 		if (pAd->StaCfg.BssType == BSS_INFRA) {
 #if defined(QOS_DLS_SUPPORT) || defined(DOT11Z_TDLS_SUPPORT)
-			USHORT tmpWcid;
+			unsigned short tmpWcid;
 
 			tmpWcid = RTMP_GET_PACKET_WCID(pPacket);
 
@@ -1435,7 +1435,7 @@ void RTMPSendNullFrame(
 	struct rtmp_adapter *pAd,
 	u8 TxRate,
 	bool bQosNull,
-	USHORT PwrMgmt)
+	unsigned short PwrMgmt)
 {
 	u8 NullFrame[48];
 	unsigned long Length;
@@ -1863,7 +1863,7 @@ void STA_AMPDU_Frame_Tx(
 {
 	HEADER_802_11 *pHeader_802_11;
 	u8 *pHeaderBufPtr;
-	USHORT FreeNumber = 0;
+	unsigned short FreeNumber = 0;
 	MAC_TABLE_ENTRY *pMacEntry;
 	bool bVLANPkt;
 	PQUEUE_ENTRY pQEntry;
@@ -2136,12 +2136,12 @@ void STA_AMSDU_Frame_Tx(
 	TX_BLK *pTxBlk)
 {
 	u8 *pHeaderBufPtr;
-	USHORT FreeNumber = 0;
-	USHORT subFramePayloadLen = 0;	/* AMSDU Subframe length without AMSDU-Header / Padding */
-	USHORT totalMPDUSize = 0;
+	unsigned short FreeNumber = 0;
+	unsigned short subFramePayloadLen = 0;	/* AMSDU Subframe length without AMSDU-Header / Padding */
+	unsigned short totalMPDUSize = 0;
 	u8 *subFrameHeader;
 	u8 padding = 0;
-	USHORT FirstTx = 0, LastTxIdx = 0;
+	unsigned short FirstTx = 0, LastTxIdx = 0;
 	bool bVLANPkt;
 	int frameNum = 0;
 	PQUEUE_ENTRY pQEntry;
@@ -2266,7 +2266,7 @@ void STA_Legacy_Frame_Tx(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 {
 	HEADER_802_11 *wifi_hdr;
 	u8 *pHeaderBufPtr;
-	USHORT FreeNumber = 0;
+	unsigned short FreeNumber = 0;
 	bool bVLANPkt;
 	PQUEUE_ENTRY pQEntry;
 	u8 TXWISize = sizeof(struct txwi_nmac);
@@ -2437,9 +2437,9 @@ void STA_ARalink_Frame_Tx(
 	TX_BLK * pTxBlk)
 {
 	u8 *pHeaderBufPtr;
-	USHORT freeCnt = 0;
-	USHORT totalMPDUSize = 0;
-	USHORT FirstTx, LastTxIdx;
+	unsigned short freeCnt = 0;
+	unsigned short totalMPDUSize = 0;
+	unsigned short FirstTx, LastTxIdx;
 	int frameNum = 0;
 	bool bVLANPkt;
 	PQUEUE_ENTRY pQEntry;
@@ -2561,12 +2561,12 @@ void STA_Fragment_Frame_Tx(
 {
 	HEADER_802_11 *pHeader_802_11;
 	u8 *pHeaderBufPtr;
-	USHORT freeCnt = 0;
+	unsigned short freeCnt = 0;
 	u8 fragNum = 0;
 	PACKET_INFO PacketInfo;
-	USHORT EncryptionOverhead = 0;
+	unsigned short EncryptionOverhead = 0;
 	u32 FreeMpduSize, SrcRemainingBytes;
-	USHORT AckDuration;
+	unsigned short AckDuration;
 	unsigned int NextMpduSize;
 	bool bVLANPkt;
 	PQUEUE_ENTRY pQEntry;

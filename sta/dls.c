@@ -97,7 +97,7 @@ void MlmeDlsReqAction(
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_REQUEST;
 	unsigned long tmp;
-	USHORT reason;
+	unsigned short reason;
 	unsigned long Timeout;
 	bool TimerCancelled;
 
@@ -156,8 +156,8 @@ void MlmeDlsReqAction(
 				  END_OF_ARGS);
 #else
 		memmove(&HtCapabilityTmp, &pAd->CommonCfg.HtCapability, HtLen);
-		*(USHORT *) (&HtCapabilityTmp.HtCapInfo) = SWAP16(*(USHORT *) (&HtCapabilityTmp.HtCapInfo));
-		*(USHORT *) (&HtCapabilityTmp.ExtHtCapInfo) = SWAP16(*(USHORT *) (&HtCapabilityTmp.ExtHtCapInfo));
+		*(unsigned short *) (&HtCapabilityTmp.HtCapInfo) = SWAP16(*(unsigned short *) (&HtCapabilityTmp.HtCapInfo));
+		*(unsigned short *) (&HtCapabilityTmp.ExtHtCapInfo) = SWAP16(*(unsigned short *) (&HtCapabilityTmp.ExtHtCapInfo));
 
 		MakeOutgoingFrame(pOutBuffer + FrameLen, &tmp,
 				  1, &HtCapIe,
@@ -191,14 +191,14 @@ void PeerDlsReqAction(
 	u8 *pOutBuffer = NULL;
 	int NStatus;
 	unsigned long FrameLen = 0;
-	USHORT StatusCode = MLME_SUCCESS;
+	unsigned short StatusCode = MLME_SUCCESS;
 	HEADER_802_11 DlsRspHdr;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_RESPONSE;
 	unsigned long tmp;
-	USHORT CapabilityInfo;
+	unsigned short CapabilityInfo;
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
-	USHORT DLSTimeOut;
+	unsigned short DLSTimeOut;
 	SHORT i;
 	unsigned long Timeout;
 	bool TimerCancelled;
@@ -444,8 +444,8 @@ void PeerDlsReqAction(
 					  END_OF_ARGS);
 #else
 			memmove(&HtCapabilityTmp, &pAd->CommonCfg.HtCapability, HtLen);
-			*(USHORT *) (&HtCapabilityTmp.HtCapInfo) = SWAP16(*(USHORT *) (&HtCapabilityTmp.HtCapInfo));
-			*(USHORT *) (&HtCapabilityTmp.ExtHtCapInfo) = SWAP16(*(USHORT *) (&HtCapabilityTmp.ExtHtCapInfo));
+			*(unsigned short *) (&HtCapabilityTmp.HtCapInfo) = SWAP16(*(unsigned short *) (&HtCapabilityTmp.HtCapInfo));
+			*(unsigned short *) (&HtCapabilityTmp.ExtHtCapInfo) = SWAP16(*(unsigned short *) (&HtCapabilityTmp.ExtHtCapInfo));
 
 			MakeOutgoingFrame(pOutBuffer + FrameLen, &tmp,
 					  1, &HtCapIe,
@@ -486,9 +486,9 @@ void PeerDlsRspAction(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT CapabilityInfo;
+	unsigned short CapabilityInfo;
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
-	USHORT StatusCode;
+	unsigned short StatusCode;
 	SHORT i;
 	bool TimerCancelled;
 	u8 MaxSupportedRateIn500Kbps = 0;
@@ -610,7 +610,7 @@ void PeerDlsRspAction(
 					    (pAd,
 					     pAd->StaCfg.DLSEntry[i].MacAddr) != NDIS_STATUS_SUCCESS) {
 						MLME_DLS_REQ_STRUCT MlmeDlsReq;
-						USHORT reason = REASON_QOS_CIPHER_NOT_SUPPORT;
+						unsigned short reason = REASON_QOS_CIPHER_NOT_SUPPORT;
 
 						DlsParmFill(pAd, &MlmeDlsReq,
 							    &pAd->StaCfg.DLSEntry[i],
@@ -771,7 +771,7 @@ void PeerDlsRspAction(
 						if (RTMPSendSTAKeyRequest
 						    (pAd, pAd->StaCfg.DLSEntry[i].MacAddr) != NDIS_STATUS_SUCCESS) {
 							MLME_DLS_REQ_STRUCT MlmeDlsReq;
-							USHORT reason = REASON_QOS_CIPHER_NOT_SUPPORT;
+							unsigned short reason = REASON_QOS_CIPHER_NOT_SUPPORT;
 
 							DlsParmFill(pAd,
 								    &MlmeDlsReq,
@@ -835,7 +835,7 @@ void MlmeDlsTearDownAction(
 	unsigned long FrameLen = 0;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_TEARDOWN;
-	USHORT ReasonCode = REASON_QOS_UNSPECIFY;
+	unsigned short ReasonCode = REASON_QOS_UNSPECIFY;
 	HEADER_802_11 DlsTearDownHdr;
 	PRT_802_11_DLS pDLS;
 	bool TimerCancelled;
@@ -908,7 +908,7 @@ void PeerDlsTearDownAction(
 	MLME_QUEUE_ELEM *Elem)
 {
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
-	USHORT ReasonCode;
+	unsigned short ReasonCode;
 	unsigned int i;
 	bool TimerCancelled;
 
@@ -972,7 +972,7 @@ void RTMPCheckDLSTimeOut(
 {
 	unsigned long i;
 	MLME_DLS_REQ_STRUCT MlmeDlsReq;
-	USHORT reason = REASON_QOS_UNSPECIFY;
+	unsigned short reason = REASON_QOS_UNSPECIFY;
 
 	if (!pAd->CommonCfg.bDLSCapable)
 		return;
@@ -1299,8 +1299,8 @@ bool RTMPRcvFrameDLSCheck(
 				pEntry =
 				    DlsEntryTableLookup(pAd,
 							pAd->StaCfg.DLSEntry[i].MacAddr, true);
-				/*AsicAddKeyEntry(pAd, (USHORT)(i + 2), BSS0, 0, &PairwiseKey, true, true);     // reserve 0 for multicast, 1 for unicast */
-				/*AsicUpdateRxWCIDTable(pAd, (USHORT)(i + 2), pAddr); */
+				/*AsicAddKeyEntry(pAd, (unsigned short)(i + 2), BSS0, 0, &PairwiseKey, true, true);     // reserve 0 for multicast, 1 for unicast */
+				/*AsicUpdateRxWCIDTable(pAd, (unsigned short)(i + 2), pAddr); */
 
 				/* Add Pair-wise key to Asic */
 				RTMP_ASIC_PAIRWISE_KEY_TABLE(pAd,
@@ -1324,7 +1324,7 @@ bool RTMPRcvFrameDLSCheck(
 				/* If failed hand shake, just tear down peer DLS */
 				if (RTMPSendSTAKeyHandShake(pAd, pAddr) != NDIS_STATUS_SUCCESS) {
 					MLME_DLS_REQ_STRUCT MlmeDlsReq;
-					USHORT reason = REASON_QOS_CIPHER_NOT_SUPPORT;
+					unsigned short reason = REASON_QOS_CIPHER_NOT_SUPPORT;
 
 					pAd->StaCfg.DLSEntry[i].Valid = false;
 					pAd->StaCfg.DLSEntry[i].Status = DLS_NONE;
@@ -1424,7 +1424,7 @@ void RTMPSendDLSTearDownFrame(
 	int NStatus;
 	HEADER_802_11 DlsTearDownHdr;
 	unsigned long FrameLen = 0;
-	USHORT Reason = REASON_QOS_QSTA_LEAVING_QBSS;
+	unsigned short Reason = REASON_QOS_QSTA_LEAVING_QBSS;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_TEARDOWN;
 	u8 i = 0;
@@ -1757,7 +1757,7 @@ void DlsTimeoutAction(
 	void *SystemSpecific3)
 {
 	MLME_DLS_REQ_STRUCT MlmeDlsReq;
-	USHORT reason;
+	unsigned short reason;
 	PRT_802_11_DLS pDLS = (PRT_802_11_DLS) FunctionContext;
 	struct rtmp_adapter *pAd = NULL;
 
@@ -1855,7 +1855,7 @@ MAC_TABLE_ENTRY *MacTableInsertDlsEntry(
  */
 bool MacTableDeleteDlsEntry(
 	struct rtmp_adapter *pAd,
-	USHORT wcid,
+	unsigned short wcid,
 	u8 *pAddr)
 {
 	DBGPRINT(RT_DEBUG_TRACE, ("====> MacTableDeleteDlsEntry\n"));
@@ -2013,7 +2013,7 @@ INT Set_DlsAddEntry_Proc(
 	char *arg)
 {
 	u8 mac[ETH_ALEN];
-	USHORT Timeout;
+	unsigned short Timeout;
 	char *token;
 	STRING sepValue[] = ":", DASH = '-';
 	INT i;
@@ -2024,7 +2024,7 @@ INT Set_DlsAddEntry_Proc(
 
 	token = strchr(arg, DASH);
 	if ((token != NULL) && (strlen(token) > 1)) {
-		Timeout = (USHORT) simple_strtol((token + 1), 0, 10);
+		Timeout = (unsigned short) simple_strtol((token + 1), 0, 10);
 
 		*token = '\0';
 		for (i = 0, token = rstrtok(arg, &sepValue[0]); token;

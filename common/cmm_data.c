@@ -887,7 +887,7 @@ bool RTMP_FillTxBlkInfo(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 	}
 
 
-	pAd->LastTxRate = (USHORT)pTxBlk->pTransmit->word;
+	pAd->LastTxRate = (unsigned short)pTxBlk->pTransmit->word;
 
 	return true;
 }
@@ -1179,7 +1179,7 @@ void RTMPDeQueuePacket(
 
 	========================================================================
 */
-USHORT	RTMPCalcDuration(
+unsigned short	RTMPCalcDuration(
 	struct rtmp_adapter *pAd,
 	u8 		Rate,
 	unsigned long			Size)
@@ -1193,14 +1193,14 @@ USHORT	RTMPCalcDuration(
 		else
 			Duration = 192; /* 144+48 preamble+plcp*/
 
-		Duration += (USHORT)((Size << 4) / RateIdTo500Kbps[Rate]);
+		Duration += (unsigned short)((Size << 4) / RateIdTo500Kbps[Rate]);
 		if ((Size << 4) % RateIdTo500Kbps[Rate])
 			Duration ++;
 	}
 	else if (Rate <= RATE_LAST_OFDM_RATE)/* OFDM rates*/
 	{
 		Duration = 20 + 6;		/* 16+4 preamble+plcp + Signal Extension*/
-		Duration += 4 * (USHORT)((11 + Size * 4) / RateIdTo500Kbps[Rate]);
+		Duration += 4 * (unsigned short)((11 + Size * 4) / RateIdTo500Kbps[Rate]);
 		if ((11 + Size * 4) % RateIdTo500Kbps[Rate])
 			Duration += 4;
 	}
@@ -1209,7 +1209,7 @@ USHORT	RTMPCalcDuration(
 		Duration = 20 + 6;		/* 16+4 preamble+plcp + Signal Extension*/
 	}
 
-	return (USHORT)Duration;
+	return (unsigned short)Duration;
 }
 
 
@@ -1307,8 +1307,8 @@ unsigned int deaggregate_AMSDU_announce(
 	unsigned long			DataSize,
 	u8 		OpMode)
 {
-	USHORT 			PayloadSize;
-	USHORT 			SubFrameSize;
+	unsigned short 			PayloadSize;
+	unsigned short 			SubFrameSize;
 	PHEADER_802_3 	pAMSDUsubheader;
 	unsigned int			nMSDU;
     u8 		Header802_3[14];
@@ -1419,7 +1419,7 @@ unsigned int BA_Reorder_AMSDU_Annnounce(
 	u8 		OpMode)
 {
 	u8 *		pData;
-	USHORT			DataSize;
+	unsigned short			DataSize;
 	unsigned int			nMSDU = 0;
 
 	pData = pPacket->data;
@@ -1456,9 +1456,9 @@ void AssocParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_ASSOC_REQ_STRUCT *AssocReq,
 	u8 *                    pAddr,
-	USHORT                     CapabilityInfo,
+	unsigned short                     CapabilityInfo,
 	unsigned long                      Timeout,
-	USHORT                     ListenIntv)
+	unsigned short                     ListenIntv)
 {
 	memcpy(AssocReq->Addr, pAddr, ETH_ALEN);
 	/* Add mask to support 802.11b mode only */
@@ -1480,7 +1480,7 @@ void DisassocParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_DISASSOC_REQ_STRUCT *DisassocReq,
 	u8 *pAddr,
-	USHORT Reason)
+	unsigned short Reason)
 {
 	memcpy(DisassocReq->Addr, pAddr, ETH_ALEN);
 	DisassocReq->Reason = Reason;
@@ -1495,7 +1495,7 @@ bool RTMPCheckEtherType(
 	u8 *pUserPriority,
 	u8 *pQueIdx)
 {
-	USHORT	TypeLen;
+	unsigned short	TypeLen;
 	u8 Byte0, Byte1;
 	u8 *pSrcBuf;
 	u32	pktLen;
@@ -1537,7 +1537,7 @@ bool RTMPCheckEtherType(
 		{
 			Sniff2BytesFromNdisBuffer((PNDIS_BUFFER)pSrcBuf, 6, &Byte0, &Byte1);
 			RTMP_SET_PACKET_LLCSNAP(pPacket, 1);
-			TypeLen = (USHORT)((Byte0 << 8) + Byte1);
+			TypeLen = (unsigned short)((Byte0 << 8) + Byte1);
 			pSrcBuf += 8; /* Skip this LLC/SNAP header*/
 		}
 		else
@@ -1552,7 +1552,7 @@ bool RTMPCheckEtherType(
 
 		RTMP_SET_PACKET_VLAN(pPacket, 1);
 		Sniff2BytesFromNdisBuffer((PNDIS_BUFFER)pSrcBuf, 2, &Byte0, &Byte1);
-		TypeLen = (USHORT)((Byte0 << 8) + Byte1);
+		TypeLen = (unsigned short)((Byte0 << 8) + Byte1);
 
 		/* only use VLAN tag */
 		if (bWmmReq)
@@ -1775,7 +1775,7 @@ void Indicate_Legacy_Packet(
 {
 	struct sk_buff * pRxPacket = pRxBlk->pRxPacket;
 	u8 Header802_3[LENGTH_802_3];
-	USHORT VLAN_VID = 0, VLAN_Priority = 0;
+	unsigned short VLAN_VID = 0, VLAN_Priority = 0;
 
 
 
@@ -1808,7 +1808,7 @@ void Indicate_Legacy_Packet(
 		unsigned long				Now32;
 		u8 			Wcid = pRxBlk->pRxWI->RxWIWirelessCliID;
 		u8 			TID = pRxBlk->pRxWI->RxWITID;
-		USHORT				Idx;
+		unsigned short				Idx;
 
 #define REORDERING_PACKET_TIMEOUT		((100 * OS_HZ)/1000)	/* system ticks -- 100 ms*/
 
@@ -1886,7 +1886,7 @@ void CmmRxRalinkFrameIndicate(
 	uint16_t 			Payload1Size, Payload2Size;
 	u8 *			pData2;
 	struct sk_buff *	pPacket2 = NULL;
-	USHORT			VLAN_VID = 0, VLAN_Priority = 0;
+	unsigned short			VLAN_VID = 0, VLAN_Priority = 0;
 
 
 	Msdu2Size = *(pRxBlk->pData) + (*(pRxBlk->pData+1) << 8);
@@ -1970,7 +1970,7 @@ struct sk_buff * RTMPDeFragmentDataFrame(
 	HEADER_802_11 *pHeader = pRxBlk->pHeader;
 	struct sk_buff * pRxPacket = pRxBlk->pRxPacket;
 	u8 *pData = pRxBlk->pData;
-	USHORT DataSize = pRxBlk->DataSize;
+	unsigned short DataSize = pRxBlk->DataSize;
 	struct sk_buff * pRetPacket = NULL;
 	u8 *pFragBuffer = NULL;
 	bool bReassDone = false;
@@ -2261,18 +2261,18 @@ void RtmpEnqueueNullFrame(
 typedef union ip_flags_frag_offset {
 	struct {
 #ifdef RT_BIG_ENDIAN
-		USHORT flags_reserved:1;
-		USHORT flags_may_frag:1;
-		USHORT flags_more_frag:1;
-		USHORT frag_offset:13;
+		unsigned short flags_reserved:1;
+		unsigned short flags_may_frag:1;
+		unsigned short flags_more_frag:1;
+		unsigned short frag_offset:13;
 #else
-		USHORT frag_offset:13;
-		USHORT flags_more_frag:1;
-		USHORT flags_may_frag:1;
-		USHORT flags_reserved:1;
+		unsigned short frag_offset:13;
+		unsigned short flags_more_frag:1;
+		unsigned short flags_may_frag:1;
+		unsigned short flags_reserved:1;
 #endif
 	} field;
-	USHORT word;
+	unsigned short word;
 } IP_FLAGS_FRAG_OFFSET;
 
 typedef struct ip_v4_hdr {
@@ -2282,8 +2282,8 @@ typedef struct ip_v4_hdr {
 	u8 ihl:4, version:4;
 #endif
 	u8 tos;
-	USHORT tot_len;
-	USHORT identifier;
+	unsigned short tot_len;
+	unsigned short identifier;
 } IP_V4_HDR;
 
 

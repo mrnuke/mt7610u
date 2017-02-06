@@ -162,11 +162,11 @@ bool PeerAddBAReqActionSanity(
 		BA_PARM		tmpBaParm;
 
 		memmove((u8 *)(&tmpBaParm), (u8 *)(&pAddFrame->BaParm), sizeof(BA_PARM));
-		*(USHORT *)(&tmpBaParm) = cpu2le16(*(USHORT *)(&tmpBaParm));
+		*(unsigned short *)(&tmpBaParm) = cpu2le16(*(unsigned short *)(&tmpBaParm));
 		memmove((u8 *)(&pAddFrame->BaParm), (u8 *)(&tmpBaParm), sizeof(BA_PARM));
 	}
 #else
-	*(USHORT *)(&pAddFrame->BaParm) = cpu2le16(*(USHORT *)(&pAddFrame->BaParm));
+	*(unsigned short *)(&pAddFrame->BaParm) = cpu2le16(*(unsigned short *)(&pAddFrame->BaParm));
 #endif
 	pAddFrame->TimeOutValue = cpu2le16(pAddFrame->TimeOutValue);
 	pAddFrame->BaStartSeq.word = cpu2le16(pAddFrame->BaStartSeq.word);
@@ -203,11 +203,11 @@ bool PeerAddBARspActionSanity(
 		BA_PARM		tmpBaParm;
 
 		memmove((u8 *)(&tmpBaParm), (u8 *)(&pAddFrame->BaParm), sizeof(BA_PARM));
-		*(USHORT *)(&tmpBaParm) = cpu2le16(*(USHORT *)(&tmpBaParm));
+		*(unsigned short *)(&tmpBaParm) = cpu2le16(*(unsigned short *)(&tmpBaParm));
 		memmove((u8 *)(&pAddFrame->BaParm), (u8 *)(&tmpBaParm), sizeof(BA_PARM));
 	}
 #else
-	*(USHORT *)(&pAddFrame->BaParm) = cpu2le16(*(USHORT *)(&pAddFrame->BaParm));
+	*(unsigned short *)(&pAddFrame->BaParm) = cpu2le16(*(unsigned short *)(&pAddFrame->BaParm));
 #endif
 	pAddFrame->StatusCode = cpu2le16(pAddFrame->StatusCode);
 	pAddFrame->TimeOutValue = cpu2le16(pAddFrame->TimeOutValue);
@@ -238,7 +238,7 @@ bool PeerDelBAActionSanity(
 
 	pDelFrame = (PFRAME_DELBA_REQ)(pMsg);
 
-	*(USHORT *)(&pDelFrame->DelbaParm) = cpu2le16(*(USHORT *)(&pDelFrame->DelbaParm));
+	*(unsigned short *)(&pDelFrame->DelbaParm) = cpu2le16(*(unsigned short *)(&pDelFrame->DelbaParm));
 	pDelFrame->ReasonCode = cpu2le16(pDelFrame->ReasonCode);
 
 	return true;
@@ -255,13 +255,13 @@ bool PeerBeaconAndProbeRspSanity_Old(
     CHAR Ssid[],
     u8 *pSsidLen,
     u8 *pBssType,
-    USHORT *pBeaconPeriod,
+    unsigned short *pBeaconPeriod,
     u8 *pChannel,
     u8 *pNewChannel,
     LARGE_INTEGER *pTimestamp,
     CF_PARM *pCfParm,
-    USHORT *pAtimWin,
-    USHORT *pCapabilityInfo,
+    unsigned short *pAtimWin,
+    unsigned short *pCapabilityInfo,
     u8 *pErp,
     u8 *pDtimCount,
     u8 *pDtimPeriod,
@@ -286,7 +286,7 @@ bool PeerBeaconAndProbeRspSanity_Old(
     u8 *AddHtInfoLen,
     ADD_HT_INFO_IE *AddHtInfo,
     u8 *NewExtChannelOffset,		/* Ht extension channel offset(above or below)*/
-    USHORT *LengthVIE,
+    unsigned short *LengthVIE,
     PNDIS_802_11_VARIABLE_IEs pVIE)
 {
     u8 			*Ptr;
@@ -441,16 +441,16 @@ bool PeerBeaconAndProbeRspSanity_Old(
 				memmove(pHtCapability, pEid->Octet, sizeof(HT_CAPABILITY_IE));
 				*pHtCapabilityLen = SIZE_HT_CAP_IE;	/* Nnow we only support 26 bytes.*/
 
-				*(USHORT *)(&pHtCapability->HtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->HtCapInfo));
+				*(unsigned short *)(&pHtCapability->HtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->HtCapInfo));
 #ifdef UNALIGNMENT_SUPPORT
 				{
 					EXT_HT_CAP_INFO extHtCapInfo;
 					memmove((u8 *)(&extHtCapInfo), (u8 *)(&pHtCapability->ExtHtCapInfo), sizeof(EXT_HT_CAP_INFO));
-					*(USHORT *)(&extHtCapInfo) = cpu2le16(*(USHORT *)(&extHtCapInfo));
+					*(unsigned short *)(&extHtCapInfo) = cpu2le16(*(unsigned short *)(&extHtCapInfo));
 					memmove((u8 *)(&pHtCapability->ExtHtCapInfo), (u8 *)(&extHtCapInfo), sizeof(EXT_HT_CAP_INFO));
 				}
 #else
-				*(USHORT *)(&pHtCapability->ExtHtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->ExtHtCapInfo));
+				*(unsigned short *)(&pHtCapability->ExtHtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->ExtHtCapInfo));
 #endif /* UNALIGNMENT_SUPPORT */
 
 #ifdef CONFIG_STA_SUPPORT
@@ -482,8 +482,8 @@ bool PeerBeaconAndProbeRspSanity_Old(
 
 				CtrlChannel = AddHtInfo->ControlChan;
 
-				*(USHORT *)(&AddHtInfo->AddHtInfo2) = cpu2le16(*(USHORT *)(&AddHtInfo->AddHtInfo2));
-				*(USHORT *)(&AddHtInfo->AddHtInfo3) = cpu2le16(*(USHORT *)(&AddHtInfo->AddHtInfo3));
+				*(unsigned short *)(&AddHtInfo->AddHtInfo2) = cpu2le16(*(unsigned short *)(&AddHtInfo->AddHtInfo2));
+				*(unsigned short *)(&AddHtInfo->AddHtInfo3) = cpu2le16(*(unsigned short *)(&AddHtInfo->AddHtInfo3));
 
 #ifdef CONFIG_STA_SUPPORT
 				IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
@@ -870,7 +870,7 @@ bool PeerBeaconAndProbeRspSanity(
 	unsigned long MsgLen,
 	u8  MsgChannel,
 	BCN_IE_LIST *ie_list,
-	USHORT *LengthVIE,
+	unsigned short *LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE)
 {
 	u8 *Ptr;
@@ -1003,16 +1003,16 @@ bool PeerBeaconAndProbeRspSanity(
 				memmove(&ie_list->HtCapability, pEid->Octet, sizeof(HT_CAPABILITY_IE));
 				ie_list->HtCapabilityLen = SIZE_HT_CAP_IE;	/* Nnow we only support 26 bytes.*/
 
-				*(USHORT *)(&ie_list->HtCapability.HtCapInfo) = cpu2le16(*(USHORT *)(&ie_list->HtCapability.HtCapInfo));
+				*(unsigned short *)(&ie_list->HtCapability.HtCapInfo) = cpu2le16(*(unsigned short *)(&ie_list->HtCapability.HtCapInfo));
 #ifdef UNALIGNMENT_SUPPORT
 				{
 					EXT_HT_CAP_INFO extHtCapInfo;
 					memmove((u8 *)(&extHtCapInfo), (u8 *)(&ie_list->HtCapability.ExtHtCapInfo), sizeof(EXT_HT_CAP_INFO));
-					*(USHORT *)(&extHtCapInfo) = cpu2le16(*(USHORT *)(&extHtCapInfo));
+					*(unsigned short *)(&extHtCapInfo) = cpu2le16(*(unsigned short *)(&extHtCapInfo));
 					memmove((u8 *)(&ie_list->HtCapability.ExtHtCapInfo), (u8 *)(&extHtCapInfo), sizeof(EXT_HT_CAP_INFO));
 				}
 #else
-				*(USHORT *)(&ie_list->HtCapability.ExtHtCapInfo) = cpu2le16(*(USHORT *)(&ie_list->HtCapability.ExtHtCapInfo));
+				*(unsigned short *)(&ie_list->HtCapability.ExtHtCapInfo) = cpu2le16(*(unsigned short *)(&ie_list->HtCapability.ExtHtCapInfo));
 #endif /* UNALIGNMENT_SUPPORT */
 
 #ifdef CONFIG_STA_SUPPORT
@@ -1044,8 +1044,8 @@ bool PeerBeaconAndProbeRspSanity(
 
 				CtrlChannel = ie_list->AddHtInfo.ControlChan;
 
-				*(USHORT *)(&ie_list->AddHtInfo.AddHtInfo2) = cpu2le16(*(USHORT *)(&ie_list->AddHtInfo.AddHtInfo2));
-				*(USHORT *)(&ie_list->AddHtInfo.AddHtInfo3) = cpu2le16(*(USHORT *)(&ie_list->AddHtInfo.AddHtInfo3));
+				*(unsigned short *)(&ie_list->AddHtInfo.AddHtInfo2) = cpu2le16(*(unsigned short *)(&ie_list->AddHtInfo.AddHtInfo2));
+				*(unsigned short *)(&ie_list->AddHtInfo.AddHtInfo3) = cpu2le16(*(unsigned short *)(&ie_list->AddHtInfo.AddHtInfo3));
 
 #ifdef CONFIG_STA_SUPPORT
 				IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
@@ -1583,7 +1583,7 @@ bool PeerDeauthSanity(
     u8 *pAddr1,
     u8 *pAddr2,
     u8 *pAddr3,
-    USHORT *pReason)
+    unsigned short *pReason)
 {
 	PFRAME_802_11 pFrame = (PFRAME_802_11)Msg;
 
@@ -1611,9 +1611,9 @@ bool PeerAuthSanity(
     void *Msg,
     unsigned long MsgLen,
     u8 *pAddr,
-    USHORT *pAlg,
-    USHORT *pSeq,
-    USHORT *pStatus,
+    unsigned short *pAlg,
+    unsigned short *pSeq,
+    unsigned short *pStatus,
     CHAR *pChlgText)
 {
     PFRAME_802_11 pFrame = (PFRAME_802_11)Msg;
@@ -1673,7 +1673,7 @@ bool MlmeAuthReqSanity(
     unsigned long MsgLen,
     u8 *pAddr,
     unsigned long *pTimeout,
-    USHORT *pAlg)
+    unsigned short *pAlg)
 {
     MLME_AUTH_REQ_STRUCT *pInfo;
 
@@ -1713,9 +1713,9 @@ bool MlmeAssocReqSanity(
     void *Msg,
     unsigned long MsgLen,
     u8 *pApAddr,
-    USHORT *pCapabilityInfo,
+    unsigned short *pCapabilityInfo,
     unsigned long *pTimeout,
-    USHORT *pListenIntv)
+    unsigned short *pListenIntv)
 {
     MLME_ASSOC_REQ_STRUCT *pInfo;
 
@@ -1744,7 +1744,7 @@ bool PeerDisassocSanity(
     void *Msg,
     unsigned long MsgLen,
     u8 *pAddr2,
-    USHORT *pReason)
+    unsigned short *pReason)
 {
     PFRAME_802_11 pFrame = (PFRAME_802_11)Msg;
 
@@ -1864,8 +1864,8 @@ bool PeerDlsReqSanity(
     unsigned long MsgLen,
     u8 *pDA,
     u8 *pSA,
-    USHORT *pCapabilityInfo,
-    USHORT *pDlsTimeout,
+    unsigned short *pCapabilityInfo,
+    unsigned short *pDlsTimeout,
     u8 *pRatesLen,
     u8 Rates[],
 	u8 *pHtCapabilityLen,
@@ -1949,17 +1949,17 @@ bool PeerDlsReqSanity(
 				{
 					memmove(pHtCapability, eid_ptr->Octet, sizeof(HT_CAPABILITY_IE));
 
-					*(USHORT *)(&pHtCapability->HtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->HtCapInfo));
+					*(unsigned short *)(&pHtCapability->HtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->HtCapInfo));
 #ifdef UNALIGNMENT_SUPPORT
 					{
 						EXT_HT_CAP_INFO extHtCapInfo;
 
 						memmove((u8 *)(&extHtCapInfo), (u8 *)(&pHtCapability->ExtHtCapInfo), sizeof(EXT_HT_CAP_INFO));
-						*(USHORT *)(&extHtCapInfo) = cpu2le16(*(USHORT *)(&extHtCapInfo));
+						*(unsigned short *)(&extHtCapInfo) = cpu2le16(*(unsigned short *)(&extHtCapInfo));
 						memmove((u8 *)(&pHtCapability->ExtHtCapInfo), (u8 *)(&extHtCapInfo), sizeof(EXT_HT_CAP_INFO));
 					}
 #else
-					*(USHORT *)(&pHtCapability->ExtHtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->ExtHtCapInfo));
+					*(unsigned short *)(&pHtCapability->ExtHtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->ExtHtCapInfo));
 #endif /* UNALIGNMENT_SUPPORT */
 					*pHtCapabilityLen = sizeof(HT_CAPABILITY_IE);
 
@@ -1987,8 +1987,8 @@ bool PeerDlsRspSanity(
     unsigned long MsgLen,
     u8 *pDA,
     u8 *pSA,
-    USHORT *pCapabilityInfo,
-    USHORT *pStatus,
+    unsigned short *pCapabilityInfo,
+    unsigned short *pStatus,
     u8 *pRatesLen,
     u8 Rates[],
     u8 *pHtCapabilityLen,
@@ -2077,17 +2077,17 @@ bool PeerDlsRspSanity(
 				{
 					memmove(pHtCapability, eid_ptr->Octet, sizeof(HT_CAPABILITY_IE));
 
-					*(USHORT *)(&pHtCapability->HtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->HtCapInfo));
+					*(unsigned short *)(&pHtCapability->HtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->HtCapInfo));
 #ifdef UNALIGNMENT_SUPPORT
 					{
 						EXT_HT_CAP_INFO extHtCapInfo;
 
 						memmove((u8 *)(&extHtCapInfo), (u8 *)(&pHtCapability->ExtHtCapInfo), sizeof(EXT_HT_CAP_INFO));
-						*(USHORT *)(&extHtCapInfo) = cpu2le16(*(USHORT *)(&extHtCapInfo));
+						*(unsigned short *)(&extHtCapInfo) = cpu2le16(*(unsigned short *)(&extHtCapInfo));
 						memmove((u8 *)(&pHtCapability->ExtHtCapInfo), (u8 *)(&extHtCapInfo), sizeof(EXT_HT_CAP_INFO));
 					}
 #else
-					*(USHORT *)(&pHtCapability->ExtHtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->ExtHtCapInfo));
+					*(unsigned short *)(&pHtCapability->ExtHtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->ExtHtCapInfo));
 #endif /* UNALIGNMENT_SUPPORT */
 					*pHtCapabilityLen = sizeof(HT_CAPABILITY_IE);
 
@@ -2115,7 +2115,7 @@ bool PeerDlsTearDownSanity(
     unsigned long MsgLen,
     u8 *pDA,
     u8 *pSA,
-    USHORT *pReason)
+    unsigned short *pReason)
 {
     CHAR            *Ptr;
     PFRAME_802_11	Fr = (PFRAME_802_11)Msg;

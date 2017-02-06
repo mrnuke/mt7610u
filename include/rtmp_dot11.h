@@ -72,17 +72,17 @@ typedef struct __attribute__ ((packed)) _HT_CONTROL{
 /* 2-byte QOS CONTROL field */
 typedef struct __attribute__ ((packed)) _QOS_CONTROL{
 #ifdef RT_BIG_ENDIAN
-	USHORT Txop_QueueSize:8;
-	USHORT AMsduPresent:1;
-	USHORT AckPolicy:2;	/*0: normal ACK 1:No ACK 2:scheduled under MTBA/PSMP  3: BA */
-	USHORT EOSP:1;
-	USHORT TID:4;
+	unsigned short Txop_QueueSize:8;
+	unsigned short AMsduPresent:1;
+	unsigned short AckPolicy:2;	/*0: normal ACK 1:No ACK 2:scheduled under MTBA/PSMP  3: BA */
+	unsigned short EOSP:1;
+	unsigned short TID:4;
 #else
-	USHORT TID:4;
-	USHORT EOSP:1;
-	USHORT AckPolicy:2;	/*0: normal ACK 1:No ACK 2:scheduled under MTBA/PSMP  3: BA */
-	USHORT AMsduPresent:1;
-	USHORT Txop_QueueSize:8;
+	unsigned short TID:4;
+	unsigned short EOSP:1;
+	unsigned short AckPolicy:2;	/*0: normal ACK 1:No ACK 2:scheduled under MTBA/PSMP  3: BA */
+	unsigned short AMsduPresent:1;
+	unsigned short Txop_QueueSize:8;
 #endif				/* !RT_BIG_ENDIAN */
 } QOS_CONTROL, *PQOS_CONTROL;
 
@@ -97,7 +97,7 @@ typedef struct __attribute__ ((packed)) _AC_PARAM_RECORD{
 
 typedef struct __attribute__ ((packed)) _PSPOLL_FRAME {
 	FRAME_CONTROL FC;
-	USHORT Aid;
+	unsigned short Aid;
 	u8 Bssid[ETH_ALEN];
 	u8 Ta[ETH_ALEN];
 } PSPOLL_FRAME, *PPSPOLL_FRAME;
@@ -105,7 +105,7 @@ typedef struct __attribute__ ((packed)) _PSPOLL_FRAME {
 
 typedef struct __attribute__ ((packed)) _RTS_FRAME {
 	FRAME_CONTROL FC;
-	USHORT Duration;
+	unsigned short Duration;
 	u8 Addr1[ETH_ALEN];
 	u8 Addr2[ETH_ALEN];
 } RTS_FRAME, *PRTS_FRAME;

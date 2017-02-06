@@ -116,7 +116,7 @@ int	RTUSBVenderReset(
 */
 int	RTUSBMultiWrite_OneByte(
 	struct rtmp_adapter *pAd,
-	USHORT			Offset,
+	unsigned short			Offset,
 	u8 *		pData)
 {
 	int	Status;
@@ -136,21 +136,21 @@ int	RTUSBMultiWrite_OneByte(
 
 int	RTUSBMultiWrite(
 	struct rtmp_adapter *pAd,
-	USHORT			Offset,
+	unsigned short			Offset,
 	u8 *		pData,
-	USHORT			length)
+	unsigned short			length)
 {
 	int	Status;
 
-	USHORT          index = 0,Value;
+	unsigned short          index = 0,Value;
 	u8 *         pSrc = pData;
-	USHORT          resude = 0;
+	unsigned short          resude = 0;
 
 	resude = length % 2;
 	length  += resude;
 	do
 	{
-			Value =(USHORT)( *pSrc  | (*(pSrc + 1) << 8));
+			Value =(unsigned short)( *pSrc  | (*(pSrc + 1) << 8));
 		Status = RTUSBSingleWrite(pAd,Offset + index, Value);
             index +=2;
             length -= 2;
@@ -163,8 +163,8 @@ int	RTUSBMultiWrite(
 
 int RTUSBSingleWrite(
 	struct rtmp_adapter	*pAd,
-	USHORT			Offset,
-	USHORT			Value)
+	unsigned short			Offset,
+	unsigned short			Value)
 {
 	int	Status;
 
@@ -197,7 +197,7 @@ int RTUSBSingleWrite(
 
 	========================================================================
 */
-u32 mt7610u_read32(struct rtmp_adapter *pAd, USHORT Offset)
+u32 mt7610u_read32(struct rtmp_adapter *pAd, unsigned short Offset)
 {
 	int status = 0;
 	u32 val;
@@ -236,7 +236,7 @@ u32 mt7610u_read32(struct rtmp_adapter *pAd, USHORT Offset)
 */
 int mt7610u_write32(
 	struct rtmp_adapter*pAd,
-	USHORT Offset,
+	unsigned short Offset,
 	u32 Value)
 {
 	int Status;
@@ -815,7 +815,7 @@ static int ResetBulkInHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMD
 static int SetAsicWcidHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
 	RT_SET_ASIC_WCID	SetAsicWcid;
-	USHORT		offset;
+	unsigned short		offset;
 	u32		MACValue, MACRValue = 0;
 	SetAsicWcid = *((PRT_SET_ASIC_WCID)(CMDQelmt->buffer));
 
@@ -980,7 +980,7 @@ static int SetPSMBitHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQe
 {
 	IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
 	{
-		USHORT *pPsm = (USHORT *)CMDQelmt->buffer;
+		unsigned short *pPsm = (unsigned short *)CMDQelmt->buffer;
 		MlmeSetPsmBit(pAd, *pPsm);
 	}
 
@@ -999,12 +999,12 @@ static int ForceWakeUpHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMD
 
 static int ForceSleepAutoWakeupHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
-	USHORT  TbttNumToNextWakeUp;
-	USHORT  NextDtim = pAd->StaCfg.DtimPeriod;
+	unsigned short  TbttNumToNextWakeUp;
+	unsigned short  NextDtim = pAd->StaCfg.DtimPeriod;
 	unsigned long   Now;
 
 	NdisGetSystemUpTime(&Now);
-	NextDtim -= (USHORT)(Now - pAd->StaCfg.LastBeaconRxTime)/pAd->CommonCfg.BeaconPeriod;
+	NextDtim -= (unsigned short)(Now - pAd->StaCfg.LastBeaconRxTime)/pAd->CommonCfg.BeaconPeriod;
 
 	TbttNumToNextWakeUp = pAd->StaCfg.DefaultListenCount;
 	if (OPSTATUS_TEST_FLAG(pAd, fOP_STATUS_RECEIVE_DTIM) && (TbttNumToNextWakeUp > NextDtim))
@@ -1176,7 +1176,7 @@ static CMDHdlr CMDHdlrTable[] = {
 static inline bool ValidCMD(struct rtmp_queue_elem *CMDQelmt)
 {
 	SHORT CMDIndex = CMDQelmt->command - CMDTHREAD_FIRST_CMD_ID;
-	USHORT CMDHdlrTableLength= sizeof(CMDHdlrTable) / sizeof(CMDHdlr);
+	unsigned short CMDHdlrTableLength= sizeof(CMDHdlrTable) / sizeof(CMDHdlr);
 
 	if ( (CMDIndex >= 0) && (CMDIndex < CMDHdlrTableLength))
 	{

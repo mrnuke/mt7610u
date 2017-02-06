@@ -286,7 +286,7 @@ struct sk_buff * DuplicatePacket(
 {
 	struct sk_buff *skb;
 	struct sk_buff * pRetPacket = NULL;
-	USHORT DataSize;
+	unsigned short DataSize;
 	u8 *pData;
 
 	DataSize = pPacket->len;
@@ -475,7 +475,7 @@ void RtmpOsPktInit(
 	struct sk_buff * pNetPkt,
 	struct net_device *pNetDev,
 	u8 *pData,
-	USHORT DataSize)
+	unsigned short DataSize)
 {
 	struct sk_buff * pRxPkt;
 
@@ -491,8 +491,8 @@ void RtmpOsPktInit(
 void wlan_802_11_to_802_3_packet(
 	struct net_device *pNetDev,
 	u8 OpMode,
-	USHORT VLAN_VID,
-	USHORT VLAN_Priority,
+	unsigned short VLAN_VID,
+	unsigned short VLAN_Priority,
 	struct sk_buff * pRxPacket,
 	u8 *pData,
 	unsigned long DataSize,
@@ -552,7 +552,7 @@ void send_monitor_packets(struct net_device *pNetDev,
 			  struct sk_buff * pRxPacket,
 			  PHEADER_802_11 pHeader,
 			  u8 * pData,
-			  USHORT DataSize,
+			  unsigned short DataSize,
 			  u8 L2PAD,
 			  u8 PHYMODE,
 			  u8 BW,
@@ -573,7 +573,7 @@ void send_monitor_packets(struct net_device *pNetDev,
 	*ph_11n33;		/* for new 11n sniffer format */
 #endif /* MONITOR_FLAG_11N_SNIFFER_SUPPORT */
 	int rate_index = 0;
-	USHORT header_len = 0;
+	unsigned short header_len = 0;
 	u8 temp_header[40] = {
 	0};
 
@@ -1517,7 +1517,7 @@ void RtmpDrvAllMacPrint(
 
 void RtmpDrvAllE2PPrint(
 	void *pReserved,
-	USHORT *pMacContent,
+	unsigned short *pMacContent,
 	u32 AddrEnd,
 	u32 AddrStep)
 {
@@ -1525,8 +1525,8 @@ void RtmpDrvAllE2PPrint(
 	char *fileName = "EEPROMDump.txt";
 	mm_segment_t orig_fs;
 	STRING *msg;
-	USHORT eepAddr = 0;
-	USHORT eepValue;
+	unsigned short eepAddr = 0;
+	unsigned short eepValue;
 
 	msg = kmalloc(1024, GFP_ATOMIC);
 	if (!msg)
@@ -1848,7 +1848,7 @@ typedef struct __attribute__ ((packed)) _RT_IAPP_L2_UPDATE_FRAME {
 	u8 DA[ETH_ALEN];	/* broadcast MAC address */
 	u8 SA[ETH_ALEN];	/* the MAC address of the STA that has just associated
 				   or reassociated */
-	USHORT Len;		/* 8 octets */
+	unsigned short Len;		/* 8 octets */
 	u8 DSAP;		/* null */
 	u8 SSAP;		/* null */
 	u8 Control;		/* reference to IEEE Std 802.2 */

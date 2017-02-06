@@ -80,7 +80,7 @@ INT RTMP_COM_IoctlHandle(
 	struct rtmp_adapter *pAd,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
 	INT						cmd,
-	USHORT					subcmd,
+	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data);
 
@@ -119,10 +119,10 @@ INT RTMP_STA_IoctlHandle(
 	void 				*pAd,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
 	INT						cmd,
-	USHORT					subcmd,
+	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data,
-	USHORT                  priv_flags );
+	unsigned short                  priv_flags );
 #endif /* CONFIG_STA_SUPPORT */
 
 void RTMPDrvSTAOpen(struct rtmp_adapter *pAd);

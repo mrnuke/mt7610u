@@ -106,7 +106,7 @@ MAC_TABLE_ENTRY *MacTableInsertEntry(
 	u8 HashIdx;
 	int i, FirstWcid;
 	MAC_TABLE_ENTRY *pEntry = NULL, *pCurrEntry;
-/*	USHORT	offset;*/
+/*	unsigned short	offset;*/
 /*	unsigned long	addr;*/
 	bool Cancelled;
 	u32 MaxWcidNum = MAX_LEN_OF_MAC_TABLE;
@@ -283,7 +283,7 @@ MAC_TABLE_ENTRY *MacTableInsertEntry(
 
 			pEntry->Sst = SST_NOT_AUTH;
 			pEntry->AuthState = AS_NOT_AUTH;
-			pEntry->Aid = (USHORT)i;  /*0;*/
+			pEntry->Aid = (unsigned short)i;  /*0;*/
 			pEntry->CapabilityInfo = 0;
 			pEntry->PsMode = PWR_ACTIVE;
 			pEntry->PsQIdleCount = 0;
@@ -341,13 +341,13 @@ MAC_TABLE_ENTRY *MacTableInsertEntry(
  */
 bool MacTableDeleteEntry(
 	struct rtmp_adapter *pAd,
-	USHORT wcid,
+	unsigned short wcid,
 	u8 *pAddr)
 {
-	USHORT HashIdx;
+	unsigned short HashIdx;
 	MAC_TABLE_ENTRY *pEntry, *pPrevEntry, *pProbeEntry;
 	bool Cancelled;
-	/*USHORT	offset;	 unused variable*/
+	/*unsigned short	offset;	 unused variable*/
 	/*u8 j;			 unused variable*/
 
 	if (wcid >= MAX_LEN_OF_MAC_TABLE)

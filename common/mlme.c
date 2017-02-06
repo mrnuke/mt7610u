@@ -73,7 +73,7 @@ u8 ZERO_MAC_ADDR[ETH_ALEN]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 CHAR RssiSafeLevelForTxRate[] ={  -92, -91, -90, -87, -88, -86, -85, -83, -81, -78, -72, -71, -40, -40 };
 
 u8  RateIdToMbps[]	 = { 1, 2, 5, 11, 6, 9, 12, 18, 24, 36, 48, 54, 72, 100};
-USHORT RateIdTo500Kbps[] = { 2, 4, 11, 22, 12, 18, 24, 36, 48, 72, 96, 108, 144, 200};
+unsigned short RateIdTo500Kbps[] = { 2, 4, 11, 22, 12, 18, 24, 36, 48, 72, 96, 108, 144, 200};
 
 u8 SsidIe = IE_SSID;
 u8 SupRateIe = IE_SUPP_RATES;
@@ -1277,7 +1277,7 @@ void MlmeCheckForRoaming(
 	struct rtmp_adapter *pAd,
 	unsigned long	Now32)
 {
-	USHORT	   i;
+	unsigned short	   i;
 	BSS_TABLE  *pRoamTab = &pAd->MlmeAux.RoamTab;
 	BSS_ENTRY  *pBss;
 
@@ -1331,7 +1331,7 @@ void MlmeCheckForRoaming(
 bool MlmeCheckForFastRoaming(
 	struct rtmp_adapter *pAd)
 {
-	USHORT		i;
+	unsigned short		i;
 	BSS_TABLE	*pRoamTab = &pAd->MlmeAux.RoamTab;
 	BSS_ENTRY	*pBss;
 
@@ -1442,7 +1442,7 @@ void MlmeCheckPsmChange(
 /* IRQL = DISPATCH_LEVEL*/
 void MlmeSetPsmBit(
 	struct rtmp_adapter *pAd,
-	USHORT psm)
+	unsigned short psm)
 {
 
 	pAd->StaCfg.Psm = psm;
@@ -1595,7 +1595,7 @@ void MlmeCalculateChannelQuality(
 /* IRQL = DISPATCH_LEVEL*/
 void MlmeSetTxPreamble(
 	struct rtmp_adapter *pAd,
-	USHORT TxPreamble)
+	unsigned short TxPreamble)
 {
 	AUTO_RSP_CFG_STRUC csr4;
 
@@ -2424,7 +2424,7 @@ void BssEntrySet(
 	BSS_ENTRY *pBss,
 	BCN_IE_LIST *ie_list,
 	CHAR Rssi,
-	USHORT LengthVIE,
+	unsigned short LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE)
 {
 	memcpy(pBss->Bssid, ie_list->Bssid, ETH_ALEN);
@@ -2573,7 +2573,7 @@ void BssEntrySet(
 
 	{
 		PEID_STRUCT     pEid;
-		USHORT          Length = 0;
+		unsigned short          Length = 0;
 
 
 #ifdef CONFIG_STA_SUPPORT
@@ -2589,7 +2589,7 @@ void BssEntrySet(
 #endif /* EXT_BUILD_CHANNEL_LIST */
 #endif /* CONFIG_STA_SUPPORT */
 		pEid = (PEID_STRUCT) pVIE;
-		while ((Length + 2 + (USHORT)pEid->Len) <= LengthVIE)
+		while ((Length + 2 + (unsigned short)pEid->Len) <= LengthVIE)
 		{
 #define WPS_AP		0x01
 			switch(pEid->Eid)
@@ -2643,7 +2643,7 @@ void BssEntrySet(
 #endif /* EXT_BUILD_CHANNEL_LIST */
 #endif /* CONFIG_STA_SUPPORT */
 			}
-			Length = Length + 2 + (USHORT)pEid->Len;  /* Eid[1] + Len[1]+ content[Len]*/
+			Length = Length + 2 + (unsigned short)pEid->Len;  /* Eid[1] + Len[1]+ content[Len]*/
 			pEid = (PEID_STRUCT)((u8 *)pEid + 2 + pEid->Len);
 		}
 	}
@@ -2679,7 +2679,7 @@ unsigned long BssTableSetEntry(
 	BSS_TABLE *Tab,
 	BCN_IE_LIST *ie_list,
 	CHAR Rssi,
-	USHORT LengthVIE,
+	unsigned short LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE)
 {
 	unsigned long	Idx;
@@ -3108,7 +3108,7 @@ void BssCipherParse(
 	PRSN_IE_HEADER_STRUCT			pRsnHeader;
 	PCIPHER_SUITE_STRUCT			pCipher;
 	PAKM_SUITE_STRUCT				pAKM;
-	USHORT							Count;
+	unsigned short							Count;
 	INT								Length;
 	NDIS_802_11_ENCRYPTION_STATUS	TmpCipher;
 
@@ -3204,7 +3204,7 @@ void BssCipherParse(
 				/* skip all unicast cipher suites*/
 				/*Count = *(unsigned short *) pTmp;				*/
 				Count = (pTmp[1]<<8) + pTmp[0];
-				pTmp   += sizeof(USHORT);
+				pTmp   += sizeof(unsigned short);
 
 				/* Parsing all unicast cipher suite*/
 				while (Count > 0)
@@ -3244,7 +3244,7 @@ void BssCipherParse(
 				/* 4. get AKM suite counts*/
 				/*Count	= *(unsigned short *) pTmp;*/
 				Count = (pTmp[1]<<8) + pTmp[0];
-				pTmp   += sizeof(USHORT);
+				pTmp   += sizeof(unsigned short);
 				pTmp   += 3;
 
 				switch (*pTmp)
@@ -3324,7 +3324,7 @@ void BssCipherParse(
 				/* 2. Get pairwise cipher counts*/
 				/*Count = *(unsigned short *) pTmp;*/
 				Count = (pTmp[1]<<8) + pTmp[0];
-				pTmp   += sizeof(USHORT);
+				pTmp   += sizeof(unsigned short);
 
 				/* 3. Get pairwise cipher*/
 				/* Parsing all unicast cipher suite*/
@@ -3365,7 +3365,7 @@ void BssCipherParse(
 				/* 4. get AKM suite counts*/
 				/*Count	= *(unsigned short *) pTmp;*/
 				Count = (pTmp[1]<<8) + pTmp[0];
-				pTmp   += sizeof(USHORT);
+				pTmp   += sizeof(unsigned short);
 
 				/* 5. Get AKM ciphers*/
 				/* Parsing all AKM ciphers*/
@@ -3425,7 +3425,7 @@ void BssCipherParse(
 				/* 6. Get RSN capability*/
 				/*pBss->WPA2.RsnCapability = *(unsigned short *) pTmp;*/
 				pBss->WPA2.RsnCapability = (pTmp[1]<<8) + pTmp[0];
-				pTmp += sizeof(USHORT);
+				pTmp += sizeof(unsigned short);
 
 				/* Check the Pair & Group, if different, turn on mixed mode flag*/
 				if (pBss->WPA2.GroupCipher != pBss->WPA2.PairCipher)
@@ -3933,7 +3933,7 @@ bool MsgTypeSubst(
 	INT *Machine,
 	INT *MsgType)
 {
-	USHORT	Seq, Alg;
+	unsigned short	Seq, Alg;
 	u8 EAPType;
 	u8 *pData;
 	bool bRV = false;
@@ -3992,8 +3992,8 @@ bool MsgTypeSubst(
 			break;
 		case SUBTYPE_AUTH:
 			/* get the sequence number from payload 24 Mac Header + 2 bytes algorithm*/
-			memmove(&Seq, &pFrame->Octet[2], sizeof(USHORT));
-			memmove(&Alg, &pFrame->Octet[0], sizeof(USHORT));
+			memmove(&Seq, &pFrame->Octet[2], sizeof(unsigned short));
+			memmove(&Alg, &pFrame->Octet[0], sizeof(unsigned short));
 			if (Seq == 1 || Seq == 3)
 			{
 				*Machine = AUTH_RSP_STATE_MACHINE;

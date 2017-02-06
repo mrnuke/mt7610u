@@ -53,46 +53,46 @@
 #ifdef RT_BIG_ENDIAN
 typedef union _EEPROM_NIC_CINFIG2_STRUC {
 	struct {
-		USHORT DACTestBit:1;	/* control if driver should patch the DAC issue */
-		USHORT CoexBit:1;
-		USHORT bInternalTxALC:1;	/* Internal Tx ALC */
-		USHORT AntOpt:1;	/* Fix Antenna Option: 0:Main; 1: Aux */
-		USHORT AntDiversity:1;	/* Antenna diversity */
-		USHORT Rsv1:1;	/* must be 0 */
-		USHORT BW40MAvailForA:1;	/* 0:enable, 1:disable */
-		USHORT BW40MAvailForG:1;	/* 0:enable, 1:disable */
-		USHORT EnableWPSPBC:1;	/* WPS PBC Control bit */
-		USHORT BW40MSidebandForA:1;
-		USHORT BW40MSidebandForG:1;
-		USHORT CardbusAcceleration:1;	/* !!! NOTE: 0 - enable, 1 - disable */
-		USHORT ExternalLNAForA:1;	/* external LNA enable for 5G */
-		USHORT ExternalLNAForG:1;	/* external LNA enable for 2.4G */
-		USHORT DynamicTxAgcControl:1;	/* */
-		USHORT HardwareRadioControl:1;	/* Whether RF is controlled by driver or HW. 1:enable hw control, 0:disable */
+		unsigned short DACTestBit:1;	/* control if driver should patch the DAC issue */
+		unsigned short CoexBit:1;
+		unsigned short bInternalTxALC:1;	/* Internal Tx ALC */
+		unsigned short AntOpt:1;	/* Fix Antenna Option: 0:Main; 1: Aux */
+		unsigned short AntDiversity:1;	/* Antenna diversity */
+		unsigned short Rsv1:1;	/* must be 0 */
+		unsigned short BW40MAvailForA:1;	/* 0:enable, 1:disable */
+		unsigned short BW40MAvailForG:1;	/* 0:enable, 1:disable */
+		unsigned short EnableWPSPBC:1;	/* WPS PBC Control bit */
+		unsigned short BW40MSidebandForA:1;
+		unsigned short BW40MSidebandForG:1;
+		unsigned short CardbusAcceleration:1;	/* !!! NOTE: 0 - enable, 1 - disable */
+		unsigned short ExternalLNAForA:1;	/* external LNA enable for 5G */
+		unsigned short ExternalLNAForG:1;	/* external LNA enable for 2.4G */
+		unsigned short DynamicTxAgcControl:1;	/* */
+		unsigned short HardwareRadioControl:1;	/* Whether RF is controlled by driver or HW. 1:enable hw control, 0:disable */
 	} field;
-	USHORT word;
+	unsigned short word;
 } EEPROM_NIC_CONFIG2_STRUC, *PEEPROM_NIC_CONFIG2_STRUC;
 #else
 typedef union _EEPROM_NIC_CINFIG2_STRUC {
 	struct {
-		USHORT HardwareRadioControl:1;	/* 1:enable, 0:disable */
-		USHORT DynamicTxAgcControl:1;	/* */
-		USHORT ExternalLNAForG:1;	/* */
-		USHORT ExternalLNAForA:1;	/* external LNA enable for 2.4G */
-		USHORT CardbusAcceleration:1;	/* !!! NOTE: 0 - enable, 1 - disable */
-		USHORT BW40MSidebandForG:1;
-		USHORT BW40MSidebandForA:1;
-		USHORT EnableWPSPBC:1;	/* WPS PBC Control bit */
-		USHORT BW40MAvailForG:1;	/* 0:enable, 1:disable */
-		USHORT BW40MAvailForA:1;	/* 0:enable, 1:disable */
-		USHORT Rsv1:1;	/* must be 0 */
-		USHORT AntDiversity:1;	/* Antenna diversity */
-		USHORT AntOpt:1;	/* Fix Antenna Option: 0:Main; 1: Aux */
-		USHORT bInternalTxALC:1;	/* Internal Tx ALC */
-		USHORT CoexBit:1;
-		USHORT DACTestBit:1;	/* control if driver should patch the DAC issue */
+		unsigned short HardwareRadioControl:1;	/* 1:enable, 0:disable */
+		unsigned short DynamicTxAgcControl:1;	/* */
+		unsigned short ExternalLNAForG:1;	/* */
+		unsigned short ExternalLNAForA:1;	/* external LNA enable for 2.4G */
+		unsigned short CardbusAcceleration:1;	/* !!! NOTE: 0 - enable, 1 - disable */
+		unsigned short BW40MSidebandForG:1;
+		unsigned short BW40MSidebandForA:1;
+		unsigned short EnableWPSPBC:1;	/* WPS PBC Control bit */
+		unsigned short BW40MAvailForG:1;	/* 0:enable, 1:disable */
+		unsigned short BW40MAvailForA:1;	/* 0:enable, 1:disable */
+		unsigned short Rsv1:1;	/* must be 0 */
+		unsigned short AntDiversity:1;	/* Antenna diversity */
+		unsigned short AntOpt:1;	/* Fix Antenna Option: 0:Main; 1: Aux */
+		unsigned short bInternalTxALC:1;	/* Internal Tx ALC */
+		unsigned short CoexBit:1;
+		unsigned short DACTestBit:1;	/* control if driver should patch the DAC issue */
 	} field;
-	USHORT word;
+	unsigned short word;
 } EEPROM_NIC_CONFIG2_STRUC, *PEEPROM_NIC_CONFIG2_STRUC;
 #endif
 
@@ -105,7 +105,7 @@ typedef union _EEPROM_TX_PWR_STRUC {
 		signed char Byte1;	/* High Byte */
 		signed char Byte0;	/* Low Byte */
 	} field;
-	USHORT word;
+	unsigned short word;
 } EEPROM_TX_PWR_STRUC, *PEEPROM_TX_PWR_STRUC;
 #else
 typedef union _EEPROM_TX_PWR_STRUC {
@@ -113,7 +113,7 @@ typedef union _EEPROM_TX_PWR_STRUC {
 		signed char Byte0;	/* Low Byte */
 		signed char Byte1;	/* High Byte */
 	} field;
-	USHORT word;
+	unsigned short word;
 } EEPROM_TX_PWR_STRUC, *PEEPROM_TX_PWR_STRUC;
 #endif
 
@@ -123,7 +123,7 @@ typedef union _EEPROM_VERSION_STRUC {
 		u8 Version;	/* High Byte */
 		u8 FaeReleaseNumber;	/* Low Byte */
 	} field;
-	USHORT word;
+	unsigned short word;
 } EEPROM_VERSION_STRUC, *PEEPROM_VERSION_STRUC;
 #else
 typedef union _EEPROM_VERSION_STRUC {
@@ -131,7 +131,7 @@ typedef union _EEPROM_VERSION_STRUC {
 		u8 FaeReleaseNumber;	/* Low Byte */
 		u8 Version;	/* High Byte */
 	} field;
-	USHORT word;
+	unsigned short word;
 } EEPROM_VERSION_STRUC, *PEEPROM_VERSION_STRUC;
 #endif
 

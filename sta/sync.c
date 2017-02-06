@@ -291,7 +291,7 @@ void MlmeForceScanReqAction(
 	u8          Ssid[MAX_LEN_OF_SSID], SsidLen, ScanType, BssType;
 	bool        TimerCancelled;
 	unsigned long		   Now;
-	USHORT         Status;
+	unsigned short         Status;
 
 #ifdef RTMP_MAC_USB
 	if(RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_IDLE_RADIO_OFF))
@@ -413,7 +413,7 @@ void MlmeScanReqAction(
 	u8          Ssid[MAX_LEN_OF_SSID], SsidLen, ScanType, BssType;
 	bool        TimerCancelled;
 	unsigned long		   Now;
-	USHORT         Status;
+	unsigned short         Status;
 
 #ifdef RTMP_MAC_USB
 	if(RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_IDLE_RADIO_OFF))
@@ -707,7 +707,7 @@ void MlmeStartReqAction(
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
 	LARGE_INTEGER TimeStamp;
 	bool Privacy;
-	USHORT Status;
+	unsigned short Status;
 
 
 	/* allocate memory */
@@ -819,7 +819,7 @@ void rtmp_dbg_sanity_diff(struct rtmp_adapter*pAd, MLME_QUEUE_ELEM *Elem)
 	u8 *Ssid = NULL;
 	u8 SsidLen=0, DtimCount, DtimPeriod, BcastFlag, MessageToMe, NewChannel, Channel = 0, BssType;
 	CF_PARM CfParm = {0};
-	USHORT BeaconPeriod, AtimWin, CapabilityInfo;
+	unsigned short BeaconPeriod, AtimWin, CapabilityInfo;
 	LARGE_INTEGER TimeStamp;
 	u8 SupRate[MAX_LEN_OF_SUPPORTED_RATES], ExtRate[MAX_LEN_OF_SUPPORTED_RATES];
 	u8 CkipFlag;
@@ -836,7 +836,7 @@ void rtmp_dbg_sanity_diff(struct rtmp_adapter*pAd, MLME_QUEUE_ELEM *Elem)
 	u8 		HtCapabilityLen = 0, PreNHtCapabilityLen = 0;
 	u8 Erp;
 	u8 		NewExtChannelOffset = 0xff;
-	USHORT LenVIE;
+	unsigned short LenVIE;
 	u8 *VarIE = NULL;
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
 
@@ -1133,7 +1133,7 @@ void PeerBeaconAtScanAction(
 	MLME_QUEUE_ELEM *Elem)
 {
 	PFRAME_802_11 pFrame;
-	USHORT LenVIE;
+	unsigned short LenVIE;
 	u8 *VarIE = NULL;
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
 
@@ -1279,8 +1279,8 @@ void PeerBeaconAtJoinAction(
 	MLME_QUEUE_ELEM *Elem)
 {
 	bool TimerCancelled;
-	USHORT LenVIE;
-	USHORT Status;
+	unsigned short LenVIE;
+	unsigned short Status;
 	u8 *VarIE = NULL;
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
 	unsigned long Idx = 0;
@@ -1641,8 +1641,8 @@ void PeerBeacon(
 	MLME_QUEUE_ELEM *Elem)
 {
 	u8 index=0;
-	USHORT TbttNumToNextWakeUp;
-	USHORT LenVIE;
+	unsigned short TbttNumToNextWakeUp;
+	unsigned short LenVIE;
 	u8 *VarIE = NULL;		/* Total VIE length = MAX_VIE_LEN - -5 */
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
 
@@ -2269,7 +2269,7 @@ void PeerBeacon(
 					}
 					else
 					{
-						USHORT NextDtim = ie_list->DtimCount;
+						unsigned short NextDtim = ie_list->DtimCount;
 
 						if (NextDtim == 0)
 							NextDtim = ie_list->DtimPeriod;
@@ -2329,7 +2329,7 @@ void PeerProbeReqAction(
 	u8         DsLen = 1, IbssLen = 2;
 	u8         LocalErpIe[3] = {IE_ERP, 1, 0};
 	bool       Privacy;
-	USHORT        CapabilityInfo;
+	unsigned short        CapabilityInfo;
 
 
 	if (! ADHOC_ON(pAd))
@@ -2403,7 +2403,7 @@ void PeerProbeReqAction(
 			if (WMODE_CAP_N(pAd->CommonCfg.PhyMode))
 			{
 				unsigned long TmpLen;
-				USHORT  epigram_ie_len;
+				unsigned short  epigram_ie_len;
 				u8 BROADCOM[4] = {0x0, 0x90, 0x4c, 0x33};
 				HtLen = sizeof(pAd->CommonCfg.HtCapability);
 				AddHtLen = sizeof(pAd->CommonCfg.AddHTInfo);
@@ -2446,7 +2446,7 @@ void BeaconTimeoutAtJoinAction(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Status;
+	unsigned short Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("SYNC - BeaconTimeoutAtJoinAction\n"));
 	pAd->Mlme.SyncMachine.CurrState = SYNC_IDLE;
 	Status = MLME_REJ_TIMEOUT;
@@ -2513,7 +2513,7 @@ void InvalidStateWhenScan(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Status;
+	unsigned short Status;
 
 	if (Elem->MsgType != MT2_MLME_SCAN_REQ)
 		DBGPRINT(RT_DEBUG_TRACE, ("AYNC - InvalidStateWhenScan(state=%ld). Reset SYNC machine\n", pAd->Mlme.SyncMachine.CurrState));
@@ -2537,7 +2537,7 @@ void InvalidStateWhenJoin(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Status;
+	unsigned short Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("InvalidStateWhenJoin(state=%ld, msg=%ld). Reset SYNC machine\n",
 								pAd->Mlme.SyncMachine.CurrState,
 								Elem->MsgType));
@@ -2559,7 +2559,7 @@ void InvalidStateWhenStart(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Status;
+	unsigned short Status;
 	DBGPRINT(RT_DEBUG_TRACE, ("InvalidStateWhenStart(state=%ld). Reset SYNC machine\n", pAd->Mlme.SyncMachine.CurrState));
 	pAd->Mlme.SyncMachine.CurrState = SYNC_IDLE;
 	Status = MLME_STATE_MACHINE_REJECT;

@@ -640,13 +640,13 @@ void MlmeDecTxQuality(
 void MlmeSetTxQuality(
 	MAC_TABLE_ENTRY	*pEntry,
 	u8 		rateIndex,
-	USHORT			txQuality)
+	unsigned short			txQuality)
 {
 		pEntry->TxQuality[rateIndex] = txQuality;
 }
 
 
-USHORT MlmeGetTxQuality(
+unsigned short MlmeGetTxQuality(
 	MAC_TABLE_ENTRY	*pEntry,
 	u8 		rateIndex)
 {
@@ -751,7 +751,7 @@ void MlmeSetTxRate(
 	}
 	else
     {
-		USHORT OperationMode =0xffff;
+		unsigned short OperationMode =0xffff;
 
 #ifdef DOT11_N_SUPPORT
         if ((pAd->CommonCfg.RegTransmitSetting.field.HTMODE == HTMODE_GF) &&
@@ -1577,10 +1577,10 @@ void MlmeRALog(
 		if (pAd->CommonCfg.DebugFlags & DBF_DBQ_RA_LOG)
 		{
 			struct {
-				USHORT phyMode;
-				USHORT per;
-				USHORT tp;
-				USHORT bfRatio;
+				unsigned short phyMode;
+				unsigned short per;
+				unsigned short tp;
+				unsigned short bfRatio;
 			} raLogInfo;
 
 			raLogInfo.phyMode = pEntry->HTPhyMode.word;
@@ -1755,7 +1755,7 @@ void MlmeNewTxRate(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry)
 	}
 #endif /*  DOT11_N_SUPPORT */
 
-	pAd->LastTxRate = (USHORT)(pEntry->HTPhyMode.word);
+	pAd->LastTxRate = (unsigned short)(pEntry->HTPhyMode.word);
 
 }
 

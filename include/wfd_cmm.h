@@ -106,25 +106,25 @@
 typedef	struct __attribute__ ((packed)) _WFD_DEVICE_INFO
 {
 #ifndef RT_BIG_ENDIAN
-	USHORT DeviceType:2;
-	USHORT SourceCoupled:1;
-	USHORT SinkCoupled:1;
-	USHORT SessionAvail:2;
-	USHORT WSD:1;
-	USHORT PC:1;								/* Preferred Connectivity */
-	USHORT CP:1;
-	USHORT TimeSync:1;
-	USHORT Rsvd:6;
+	unsigned short DeviceType:2;
+	unsigned short SourceCoupled:1;
+	unsigned short SinkCoupled:1;
+	unsigned short SessionAvail:2;
+	unsigned short WSD:1;
+	unsigned short PC:1;								/* Preferred Connectivity */
+	unsigned short CP:1;
+	unsigned short TimeSync:1;
+	unsigned short Rsvd:6;
 #else
-	USHORT Rsvd:6;
-	USHORT TimeSync:1;							/* 802.1AS Support */
-	USHORT CP:1;								/* Content Protection */
-	USHORT PC:1;								/* Preferred Connectivity */
-	USHORT WSD:1;								/* WFD Service Discovery */
-	USHORT SessionAvail:2;
-	USHORT SinkCoupled:1;
-	USHORT SourceCoupled:1;
-	USHORT DeviceType:2;
+	unsigned short Rsvd:6;
+	unsigned short TimeSync:1;							/* 802.1AS Support */
+	unsigned short CP:1;								/* Content Protection */
+	unsigned short PC:1;								/* Preferred Connectivity */
+	unsigned short WSD:1;								/* WFD Service Discovery */
+	unsigned short SessionAvail:2;
+	unsigned short SinkCoupled:1;
+	unsigned short SourceCoupled:1;
+	unsigned short DeviceType:2;
 #endif
 }	WFD_DEVICE_INFO, *PWFD_DEVICE_INFO;
 
@@ -148,13 +148,13 @@ typedef	struct __attribute__ ((packed)) _WFD_SESSION_INFO
 	u8 					DeviceAddr[ETH_ALEN];
 	u8 					Bssid[ETH_ALEN];
 	WFD_DEVICE_INFO 		WfdDevInfo;
-	USHORT					MaxThroughput;
+	unsigned short					MaxThroughput;
 	WFD_COUPLED_SINK_INFO 	CoupledSinkInfo;
 	u8 					CoupledPeerAddr[ETH_ALEN];
 #else
 	u8 					CoupledPeerAddr[ETH_ALEN];
 	WFD_COUPLED_SINK_INFO 	CoupledSinkInfo;
-	USHORT					MaxThroughput;
+	unsigned short					MaxThroughput;
 	WFD_DEVICE_INFO 		WfdDevInfo;
 	u8 					Bssid[ETH_ALEN];
 	u8 					DeviceAddr[ETH_ALEN];
@@ -203,8 +203,8 @@ typedef struct _WFD_ENTRY_INFO
 	u8 sink_audio_unsupport;
 	u8 source_audio_only;
 	u8 tdls_persistent_group;
-	USHORT	rtsp_port;
-	USHORT	max_throughput;
+	unsigned short	rtsp_port;
+	unsigned short	max_throughput;
 	u8 assoc_addr[ETH_ALEN];
 	WFD_COUPLED_SINK_INFO	coupled_sink_status;
 	u8   	coupled_peer_addr[ETH_ALEN];
@@ -228,8 +228,8 @@ typedef struct _RT_WFD_CONFIG
 	u8  	PC;
 	u8  	CP;                     /* WFD Content Protection capability */
 	u8  	TimeSync;
-	USHORT 	RtspPort;				/* Deafult WFD_RTSP_DEFAULT_PORT */
-	USHORT	MaxThroughput;			/* Maximum average throughput capability */
+	unsigned short 	RtspPort;				/* Deafult WFD_RTSP_DEFAULT_PORT */
+	unsigned short	MaxThroughput;			/* Maximum average throughput capability */
 	u8 Bssid[ETH_ALEN];
 	u8 IPv4Addr[4];
 	u8  	TdlsSecurity;

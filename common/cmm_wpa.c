@@ -214,7 +214,7 @@ void WpaEAPOLKeyAction(
 	memmove((u8 *)&peerKeyInfo, (u8 *)&pEapol_packet->KeyDesc.KeyInfo, sizeof(KEY_INFO));
 
 
-	*((USHORT *)&peerKeyInfo) = cpu2le16(*((USHORT *)&peerKeyInfo));
+	*((unsigned short *)&peerKeyInfo) = cpu2le16(*((unsigned short *)&peerKeyInfo));
 
     do
     {
@@ -468,7 +468,7 @@ bool PeerWpaMessageSanity(
 
 	memmove((u8 *)&EapolKeyInfo, (u8 *)&pMsg->KeyDesc.KeyInfo, sizeof(KEY_INFO));
 
-	*((USHORT *)&EapolKeyInfo) = cpu2le16(*((USHORT *)&EapolKeyInfo));
+	*((unsigned short *)&EapolKeyInfo) = cpu2le16(*((unsigned short *)&EapolKeyInfo));
 
 	/* Choose WPA2 or not*/
 	if ((pEntry->AuthMode == Ndis802_11AuthModeWPA2) || (pEntry->AuthMode == Ndis802_11AuthModeWPA2PSK))
@@ -1434,7 +1434,7 @@ void EnqueueStartForPSKExec(
 void MlmeDeAuthAction(
     struct rtmp_adapter *   pAd,
     MAC_TABLE_ENTRY  *pEntry,
-	USHORT           Reason,
+	unsigned short           Reason,
 	bool          bDataFrameFirst)
 {
     u8 *         pOutBuffer = NULL;
@@ -1796,9 +1796,9 @@ void KDF(
 	u8 *	data,
 	INT		data_len,
 	u8 *	output,
-	USHORT	len)
+	unsigned short	len)
 {
-	USHORT	i;
+	unsigned short	i;
     u8   *input;
 	INT		currentindex = 0;
 	INT		total_len;
@@ -3080,7 +3080,7 @@ void ConstructEapolMsg(
     }
 
 	/* key Information element has done. */
-	*(USHORT *)(&pMsg->KeyDesc.KeyInfo) = cpu2le16(*(USHORT *)(&pMsg->KeyDesc.KeyInfo));
+	*(unsigned short *)(&pMsg->KeyDesc.KeyInfo) = cpu2le16(*(unsigned short *)(&pMsg->KeyDesc.KeyInfo));
 
 	/* Fill in Key Length*/
 	if (bWPA2)

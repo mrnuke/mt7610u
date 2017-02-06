@@ -620,9 +620,9 @@ typedef struct __attribute__ ((packed)) _NDIS_802_11_BSSID_LIST {
 
 typedef struct {
 	bool bValid;		/* 1: variable contains valid value */
-	USHORT StaNum;
+	unsigned short StaNum;
 	u8 ChannelUtilization;
-	USHORT RemainingAdmissionControl;	/* in unit of 32-us */
+	unsigned short RemainingAdmissionControl;	/* in unit of 32-us */
 } QBSS_LOAD_UI, *PQBSS_LOAD_UI;
 
 /* Added Capabilities, IELength and IEs for each BSSID */
@@ -651,8 +651,8 @@ typedef struct __attribute__ ((packed)) _NDIS_802_11_BSSID_LIST_EX {
 
 typedef struct __attribute__ ((packed)) _NDIS_802_11_FIXED_IEs {
 	u8 Timestamp[8];
-	USHORT BeaconInterval;
-	USHORT Capabilities;
+	unsigned short BeaconInterval;
+	unsigned short Capabilities;
 } NDIS_802_11_FIXED_IEs, *PNDIS_802_11_FIXED_IEs;
 
 typedef struct _NDIS_802_11_VARIABLE_IEs {
@@ -730,24 +730,24 @@ typedef enum _NDIS_802_11_RELOAD_DEFAULTS {
 #define NDIS_802_11_AI_RESFI_ASSOCIATIONID     4
 
 typedef struct _NDIS_802_11_AI_REQFI {
-	USHORT Capabilities;
-	USHORT ListenInterval;
+	unsigned short Capabilities;
+	unsigned short ListenInterval;
 	NDIS_802_11_MAC_ADDRESS CurrentAPAddress;
 } NDIS_802_11_AI_REQFI, *PNDIS_802_11_AI_REQFI;
 
 typedef struct _NDIS_802_11_AI_RESFI {
-	USHORT Capabilities;
-	USHORT StatusCode;
-	USHORT AssociationId;
+	unsigned short Capabilities;
+	unsigned short StatusCode;
+	unsigned short AssociationId;
 } NDIS_802_11_AI_RESFI, *PNDIS_802_11_AI_RESFI;
 
 typedef struct _NDIS_802_11_ASSOCIATION_INFORMATION {
 	unsigned long Length;
-	USHORT AvailableRequestFixedIEs;
+	unsigned short AvailableRequestFixedIEs;
 	NDIS_802_11_AI_REQFI RequestFixedIEs;
 	unsigned long RequestIELength;
 	unsigned long OffsetRequestIEs;
-	USHORT AvailableResponseFixedIEs;
+	unsigned short AvailableResponseFixedIEs;
 	NDIS_802_11_AI_RESFI ResponseFixedIEs;
 	unsigned long ResponseIELength;
 	unsigned long OffsetResponseIEs;
@@ -877,26 +877,26 @@ typedef struct _NDIS_802_11_CAPABILITY {
 typedef union _HTTRANSMIT_SETTING {
 #ifdef RT_BIG_ENDIAN
 	struct {
-		USHORT MODE:3;	/* Use definition MODE_xxx. */
-		USHORT iTxBF:1;
-		USHORT eTxBF:1;
-		USHORT STBC:1;	/* only support in HT/VHT mode with MCS0~7 */
-		USHORT ShortGI:1;
-		USHORT BW:2;	/* channel bandwidth 20MHz/40/80 MHz */
-		USHORT MCS:7;	/* MCS */
+		unsigned short MODE:3;	/* Use definition MODE_xxx. */
+		unsigned short iTxBF:1;
+		unsigned short eTxBF:1;
+		unsigned short STBC:1;	/* only support in HT/VHT mode with MCS0~7 */
+		unsigned short ShortGI:1;
+		unsigned short BW:2;	/* channel bandwidth 20MHz/40/80 MHz */
+		unsigned short MCS:7;	/* MCS */
 	} field;
 #else
 	struct {
-		USHORT MCS:7;
-		USHORT BW:2;
-		USHORT ShortGI:1;
-		USHORT STBC:1;
-		USHORT eTxBF:1;
-		USHORT iTxBF:1;
-		USHORT MODE:3;
+		unsigned short MCS:7;
+		unsigned short BW:2;
+		unsigned short ShortGI:1;
+		unsigned short STBC:1;
+		unsigned short eTxBF:1;
+		unsigned short iTxBF:1;
+		unsigned short MODE:3;
 	} field;
 #endif
-	USHORT word;
+	unsigned short word;
 } HTTRANSMIT_SETTING, *PHTTRANSMIT_SETTING;
 
 typedef enum _RT_802_11_PREAMBLE {
@@ -966,14 +966,14 @@ typedef struct _RT_802_11_LINK_STATUS {
 /* MIMO Tx parameter, ShortGI, MCS, STBC, etc.  these are fields in TXWI. Don't change this definition!!! */
 typedef union _MACHTTRANSMIT_SETTING {
 	struct {
-		USHORT MCS:7;	/* MCS */
-		USHORT BW:1;	/*channel bandwidth 20MHz or 40 MHz */
-		USHORT ShortGI:1;
-		USHORT STBC:2;	/*SPACE */
-		USHORT rsv:3;
-		USHORT MODE:2;	/* Use definition MODE_xxx. */
+		unsigned short MCS:7;	/* MCS */
+		unsigned short BW:1;	/*channel bandwidth 20MHz or 40 MHz */
+		unsigned short ShortGI:1;
+		unsigned short STBC:2;	/*SPACE */
+		unsigned short rsv:3;
+		unsigned short MODE:2;	/* Use definition MODE_xxx. */
 	} field;
-	USHORT word;
+	unsigned short word;
 } MACHTTRANSMIT_SETTING, *PMACHTTRANSMIT_SETTING;
 
 typedef struct _RT_802_11_MAC_ENTRY {
@@ -1040,7 +1040,7 @@ typedef struct _OID_BACAP_STRUC {
 
 typedef struct _RT_802_11_ACL_ENTRY {
 	u8 Addr[MAC_ADDR_LENGTH];
-	USHORT Rsv;
+	unsigned short Rsv;
 } RT_802_11_ACL_ENTRY, *PRT_802_11_ACL_ENTRY;
 
 typedef struct __attribute__ ((packed)) _RT_802_11_ACL {
@@ -1140,8 +1140,8 @@ typedef struct _NINTENDO_SEED_WEPKEY {
 /*rt2860, 2007-0118 */
 /* structure for DLS */
 typedef struct _RT_802_11_DLS_UI {
-	USHORT TimeOut;		/* unit: second , set by UI */
-	USHORT CountDownTimer;	/* unit: second , used by driver only */
+	unsigned short TimeOut;		/* unit: second , set by UI */
+	unsigned short CountDownTimer;	/* unit: second , used by driver only */
 	NDIS_802_11_MAC_ADDRESS MacAddr;	/* set by UI */
 	u8 Status;		/* 0: none , 1: wait STAkey, 2: finish DLS setup , set by driver only */
 	bool Valid;		/* 1: valid , 0: invalid , set by UI, use to setup or tear down DLS link */
@@ -1184,10 +1184,10 @@ typedef struct _RT_CHANNEL_LIST_INFO {
 /* WSC configured credential */
 typedef struct _WSC_CREDENTIAL {
 	NDIS_802_11_SSID SSID;	/* mandatory */
-	USHORT AuthType;	/* mandatory, 1: open, 2: wpa-psk, 4: shared, 8:wpa, 0x10: wpa2, 0x20: wpa2-psk */
-	USHORT EncrType;	/* mandatory, 1: none, 2: wep, 4: tkip, 8: aes */
+	unsigned short AuthType;	/* mandatory, 1: open, 2: wpa-psk, 4: shared, 8:wpa, 0x10: wpa2, 0x20: wpa2-psk */
+	unsigned short EncrType;	/* mandatory, 1: none, 2: wep, 4: tkip, 8: aes */
 	u8 Key[64];		/* mandatory, Maximum 64 byte */
-	USHORT KeyLength;
+	unsigned short KeyLength;
 	u8 MacAddr[MAC_ADDR_LENGTH];	/* mandatory, AP MAC address */
 	u8 KeyIndex;		/* optional, default is 1 */
 	u8 bFromUPnP;	/* true: This credential is from external UPnP registrar */

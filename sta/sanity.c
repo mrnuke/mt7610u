@@ -83,9 +83,9 @@ bool PeerAssocRspSanity(
 	void *pMsg,
 	unsigned long MsgLen,
 	u8 *pAddr2,
-	USHORT *pCapabilityInfo,
-	USHORT *pStatus,
-	USHORT *pAid,
+	unsigned short *pCapabilityInfo,
+	unsigned short *pStatus,
+	unsigned short *pAid,
 	u8 SupRate[],
 	u8 *pSupRateLen,
 	u8 ExtRate[],
@@ -164,8 +164,8 @@ bool PeerAssocRspSanity(
 			if (pEid->Len >= SIZE_HT_CAP_IE) {	/* Note: allow extension.!! */
 				memmove(pHtCapability, pEid->Octet, SIZE_HT_CAP_IE);
 
-				*(USHORT *) (&pHtCapability->HtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->HtCapInfo));
-				*(USHORT *) (&pHtCapability->ExtHtCapInfo) = cpu2le16(*(USHORT *)(&pHtCapability->ExtHtCapInfo));
+				*(unsigned short *) (&pHtCapability->HtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->HtCapInfo));
+				*(unsigned short *) (&pHtCapability->ExtHtCapInfo) = cpu2le16(*(unsigned short *)(&pHtCapability->ExtHtCapInfo));
 
 				*pHtCapabilityLen = SIZE_HT_CAP_IE;
 			} else {
@@ -183,8 +183,8 @@ bool PeerAssocRspSanity(
 				 */
 				memmove(pAddHtInfo, pEid->Octet, sizeof (ADD_HT_INFO_IE));
 
-				*(USHORT *) (&pAddHtInfo->AddHtInfo2) = cpu2le16(*(USHORT *)(&pAddHtInfo->AddHtInfo2));
-				*(USHORT *) (&pAddHtInfo->AddHtInfo3) = cpu2le16(*(USHORT *)(&pAddHtInfo->AddHtInfo3));
+				*(unsigned short *) (&pAddHtInfo->AddHtInfo2) = cpu2le16(*(unsigned short *)(&pAddHtInfo->AddHtInfo2));
+				*(unsigned short *) (&pAddHtInfo->AddHtInfo3) = cpu2le16(*(unsigned short *)(&pAddHtInfo->AddHtInfo3));
 
 				*pAddHtInfoLen = SIZE_ADD_HT_INFO_IE;
 			} else {
@@ -286,7 +286,7 @@ bool PeerAssocRspSanity(
  */
 bool GetTimBit(
 	CHAR *Ptr,
-	USHORT Aid,
+	unsigned short Aid,
 	u8 *TimLen,
 	u8 *BcastFlag,
 	u8 *DtimCount,

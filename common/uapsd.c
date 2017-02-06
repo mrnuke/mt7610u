@@ -670,7 +670,7 @@ void UAPSD_SP_AUE_Handle(
 	u8 		FlgSuccess)
 {
 #ifdef UAPSD_SP_ACCURATE
-	USHORT QueId;
+	unsigned short QueId;
 
 
 	if (pEntry == NULL)

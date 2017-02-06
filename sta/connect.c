@@ -150,9 +150,9 @@ void MlmeCntlMachinePerformAction(
 
 	case CNTL_WAIT_OID_LIST_SCAN:
 		if (Elem->MsgType == MT2_SCAN_CONF) {
-			USHORT	Status = MLME_SUCCESS;
+			unsigned short	Status = MLME_SUCCESS;
 
-			memmove(&Status, Elem->Msg, sizeof(USHORT));
+			memmove(&Status, Elem->Msg, sizeof(unsigned short));
 
 			/* Resume TxRing after SCANING complete. We hope the out-of-service time */
 			/* won't be too long to let upper layer time-out the waiting frames */
@@ -234,8 +234,8 @@ when disassoc from ap1 ,and send even_scan will direct connect to ap2 , not need
 
 	case CNTL_WAIT_SCAN_FOR_CONNECT:
 		if (Elem->MsgType == MT2_SCAN_CONF) {
-			USHORT	Status = MLME_SUCCESS;
-			memmove(&Status, Elem->Msg, sizeof(USHORT));
+			unsigned short	Status = MLME_SUCCESS;
+			memmove(&Status, Elem->Msg, sizeof(unsigned short));
 			/* Resume TxRing after SCANING complete. We hope the out-of-service time */
 			/* won't be too long to let upper layer time-out the waiting frames */
 			RTMPResumeMsduTransmission(pAd);
@@ -808,7 +808,7 @@ void CntlOidDLSSetupProc(
 	PRT_802_11_DLS pDLS = (PRT_802_11_DLS) Elem->Msg;
 	MLME_DLS_REQ_STRUCT MlmeDlsReq;
 	INT i;
-	USHORT reason = REASON_UNSPECIFY;
+	unsigned short reason = REASON_UNSPECIFY;
 
 	DBGPRINT(RT_DEBUG_TRACE,
 		 ("CNTL - (OID set %02x:%02x:%02x:%02x:%02x:%02x with Valid=%d, Status=%d, TimeOut=%d, CountDownTimer=%d)\n",
@@ -1005,11 +1005,11 @@ void CntlWaitJoinProc(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Reason;
+	unsigned short Reason;
 	MLME_AUTH_REQ_STRUCT AuthReq;
 
 	if (Elem->MsgType == MT2_JOIN_CONF) {
-		memmove(&Reason, Elem->Msg, sizeof (USHORT));
+		memmove(&Reason, Elem->Msg, sizeof (unsigned short));
 		if (Reason == MLME_SUCCESS) {
 			/* 1. joined an IBSS, we are pretty much done here */
 			if (pAd->MlmeAux.BssType == BSS_ADHOC) {
@@ -1084,12 +1084,12 @@ void CntlWaitStartProc(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Result;
+	unsigned short Result;
 	RT_PHY_INFO *rt_phy_info;
 
 
 	if (Elem->MsgType == MT2_START_CONF) {
-		memmove(&Result, Elem->Msg, sizeof (USHORT));
+		memmove(&Result, Elem->Msg, sizeof (unsigned short));
 		if (Result == MLME_SUCCESS) {
 			/* */
 			/* 5G bands rules of Japan: */
@@ -1183,12 +1183,12 @@ void CntlWaitAuthProc(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Reason;
+	unsigned short Reason;
 	MLME_ASSOC_REQ_STRUCT AssocReq;
 	MLME_AUTH_REQ_STRUCT AuthReq;
 
 	if (Elem->MsgType == MT2_AUTH_CONF) {
-		memmove(&Reason, Elem->Msg, sizeof (USHORT));
+		memmove(&Reason, Elem->Msg, sizeof (unsigned short));
 		if (Reason == MLME_SUCCESS) {
 			DBGPRINT(RT_DEBUG_TRACE, ("CNTL - AUTH OK\n"));
 			AssocParmFill(pAd, &AssocReq, pAd->MlmeAux.Bssid,
@@ -1246,12 +1246,12 @@ void CntlWaitAuthProc2(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Reason;
+	unsigned short Reason;
 	MLME_ASSOC_REQ_STRUCT AssocReq;
 	MLME_AUTH_REQ_STRUCT AuthReq;
 
 	if (Elem->MsgType == MT2_AUTH_CONF) {
-		memmove(&Reason, Elem->Msg, sizeof (USHORT));
+		memmove(&Reason, Elem->Msg, sizeof (unsigned short));
 		if (Reason == MLME_SUCCESS) {
 			DBGPRINT(RT_DEBUG_TRACE, ("CNTL - AUTH OK\n"));
 			AssocParmFill(pAd, &AssocReq, pAd->MlmeAux.Bssid,
@@ -1306,10 +1306,10 @@ void CntlWaitAssocProc(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Reason;
+	unsigned short Reason;
 
 	if (Elem->MsgType == MT2_ASSOC_CONF) {
-		memmove(&Reason, Elem->Msg, sizeof (USHORT));
+		memmove(&Reason, Elem->Msg, sizeof (unsigned short));
 		if (Reason == MLME_SUCCESS) {
 			LinkUp(pAd, BSS_INFRA);
 			pAd->Mlme.CntlMachine.CurrState = CNTL_IDLE;
@@ -1338,10 +1338,10 @@ void CntlWaitReassocProc(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	USHORT Result;
+	unsigned short Result;
 
 	if (Elem->MsgType == MT2_REASSOC_CONF) {
-		memmove(&Result, Elem->Msg, sizeof (USHORT));
+		memmove(&Result, Elem->Msg, sizeof (unsigned short));
 		if (Result == MLME_SUCCESS) {
 			/* */
 			/* NDIS requires a new Link UP indication but no Link Down for RE-ASSOC */
@@ -1844,7 +1844,7 @@ void LinkUp(
 	NdisReleaseSpinLock(&pAd->MacTabLock);
 
 	/*  Let Link Status Page display first initial rate. */
-	pAd->LastTxRate = (USHORT) (pEntry->HTPhyMode.word);
+	pAd->LastTxRate = (unsigned short) (pEntry->HTPhyMode.word);
 
 	/* Select DAC according to HT or Legacy */
 	if (pAd->StaActive.SupportedPhyInfo.MCSSet[0] != 0x00)
@@ -2582,7 +2582,7 @@ void DlsParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_DLS_REQ_STRUCT *pDlsReq,
 	PRT_802_11_DLS pDls,
-	USHORT reason)
+	unsigned short reason)
 {
 	pDlsReq->pDLS = pDls;
 	pDlsReq->Reason = reason;
@@ -2622,7 +2622,7 @@ void AuthParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_AUTH_REQ_STRUCT *AuthReq,
 	u8 *pAddr,
-	USHORT Alg)
+	unsigned short Alg)
 {
 	memcpy(AuthReq->Addr, pAddr, ETH_ALEN);
 	AuthReq->Alg = Alg;
@@ -2642,9 +2642,9 @@ void AuthParmFill(
 void MlmeCntlConfirm(
 	struct rtmp_adapter *pAd,
 	unsigned long MsgType,
-	USHORT Msg)
+	unsigned short Msg)
 {
-	MlmeEnqueue(pAd, MLME_CNTL_STATE_MACHINE, MsgType, sizeof (USHORT),
+	MlmeEnqueue(pAd, MLME_CNTL_STATE_MACHINE, MsgType, sizeof (unsigned short),
 		    &Msg, 0);
 }
 #endif /* RTMP_MAC_USB */
@@ -2665,7 +2665,7 @@ unsigned long MakeIbssBeacon(
 	u8 DsLen = 1, IbssLen = 2;
 	u8 LocalErpIe[3] = { IE_ERP, 1, 0x04 };
 	HEADER_802_11 BcnHdr;
-	USHORT CapabilityInfo;
+	unsigned short CapabilityInfo;
 	LARGE_INTEGER FakeTimestamp;
 	unsigned long FrameLen = 0;
 	struct txwi_nmac *pTxWI = &pAd->BeaconTxWI;
@@ -2795,7 +2795,7 @@ unsigned long MakeIbssBeacon(
 #ifdef RT_BIG_ENDIAN
 		HT_CAPABILITY_IE HtCapabilityTmp;
 		ADD_HT_INFO_IE addHTInfoTmp;
-		USHORT b2lTmp, b2lTmp2;
+		unsigned short b2lTmp, b2lTmp2;
 #endif
 
 		/* add HT Capability IE */
@@ -2813,17 +2813,17 @@ unsigned long MakeIbssBeacon(
 #else
 		memmove(&HtCapabilityTmp, &pAd->CommonCfg.HtCapability,
 			       HtLen);
-		*(USHORT *) (&HtCapabilityTmp.HtCapInfo) =
-		    SWAP16(*(USHORT *) (&HtCapabilityTmp.HtCapInfo));
-		*(USHORT *) (&HtCapabilityTmp.ExtHtCapInfo) =
-		    SWAP16(*(USHORT *) (&HtCapabilityTmp.ExtHtCapInfo));
+		*(unsigned short *) (&HtCapabilityTmp.HtCapInfo) =
+		    SWAP16(*(unsigned short *) (&HtCapabilityTmp.HtCapInfo));
+		*(unsigned short *) (&HtCapabilityTmp.ExtHtCapInfo) =
+		    SWAP16(*(unsigned short *) (&HtCapabilityTmp.ExtHtCapInfo));
 
 		memmove(&addHTInfoTmp, &pAd->CommonCfg.AddHTInfo,
 			       HtLen1);
-		*(USHORT *) (&addHTInfoTmp.AddHtInfo2) =
-		    SWAP16(*(USHORT *) (&addHTInfoTmp.AddHtInfo2));
-		*(USHORT *) (&addHTInfoTmp.AddHtInfo3) =
-		    SWAP16(*(USHORT *) (&addHTInfoTmp.AddHtInfo3));
+		*(unsigned short *) (&addHTInfoTmp.AddHtInfo2) =
+		    SWAP16(*(unsigned short *) (&addHTInfoTmp.AddHtInfo2));
+		*(unsigned short *) (&addHTInfoTmp.AddHtInfo3) =
+		    SWAP16(*(unsigned short *) (&addHTInfoTmp.AddHtInfo3));
 
 		MakeOutgoingFrame(pBeaconFrame + FrameLen, &TmpLen,
 				  1, &HtCapIe,
@@ -2975,7 +2975,7 @@ void MaintainBssTable(
 void AdjustChannelRelatedValue(
 	struct rtmp_adapter *pAd,
 	u8 *pBwFallBack,
-	USHORT ifIndex,
+	unsigned short ifIndex,
 	bool BandWidth,
 	u8 PriCh,
 	u8 ExtraCh)

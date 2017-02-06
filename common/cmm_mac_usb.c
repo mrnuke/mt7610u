@@ -1387,7 +1387,7 @@ void RT28xx_UpdateBeaconToAsic(
 	unsigned int  			i, padding;
 	BEACON_SYNC_STRUCT	*pBeaconSync = pAd->CommonCfg.pBeaconSync;
 	u32			longValue;
-/*	USHORT			shortValue;*/
+/*	unsigned short			shortValue;*/
 	bool 		bBcnReq = false;
 	u8 		bcn_idx = 0;
 	u8 TXWISize = sizeof(struct txwi_nmac);

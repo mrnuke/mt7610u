@@ -607,7 +607,7 @@ INT RTMP_COM_IoctlHandle(
 	struct rtmp_adapter *pAd,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
 	INT						cmd,
-	USHORT					subcmd,
+	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data)
 {

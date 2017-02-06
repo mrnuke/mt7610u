@@ -1829,8 +1829,8 @@ void MT76x0_AsicExtraPowerOverMAC(struct rtmp_adapter *pAd)
 			(unsigned int)ExtraPwrOverTxPwrCfg7, (unsigned int)ExtraPwrOverTxPwrCfg8, (unsigned int)ExtraPwrOverTxPwrCfg9));
 }
 
-static void calc_bw_delta_pwr(bool is_dec_delta, USHORT input_pwr,
-	USHORT bw_delta, CHAR *tx_pwr1, CHAR *tx_pwr2)
+static void calc_bw_delta_pwr(bool is_dec_delta, unsigned short input_pwr,
+	unsigned short bw_delta, CHAR *tx_pwr1, CHAR *tx_pwr2)
 {
 	CHAR tp_pwr1 = 0, tp_pwr2 = 0;
 
@@ -2023,7 +2023,7 @@ void MT76x0_Init(struct rtmp_adapter *pAd)
 
 void MT76x0_AntennaSelCtrl(struct rtmp_adapter *pAd)
 {
-	USHORT e2p_val = 0;
+	unsigned short e2p_val = 0;
 	u32 WlanFunCtrl = 0, CmbCtrl = 0, CoexCfg0 = 0, CoexCfg3 = 0;
 	u32 ret;
 
@@ -2861,7 +2861,7 @@ static void adjust_mp_temp(struct rtmp_adapter *pAd, char *temp_minus_bdy,
 
 
 bool load_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
-	USHORT e2p_start_addr, USHORT e2p_end_addr,
+	unsigned short e2p_start_addr, unsigned short e2p_end_addr,
 	u8 *bdy_table, const INT start_idx, const u32 table_size)
 {
 	u16 e2p_value;

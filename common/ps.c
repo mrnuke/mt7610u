@@ -125,7 +125,7 @@ void RtmpCleanupPsQueue(
 void RtmpHandleRxPsPoll(
 	struct rtmp_adapter *pAd,
 	u8 *		pAddr,
-	USHORT			Aid,
+	unsigned short			Aid,
     bool 		isActive)
 {
 	PQUEUE_ENTRY	  pEntry;

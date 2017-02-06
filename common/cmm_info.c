@@ -1195,9 +1195,9 @@ void RTMPAddWcidAttributeEntry(
 	MAC_TABLE_ENTRY *pEntry)
 {
 	u32		WCIDAttri = 0;
-	USHORT		offset;
+	unsigned short		offset;
 	u8 	IVEIV = 0;
-	USHORT		Wcid = 0;
+	unsigned short		Wcid = 0;
 
 	{
 #ifdef CONFIG_STA_SUPPORT
@@ -2624,7 +2624,7 @@ void dbQueueEnqueueRxFrame(u8 *pRxWI, u8 *pHeader_802_11, unsigned long flags)
 
 
 /* dbQueueDisplayPhy - Display PHY rate */
-static void dbQueueDisplayPHY(USHORT phyRate)
+static void dbQueueDisplayPHY(unsigned short phyRate)
 {
 	static CHAR *mode[4] = {" C", "oM","mM", "gM"};
 
@@ -2648,7 +2648,7 @@ static void dbQueueDump(
 	int i, origMCS, succMCS;
 	unsigned long lastTimestamp=0;
 	bool showTimestamp;
-	USHORT phyRate;
+	unsigned short phyRate;
 
 	if (dbqInit!=DBQ_INIT_SIG || dbqTail>=DBQ_LENGTH)
 		return;
@@ -2778,7 +2778,7 @@ static void dbQueueDump(
 			break;
 		case 0x7E:	/* RA Log info */
 			{
-				struct {USHORT phy; USHORT per; USHORT tp; USHORT bfPer;} *p = (void*)(oldTail->data);
+				struct {unsigned short phy; unsigned short per; unsigned short tp; unsigned short bfPer;} *p = (void*)(oldTail->data);
 				DBGPRINT(RT_DEBUG_OFF, ("RALog %02X%02X %d %d %d    ",
 											(p->phy>>8) & 0xFF, p->phy & 0xFF, p->per, p->tp, p->bfPer) );
 			}
@@ -2945,7 +2945,7 @@ char *RTMPGetRalinkAuthModeStr(
 }
 
 char *RTMPGetRalinkEncryModeStr(
-    USHORT encryMode)
+    unsigned short encryMode)
 {
 	switch(encryMode)
 	{

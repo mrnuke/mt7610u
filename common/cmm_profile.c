@@ -1291,7 +1291,7 @@ int	RTMPSetProfileParameters(
 		/*BeaconPeriod*/
 		if(RTMPGetKeyParameter("BeaconPeriod", tmpbuf, 10, pBuffer, true))
 		{
-			USHORT bcn_val = (USHORT) simple_strtol(tmpbuf, 0, 10);
+			unsigned short bcn_val = (unsigned short) simple_strtol(tmpbuf, 0, 10);
 
 			/* The acceptable is 20~1000 ms. Refer to WiFi test plan. */
 			if (bcn_val >= 20 && bcn_val <= 1000)
@@ -1357,7 +1357,7 @@ int	RTMPSetProfileParameters(
 		{
 			RtsThresh = simple_strtol(tmpbuf, 0, 10);
 			if( (RtsThresh >= 1) && (RtsThresh <= MAX_RTS_THRESHOLD) )
-				pAd->CommonCfg.RtsThreshold  = (USHORT)RtsThresh;
+				pAd->CommonCfg.RtsThreshold  = (unsigned short)RtsThresh;
 			else
 				pAd->CommonCfg.RtsThreshold = MAX_RTS_THRESHOLD;
 
@@ -1378,11 +1378,11 @@ int	RTMPSetProfileParameters(
 			{
 				/* The length of each fragment shall always be an even number of octets, except for the last fragment*/
 				/* of an MSDU or MMPDU, which may be either an even or an odd number of octets.*/
-				pAd->CommonCfg.FragmentThreshold = (USHORT)(FragThresh - 1);
+				pAd->CommonCfg.FragmentThreshold = (unsigned short)(FragThresh - 1);
 			}
 			else
 			{
-				pAd->CommonCfg.FragmentThreshold = (USHORT)FragThresh;
+				pAd->CommonCfg.FragmentThreshold = (unsigned short)FragThresh;
 			}
 			/*pAd->CommonCfg.AllowFragSize = (pAd->CommonCfg.FragmentThreshold) - LENGTH_802_11 - LENGTH_CRC;*/
 			DBGPRINT(RT_DEBUG_TRACE, ("FragThreshold=%d\n", pAd->CommonCfg.FragmentThreshold));

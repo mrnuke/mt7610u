@@ -190,7 +190,7 @@ void STA_MonPktSend(
 	struct net_device *pNetDev;
 	struct sk_buff * pRxPacket;
 	PHEADER_802_11 pHeader;
-	USHORT DataSize;
+	unsigned short DataSize;
 	u32 MaxRssi;
 	u8 L2PAD, PHYMODE, BW, ShortGI, MCS, AMPDU, STBC, RSSI1;
 	u8 BssMonitorFlag11n, Channel, CentralChannel;

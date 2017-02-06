@@ -68,10 +68,10 @@ void AuthRspStateMachineInit(
 void PeerAuthSimpleRspGenAndSend(
 	struct rtmp_adapter *pAd,
 	PHEADER_802_11 pHdr80211,
-	USHORT Alg,
-	USHORT Seq,
-	USHORT Reason,
-	USHORT Status)
+	unsigned short Alg,
+	unsigned short Seq,
+	unsigned short Reason,
+	unsigned short Status)
 {
 	HEADER_802_11 AuthHdr;
 	unsigned long FrameLen = 0;
@@ -111,7 +111,7 @@ void PeerDeauthAction(
 	u8 Addr1[ETH_ALEN];
 	u8 Addr2[ETH_ALEN];
 	u8 Addr3[ETH_ALEN];
-	USHORT Reason;
+	unsigned short Reason;
 	bool bDoIterate = false;
 
 	if (PeerDeauthSanity

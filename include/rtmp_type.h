@@ -31,14 +31,6 @@
 
 #include <linux/types.h>
 
-
-#ifdef LINUX
-/* Put platform dependent declaration here */
-/* For example, linux type definition */
-
-typedef unsigned short USHORT;
-#endif /* LINUX */
-
 /* modified for fixing compile warning on Sigma 8634 platform */
 typedef char STRING;
 
@@ -49,8 +41,6 @@ typedef signed int INT;
 
 #ifdef LINUX
 #endif /* LINUX */
-
-typedef USHORT *unsigned short *;
 
 typedef unsigned int NDIS_MEDIA_STATE;
 

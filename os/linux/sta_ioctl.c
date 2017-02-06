@@ -1173,7 +1173,7 @@ int rt_ioctl_giwrts(struct net_device *dev,
 		       struct iw_param *rts, char *extra)
 {
 	void *pAd = NULL;
-	USHORT RtsThreshold;
+	unsigned short RtsThreshold;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 
@@ -1238,7 +1238,7 @@ int rt_ioctl_giwfrag(struct net_device *dev,
 			struct iw_param *frag, char *extra)
 {
 	void *pAd = NULL;
-	USHORT FragmentThreshold;
+	unsigned short FragmentThreshold;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 
@@ -1952,7 +1952,7 @@ INT rt28xx_sta_ioctl(
 	RTMP_IOCTL_INPUT_STRUCT rt_wrq, *wrq = &rt_wrq;
 /*	bool 			StateMachineTouched = false; */
 	INT					Status = NDIS_STATUS_SUCCESS;
-	USHORT				subcmd;
+	unsigned short				subcmd;
 	u32				org_len;
 
 	GET_PAD_FROM_NET_DEV(pAd, net_dev);

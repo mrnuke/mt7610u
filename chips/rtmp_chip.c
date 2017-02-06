@@ -107,7 +107,7 @@ Note:
 */
 void RtmpChipWriteMemory(
 	struct rtmp_adapter*pAd,
-	USHORT			Offset,
+	unsigned short			Offset,
 	u32			Value,
 	u8			Unit)
 {

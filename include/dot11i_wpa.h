@@ -222,9 +222,9 @@ typedef struct __attribute__ ((packed)) _GTK_KDE
 /* For WPA1 */
 typedef struct __attribute__ ((packed)) _RSNIE {
     u8   oui[4];
-    USHORT  version;
+    unsigned short  version;
     u8   mcast[4];
-    USHORT  ucount;
+    unsigned short  ucount;
     struct __attribute__ ((packed)) {
         u8 oui[4];
     }ucast[1];
@@ -232,9 +232,9 @@ typedef struct __attribute__ ((packed)) _RSNIE {
 
 /* For WPA2 */
 typedef struct __attribute__ ((packed)) _RSNIE2 {
-    USHORT  version;
+    unsigned short  version;
     u8   mcast[4];
-    USHORT  ucount;
+    unsigned short  ucount;
     struct __attribute__ ((packed)) {
         u8 oui[4];
     }ucast[1];
@@ -242,7 +242,7 @@ typedef struct __attribute__ ((packed)) _RSNIE2 {
 
 /* AKM Suite */
 typedef struct __attribute__ ((packed)) _RSNIE_AUTH {
-    USHORT acount;
+    unsigned short acount;
     struct __attribute__ ((packed)) {
         u8 oui[4];
     }auth[1];
@@ -250,7 +250,7 @@ typedef struct __attribute__ ((packed)) _RSNIE_AUTH {
 
 /* PMKID List */
 typedef struct __attribute__ ((packed)) _RSNIE_PMKID {
-    USHORT pcount;
+    unsigned short pcount;
     struct __attribute__ ((packed)) {
         u8 list[16];
     }pmkid[1];
@@ -259,24 +259,24 @@ typedef struct __attribute__ ((packed)) _RSNIE_PMKID {
 typedef	union __attribute__ ((packed)) _RSN_CAPABILITIES	{
 	struct	__attribute__ ((packed)) {
 #ifdef RT_BIG_ENDIAN
-        USHORT		Rsvd:8;
-		USHORT		MFPC:1;
-		USHORT		MFPR:1;
-        USHORT		GTKSA_R_Counter:2;
-        USHORT		PTKSA_R_Counter:2;
-        USHORT		No_Pairwise:1;
-		USHORT		PreAuth:1;
+        unsigned short		Rsvd:8;
+		unsigned short		MFPC:1;
+		unsigned short		MFPR:1;
+        unsigned short		GTKSA_R_Counter:2;
+        unsigned short		PTKSA_R_Counter:2;
+        unsigned short		No_Pairwise:1;
+		unsigned short		PreAuth:1;
 #else
-        USHORT		PreAuth:1;
-		USHORT		No_Pairwise:1;
-		USHORT		PTKSA_R_Counter:2;
-		USHORT		GTKSA_R_Counter:2;
-		USHORT		MFPR:1;
-		USHORT		MFPC:1;
-		USHORT		Rsvd:8;
+        unsigned short		PreAuth:1;
+		unsigned short		No_Pairwise:1;
+		unsigned short		PTKSA_R_Counter:2;
+		unsigned short		GTKSA_R_Counter:2;
+		unsigned short		MFPR:1;
+		unsigned short		MFPC:1;
+		unsigned short		Rsvd:8;
 #endif
 	}	field;
-	USHORT			word;
+	unsigned short			word;
 }	RSN_CAPABILITIES, *PRSN_CAPABILITIES;
 
 typedef struct __attribute__ ((packed)) _EAP_HDR {

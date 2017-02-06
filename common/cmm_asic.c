@@ -240,14 +240,14 @@ typedef enum _PROT_REG_IDX_{
 
 void AsicUpdateProtect(
 	struct rtmp_adapter *pAd,
-	USHORT OperationMode,
+	unsigned short OperationMode,
 	u8 SetMask,
 	bool bDisableBGProtect,
 	bool bNonGFExist)
 {
 	PROT_CFG_STRUC	ProtCfg, ProtCfg4;
 	u32 Protect[6];
-	USHORT offset;
+	unsigned short offset;
 	u32 i, PhyMode = 0x4000;
 	u32 MacReg = 0;
 
@@ -756,7 +756,7 @@ void AsicResetBBPAgent(struct rtmp_adapter *pAd)
  */
 void AsicSleepThenAutoWakeup(
 	struct rtmp_adapter *pAd,
-	USHORT TbttNumToNextWakeUp)
+	unsigned short TbttNumToNextWakeUp)
 {
 	RTMP_STA_SLEEP_THEN_AUTO_WAKEUP(pAd, TbttNumToNextWakeUp);
 }
@@ -975,7 +975,7 @@ void AsicEnableIbssSync(
 	u8 *		ptr;
 	unsigned int i;
 	unsigned long beaconBaseLocation = 0;
-	USHORT			beaconLen = (USHORT) pAd->BeaconTxWI.TxWIMPDUByteCnt;
+	unsigned short			beaconLen = (unsigned short) pAd->BeaconTxWI.TxWIMPDUByteCnt;
 	u8 TXWISize = sizeof(struct txwi_nmac);
 	u32 longptr;
 
@@ -985,7 +985,7 @@ void AsicEnableIbssSync(
 
 	memmove((u8 *)&localTxWI, (u8 *)&pAd->BeaconTxWI, TXWISize);
 	RTMPWIEndianChange(&localTxWI, sizeof(*localTxWI));
-	beaconLen = (USHORT) localTxWI.TxWIMPDUByteCnt;
+	beaconLen = (unsigned short) localTxWI.TxWIMPDUByteCnt;
 	}
 #endif /* RT_BIG_ENDIAN */
 
@@ -1586,7 +1586,7 @@ void AsicRemoveSharedKeyEntry(
 
 void AsicUpdateWCIDIVEIV(
 	struct rtmp_adapter *pAd,
-	USHORT		WCID,
+	unsigned short		WCID,
 	unsigned long        uIV,
 	unsigned long        uEIV)
 {
@@ -1604,7 +1604,7 @@ void AsicUpdateWCIDIVEIV(
 
 void AsicUpdateRxWCIDTable(
 	struct rtmp_adapter *pAd,
-	USHORT		WCID,
+	unsigned short		WCID,
 	u8 *       pAddr)
 {
 	unsigned long offset;
@@ -1644,7 +1644,7 @@ void AsicUpdateWcidAttributeEntry(
 	u8			KeyTabFlag)
 {
 	WCID_ATTRIBUTE_STRUC WCIDAttri;
-	USHORT		offset;
+	unsigned short		offset;
 
 	/* Initialize the content of WCID Attribue  */
 	WCIDAttri.word = 0;
@@ -1947,7 +1947,7 @@ INT AsicReadAggCnt(struct rtmp_adapter*pAd, unsigned long *aggCnt, int cnt_len)
 	u32 reg_addr;
 	TX_AGG_CNT_STRUC reg_val;
 	int i, cnt, seg;
-	static USHORT aggReg[] = {
+	static unsigned short aggReg[] = {
 						TX_AGG_CNT, TX_AGG_CNT3,
 #if MAX_AGG_CNT > 8
 						TX_AGG_CNT4, TX_AGG_CNT7,
@@ -1959,7 +1959,7 @@ INT AsicReadAggCnt(struct rtmp_adapter*pAd, unsigned long *aggCnt, int cnt_len)
 
 
 	memset(aggCnt, 0, cnt_len * sizeof(unsigned long));
-	seg = (sizeof(aggReg) /sizeof(USHORT));
+	seg = (sizeof(aggReg) /sizeof(unsigned short));
 
 	cnt = 0;
 	for (i = 0; i < seg; i += 2)

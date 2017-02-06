@@ -131,8 +131,8 @@ struct sk_buff * duplicate_pkt_with_TKIP_MIC(
 
 struct sk_buff * duplicate_pkt_with_VLAN(
 	struct net_device *			pNetDev,
-	USHORT					VLAN_VID,
-	USHORT					VLAN_Priority,
+	unsigned short					VLAN_VID,
+	unsigned short					VLAN_Priority,
 	u8 *				pHeader802_3,
     unsigned int            		HdrLen,
 	u8 *				pData,
@@ -169,8 +169,8 @@ struct sk_buff * ClonePacket(
 void wlan_802_11_to_802_3_packet(
 	struct net_device *			pNetDev,
 	u8 				OpMode,
-	USHORT					VLAN_VID,
-	USHORT					VLAN_Priority,
+	unsigned short					VLAN_VID,
+	unsigned short					VLAN_Priority,
 	struct sk_buff *			pRxPacket,
 	u8 				*pData,
 	unsigned long					DataSize,
@@ -183,7 +183,7 @@ void send_monitor_packets(
 	struct sk_buff *			pRxPacket,
 	PHEADER_802_11			pHeader,
 	u8 				*pData,
-	USHORT					DataSize,
+	unsigned short					DataSize,
 	u8 				L2PAD,
 	u8 				PHYMODE,
 	u8 				BW,
@@ -199,8 +199,8 @@ void send_monitor_packets(
 	u32					MaxRssi);
 
 u8 VLAN_8023_Header_Copy(
-	USHORT					VLAN_VID,
-	USHORT					VLAN_Priority,
+	unsigned short					VLAN_VID,
+	unsigned short					VLAN_Priority,
 	u8 *				pHeader802_3,
 	unsigned int            		HdrLen,
 	u8 *				pData,
@@ -259,7 +259,7 @@ void RtmpOsPktInit(
 	struct sk_buff *			pNetPkt,
 	struct net_device *			pNetDev,
 	u8 				*pData,
-	USHORT					DataSize);
+	unsigned short					DataSize);
 
 struct sk_buff * RtmpOsPktIappMakeUp(
 	struct net_device *			pNetDev,
@@ -376,7 +376,7 @@ struct rtmp_adapter *RtmpOsGetNetDevPriv(struct net_device *pDev);
 u32 RtmpDevPrivFlagsGet(struct net_device *pDev);
 void RtmpDevPrivFlagsSet(struct net_device *pDev, u32 PrivFlags);
 
-void RtmpOsSetNetDevType(void *pDev, USHORT Type);
+void RtmpOsSetNetDevType(void *pDev, unsigned short Type);
 
 void RtmpOsSetNetDevTypeMonitor(void *pDev);
 
@@ -593,7 +593,7 @@ void RtmpDrvAllMacPrint(
 
 void RtmpDrvAllE2PPrint(
 	void 				*pReserved,
-	USHORT					*pMacContent,
+	unsigned short					*pMacContent,
 	u32					AddrEnd,
 	u32					AddrStep);
 
@@ -632,20 +632,20 @@ void RtmpDrvMaxRateGet(
 
 char * rtstrchr(const char * s, int c);
 
-char *  WscGetAuthTypeStr(USHORT authFlag);
+char *  WscGetAuthTypeStr(unsigned short authFlag);
 
-char *  WscGetEncryTypeStr(USHORT encryFlag);
+char *  WscGetEncryTypeStr(unsigned short encryFlag);
 
-USHORT WscGetAuthTypeFromStr(char *arg);
+unsigned short WscGetAuthTypeFromStr(char *arg);
 
-USHORT WscGetEncrypTypeFromStr(char *arg);
+unsigned short WscGetEncrypTypeFromStr(char *arg);
 
 void RtmpMeshDown(
 	void *pDrvCtrlBK,
 	bool WaitFlag,
 	bool (*RtmpMeshLinkCheck)(void *pAd));
 
-USHORT RtmpOsNetPrivGet(struct net_device *pDev);
+unsigned short RtmpOsNetPrivGet(struct net_device *pDev);
 
 bool RtmpOsCmdDisplayLenCheck(
 	u32					LenSrc,

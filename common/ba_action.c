@@ -48,11 +48,11 @@ static void ba_mpdu_blk_free(struct rtmp_adapter *pAd, struct reordering_mpdu *m
 
 BA_ORI_ENTRY *BATableAllocOriEntry(
 								  struct rtmp_adapter *  pAd,
-								  USHORT          *Idx);
+								  unsigned short          *Idx);
 
 BA_REC_ENTRY *BATableAllocRecEntry(
 								  struct rtmp_adapter *  pAd,
-								  USHORT          *Idx);
+								  unsigned short          *Idx);
 
 void BAOriSessionSetupTimeout(
     void *SystemSpecific1,
@@ -350,13 +350,13 @@ static void ba_mpdu_blk_free(struct rtmp_adapter *pAd, struct reordering_mpdu *m
 }
 
 
-static USHORT ba_indicate_reordering_mpdus_in_order(
+static unsigned short ba_indicate_reordering_mpdus_in_order(
 												   struct rtmp_adapter *   pAd,
 												   PBA_REC_ENTRY    pBAEntry,
-												   USHORT           StartSeq)
+												   unsigned short           StartSeq)
 {
 	struct reordering_mpdu *mpdu_blk;
-	USHORT  LastIndSeq = RESET_RCV_SEQ;
+	unsigned short  LastIndSeq = RESET_RCV_SEQ;
 
 	NdisAcquireSpinLock(&pBAEntry->RxReRingLock);
 
@@ -387,7 +387,7 @@ static USHORT ba_indicate_reordering_mpdus_in_order(
 static void ba_indicate_reordering_mpdus_le_seq(
 											   struct rtmp_adapter *   pAd,
 											   PBA_REC_ENTRY    pBAEntry,
-											   USHORT           Sequence)
+											   unsigned short           Sequence)
 {
 	struct reordering_mpdu *mpdu_blk;
 
@@ -445,7 +445,7 @@ void ba_flush_reordering_timeout_mpdus(
 									unsigned long            Now32)
 
 {
-	USHORT Sequence;
+	unsigned short Sequence;
 
     if ((pBAEntry == NULL) || (pBAEntry->list.qlen <= 0))
         return;
@@ -502,14 +502,14 @@ void BAOriSessionSetUp(
 					  struct rtmp_adapter *   pAd,
 					  MAC_TABLE_ENTRY  *pEntry,
 					  u8            TID,
-					  USHORT           TimeOut,
+					  unsigned short           TimeOut,
 					  unsigned long            DelayTime,
 					  bool          isForced)
 
 {
 	/*MLME_ADDBA_REQ_STRUCT	AddbaReq;*/
 	BA_ORI_ENTRY            *pBAEntry = NULL;
-	USHORT                  Idx;
+	unsigned short                  Idx;
 	bool                 Cancelled;
 
 	ASSERT(TID < NUM_OF_TID);
@@ -587,7 +587,7 @@ void BAOriSessionAdd(
 	BA_ORI_ENTRY  *pBAEntry = NULL;
 	bool       Cancelled;
 	u8         TID;
-	USHORT        Idx;
+	unsigned short        Idx;
 	u8 *         pOutBuffer2 = NULL;
 	unsigned long           FrameLen;
 	FRAME_BAR       FrameBar;
@@ -663,7 +663,7 @@ bool BARecSessionAdd(
 	BA_REC_ENTRY            *pBAEntry = NULL;
 	bool                 Status = true;
 	bool                 Cancelled;
-	USHORT                  Idx;
+	unsigned short                  Idx;
 	u8                   TID;
 	u8                   BAWinSize;
 	/*u32                  Value;*/
@@ -752,7 +752,7 @@ bool BARecSessionAdd(
 
 BA_REC_ENTRY *BATableAllocRecEntry(
 								  struct rtmp_adapter *  pAd,
-								  USHORT          *Idx)
+								  unsigned short          *Idx)
 {
 	int             i;
 	BA_REC_ENTRY    *pBAEntry = NULL;
@@ -788,7 +788,7 @@ done:
 
 BA_ORI_ENTRY *BATableAllocOriEntry(
 								  struct rtmp_adapter *  pAd,
-								  USHORT          *Idx)
+								  unsigned short          *Idx)
 {
 	int             i;
 	BA_ORI_ENTRY    *pBAEntry = NULL;
@@ -1299,11 +1299,11 @@ void PeerAddBAReqAction(
 		BA_PARM		tmpBaParm;
 
 		memmove((u8 *)(&tmpBaParm), (u8 *)(&ADDframe.BaParm), sizeof(BA_PARM));
-		*(USHORT *)(&tmpBaParm) = cpu2le16(*(USHORT *)(&tmpBaParm));
+		*(unsigned short *)(&tmpBaParm) = cpu2le16(*(unsigned short *)(&tmpBaParm));
 		memmove((u8 *)(&ADDframe.BaParm), (u8 *)(&tmpBaParm), sizeof(BA_PARM));
 	}
 #else
-	*(USHORT *)(&ADDframe.BaParm) = cpu2le16(*(USHORT *)(&ADDframe.BaParm));
+	*(unsigned short *)(&ADDframe.BaParm) = cpu2le16(*(unsigned short *)(&ADDframe.BaParm));
 #endif /* UNALIGNMENT_SUPPORT */
 
 	ADDframe.StatusCode = cpu2le16(ADDframe.StatusCode);
@@ -1507,8 +1507,8 @@ void SendPSMPAction(
 typedef struct __attribute__ ((packed)) _BEACON_REQUEST {
 	u8 RegulatoryClass;
 	u8 ChannelNumber;
-	USHORT	RandomInterval;
-	USHORT	MeasurementDuration;
+	unsigned short	RandomInterval;
+	unsigned short	MeasurementDuration;
 	u8 MeasurementMode;
 	u8   BSSID[ETH_ALEN];
 	u8 ReportingCondition;
@@ -1675,7 +1675,7 @@ void Indicate_AMPDU_Packet(
 	RX_BLK			*pRxBlk,
 	u8 		FromWhichBSSID)
 {
-	USHORT Idx;
+	unsigned short Idx;
 	PBA_REC_ENTRY pBAEntry = NULL;
 	uint16_t Sequence = pRxBlk->pHeader->Sequence;
 	unsigned long Now32;
@@ -1749,7 +1749,7 @@ void Indicate_AMPDU_Packet(
 	/* I. Check if in order.*/
 	if (SEQ_STEPONE(Sequence, pBAEntry->LastIndSeq, MAXSEQ))
 	{
-		USHORT  LastIndSeq;
+		unsigned short  LastIndSeq;
 
 		pBAEntry->LastIndSeq = Sequence;
 		INDICATE_LEGACY_OR_AMSDU(pAd, pRxBlk, FromWhichBSSID);
@@ -1817,7 +1817,7 @@ void BaReOrderingBufferMaintain(
 {
     unsigned long Now32;
     u8 Wcid;
-    USHORT Idx;
+    unsigned short Idx;
     u8 TID;
     PBA_REC_ENTRY pBAEntry = NULL;
     PMAC_TABLE_ENTRY pEntry = NULL;
