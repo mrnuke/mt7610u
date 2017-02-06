@@ -521,11 +521,6 @@ ULONG RtmpOsMaxScanDataGet(void);
 /* OS Interrutp */
 INT32 RtmpOsIsInInterrupt(void);
 
-/* OS USB */
-void *RtmpOsUsbUrbDataGet(void *pUrb);
-int RtmpOsUsbUrbStatusGet(void *pUrb);
-ULONG RtmpOsUsbUrbLenGet(void *pUrb);
-
 /* OS Atomic */
 bool RtmpOsAtomicInit(RTMP_OS_ATOMIC *pAtomic, LIST_HEADER *pAtomicList);
 void RtmpOsAtomicDestroy(RTMP_OS_ATOMIC *pAtomic);
@@ -674,95 +669,6 @@ struct sk_buff * RTMP_AllocateRxPacketBuffer(
 dma_addr_t linux_pci_map_single(void *pPciDev, void *ptr, size_t size, int sd_idx, int direction);
 
 void linux_pci_unmap_single(void *pPciDev, dma_addr_t dma_addr, size_t size, int direction);
-
-/* ============================ rt_usb_util.c =============================== */
-typedef void (*USB_COMPLETE_HANDLER)(void *);
-
-void dump_urb(void *purb);
-
-int rausb_register(void * new_driver);
-
-void rausb_deregister(void * driver);
-
-/*struct urb *rausb_alloc_urb(int iso_packets); */
-
-void rausb_free_urb(void *urb);
-
-void rausb_put_dev(void *dev);
-
-struct usb_device *rausb_get_dev(void *dev);
-
-int rausb_submit_urb(void *urb);
-
-void *rausb_buffer_alloc(void *dev,
-							size_t size,
-							dma_addr_t *dma);
-
-void rausb_buffer_free(void *dev,
-							size_t size,
-							void *addr,
-							dma_addr_t dma);
-
-int rausb_control_msg(void *dev,
-						unsigned int pipe,
-						__u8 request,
-						__u8 requesttype,
-						__u16 value,
-						__u16 index,
-						void *data,
-						__u16 size,
-						int timeout);
-
-void rausb_fill_bulk_urb(void *urb,
-						 void *dev,
-						 unsigned int pipe,
-						 void *transfer_buffer,
-						 int buffer_length,
-						 USB_COMPLETE_HANDLER complete_fn,
-						 void *context);
-
-unsigned int rausb_sndctrlpipe(void *dev, ULONG address);
-
-unsigned int rausb_rcvctrlpipe(void *dev, ULONG address);
-
-
-unsigned int rausb_sndbulkpipe(void *dev, ULONG address);
-unsigned int rausb_rcvbulkpipe(void *dev, ULONG address);
-
-void rausb_kill_urb(void *urb);
-
-void RtmpOsUsbEmptyUrbCheck(
-	IN	void 			**ppWait,
-	IN	spinlock_t		*pBulkInLock,
-	IN	u8 			*pPendingRx);
-
-
-void RtmpOsUsbInitHTTxDesc(
-	struct urb *pUrb,
-	struct usb_device *pUsb_Dev,
-	UINT BulkOutEpAddr,
-	u8 *pSrc,
-	ULONG BulkOutSize,
-	USB_COMPLETE_HANDLER Func,
-	void *pTxContext,
-	dma_addr_t TransferDma);
-
-void RtmpOsUsbInitRxDesc(
-	struct urb *pUrb,
-	struct usb_device *pUsb_Dev,
-	UINT BulkInEpAddr,
-	u8 *pTransferBuffer,
-	u32 BufSize,
-	USB_COMPLETE_HANDLER Func,
-	void *pRxContext,
-	dma_addr_t TransferDma);
-
-
-u32 RtmpOsGetUsbDevVendorID(
-	IN void *pUsbDev);
-
-u32 RtmpOsGetUsbDevProductID(
-	IN void *pUsbDev);
 
 /* CFG80211 */
 #ifdef RT_CFG80211_SUPPORT
