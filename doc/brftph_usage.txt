@@ -33,7 +33,7 @@ the ethernet driver to the Linux kernel before RALINK WLAN driver.
 For examples:
 
 1. Declare a symbol and a function prototype.
-	UINT32 (*RALINK_FP_Handle)(PNDIS_PACKET pPacket);
+	uint32_t (*RALINK_FP_Handle)(PNDIS_PACKET pPacket);
 	EXPORT_SYMBOL(RALINK_FP_Handle);
 
 2. Support your received handler, called packet_forward()
@@ -51,7 +51,7 @@ For examples:
 3. Change the code segment to
 	packet_forward()
 	{
-		UINT32 HandRst = 1;
+		uint32_t HandRst = 1;
 
 		......
 

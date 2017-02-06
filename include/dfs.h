@@ -49,7 +49,7 @@
 
 /*#define DFS_SW_RADAR_DECLARE_THRES	3*/
 #ifdef MT76x0
-#define DFS_EVENT_SIZE						4    /* Number of UINT32 of each DFS event buffer data */
+#define DFS_EVENT_SIZE						4    /* Number of uint32_t of each DFS event buffer data */
 #else
 #define DFS_EVENT_SIZE						6    /* Number of bytes of each DFS event */
 #endif
@@ -145,7 +145,7 @@
 
 #define MT7650_DFS_EVENT_BUFF_PRINT(_StarIdx,  _TableIdx, _BufSize)				\
 {																				\
-	UINT32 __k;																	\
+	uint32_t __k;																	\
 	for (__k = _StarIdx; __k < _BufSize; __k++)									\
 	{																			\
 		DBGPRINT(RT_DEBUG_TRACE, ("0x%08x ", _TableIdx[__k]));					\
@@ -162,7 +162,7 @@
 
 #define DFS_EVENT_BUFF_PRINT(_StarIdx,  _TableIdx, _BufSize)						\
 {																				\
-	UINT32 k;																	\
+	uint32_t k;																	\
 	for (k = _StarIdx; k < _BufSize; k++)											\
 	{																			\
 		DBGPRINT(RT_DEBUG_TRACE, ("0x%02x ", _TableIdx[k]));						\
@@ -180,7 +180,7 @@
 #ifdef RTMP_MAC_USB
 #define INIT_DFS_EVENT_BUFF_SHARED_MEMORY(_pAd, _StartOffset, _NumOfPages, _InitVal)	\
 {																						\
-	UINT32 i = 0;																			\
+	uint32_t i = 0;																			\
 	for (i = _StartOffset; i < _StartOffset + (_NumOfPages*384); i++)							\
 		RTUSBSingleWrite(_pAd, i, _InitVal, false);											\
 																						\
@@ -277,7 +277,7 @@ typedef struct _NewDFSDebugResult
 
 typedef struct _DFS_EVENT{
 	u8  EngineId;
-	UINT32 TimeStamp;
+	uint32_t TimeStamp;
 	uint16_t Width;
 #ifdef MT76x0
 	uint16_t phase;
@@ -302,7 +302,7 @@ typedef struct _DFS_SW_DETECT_PARAM{
 	u8 dfs_declare_thres;
 	ULONG dfs_w_counter;
 	DFS_EVENT PreDfsEvent;		/* previous radar event */
-	UINT32 EvtDropAdjTime;		/* timing threshold for adjacent event */
+	uint32_t EvtDropAdjTime;		/* timing threshold for adjacent event */
 	UINT sw_idx[NEW_DFS_MAX_CHANNEL];
 	UINT hw_idx[NEW_DFS_MAX_CHANNEL];
 	UINT pr_idx[NEW_DFS_MAX_CHANNEL];
