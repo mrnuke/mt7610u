@@ -2557,7 +2557,7 @@ void JoinParmFill(
 void ScanParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_SCAN_REQ_STRUCT *ScanReq,
-	STRING Ssid[],
+	char Ssid[],
 	u8 SsidLen,
 	u8 BssType,
 	u8 ScanType)

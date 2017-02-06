@@ -2015,7 +2015,7 @@ INT Set_DlsAddEntry_Proc(
 	u8 mac[ETH_ALEN];
 	unsigned short Timeout;
 	char *token;
-	STRING sepValue[] = ":", DASH = '-';
+	char sepValue[] = ":", DASH = '-';
 	INT i;
 	RT_802_11_DLS Dls;
 

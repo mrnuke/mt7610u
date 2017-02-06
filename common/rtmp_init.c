@@ -2162,7 +2162,7 @@ void UserCfgInit(struct rtmp_adapter*pAd)
 }
 
 /* IRQL = PASSIVE_LEVEL*/
-u8 BtoH(STRING ch)
+u8 BtoH(char ch)
 {
 	if (ch >= '0' && ch <= '9') return (ch - '0');        /* Handle numerals*/
 	if (ch >= 'A' && ch <= 'F') return (ch - 'A' + 0xA);  /* Handle capitol hex digits*/

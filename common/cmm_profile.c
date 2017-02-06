@@ -224,7 +224,7 @@ int rtinet_aton(char const *cp, unsigned int *addr)
 {
 	unsigned int 	val;
 	int         	base, n;
-	STRING        	c;
+	char        	c;
 	unsigned int    parts[4];
 	unsigned int    *pp = parts;
 
@@ -334,7 +334,7 @@ int rtinet_aton(char const *cp, unsigned int *addr)
 char *RTMPFindSection(
     char *  buffer)
 {
-    STRING temp_buf[32];
+    char temp_buf[32];
     char * ptr;
 
     strcpy(temp_buf, "Default");

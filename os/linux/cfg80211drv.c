@@ -179,7 +179,7 @@ bool CFG80211DRV_OpsSetChannel(
 	u8 ChanId;
 	u8 IfType;
 	u8 ChannelType;
-	STRING ChStr[5] = { 0 };
+	char ChStr[5] = { 0 };
 #ifdef DOT11_N_SUPPORT
 	u8 BW_Old;
 	bool FlgIsChanged;

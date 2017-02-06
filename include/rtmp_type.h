@@ -32,8 +32,6 @@
 #include <linux/types.h>
 
 /* modified for fixing compile warning on Sigma 8634 platform */
-typedef char STRING;
-
 typedef signed char CHAR;
 
 typedef signed int INT;

@@ -1407,17 +1407,17 @@ void RTMPIoctlMAC(
 {
 	char *this_char, *value;
 	INT j = 0, k = 0;
-	STRING *msg = NULL;
-	STRING *arg = NULL;
+	char *msg = NULL;
+	char *arg = NULL;
 	u32 macAddr = 0, macValue = 0;
 	u8 temp[16];
-	STRING temp2[16];
+	char temp2[16];
 	INT Status;
 	bool bIsPrintAllMAC = false;
 
 
 
-	msg = kmalloc(sizeof(STRING)*1024, GFP_ATOMIC);
+	msg = kmalloc(sizeof(char)*1024, GFP_ATOMIC);
 	if (!msg)
 	{
 		DBGPRINT(RT_DEBUG_ERROR, ("%s: Allocate memory fail!!!\n", __FUNCTION__));
@@ -1425,7 +1425,7 @@ void RTMPIoctlMAC(
 	}
 	memset(msg, 0x00, 1024);
 
-	arg = kmalloc(sizeof(STRING)*255, GFP_ATOMIC);
+	arg = kmalloc(sizeof(char)*255, GFP_ATOMIC);
 	if (arg == NULL)
 	{
 		DBGPRINT(RT_DEBUG_ERROR, ("%s: Allocate memory fail!!!\n", __FUNCTION__));

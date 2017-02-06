@@ -180,7 +180,7 @@ void SendAssocIEsToWpaSupplicant(
 	u8 *ReqVarIEs,
 	u32 ReqVarIELen)
 {
-	STRING custom[IW_CUSTOM_MAX] = {0};
+	char custom[IW_CUSTOM_MAX] = {0};
 
 	if ((ReqVarIELen + 17) <= IW_CUSTOM_MAX)
 	{

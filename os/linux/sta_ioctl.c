@@ -599,7 +599,7 @@ int rt_ioctl_giwscan(struct net_device *dev,
 	char *current_ev = extra, *previous_ev = extra;
 	char *end_buf;
 	char *current_val;
-	STRING custom[MAX_CUSTOM_LEN] = {0};
+	char custom[MAX_CUSTOM_LEN] = {0};
 #ifndef IWEVGENIE
 	unsigned char idx;
 #endif /* IWEVGENIE */
