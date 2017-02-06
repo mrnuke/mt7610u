@@ -436,7 +436,7 @@ void RTMPMicFinal(
     INT             byte_position;
     ULONG           val;
     uint64_t       sum, utmp;
-    LONGLONG        stmp;
+    int64_t        stmp;
 
     /* deal with partial 32-bit word left over from last update */
     if ( (byte_position = (pContext->position & 3)) != 0) {
