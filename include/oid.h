@@ -260,7 +260,7 @@
 struct ieee80211req_mlme {
 	u8 im_op;		/* operation to perform */
 	u8 im_ssid_len;	/* length of optional ssid */
-	UINT16 im_reason;	/* 802.11 reason code */
+	uint16_t im_reason;	/* 802.11 reason code */
 	u8 im_macaddr[IEEE80211_ADDR_LEN];
 	u8 im_ssid[IEEE80211_NWID_LEN];
 };
@@ -268,7 +268,7 @@ struct ieee80211req_mlme {
 struct ieee80211req_key {
 	u8 ik_type;		/* key/cipher type */
 	u8 ik_pad;
-	UINT16 ik_keyix;	/* key index */
+	uint16_t ik_keyix;	/* key index */
 	u8 ik_keylen;	/* key length in bytes */
 	u8 ik_flags;
 	u8 ik_macaddr[IEEE80211_ADDR_LEN];
@@ -284,7 +284,7 @@ struct ieee80211req_del_key {
 };
 
 struct default_group_key {
-	UINT16 ik_keyix;	/* key index */
+	uint16_t ik_keyix;	/* key index */
 	u8 ik_keylen;	/* key length in bytes */
 	u8 ik_keydata[IEEE80211_KEYBUF_SIZE + IEEE80211_MICBUF_SIZE];
 };
@@ -1252,15 +1252,15 @@ struct bbp32_info {
 };
 
 struct rf_info {
-	UINT16 rf_start;
-	UINT16 rf_end;
+	uint16_t rf_start;
+	uint16_t rf_end;
 	u8 rf_value[0];
 };
 
 struct rf_bank_info {
 	u8 rf_bank;
-	UINT16 rf_start;
-	UINT16 rf_end;
+	uint16_t rf_start;
+	uint16_t rf_end;
 	u8 rf_value[0];
 };
 
@@ -1272,15 +1272,15 @@ struct mac_info {
 
 struct mem_map_info {
 	u32 base;
-	UINT16 mem_map_start;
-	UINT16 mem_map_end;
+	uint16_t mem_map_start;
+	uint16_t mem_map_end;
 	u32 mem_map_value[0];
 };
 
 struct e2p_info {
-	UINT16 e2p_start;
-	UINT16 e2p_end;
-	UINT16 e2p_value[0];
+	uint16_t e2p_start;
+	uint16_t e2p_end;
+	uint16_t e2p_value[0];
 };
 
 struct phy_mode_info {

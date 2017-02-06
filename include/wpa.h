@@ -35,13 +35,13 @@
 
 #define	SET_UINT16_TO_ARRARY(_V, _LEN)		\
 {											\
-	_V[0] = ((UINT16)_LEN) >> 8;			\
-	_V[1] = ((UINT16)_LEN & 0xFF);					\
+	_V[0] = ((uint16_t)_LEN) >> 8;			\
+	_V[1] = ((uint16_t)_LEN & 0xFF);					\
 }
 
 #define	INC_UINT16_TO_ARRARY(_V, _LEN)			\
 {												\
-	UINT16	var_len;							\
+	uint16_t	var_len;							\
 												\
 	var_len = (_V[0]<<8) | (_V[1]);				\
 	var_len += _LEN;							\
@@ -301,7 +301,7 @@ int RTMPSoftDecryptionAction(
 	u8 UserPriority,
 	PCIPHER_KEY pKey,
 	u8 *pData,
-	UINT16 *DataByteCnt);
+	uint16_t *DataByteCnt);
 
 void RTMPSoftConstructIVHdr(
 	u8 CipherAlg,
@@ -387,7 +387,7 @@ bool RTMPSoftDecryptWEP(
 	struct rtmp_adapter *pAd,
 	PCIPHER_KEY pKey,
 	u8 *pData,
-	UINT16 *DataByteCnt);
+	uint16_t *DataByteCnt);
 
 /*
  =====================================
@@ -400,7 +400,7 @@ bool RTMPSoftDecryptTKIP(
 	u8 UserPriority,
 	PCIPHER_KEY pKey,
 	u8 *pData,
-	UINT16 *DataByteCnt);
+	uint16_t *DataByteCnt);
 
 void TKIP_GTK_KEY_WRAP(
 	u8 *key,
@@ -445,7 +445,7 @@ bool RTMPSoftDecryptCCMP(
 	u8 *pHdr,
 	PCIPHER_KEY pKey,
 	u8 *pData,
-	UINT16 *DataLen);
+	uint16_t *DataLen);
 
 void CCMP_test_vector(
 	struct rtmp_adapter *pAd,

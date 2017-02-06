@@ -286,8 +286,8 @@ typedef union _EEPROM_ANTENNA_STRUC {
 
 struct RF_BANK_OFFSET {
 	u8 RFBankIndex;
-	UINT16 RFStart;
-	UINT16 RFEnd;
+	uint16_t RFStart;
+	uint16_t RFEnd;
 };
 
 /*
@@ -338,8 +338,8 @@ struct rtmp_chip_cap {
 	u8 BcnMaxNum;	/* software use */
 	u8 BcnMaxHwNum;	/* hardware limitation */
 	u8 WcidHwRsvNum;	/* hardware available WCID number */
-	UINT16 BcnMaxHwSize;	/* hardware maximum beacon size */
-	UINT16 BcnBase[HW_BEACON_MAX_NUM];	/* hardware beacon base address */
+	uint16_t BcnMaxHwSize;	/* hardware maximum beacon size */
+	uint16_t BcnBase[HW_BEACON_MAX_NUM];	/* hardware beacon base address */
 
 	/* VCO calibration mode */
 	u8	VcoPeriod; /* default 10s */
@@ -368,8 +368,8 @@ struct rtmp_chip_cap {
 	/* ---------------------------- packet ---------------------------------- */
 
 	/* ---------------------------- others ---------------------------------- */
-	UINT16 EFUSE_USAGE_MAP_START;
-	UINT16 EFUSE_USAGE_MAP_END;
+	uint16_t EFUSE_USAGE_MAP_START;
+	uint16_t EFUSE_USAGE_MAP_END;
 	u8 EFUSE_USAGE_MAP_SIZE;
 
 #ifdef DFS_SUPPORT

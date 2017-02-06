@@ -1889,7 +1889,7 @@ typedef struct _MAC_TABLE_ENTRY {
 	USHORT CapabilityInfo;
 	u8 LastRssi;
 	ULONG NoDataIdleCount;
-	UINT16 StationKeepAliveCount;	/* unit: second */
+	uint16_t StationKeepAliveCount;	/* unit: second */
 	ULONG PsQIdleCount;
 	QUEUE_HEADER PsQueue;
 
@@ -2090,7 +2090,7 @@ typedef struct _MAC_TABLE_ENTRY {
 
 	u8 HdrPadLen;	/* recording Header Padding Length; */
 	u8 MpduHeaderLen;
-	UINT16 Protocol;
+	uint16_t Protocol;
 
 
 u8 SupportRateMode; /* 1: CCK 2:OFDM 4: HT, 8:VHT */
@@ -3289,7 +3289,7 @@ static inline void RTMPFrameEndianChange(
 static inline void ConvertMulticastIP2MAC(
 	u8 *pIpAddr,
 	u8 **ppMacAddr,
-	UINT16 ProtoType)
+	uint16_t ProtoType)
 {
 	if (pIpAddr == NULL)
 		return;
@@ -6025,7 +6025,7 @@ typedef struct __attribute__ ((packed)) _ieee80211_radiotap_header {
 				 * new fields does not count.
 				 */
     u8	it_pad;
-    UINT16     it_len;         /* length of the whole
+    uint16_t     it_len;         /* length of the whole
 				 * header in bytes, including
 				 * it_version, it_pad,
 				 * it_len, and data fields.
@@ -6389,9 +6389,9 @@ u32 QBSS_LoadElementAppend(
 u32 QBSS_LoadElementParse(
  	struct rtmp_adapter*pAd,
 	u8			*pElement,
-	UINT16			*pStationCount,
+	uint16_t			*pStationCount,
 	u8			*pChanUtil,
-	UINT16			*pAvalAdmCap);
+	uint16_t			*pAvalAdmCap);
 
 void QBSS_LoadUpdate(
  	struct rtmp_adapter*pAd,

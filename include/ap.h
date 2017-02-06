@@ -376,7 +376,7 @@ bool PeerDisassocReqSanity(
     void *Msg,
     ULONG MsgLen,
     u8 *pAddr2,
-    UINT16	*SeqNum,
+    uint16_t	*SeqNum,
     USHORT *Reason);
 
 bool PeerDeauthReqSanity(
@@ -384,7 +384,7 @@ bool PeerDeauthReqSanity(
     void *Msg,
     ULONG MsgLen,
     u8 *pAddr2,
-   	UINT16	*SeqNum,
+   	uint16_t	*SeqNum,
     USHORT *Reason);
 
 bool APPeerAuthSanity(

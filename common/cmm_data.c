@@ -1499,7 +1499,7 @@ bool RTMPCheckEtherType(
 	u8 Byte0, Byte1;
 	u8 *pSrcBuf;
 	u32	pktLen;
-	UINT16 	srcPort, dstPort;
+	uint16_t 	srcPort, dstPort;
 	bool bWmmReq;
 
 
@@ -1882,8 +1882,8 @@ void CmmRxRalinkFrameIndicate(
 	u8 		FromWhichBSSID)
 {
 	u8 		Header802_3[LENGTH_802_3];
-	UINT16			Msdu2Size;
-	UINT16 			Payload1Size, Payload2Size;
+	uint16_t			Msdu2Size;
+	uint16_t 			Payload1Size, Payload2Size;
 	u8 *			pData2;
 	struct sk_buff *	pPacket2 = NULL;
 	USHORT			VLAN_VID = 0, VLAN_Priority = 0;

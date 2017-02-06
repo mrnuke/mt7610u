@@ -91,7 +91,7 @@ typedef struct __attribute__ ((packed)) _AC_PARAM_RECORD{
 	u8 aci_aifsn;
 	u8 ecw_max:4;
 	u8 ecw_min: 4;
-	UINT16 txop_limit;
+	uint16_t txop_limit;
 }AC_PARAM_RECORD;
 
 

@@ -1598,7 +1598,7 @@ static void ba_enqueue_reordering_packet(
 	u8 		FromWhichBSSID)
 {
 	struct reordering_mpdu *mpdu_blk;
-	UINT16	Sequence = (UINT16) pRxBlk->pHeader->Sequence;
+	uint16_t	Sequence = (uint16_t) pRxBlk->pHeader->Sequence;
 
 	mpdu_blk = ba_mpdu_blk_alloc(pAd);
 	if ((mpdu_blk != NULL) &&
@@ -1677,7 +1677,7 @@ void Indicate_AMPDU_Packet(
 {
 	USHORT Idx;
 	PBA_REC_ENTRY pBAEntry = NULL;
-	UINT16 Sequence = pRxBlk->pHeader->Sequence;
+	uint16_t Sequence = pRxBlk->pHeader->Sequence;
 	ULONG Now32;
 	u8 Wcid = pRxBlk->pRxWI->RxWIWirelessCliID;
 	u8 TID = pRxBlk->pRxWI->RxWITID;

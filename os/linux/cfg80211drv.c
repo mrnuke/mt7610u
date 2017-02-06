@@ -883,7 +883,7 @@ Note:
 void CFG80211_BeaconCountryRegionParse(
 	void 					*pAdCB,
 	NDIS_802_11_VARIABLE_IEs	*pVIE,
-	UINT16					LenVIE)
+	uint16_t					LenVIE)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 	u8 *pElement = (u8 *)pVIE;

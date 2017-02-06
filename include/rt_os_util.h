@@ -273,11 +273,11 @@ Routine Description:
 	Initialize the OS atomic_t.
 */
 
-UINT16 RtmpOsNtohs(
-	UINT16					Value);
+uint16_t RtmpOsNtohs(
+	uint16_t					Value);
 
-UINT16 RtmpOsHtons(
-	UINT16					Value);
+uint16_t RtmpOsHtons(
+	uint16_t					Value);
 
 u32 RtmpOsNtohl(
 	u32					Value);
@@ -521,12 +521,12 @@ ULONG RTMP_PCI_Readb(void *pAddr);
 int RtmpOsPciConfigReadWord(
 	void 				*pDev,
 	u32					Offset,
-	UINT16					*pValue);
+	uint16_t					*pValue);
 
 int RtmpOsPciConfigWriteWord(
 	void 				*pDev,
 	u32					Offset,
-	UINT16					Value);
+	uint16_t					Value);
 
 int RtmpOsPciConfigReadDWord(
 	void 				*pDev,
@@ -608,7 +608,7 @@ void RtmpOsWlanEventSet(
 	bool 				*pCfgWEnt,
 	bool 				FlgIsWEntSup);
 
-UINT16 RtmpOsGetUnaligned(UINT16 *pWord);
+uint16_t RtmpOsGetUnaligned(uint16_t *pWord);
 
 u32 RtmpOsGetUnaligned32(u32 *pWord);
 
@@ -809,8 +809,8 @@ typedef struct __CFG80211_BAND {
 	u32 MaxTxPwr;
 	u32 MaxBssTable;
 
-	UINT16 RtsThreshold;
-	UINT16 FragmentThreshold;
+	uint16_t RtsThreshold;
+	uint16_t FragmentThreshold;
 	u32 RetryMaxCnt; /* bit0~7: short; bit8 ~ 15: long */
 	bool FlgIsBMode;
 } CFG80211_BAND;

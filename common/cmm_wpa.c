@@ -2613,7 +2613,7 @@ bool RTMPCheckWPAframe(
     }
 	/* Skip 2-bytes EAPoL type */
     if (memcmp(EAPOL, pData, 2) == 0)
-/*	if (*(UINT16 *)EAPOL == *(UINT16 *)pData)*/
+/*	if (*(uint16_t *)EAPOL == *(uint16_t *)pData)*/
     {
         pData += 2;
     }
@@ -3497,7 +3497,7 @@ int	RTMPSoftDecryptionAction(
 	u8    		UserPriority,
 	PCIPHER_KEY		pKey,
 	u8 *		pData,
-	UINT16			*DataByteCnt)
+	uint16_t			*DataByteCnt)
 {
 	switch (pKey->CipherAlg)
     {
@@ -3645,7 +3645,7 @@ u8 *	WPA_ExtractSuiteFromRSNIE(
 		else
 		{
 			PRSNIE	pRsnie;
-			UINT16 	u_cnt;
+			uint16_t 	u_cnt;
 
 			pRsnie = (PRSNIE)pBuf;
 			u_cnt = cpu2le16(pRsnie->ucount);
@@ -3686,7 +3686,7 @@ u8 *	WPA_ExtractSuiteFromRSNIE(
 		else
 		{
 			PRSNIE2	pRsnie2;
-			UINT16 	u_cnt;
+			uint16_t 	u_cnt;
 
 			pRsnie2 = (PRSNIE2)pBuf;
 			u_cnt = cpu2le16(pRsnie2->ucount);
@@ -3736,7 +3736,7 @@ u8 *	WPA_ExtractSuiteFromRSNIE(
 	else
 	{
 		PRSNIE_AUTH	pAkm;
-		UINT16 		a_cnt;
+		uint16_t 		a_cnt;
 
 		/* pointer to AKM count */
 	pAkm = (PRSNIE_AUTH)pBuf;
@@ -3797,17 +3797,17 @@ u8 *	WPA_ExtractSuiteFromRSNIE(
 	}
 
 	/* Extract PMKID-list field */
-	if (len < sizeof(UINT16))
+	if (len < sizeof(uint16_t))
 	{
 		DBGPRINT(RT_DEBUG_TRACE, ("%s : The peer RSNIE doesn't include PMKID list Count\n", __FUNCTION__));
 		goto out;
 	}
 	else
 	{
-		UINT16 	p_count;
+		uint16_t 	p_count;
 		u8 *	pPmkidList = NULL;
 
-		memmove(&p_count, pBuf, sizeof(UINT16));
+		memmove(&p_count, pBuf, sizeof(uint16_t));
 		p_count = cpu2le16(p_count);
 
 		/* Get count of the PMKID list */
@@ -3834,7 +3834,7 @@ u8 *	WPA_ExtractSuiteFromRSNIE(
 		else
 		{
 			/* The PMKID field shall be without PMKID-List */
-			offset = sizeof(UINT16);
+			offset = sizeof(uint16_t);
 			pPmkidList = NULL;
 		}
 
@@ -3880,7 +3880,7 @@ void RTMPInsertRSNIE(
 	u8 *pTmpBuf;
 	ULONG 	TempLen = 0;
 	u8 	extra_len = 0;
-	UINT16 	pmk_count = 0;
+	uint16_t 	pmk_count = 0;
 	u8 ie_num;
 	u8 	total_len = 0;
     u8 WPA2_OUI[3]={0x00,0x0F,0xAC};
@@ -3890,7 +3890,7 @@ void RTMPInsertRSNIE(
 	/* PMKID-List Must larger than 0 and the multiple of 16. */
 	if (pmkid_len > 0 && ((pmkid_len & 0x0f) == 0))
 	{
-		extra_len = sizeof(UINT16) + pmkid_len;
+		extra_len = sizeof(uint16_t) + pmkid_len;
 
 		pmk_count = (pmkid_len >> 4);
 		pmk_count = cpu2le16(pmk_count);

@@ -919,7 +919,7 @@ bool RTMPSoftDecryptCCMP(
 	u8 *pHdr,
 	PCIPHER_KEY pKey,
 	u8 *pData,
-	UINT16 *DataLen)
+	uint16_t *DataLen)
 {
 	u8 frame_type, frame_subtype;
 	u8 from_ds, to_ds;

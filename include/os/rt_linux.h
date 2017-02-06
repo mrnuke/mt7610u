@@ -890,8 +890,8 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 }
 
 #define RTMP_GET_PACKET_PROTOCOL(_p) \
-	((((UINT16)((_p)->cb[CB_OFF+24]) & 0x00ff) << 8) \
-	| ((UINT16)((_p)->cb[CB_OFF+23]) & 0x00ff))
+	((((uint16_t)((_p)->cb[CB_OFF+24]) & 0x00ff) << 8) \
+	| ((uint16_t)((_p)->cb[CB_OFF+23]) & 0x00ff))
 
 #define NAF_TYPE_CSO	1<<0
 #define NAF_TYPE_TSO	1<<1

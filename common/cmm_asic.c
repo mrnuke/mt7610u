@@ -1439,7 +1439,7 @@ void AsicAddSharedKeyEntry(
 {
 	ULONG offset; /*, csr0;*/
 	SHAREDKEY_MODE_STRUC csr1;
-	UINT16 SharedKeyTableBase, SharedKeyModeBase;
+	uint16_t SharedKeyTableBase, SharedKeyModeBase;
 
 	u8 *	pKey = pCipherKey->Key;
 	u8 *	pTxMic = pCipherKey->TxMic;
@@ -1538,7 +1538,7 @@ void AsicRemoveSharedKeyEntry(
 {
 	/*ULONG SecCsr0;*/
 	SHAREDKEY_MODE_STRUC csr1;
-	UINT16 SharedKeyTableBase, SharedKeyModeBase;
+	uint16_t SharedKeyTableBase, SharedKeyModeBase;
 
 	DBGPRINT(RT_DEBUG_TRACE,("AsicRemoveSharedKeyEntry: #%d \n", BssIndex*4 + KeyIdx));
 

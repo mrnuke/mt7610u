@@ -58,7 +58,7 @@ void MakeMeasurementReqFrame(
 	u8 MeasureToken,
 	u8 MeasureReqMode,
 	u8 MeasureReqType,
-	UINT16 NumOfRepetitions);
+	uint16_t NumOfRepetitions);
 
 /*
 	==========================================================================

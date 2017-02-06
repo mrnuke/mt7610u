@@ -66,8 +66,8 @@ extern CH_REGION ChRegion[];
 #endif /* EXT_BUILD_CHANNEL_LIST */
 
 typedef struct _CH_FREQ_MAP_{
-	UINT16		channel;
-	UINT16		freqKHz;
+	uint16_t		channel;
+	uint16_t		freqKHz;
 }CH_FREQ_MAP;
 
 extern CH_FREQ_MAP CH_HZ_ID_MAP[];
@@ -124,7 +124,7 @@ u8 GetChannelFlag(
 	PCH_DESC pChDesc,
 	u8 index);
 
-UINT16 TotalChNum(
+uint16_t TotalChNum(
 	PCH_DESC pChDesc);
 
 #endif /* __CHLIST_H__ */

@@ -463,21 +463,21 @@ struct __attribute__ ((packed)) rxwi_nmac {
 
 typedef struct __attribute__ ((packed)) _HW_RATE_CTRL_STRUCT_{
 #ifdef RT_BIG_ENDIAN
-	UINT16 PHYMODE:3;
-	UINT16 iTxBF:1;
-	UINT16 eTxBF:1;
-	UINT16 STBC:1;
-	UINT16 ShortGI:1;
-	UINT16 BW:2;			/* channel bandwidth 20/40/80 MHz */
-	UINT16 MCS:7;
+	uint16_t PHYMODE:3;
+	uint16_t iTxBF:1;
+	uint16_t eTxBF:1;
+	uint16_t STBC:1;
+	uint16_t ShortGI:1;
+	uint16_t BW:2;			/* channel bandwidth 20/40/80 MHz */
+	uint16_t MCS:7;
 #else
-	UINT16 MCS:7;
-	UINT16 BW:2;
-	UINT16 ShortGI:1;
-	UINT16 STBC:1;
-	UINT16 eTxBF:1;
-	UINT16 iTxBF:1;
-	UINT16 PHYMODE:3;
+	uint16_t MCS:7;
+	uint16_t BW:2;
+	uint16_t ShortGI:1;
+	uint16_t STBC:1;
+	uint16_t eTxBF:1;
+	uint16_t iTxBF:1;
+	uint16_t PHYMODE:3;
 #endif /* RT_BIG_ENDIAN */
 }HW_RATE_CTRL_STRUCT;
 

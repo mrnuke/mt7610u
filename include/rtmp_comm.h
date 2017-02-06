@@ -82,9 +82,9 @@ typedef enum{
 
 /* Endian byte swapping codes */
 #define SWAP16(x) \
-    ((UINT16) (\
-	       (((UINT16) (x) & (UINT16) 0x00ffU) << 8) | \
-	       (((UINT16) (x) & (UINT16) 0xff00U) >> 8)))
+    ((uint16_t) (\
+	       (((uint16_t) (x) & (uint16_t) 0x00ffU) << 8) | \
+	       (((uint16_t) (x) & (uint16_t) 0xff00U) >> 8)))
 
 #define SWAP32(x) \
     ((u32) (\
@@ -116,8 +116,8 @@ typedef enum{
 #define be2cpu64(x) ((uint64_t)(x))
 #define cpu2be32(x) ((u32)(x))
 #define be2cpu32(x) ((u32)(x))
-#define cpu2be16(x) ((UINT16)(x))
-#define be2cpu16(x) ((UINT16)(x))
+#define cpu2be16(x) ((uint16_t)(x))
+#define be2cpu16(x) ((uint16_t)(x))
 
 #else /* Little_Endian */
 
@@ -125,8 +125,8 @@ typedef enum{
 #define le2cpu64(x) ((uint64_t)(x))
 #define cpu2le32(x) ((u32)(x))
 #define le2cpu32(x) ((u32)(x))
-#define cpu2le16(x) ((UINT16)(x))
-#define le2cpu16(x) ((UINT16)(x))
+#define cpu2le16(x) ((uint16_t)(x))
+#define le2cpu16(x) ((uint16_t)(x))
 #define cpu2be64(x) SWAP64((x))
 #define be2cpu64(x) SWAP64((x))
 #define cpu2be32(x) SWAP32((x))
@@ -218,8 +218,8 @@ typedef struct __RTMP_IOCTL_INPUT_STRUCT
 		struct
 		{
 			CHAR *pointer;
-			UINT16 length;
-			UINT16 flags;
+			uint16_t length;
+			uint16_t flags;
 		} data;
 	} u;
 } RTMP_IOCTL_INPUT_STRUCT;
@@ -395,8 +395,8 @@ P80211ENUM_truth_true = 0x01
 /* Definition from madwifi */
 typedef struct {
         u32 did;
-        UINT16 status;
-        UINT16 len;
+        uint16_t status;
+        uint16_t len;
         u32 data;
 } p80211item_uint32_t;
 

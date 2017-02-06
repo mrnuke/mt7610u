@@ -110,7 +110,7 @@ typedef struct _MT76x0_FREQ_ITEM {
 	u8 pllR30_b7; /* sdm_reset_n */
 	u8 pllR30_b6b2; /* sdmmash_prbs,sin */
 	u8 pllR30_b1; /* sdm_bp */
-	UINT16 pll_n; /* R30<0>, R29<7:0> (hex) */
+	uint16_t pll_n; /* R30<0>, R29<7:0> (hex) */
 	u8 pllR28_b7b6; /* isi,iso */
 	u8 pllR28_b5b4; /* pfd_dly */
 	u8 pllR28_b3b2; /* clksel option */

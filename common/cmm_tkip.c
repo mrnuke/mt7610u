@@ -690,7 +690,7 @@ bool RTMPSoftDecryptTKIP(
 	u8    		UserPriority,
 	PCIPHER_KEY		pKey,
 	u8 *		pData,
-	UINT16			*DataByteCnt)
+	uint16_t			*DataByteCnt)
 {
 	PHEADER_802_11	pFrame;
 	u8			frame_type;

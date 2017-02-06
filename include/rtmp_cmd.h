@@ -727,7 +727,7 @@ typedef struct __RT_CMD_STA_IOCTL_NICK_NAME {
 
 typedef struct __RT_CMD_STA_IOCTL_SECURITY {
 	CHAR *pData;
-	UINT16 length;
+	uint16_t length;
 	INT32 KeyIdx;
 	INT32 MaxKeyLen;
 
@@ -739,7 +739,7 @@ typedef struct __RT_CMD_STA_IOCTL_SECURITY {
 
 #define RT_CMD_STA_IOCTL_SECURTIY_EXT_SET_TX_KEY	0x01
 #define RT_CMD_STA_IOCTL_SECURTIY_EXT_GROUP_KEY		0x02
-	UINT16 ext_flags;
+	uint16_t ext_flags;
 
 #define RT_CMD_STA_IOCTL_SECURITY_DISABLED		0x01
 #define RT_CMD_STA_IOCTL_SECURITY_ENABLED		0x02
@@ -747,7 +747,7 @@ typedef struct __RT_CMD_STA_IOCTL_SECURITY {
 #define RT_CMD_STA_IOCTL_SECURITY_OPEN			0x08
 #define RT_CMD_STA_IOCTL_SECURITY_NOKEY			0x10
 #define RT_CMD_STA_IOCTL_SECURITY_MODE			0x20
-	UINT16 flags;
+	uint16_t flags;
 
 	INT32 Status;
 } RT_CMD_STA_IOCTL_SECURITY;
