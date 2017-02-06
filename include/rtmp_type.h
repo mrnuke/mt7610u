@@ -47,9 +47,6 @@ typedef unsigned long ULONG;
 #endif /* LINUX */
 
 typedef unsigned short *PUINT16;
-typedef unsigned long long *PUINT64;
-typedef int *PINT32;
-typedef long long *PINT64;
 
 /* modified for fixing compile warning on Sigma 8634 platform */
 typedef char STRING;
@@ -64,9 +61,7 @@ typedef signed long LONG;
 #endif /* LINUX */
 
 typedef USHORT *PUSHORT;
-typedef LONG *PLONG;
 typedef ULONG *PULONG;
-typedef UINT *PUINT;
 
 typedef unsigned int NDIS_MEDIA_STATE;
 
