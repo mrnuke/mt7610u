@@ -177,7 +177,7 @@ static void rtusb_dataout_complete(unsigned long data)
 	pUrb			= (struct urb *)data;
 /*	pHTTXContext	= (PHT_TX_CONTEXT)pUrb->context; */
 	pHTTXContext	= (PHT_TX_CONTEXT)pUrb->context;
-	Status			= RTMP_USB_URB_STATUS_GET(pUrb);
+	Status			= pUrb->status;
 	pAd				= pHTTXContext->pAd;
 	pObj 			= pAd->OS_Cookie;
 /*	Status			= pUrb->status; */
@@ -271,7 +271,7 @@ static void rtusb_null_frame_done_tasklet(unsigned long data)
 	pUrb			= (struct urb *)data;
 /*	pNullContext	= (PTX_CONTEXT)pUrb->context; */
 	pNullContext	= (PTX_CONTEXT)pUrb->context;
-	Status			= RTMP_USB_URB_STATUS_GET(pUrb);
+	Status			= pUrb->status;
 	pAd 			= pNullContext->pAd;
 /*	Status 			= pUrb->status; */
 
@@ -325,7 +325,7 @@ static void rtusb_pspoll_frame_done_tasklet(unsigned long data)
 	pUrb			= (struct urb *)data;
 /*	pPsPollContext	= (PTX_CONTEXT)pUrb->context; */
 	pPsPollContext	= (PTX_CONTEXT)pUrb->context;
-	Status			= RTMP_USB_URB_STATUS_GET(pUrb);
+	Status			= pUrb->status;
 	pAd				= pPsPollContext->pAd;
 /*	Status			= pUrb->status; */
 
@@ -388,7 +388,7 @@ static void rx_done_tasklet(unsigned long data)
 	pUrb		= (struct urb *)data;
 /*	pRxContext	= (PRX_CONTEXT)pUrb->context; */
 	pRxContext	= (PRX_CONTEXT)pUrb->context;
-	Status		= RTMP_USB_URB_STATUS_GET(pUrb);
+	Status		= pUrb->status;
 	pAd 		= pRxContext->pAd;
 /*	Status = pUrb->status; */
 
@@ -461,7 +461,7 @@ static void rtusb_mgmt_dma_done_tasklet(unsigned long data)
 	pUrb			= (struct urb *)data;
 /*	pMLMEContext	= (PTX_CONTEXT)pUrb->context; */
 	pMLMEContext	= (PTX_CONTEXT)pUrb->context;
-	Status			= RTMP_USB_URB_STATUS_GET(pUrb);
+	Status			= pUrb->status;
 	pAd 			= pMLMEContext->pAd;
 /*	Status			= pUrb->status; */
 	index 			= pMLMEContext->SelfIdx;
