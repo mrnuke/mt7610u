@@ -58,7 +58,7 @@ bool APBridgeToWirelessSta(
     UINT            HdrLen,
     u8 *         pData,
     UINT            DataLen,
-    ULONG           fromwdsidx);
+    unsigned long           fromwdsidx);
 
 void RTMP_BASetup(
 	struct rtmp_adapter *pAd,
@@ -98,7 +98,7 @@ int APCheckRxError(
 
 bool APCheckClass2Class3Error(
     struct rtmp_adapter *  pAd,
-	ULONG Wcid,
+	unsigned long Wcid,
 	PHEADER_802_11  pHeader);
 
 void APHandleRxPsPoll(
@@ -109,12 +109,12 @@ void APHandleRxPsPoll(
 
 void    RTMPDescriptorEndianChange(
     u8 *         pData,
-    ULONG           DescriptorType);
+    unsigned long           DescriptorType);
 
 void    RTMPFrameEndianChange(
     struct rtmp_adapter *  pAd,
     u8 *         pData,
-    ULONG           Dir,
+    unsigned long           Dir,
     bool         FromRxDoneInt);
 
 /* ap_assoc.c */
@@ -140,7 +140,7 @@ void APMlmeKickOutSta(
 
 void  APCls3errAction(
     struct rtmp_adapter *  pAd,
-	ULONG Wcid,
+	unsigned long Wcid,
     PHEADER_802_11	pHeader);
 
 /*
@@ -164,7 +164,7 @@ void APAuthStateMachineInit(
 
 void APCls2errAction(
     struct rtmp_adapter *pAd,
-	ULONG Wcid,
+	unsigned long Wcid,
     PHEADER_802_11	pHeader);
 
 /* ap_connect.c */
@@ -330,7 +330,7 @@ MAC_TABLE_ENTRY *APSsPsInquiry(
 bool APPsIndicate(
     struct rtmp_adapter *  pAd,
     u8 *         pAddr,
-	ULONG Wcid,
+	unsigned long Wcid,
     u8           Psm);
 
 #ifdef DOT11_N_SUPPORT
@@ -374,7 +374,7 @@ bool PeerAssocReqCmmSanity(
 bool PeerDisassocReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr2,
     uint16_t	*SeqNum,
     USHORT *Reason);
@@ -382,7 +382,7 @@ bool PeerDisassocReqSanity(
 bool PeerDeauthReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr2,
    	uint16_t	*SeqNum,
     USHORT *Reason);
@@ -390,7 +390,7 @@ bool PeerDeauthReqSanity(
 bool APPeerAuthSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
 	u8 *pAddr1,
     u8 *pAddr2,
     USHORT *Alg,

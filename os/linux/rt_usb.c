@@ -56,7 +56,7 @@ int	 RtmpMgmtTaskInit(
 
 	pTask = &pAd->timerTask;
 	RTMP_OS_TASK_INIT(pTask, "RtmpTimerTask", pAd);
-	status = RtmpOSTaskAttach(pTask, RtmpTimerQThread, (ULONG)pTask);
+	status = RtmpOSTaskAttach(pTask, RtmpTimerQThread, (unsigned long)pTask);
 	if (status == NDIS_STATUS_FAILURE)
 	{
 		printk (KERN_WARNING "%s: unable to start RtmpTimerQThread\n", RTMP_OS_NETDEV_GET_DEVNAME(pAd->net_dev));
@@ -66,7 +66,7 @@ int	 RtmpMgmtTaskInit(
 	/* Creat MLME Thread */
 	pTask = &pAd->mlmeTask;
 	RTMP_OS_TASK_INIT(pTask, "RtmpMlmeTask", pAd);
-	status = RtmpOSTaskAttach(pTask, MlmeThread, (ULONG)pTask);
+	status = RtmpOSTaskAttach(pTask, MlmeThread, (unsigned long)pTask);
 	if (status == NDIS_STATUS_FAILURE)
 	{
 		printk (KERN_WARNING "%s: unable to start MlmeThread\n", RTMP_OS_NETDEV_GET_DEVNAME(pAd->net_dev));
@@ -76,7 +76,7 @@ int	 RtmpMgmtTaskInit(
 	/* Creat Command Thread */
 	pTask = &pAd->cmdQTask;
 	RTMP_OS_TASK_INIT(pTask, "RtmpCmdQTask", pAd);
-	status = RtmpOSTaskAttach(pTask, RTUSBCmdThread, (ULONG)pTask);
+	status = RtmpOSTaskAttach(pTask, RTUSBCmdThread, (unsigned long)pTask);
 	if (status == NDIS_STATUS_FAILURE)
 	{
 		printk (KERN_WARNING "%s: unable to start RTUSBCmdThread\n", RTMP_OS_NETDEV_GET_DEVNAME(pAd->net_dev));
@@ -791,8 +791,8 @@ int RtmpNetTaskInit(
 	struct os_cookie *pObj = pAd->OS_Cookie;
 
 	/* Create receive tasklet */
-	RTMP_OS_TASKLET_INIT(pAd, &pObj->rx_done_task, rx_done_tasklet, (ULONG)pAd);
-	//RTMP_OS_TASKLET_INIT(pAd, &pObj->cmd_rsp_event_task, cmd_rsp_event_tasklet, (ULONG)pAd);
+	RTMP_OS_TASKLET_INIT(pAd, &pObj->rx_done_task, rx_done_tasklet, (unsigned long)pAd);
+	//RTMP_OS_TASKLET_INIT(pAd, &pObj->cmd_rsp_event_task, cmd_rsp_event_tasklet, (unsigned long)pAd);
 	RTMP_OS_TASKLET_INIT(pAd, &pObj->mgmt_dma_done_task, rtusb_mgmt_dma_done_tasklet, (unsigned long)pAd);
 	RTMP_OS_TASKLET_INIT(pAd, &pObj->ac0_dma_done_task, rtusb_ac0_dma_done_tasklet, (unsigned long)pAd);
 	RTMP_OS_TASKLET_INIT(pAd, &pObj->ac1_dma_done_task, rtusb_ac1_dma_done_tasklet, (unsigned long)pAd);
@@ -842,7 +842,7 @@ Note:
 ========================================================================
 */
 INT MlmeThread(
-	ULONG Context)
+	unsigned long Context)
 {
 	struct rtmp_adapter*pAd;
 	RTMP_OS_TASK *pTask;
@@ -908,7 +908,7 @@ Note:
 ========================================================================
 */
 INT RTUSBCmdThread(
-	ULONG Context)
+	unsigned long Context)
 {
 	struct rtmp_adapter*pAd;
 	RTMP_OS_TASK *pTask;

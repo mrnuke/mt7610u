@@ -148,7 +148,7 @@ static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 {
 	u8 *frm_buf = NULL;
 	HEADER_802_11 Hdr80211;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	u8 SsidLen = 0;
 #ifdef CONFIG_STA_SUPPORT
 	USHORT Status;
@@ -207,7 +207,7 @@ static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 
 		if (pAd->CommonCfg.ExtRateLen)
 		{
-			ULONG Tmp;
+			unsigned long Tmp;
 			MakeOutgoingFrame(frm_buf + FrameLen,            &Tmp,
 							  1,                                &ExtRateIe,
 							  1,                                &pAd->CommonCfg.ExtRateLen,
@@ -219,7 +219,7 @@ static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 #ifdef DOT11_N_SUPPORT
 	if (WMODE_CAP_N(pAd->CommonCfg.PhyMode))
 	{
-		ULONG	Tmp;
+		unsigned long	Tmp;
 		u8 HtLen;
 		u8 BROADCOM[4] = {0x0, 0x90, 0x4c, 0x33};
 #ifdef RT_BIG_ENDIAN
@@ -294,7 +294,7 @@ static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 #ifdef DOT11N_DRAFT3
 		if ((pAd->MlmeAux.Channel <= 14) && (pAd->CommonCfg.bBssCoexEnable == true))
 		{
-			ULONG Tmp;
+			unsigned long Tmp;
 			HtLen = 1;
 			MakeOutgoingFrame(frm_buf + FrameLen,            &Tmp,
 							  1,					&ExtHtCapIe,
@@ -321,7 +321,7 @@ static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 		(pAd->StaCfg.WpaSupplicantUP != WPA_SUPPLICANT_DISABLE) &&
 		(pAd->StaCfg.WpsProbeReqIeLen != 0))
 	{
-		ULONG 		WpsTmpLen = 0;
+		unsigned long 		WpsTmpLen = 0;
 
 		MakeOutgoingFrame(frm_buf + FrameLen,              &WpsTmpLen,
 						pAd->StaCfg.WpsProbeReqIeLen,	pAd->StaCfg.pWpsProbeReqIe,

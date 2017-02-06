@@ -638,7 +638,7 @@ USHORT RtmpUSB_WriteSingleTxResource(
 				data = sg[i].data;
 				len = sg[i].len;
 				if (i == 0) {
-					len -= ((ULONG)pTxBlk->pSrcBufData - (ULONG)sg[i].data);
+					len -= ((unsigned long)pTxBlk->pSrcBufData - (unsigned long)sg[i].data);
 					data = pTxBlk->pSrcBufData;
 				}
 				//DBGPRINT(RT_DEBUG_TRACE, ("%s:sg[%d]=0x%x, len=%d\n", __FUNCTION__, i, data, len));
@@ -975,12 +975,12 @@ int RtmpUSBMgmtKickOut(
 	UINT SrcBufLen)
 {
 	union txinfo_nmac *pTxInfo;
-	ULONG BulkOutSize;
+	unsigned long BulkOutSize;
 	u8 padLen;
 	u8 *pDest;
-	ULONG SwIdx = pAd->MgmtRing.TxCpuIdx;
+	unsigned long SwIdx = pAd->MgmtRing.TxCpuIdx;
 	TX_CONTEXT *pMLMEContext = (PTX_CONTEXT)pAd->MgmtRing.Cell[SwIdx].AllocVa;
-	ULONG IrqFlags;
+	unsigned long IrqFlags;
 
 
 	pTxInfo = (union txinfo_nmac *)(pSrcBufVA);
@@ -1135,7 +1135,7 @@ struct sk_buff * GetPacketFromRxRing(
 	RX_CONTEXT *pRxContext;
 	struct sk_buff * pNetPkt;
 	u8 *pData, *RXDMA;
-	ULONG ThisFrameLen, RxBufferLength, valid_len;
+	unsigned long ThisFrameLen, RxBufferLength, valid_len;
 	struct rxwi_nmac *pRxWI;
 	u8 RXWISize = sizeof(struct rxwi_nmac);
 	struct rtmp_rxinfo *pRxInfo;

@@ -37,11 +37,11 @@
 /* DisplayTxAgg - display Aggregation statistics from MAC */
 void DisplayTxAgg (struct rtmp_adapter*pAd)
 {
-	ULONG totalCount;
-	ULONG aggCnt[MAX_AGG_CNT + 2];
+	unsigned long totalCount;
+	unsigned long aggCnt[MAX_AGG_CNT + 2];
 	int i;
 
-	AsicReadAggCnt(pAd, aggCnt, sizeof(aggCnt) / sizeof(ULONG));
+	AsicReadAggCnt(pAd, aggCnt, sizeof(aggCnt) / sizeof(unsigned long));
 	totalCount = aggCnt[0] + aggCnt[1];
 	if (totalCount > 0)
 		for (i=0; i<MAX_AGG_CNT; i++) {
@@ -476,7 +476,7 @@ INT RT_CfgSetWPAPSKKey(
 INT	RT_CfgSetFixedTxPhyMode(char *arg)
 {
 	INT fix_tx_mode = FIXED_TXMODE_HT;
-	ULONG value;
+	unsigned long value;
 
 
 	if (rtstrcasecmp(arg, "OFDM") == true)
@@ -590,7 +590,7 @@ Note:
 INT RtmpIoctl_rt_ioctl_giwname(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	u8 CurOpMode = OPMODE_AP;
 
@@ -609,7 +609,7 @@ INT RTMP_COM_IoctlHandle(
 	INT						cmd,
 	USHORT					subcmd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
 	INT Status = NDIS_STATUS_SUCCESS, i;
@@ -637,7 +637,7 @@ INT RTMP_COM_IoctlHandle(
 
 		case CMD_RTPRIV_IOCTL_OPMODE_GET:
 		/* get Operation Mode */
-			*(ULONG *)pData = pAd->OpMode;
+			*(unsigned long *)pData = pAd->OpMode;
 			break;
 
 
@@ -757,7 +757,7 @@ INT RTMP_COM_IoctlHandle(
 
 		case CMD_RTPRIV_IOCTL_SIOCGIWFREQ:
 		/* get channel number */
-			*(ULONG *)pData = pAd->CommonCfg.Channel;
+			*(unsigned long *)pData = pAd->CommonCfg.Channel;
 			break;
 
 
@@ -768,11 +768,11 @@ INT RTMP_COM_IoctlHandle(
 
 		case CMD_RTPRIV_IOCTL_RXPATH_GET:
 		/* get the number of rx path */
-			*(ULONG *)pData = pAd->Antenna.field.RxPath;
+			*(unsigned long *)pData = pAd->Antenna.field.RxPath;
 			break;
 
 		case CMD_RTPRIV_IOCTL_CHAN_LIST_NUM_GET:
-			*(ULONG *)pData = pAd->ChannelListNum;
+			*(unsigned long *)pData = pAd->ChannelListNum;
 			break;
 
 		case CMD_RTPRIV_IOCTL_CHAN_LIST_GET:
@@ -886,12 +886,12 @@ INT RTMP_COM_IoctlHandle(
 
 		case CMD_RTPRIV_IOCTL_VIRTUAL_INF_GET:
 		/* get virtual interface number */
-			*(ULONG *)pData = VIRTUAL_IF_NUM(pAd);
+			*(unsigned long *)pData = VIRTUAL_IF_NUM(pAd);
 			break;
 
 		case CMD_RTPRIV_IOCTL_INF_TYPE_GET:
 		/* get current interface type */
-			*(ULONG *)pData = pAd->infType;
+			*(unsigned long *)pData = pAd->infType;
 			break;
 
 		case CMD_RTPRIV_IOCTL_INF_STATS_GET:

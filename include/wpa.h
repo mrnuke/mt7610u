@@ -30,7 +30,7 @@
 
 #ifndef ROUND_UP
 #define ROUND_UP(__x, __y) \
-	(((ULONG)((__x)+((__y)-1))) & ((ULONG)~((__y)-1)))
+	(((unsigned long)((__x)+((__y)-1))) & ((unsigned long)~((__y)-1)))
 #endif
 
 #define	SET_UINT16_TO_ARRARY(_V, _LEN)		\
@@ -260,7 +260,7 @@ bool RTMPCheckWPAframe(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY pEntry,
 	u8 *pData,
-	ULONG DataByteCount,
+	unsigned long DataByteCount,
 	u8 FromWhichBSSID);
 
 bool RTMPParseEapolKeyData(
@@ -381,7 +381,7 @@ bool RTMPSoftEncryptWEP(
 	u8 *pIvHdr,
 	PCIPHER_KEY pKey,
 	u8 *pData,
-	ULONG DataByteCnt);
+	unsigned long DataByteCnt);
 
 bool RTMPSoftDecryptWEP(
 	struct rtmp_adapter *pAd,
@@ -424,7 +424,7 @@ void TKIP_GTK_KEY_UNWRAP(
 bool RTMPSoftDecryptAES(
 	struct rtmp_adapter *pAd,
 	u8 *pData,
-	ULONG DataByteCnt,
+	unsigned long DataByteCnt,
 	PCIPHER_KEY pWpaKey);
 
 void RTMPConstructCCMPHdr(

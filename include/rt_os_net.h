@@ -82,7 +82,7 @@ INT RTMP_COM_IoctlHandle(
 	INT						cmd,
 	USHORT					subcmd,
 	void 				*pData,
-	ULONG					Data);
+	unsigned long					Data);
 
 int	RTMPSendPackets(
 	struct rtmp_adapter	*pAd,
@@ -121,7 +121,7 @@ INT RTMP_STA_IoctlHandle(
 	INT						cmd,
 	USHORT					subcmd,
 	void 				*pData,
-	ULONG					Data,
+	unsigned long					Data,
 	USHORT                  priv_flags );
 #endif /* CONFIG_STA_SUPPORT */
 

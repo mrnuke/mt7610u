@@ -494,7 +494,7 @@ void RTMPSetIndividualHT(
 			}
 			else if (DesiredMcs <= MCS_15)
 			{
-				ULONG mode;
+				unsigned long mode;
 
 				mode = DesiredMcs / 8;
 				if (mode < 2)
@@ -512,7 +512,7 @@ void RTMPSetIndividualHT(
 			}
 			else if (DesiredMcs <= MCS_23)
 			{
-				ULONG mode;
+				unsigned long mode;
 
 				mode = DesiredMcs / 8;
 				if (mode < 3)

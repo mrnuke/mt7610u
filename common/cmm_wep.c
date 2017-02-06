@@ -229,7 +229,7 @@ bool RTMPSoftEncryptWEP(
 	u8 *		pIvHdr,
 	PCIPHER_KEY		pKey,
 	u8 *		pData,
-	ULONG			DataByteCnt)
+	unsigned long			DataByteCnt)
 {
 	ARC4_CTX_STRUC *ARC4_CTX = NULL;
 	UINT 	FCSCRC32;

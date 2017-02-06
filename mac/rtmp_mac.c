@@ -65,7 +65,7 @@ void RTMPWriteTxWI(
 	bool NSeq,		/* HW new a sequence.*/
 	u8 BASize,
 	u8 WCID,
-	ULONG Length,
+	unsigned long Length,
 	u8 PID,
 	u8 TID,
 	u8 TxRate,

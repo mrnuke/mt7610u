@@ -39,7 +39,6 @@ typedef short INT16;
 
 typedef unsigned short USHORT;
 typedef unsigned int UINT;
-typedef unsigned long ULONG;
 #endif /* LINUX */
 
 /* modified for fixing compile warning on Sigma 8634 platform */
@@ -134,7 +133,7 @@ typedef struct _QUEUE_ENTRY {
 typedef struct _QUEUE_HEADER {
 	PQUEUE_ENTRY Head;
 	PQUEUE_ENTRY Tail;
-	ULONG Number;
+	unsigned long Number;
 } QUEUE_HEADER, *PQUEUE_HEADER;
 
 typedef struct _BANK_RF_REG_PAIR {

@@ -29,7 +29,7 @@
 #include "rtmp_ckipmic.h"
 
 #define MIC_ACCUM(v)            pContext->accum += (uint64_t)v * RTMPMicGetCoefficient(pContext)
-#define GB(p,i,s)               ( ((ULONG) *((u8 *)(p)+i) ) << (s) )
+#define GB(p,i,s)               ( ((unsigned long) *((u8 *)(p)+i) ) << (s) )
 #define GETBIG32(p)             GB(p,0,24)|GB(p,1,16)|GB(p,2,8)|GB(p,3,0)
 
 /*****************************/
@@ -183,7 +183,7 @@ void RTMPMicUpdate(
     INT                 len)
 {
     INT     byte_position;
-    ULONG   val;
+    unsigned long   val;
 
     byte_position = (pContext->position & 3);
     while (len > 0) {
@@ -201,7 +201,7 @@ void RTMPMicUpdate(
     }
 }
 
-ULONG RTMPMicGetCoefficient(
+unsigned long RTMPMicGetCoefficient(
     PMIC_CONTEXT         pContext)
 {
     u8   aes_counter[16];
@@ -434,7 +434,7 @@ void RTMPMicFinal(
     u8           digest[4])
 {
     INT             byte_position;
-    ULONG           val;
+    unsigned long           val;
     uint64_t       sum, utmp;
     int64_t        stmp;
 
@@ -457,7 +457,7 @@ void RTMPMicFinal(
     if (utmp > 0x10000000fL)
         sum -= 15;
 
-    val = (ULONG)sum;
+    val = (unsigned long)sum;
     digest[0] = (u8)((val>>24) & 0xFF);
     digest[1] = (u8) ((val>>16) & 0xFF);
     digest[2] = (u8) ((val>>8) & 0xFF);
@@ -474,7 +474,7 @@ void RTMPCkipInsertCMIC(
 {
 	PACKET_INFO		PacketInfo;
 	u8 *		pSrcBufVA;
-	ULONG			SrcBufLen;
+	unsigned long			SrcBufLen;
     u8 *         pDA, pSA, pProto;
     u8           bigethlen[2];
 	u8 		ckip_ck[16];

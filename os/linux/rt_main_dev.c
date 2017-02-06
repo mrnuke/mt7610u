@@ -213,7 +213,7 @@ int rt28xx_open(struct net_device *net_dev)
 {
 	struct rtmp_adapter *pAd = NULL;
 	int retval = 0;
-	ULONG OpMode;
+	unsigned long OpMode;
 
 	/* sanity check */
 	if (sizeof(dma_addr_t) < sizeof(dma_addr_t))
@@ -295,7 +295,7 @@ struct net_device *RtmpPhyNetDevInit(
 	RTMP_OS_NETDEV_OP_HOOK	*pNetDevHook)
 {
 	struct net_device	*net_dev = NULL;
-	ULONG OpMode;
+	unsigned long OpMode;
 
 
 /*	net_dev = RtmpOSNetDevCreate(pAd, INT_MAIN, 0, sizeof(struct rtmp_adapter *), INF_MAIN_DEV_NAME); */
@@ -445,7 +445,7 @@ INT rt28xx_ioctl(
 {
 	struct rtmp_adapter *pAd = NULL;
 	INT ret = 0;
-	ULONG OpMode;
+	unsigned long OpMode;
 
 	GET_PAD_FROM_NET_DEV(pAd, net_dev);
 
@@ -569,7 +569,7 @@ bool RtmpPhyNetDevExit(
  *******************************************************************************/
 int RtmpOSIRQRequest(struct net_device *pNetDev)
 {
-	ULONG infType;
+	unsigned long infType;
 	struct rtmp_adapter *pAd = NULL;
 	int retval = 0;
 

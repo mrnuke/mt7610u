@@ -91,14 +91,14 @@ void MlmeDlsReqAction(
 {
 	u8 *pOutBuffer = NULL;
 	int NStatus;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	HEADER_802_11 DlsReqHdr;
 	PRT_802_11_DLS pDLS = NULL;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_REQUEST;
-	ULONG tmp;
+	unsigned long tmp;
 	USHORT reason;
-	ULONG Timeout;
+	unsigned long Timeout;
 	bool TimerCancelled;
 
 	if (!MlmeDlsReqSanity(pAd, Elem->Msg, Elem->MsgLen, &pDLS, &reason))
@@ -190,17 +190,17 @@ void PeerDlsReqAction(
 {
 	u8 *pOutBuffer = NULL;
 	int NStatus;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	USHORT StatusCode = MLME_SUCCESS;
 	HEADER_802_11 DlsRspHdr;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_RESPONSE;
-	ULONG tmp;
+	unsigned long tmp;
 	USHORT CapabilityInfo;
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
 	USHORT DLSTimeOut;
 	SHORT i;
-	ULONG Timeout;
+	unsigned long Timeout;
 	bool TimerCancelled;
 	PRT_802_11_DLS pDLS = NULL;
 	u8 MaxSupportedRateIn500Kbps = 0;
@@ -832,7 +832,7 @@ void MlmeDlsTearDownAction(
 {
 	u8 *pOutBuffer = NULL;
 	int NStatus;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_TEARDOWN;
 	USHORT ReasonCode = REASON_QOS_UNSPECIFY;
@@ -970,7 +970,7 @@ void PeerDlsTearDownAction(
 void RTMPCheckDLSTimeOut(
 	struct rtmp_adapter *pAd)
 {
-	ULONG i;
+	unsigned long i;
 	MLME_DLS_REQ_STRUCT MlmeDlsReq;
 	USHORT reason = REASON_QOS_UNSPECIFY;
 
@@ -1036,10 +1036,10 @@ void RTMPCheckDLSTimeOut(
 bool RTMPRcvFrameDLSCheck(
 	struct rtmp_adapter*pAd,
 	PHEADER_802_11 pHeader,
-	ULONG Len,
+	unsigned long Len,
 	RXD_STRUC *pRxD)
 {
-	ULONG i;
+	unsigned long i;
 	bool bFindEntry = false;
 	bool bSTAKeyFrame = false;
 	PEAPOL_PACKET pEap;
@@ -1423,7 +1423,7 @@ void RTMPSendDLSTearDownFrame(
 	u8 *pOutBuffer = NULL;
 	int NStatus;
 	HEADER_802_11 DlsTearDownHdr;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	USHORT Reason = REASON_QOS_QSTA_LEAVING_QBSS;
 	u8 Category = CATEGORY_DLS;
 	u8 Action = ACTION_DLS_TEARDOWN;
@@ -1491,7 +1491,7 @@ int RTMPSendSTAKeyRequest(
 {
 	u8 Header802_3[14];
 	int NStatus;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	PEAPOL_PACKET pPacket;
 	u8 *mpool;
 	u8 Mic[16];
@@ -1628,7 +1628,7 @@ int RTMPSendSTAKeyHandShake(
 {
 	u8 Header802_3[14];
 	int NStatus;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	PEAPOL_PACKET pPacket;
 	u8 *mpool;
 	u8 Mic[16];
@@ -1875,7 +1875,7 @@ MAC_TABLE_ENTRY *DlsEntryTableLookup(
 	u8 *pAddr,
 	bool bResetIdelCount)
 {
-	ULONG HashIdx;
+	unsigned long HashIdx;
 	MAC_TABLE_ENTRY *pEntry = NULL;
 
 	RTMP_SEM_LOCK(&pAd->MacTabLock);
@@ -1902,7 +1902,7 @@ MAC_TABLE_ENTRY *DlsEntryTableLookupByWcid(
 	u8 *pAddr,
 	bool bResetIdelCount)
 {
-	ULONG DLsIndex;
+	unsigned long DLsIndex;
 	PMAC_TABLE_ENTRY pCurEntry = NULL;
 	PMAC_TABLE_ENTRY pEntry = NULL;
 

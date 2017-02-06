@@ -34,8 +34,8 @@
 
 #undef RTMP_UTIL_DCACHE_FLUSH
 #define RTMP_UTIL_DCACHE_FLUSH(__AddrStart, __Size)						\
-	flush_dcache_range((ULONG)(__AddrStart),							\
-						(ULONG)(((u8 *)(__AddrStart)) + __Size - 1))
+	flush_dcache_range((unsigned long)(__AddrStart),							\
+						(unsigned long)(((u8 *)(__AddrStart)) + __Size - 1))
 
 #endif /* PLATFORM_UBM_IPX8 */
 

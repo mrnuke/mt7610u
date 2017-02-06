@@ -370,7 +370,7 @@ do { \
 #define	THREAD_PID_INIT_VALUE	NULL
 /* TODO: Use this IOCTL carefully when linux kernel version larger than 2.6.27, because the PID only correct when the user space task do this ioctl itself. */
 /*#define RTMP_GET_OS_PID(_x, _y)    _x = get_task_pid(current, PIDTYPE_PID); */
-#define RT_GET_OS_PID(_x, _y)		do{rcu_read_lock(); _x=(ULONG)current->pids[PIDTYPE_PID].pid; rcu_read_unlock();}while(0)
+#define RT_GET_OS_PID(_x, _y)		do{rcu_read_lock(); _x=(unsigned long)current->pids[PIDTYPE_PID].pid; rcu_read_unlock();}while(0)
 #define RTMP_GET_OS_PID(_a, _b)			RT_GET_OS_PID(_a, _b)
 #define	GET_PID_NUMBER(_v)	pid_nr((_v))
 #define CHECK_PID_LEGALITY(_pid)	if (pid_nr((_pid)) > 0)
@@ -379,7 +379,7 @@ do { \
 #define ATE_KILL_THREAD_PID(PID)		KILL_THREAD_PID(PID, SIGTERM, 1)
 
 typedef int (*cast_fn)(void *);
-typedef INT (*RTMP_OS_TASK_CALLBACK)(ULONG);
+typedef INT (*RTMP_OS_TASK_CALLBACK)(unsigned long);
 
 #ifdef WORKQUEUE_BH
 typedef struct work_struct OS_NET_TASK_STRUCT;
@@ -429,7 +429,7 @@ typedef void (*TIMER_FUNCTION)(unsigned long);
 
 #define ONE_TICK 1
 
-static inline void NdisGetSystemUpTime(ULONG *time)
+static inline void NdisGetSystemUpTime(unsigned long *time)
 {
 	*time = jiffies;
 }
@@ -489,8 +489,8 @@ extern int RTDebugFunc;
 
 #define DBGPRINT_RAW(Level, Fmt)    \
 do{                                   \
-	ULONG __gLevel = (Level) & 0xff;\
-	ULONG __fLevel = ((Level)>>8) & 0xffffff;\
+	unsigned long __gLevel = (Level) & 0xff;\
+	unsigned long __fLevel = ((Level)>>8) & 0xffffff;\
     if (__gLevel <= RTDebugLevel)      \
     {                               \
     	if ((RTDebugFunc == 0) || \
@@ -558,19 +558,19 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 
 
 
-/*#define PCI_MAP_SINGLE(_handle, _ptr, _size, _dir) (ULONG)0 */
+/*#define PCI_MAP_SINGLE(_handle, _ptr, _size, _dir) (unsigned long)0 */
 /*#define PCI_UNMAP_SINGLE(_handle, _ptr, _size, _dir) */
 
 
 /*
- * ULONG
+ * unsigned long
  * RTMP_GetPhysicalAddressLow(
  *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress);
  */
 #define RTMP_GetPhysicalAddressLow(PhysicalAddress)		(PhysicalAddress)
 
 /*
- * ULONG
+ * unsigned long
  * RTMP_GetPhysicalAddressHigh(
  *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress);
  */
@@ -580,7 +580,7 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
  * VOID
  * RTMP_SetPhysicalAddressLow(
  *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress,
- *   ULONG  Value);
+ *   unsigned long  Value);
  */
 #define RTMP_SetPhysicalAddressLow(PhysicalAddress, Value)	\
 			PhysicalAddress = Value;
@@ -589,7 +589,7 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
  * VOID
  * RTMP_SetPhysicalAddressHigh(
  *   NDIS_PHYSICAL_ADDRESS  PhysicalAddress,
- *   ULONG  Value);
+ *   unsigned long  Value);
  */
 #define RTMP_SetPhysicalAddressHigh(PhysicalAddress, Value)
 
@@ -661,14 +661,14 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 
 #ifdef NET_SKBUFF_DATA_USES_OFFSET
 #define GET_OS_PKT_DATATAIL(_pkt) \
-        ((_pkt)->head + (ULONG)(_pkt)->tail)
+        ((_pkt)->head + (unsigned long)(_pkt)->tail)
 #define SET_OS_PKT_DATATAIL(_pkt, _start, _len) \
-        (((_pkt))->tail) = (ULONG)_start - (ULONG)((_pkt)->head) + (_len)
+        (((_pkt))->tail) = (unsigned long)_start - (unsigned long)((_pkt)->head) + (_len)
 #else
 #define GET_OS_PKT_DATATAIL(_pkt) \
 		((_pkt)->tail)
 #define SET_OS_PKT_DATATAIL(_pkt, _start, _len)	\
-		(((_pkt))->tail) = (ULONG)((_start) + (_len))
+		(((_pkt))->tail) = (unsigned long)((_start) + (_len))
 #endif
 
 

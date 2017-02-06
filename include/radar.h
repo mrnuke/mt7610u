@@ -43,14 +43,14 @@ typedef struct _DOT11_H {
 	u8 RDMode;		/*Radar Detection mode */
 	USHORT ChMovingTime;
 	bool bDFSIndoor;
-	ULONG InServiceMonitorCount;	/* unit: sec */
+	unsigned long InServiceMonitorCount;	/* unit: sec */
 } DOT11_H, *PDOT11_H;
 
 bool RadarChannelCheck(
 	struct rtmp_adapter *pAd,
 	u8 		Ch);
 
-ULONG JapRadarType(
+unsigned long JapRadarType(
 	struct rtmp_adapter *pAd);
 
 

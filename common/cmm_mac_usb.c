@@ -1379,8 +1379,8 @@ Note:
 void RT28xx_UpdateBeaconToAsic(
 	struct rtmp_adapter	*pAd,
 	INT				apidx,
-	ULONG			FrameLen,
-	ULONG			UpdatePos)
+	unsigned long			FrameLen,
+	unsigned long			UpdatePos)
 {
 	u8 *       	pBeaconFrame = NULL;
 	u8  			*ptr;

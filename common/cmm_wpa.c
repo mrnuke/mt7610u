@@ -441,7 +441,7 @@ void RTMPToWirelessSta(
 bool PeerWpaMessageSanity(
     struct rtmp_adapter *		pAd,
     PEAPOL_PACKET 		pMsg,
-    ULONG 				MsgLen,
+    unsigned long 				MsgLen,
     u8 			MsgType,
     MAC_TABLE_ENTRY  	*pEntry)
 {
@@ -639,7 +639,7 @@ LabelErr:
 void WPAStart4WayHS(
     struct rtmp_adapter *   pAd,
     MAC_TABLE_ENTRY  *pEntry,
-    ULONG			TimeInterval)
+    unsigned long			TimeInterval)
 {
     u8           Header802_3[14];
 	u8   		*mpool;
@@ -1438,7 +1438,7 @@ void MlmeDeAuthAction(
 	bool          bDataFrameFirst)
 {
     u8 *         pOutBuffer = NULL;
-    ULONG           FrameLen = 0;
+    unsigned long           FrameLen = 0;
     HEADER_802_11   DeAuthHdr;
 
     if (pEntry)
@@ -2038,7 +2038,7 @@ void GenRandom(
 	INT		i, curr;
 	u8 local[80], KeyCounter[32];
 	u8 result[80];
-	ULONG	CurrentTime;
+	unsigned long	CurrentTime;
 	u8 prefix[] = {'I', 'n', 'i', 't', ' ', 'C', 'o', 'u', 'n', 't', 'e', 'r'};
 
 	/* Zero the related information*/
@@ -2590,10 +2590,10 @@ bool RTMPCheckWPAframe(
     struct rtmp_adapter *   pAd,
     PMAC_TABLE_ENTRY	pEntry,
     u8 *          pData,
-    ULONG            DataByteCount,
+    unsigned long            DataByteCount,
 	u8 		FromWhichBSSID)
 {
-	ULONG	Body_len;
+	unsigned long	Body_len;
 	bool Cancelled;
 
 	do
@@ -3184,7 +3184,7 @@ void ConstructEapolKeyData(
 	PEAPOL_PACKET   pMsg)
 {
 	u8 	*mpool, *Key_Data, *eGTK;
-	ULONG		data_offset;
+	unsigned long		data_offset;
 	bool 	bWPA2Capable = false;
 	bool 	GTK_Included = false;
 
@@ -3353,7 +3353,7 @@ void CalculateMIC(
 	PEAPOL_PACKET   pMsg)
 {
     u8   *OutBuffer;
-	ULONG	FrameLen = 0;
+	unsigned long	FrameLen = 0;
 	u8 mic[LEN_KEY_DESC_MIC];
 	u8 digest[80];
 
@@ -3878,7 +3878,7 @@ void RTMPInsertRSNIE(
 	u8  pmkid_len)
 {
 	u8 *pTmpBuf;
-	ULONG 	TempLen = 0;
+	unsigned long 	TempLen = 0;
 	u8 	extra_len = 0;
 	uint16_t 	pmk_count = 0;
 	u8 ie_num;

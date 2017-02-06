@@ -1517,7 +1517,7 @@ static void MT76x0_ChipSwitchChannel(
 	u32 rf_phy_mode, rf_bw = RF_BW_20;
 	u8 bbp_ch_idx, delta_pwr;
 	u32 ret;
-	ULONG Old, New, Diff;
+	unsigned long Old, New, Diff;
 	u32 Value;
 
 	RTMP_GetCurrentSystemTick(&Old);

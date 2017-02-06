@@ -115,8 +115,8 @@ static bool USBDevConfigInit(struct usb_device *dev,
 	struct usb_interface *intf, struct rtmp_adapter *pAd)
 {
 	struct usb_host_interface *iface_desc;
-	ULONG BulkOutIdx;
-	ULONG BulkInIdx;
+	unsigned long BulkOutIdx;
+	unsigned long BulkInIdx;
 	u32 i;
 	RT_CMD_USB_DEV_CONFIG Config, *pConfig = &Config;
 
@@ -369,7 +369,7 @@ static int rt2870_probe(struct usb_interface *intf, struct usb_device *usb_dev,
 	INT               	status, rv;
 	struct os_cookie *handle;
 	RTMP_OS_NETDEV_OP_HOOK	netDevHook;
-	ULONG 	OpMode;
+	unsigned long 	OpMode;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("===>rt2870_probe()!\n"));
 

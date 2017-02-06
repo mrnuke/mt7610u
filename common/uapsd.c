@@ -501,7 +501,7 @@ void UAPSD_PacketEnqueue(
 		{
 			DBGPRINT(RT_DEBUG_TRACE,
 					("ps> data (0x%08lx) (AC%d) to uapsd queue (num of pkt = %ld)...\n",
-					(ULONG)pPacket, IdAc,
+					(unsigned long)pPacket, IdAc,
 					pQueUapsd->Number));
 		} /* End of if */
 #endif /* UAPSD_DEBUG */
@@ -534,7 +534,7 @@ void UAPSD_QueueMaintenance(
 	u32 IdAc;
 	bool FlgUapsdPkt, FlgEospPkt;
 #ifdef RTMP_MAC_USB
-	ULONG IrqFlags;
+	unsigned long IrqFlags;
 #endif /* RTMP_MAC_USB */
 
 
@@ -1321,10 +1321,10 @@ void UAPSD_TriggerFrameHandle(
 	bool FlgMgmtFrame;
 	u32	Aid, QueId;
 	int32_t	IdAc; /* must be signed, can not use unsigned */
-/*	ULONG    FlgIrq; */
+/*	unsigned long    FlgIrq; */
 
 #ifdef UAPSD_SP_ACCURATE
-	ULONG	TimeNow;
+	unsigned long	TimeNow;
 #endif /* UAPSD_SP_ACCURATE */
 
 
@@ -1615,7 +1615,7 @@ void UAPSD_TriggerFrameHandle(
 
 #ifdef UAPSD_DEBUG
 {
-	ULONG DebugTimeNow;
+	unsigned long DebugTimeNow;
 
 	UAPSD_TIME_GET(pAd, DebugTimeNow);
 

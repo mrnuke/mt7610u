@@ -730,13 +730,13 @@ u8 MlmeSelectTxRateAdapt(
 		pCurrTxRate - pointer to Rate table entry for rate
 		TxErrorRatio - the PER
 */
-static ULONG MlmeRAEstimateThroughput(
+static unsigned long MlmeRAEstimateThroughput(
 	struct rtmp_adapter*pAd,
 	MAC_TABLE_ENTRY *pEntry,
 	RTMP_RA_GRP_TB *pCurrTxRate,
-	ULONG TxErrorRatio)
+	unsigned long TxErrorRatio)
 {
-	ULONG estTP = (100-TxErrorRatio)*pCurrTxRate->dataRate;
+	unsigned long estTP = (100-TxErrorRatio)*pCurrTxRate->dataRate;
 
 	/*  Adjust rates for MCS32-40MHz mapped to MCS0-20MHz and for non-CCK 40MHz */
 	if (pCurrTxRate->CurrMCS == MCS_32)
@@ -772,10 +772,10 @@ bool MlmeRAHybridRule(
 	struct rtmp_adapter *	pAd,
 	PMAC_TABLE_ENTRY	pEntry,
 	RTMP_RA_GRP_TB *pCurrTxRate,
-	ULONG			NewTxOkCount,
-	ULONG			TxErrorRatio)
+	unsigned long			NewTxOkCount,
+	unsigned long			TxErrorRatio)
 {
-	ULONG newTP, oldTP;
+	unsigned long newTP, oldTP;
 
 	if (100*NewTxOkCount < pAd->CommonCfg.TrainUpLowThrd*pEntry->LastTxOkCount)
 		return true;
@@ -806,9 +806,9 @@ void MlmeNewRateAdapt(
 	PMAC_TABLE_ENTRY	pEntry,
 	u8 		UpRateIdx,
 	u8 		DownRateIdx,
-	ULONG			TrainUp,
-	ULONG			TrainDown,
-	ULONG			TxErrorRatio)
+	unsigned long			TrainUp,
+	unsigned long			TrainDown,
+	unsigned long			TxErrorRatio)
 {
 	USHORT		phyRateLimit20 = 0;
 	bool 	bTrainUp = false;
@@ -941,19 +941,19 @@ void MlmeNewRateAdapt(
 #ifdef CONFIG_STA_SUPPORT
 void StaQuickResponeForRateUpExecAdapt(
 	struct rtmp_adapter *pAd,
-	ULONG i,
+	unsigned long i,
 	CHAR  Rssi)
 {
 	u8 *				pTable;
 	u8 				CurrRateIdx;
-	ULONG					TxTotalCnt;
-	ULONG					TxErrorRatio = 0;
+	unsigned long					TxTotalCnt;
+	unsigned long					TxErrorRatio = 0;
 	PMAC_TABLE_ENTRY		pEntry;
 	RTMP_RA_GRP_TB *pCurrTxRate;
 	u8 				TrainUp, TrainDown;
 	CHAR					ratio;
-	ULONG					TxSuccess, TxRetransmit, TxFailCount;
-	ULONG					OneSecTxNoRetryOKRationCount;
+	unsigned long					TxSuccess, TxRetransmit, TxFailCount;
+	unsigned long					OneSecTxNoRetryOKRationCount;
 	bool 				rateChanged;
 
 
@@ -1185,15 +1185,15 @@ void StaQuickResponeForRateUpExecAdapt(
 
 void MlmeDynamicTxRateSwitchingAdapt(
     struct rtmp_adapter *pAd,
-	ULONG i,
-	ULONG TxSuccess,
-	ULONG TxRetransmit,
-	ULONG TxFailCount)
+	unsigned long i,
+	unsigned long TxSuccess,
+	unsigned long TxRetransmit,
+	unsigned long TxFailCount)
 {
 	u8 *		  pTable;
 	u8 		  UpRateIdx, DownRateIdx, CurrRateIdx;
-	ULONG			  TxTotalCnt;
-	ULONG			  TxErrorRatio = 0;
+	unsigned long			  TxTotalCnt;
+	unsigned long			  TxErrorRatio = 0;
 	MAC_TABLE_ENTRY	  *pEntry;
 	RTMP_RA_GRP_TB *pCurrTxRate;
 	u8 		  TrainUp, TrainDown;

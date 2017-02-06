@@ -561,7 +561,7 @@ void STAHandleRxDataFrame(
 		}
 
 		{
-			ULONG   Now;
+			unsigned long   Now;
 			NdisGetSystemUpTime(&Now);
 			pAd->StaCfg.LastBeaconRxTime = Now;
 		}
@@ -572,13 +572,13 @@ void STAHandleRxDataFrame(
 	else if (pRxInfo->U2M)
 	{
 #ifdef RT65xx
-		pAd->LastRxRate = (ULONG)((pRxWI->RxWIMCS) +
+		pAd->LastRxRate = (unsigned long)((pRxWI->RxWIMCS) +
 									(pRxWI->RxWIBW << 7) +
 									(pRxWI->RxWISGI << 9) +
 									(pRxWI->RxWISTBC << 10) +
 									(pRxWI->RxWIPhyMode << 14));
 #else
-		pAd->LastRxRate = (ULONG)((pRxWI->RxWIMCS) +
+		pAd->LastRxRate = (unsigned long)((pRxWI->RxWIMCS) +
 								   	(pRxWI->RxWIBW << 7) +
 								   	(pRxWI->RxWISGI << 8) +
 								   	(pRxWI->RxWISTBC << 9) +
@@ -1385,7 +1385,7 @@ int RTMPFreeTXDRequest(
 	u8 NumberRequired,
 	u8 *FreeNumberIs)
 {
-	/*ULONG         FreeNumber = 0; */
+	/*unsigned long         FreeNumber = 0; */
 	int Status = NDIS_STATUS_FAILURE;
 	unsigned long IrqFlags;
 	HT_TX_CONTEXT *pHTTXContext;
@@ -1438,7 +1438,7 @@ void RTMPSendNullFrame(
 	USHORT PwrMgmt)
 {
 	u8 NullFrame[48];
-	ULONG Length;
+	unsigned long Length;
 	PHEADER_802_11 pHeader_802_11;
 
 	/* WPA 802.1x secured port control */
@@ -1788,9 +1788,9 @@ static inline u8 *STA_Build_ARalink_Frame_Header(
 	}
 
 	/* padding at front of LLC header. LLC header should at 4-bytes aligment. */
-	pTxBlk->HdrPadLen = (ULONG) pHeaderBufPtr;
+	pTxBlk->HdrPadLen = (unsigned long) pHeaderBufPtr;
 	pHeaderBufPtr = (u8 *) ROUND_UP(pHeaderBufPtr, 4);
-	pTxBlk->HdrPadLen = (ULONG) (pHeaderBufPtr - pTxBlk->HdrPadLen);
+	pTxBlk->HdrPadLen = (unsigned long) (pHeaderBufPtr - pTxBlk->HdrPadLen);
 
 	/* For RA Aggregation, */
 	/* put the 2nd MSDU length(extra 2-byte field) after QOS_CONTROL in little endian format */
@@ -1848,9 +1848,9 @@ static inline u8 *STA_Build_AMSDU_Frame_Header(
 
 	   @@@ MpduHeaderLen excluding padding @@@
 	 */
-	pTxBlk->HdrPadLen = (ULONG) pHeaderBufPtr;
+	pTxBlk->HdrPadLen = (unsigned long) pHeaderBufPtr;
 	pHeaderBufPtr = (u8 *) ROUND_UP(pHeaderBufPtr, 4);
-	pTxBlk->HdrPadLen = (ULONG) (pHeaderBufPtr - pTxBlk->HdrPadLen);
+	pTxBlk->HdrPadLen = (unsigned long) (pHeaderBufPtr - pTxBlk->HdrPadLen);
 
 	return pHeaderBufPtr;
 
@@ -2013,9 +2013,9 @@ void STA_AMPDU_Frame_Tx(
 
 			   @@@ MpduHeaderLen excluding padding @@@
 			 */
-			pTxBlk->HdrPadLen = (ULONG) pHeaderBufPtr;
+			pTxBlk->HdrPadLen = (unsigned long) pHeaderBufPtr;
 			pHeaderBufPtr = (u8 *) ROUND_UP(pHeaderBufPtr, 4);
-			pTxBlk->HdrPadLen = (ULONG) (pHeaderBufPtr - pTxBlk->HdrPadLen);
+			pTxBlk->HdrPadLen = (unsigned long) (pHeaderBufPtr - pTxBlk->HdrPadLen);
 
 			pMacEntry->HdrPadLen = pTxBlk->HdrPadLen;
 
@@ -2332,9 +2332,9 @@ void STA_Legacy_Frame_Tx(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 	}
 
 	/* The remaining content of MPDU header should locate at 4-octets aligment */
-	pTxBlk->HdrPadLen = (ULONG) pHeaderBufPtr;
+	pTxBlk->HdrPadLen = (unsigned long) pHeaderBufPtr;
 	pHeaderBufPtr = (u8 *) ROUND_UP(pHeaderBufPtr, 4);
-	pTxBlk->HdrPadLen = (ULONG) (pHeaderBufPtr - pTxBlk->HdrPadLen);
+	pTxBlk->HdrPadLen = (unsigned long) (pHeaderBufPtr - pTxBlk->HdrPadLen);
 
 #ifdef SOFT_ENCRYPT
 	if (TX_BLK_TEST_FLAG(pTxBlk, fTX_bSwEncrypt)) {
@@ -2647,9 +2647,9 @@ void STA_Fragment_Frame_Tx(
 	   padding at front of LLC header
 	   LLC header should locate at 4-octets aligment
 	 */
-	pTxBlk->HdrPadLen = (ULONG) pHeaderBufPtr;
+	pTxBlk->HdrPadLen = (unsigned long) pHeaderBufPtr;
 	pHeaderBufPtr = (u8 *) ROUND_UP(pHeaderBufPtr, 4);
-	pTxBlk->HdrPadLen = (ULONG) (pHeaderBufPtr - pTxBlk->HdrPadLen);
+	pTxBlk->HdrPadLen = (unsigned long) (pHeaderBufPtr - pTxBlk->HdrPadLen);
 
 #ifdef SOFT_ENCRYPT
 	if (TX_BLK_TEST_FLAG(pTxBlk, fTX_bSwEncrypt)) {

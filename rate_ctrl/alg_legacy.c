@@ -54,15 +54,15 @@ void MlmeDynamicTxRateSwitching(
 	u8 *				pTable;
 	u8 				TableSize = 0;
 	u8 				UpRateIdx = 0, DownRateIdx = 0, CurrRateIdx;
-	ULONG					i, TxTotalCnt;
-	ULONG					TxErrorRatio = 0;
+	unsigned long					i, TxTotalCnt;
+	unsigned long					TxErrorRatio = 0;
 	MAC_TABLE_ENTRY			*pEntry;
 	RTMP_RA_LEGACY_TB *pCurrTxRate, *pTmpTxRate = NULL;
 	u8 				InitTxRateIdx, TrainUp, TrainDown;
 	TX_STA_CNT1_STRUC		StaTx1;
 	TX_STA_CNT0_STRUC		TxStaCnt0;
 	CHAR					Rssi, TmpIdx = 0;
-	ULONG					TxRetransmit = 0, TxSuccess = 0, TxFailCount = 0;
+	unsigned long					TxRetransmit = 0, TxSuccess = 0, TxFailCount = 0;
 	RSSI_SAMPLE				*pRssi = &pAd->StaCfg.RssiSample;
 
 	/* Update statistic counter */
@@ -137,7 +137,7 @@ void MlmeDynamicTxRateSwitching(
 			if (TxErrorRatio == 100)
 			{
 				TX_RTY_CFG_STRUC	TxRtyCfg,TxRtyCfgtmp;
-				ULONG	Index;
+				unsigned long	Index;
 				u32	MACValue;
 
 				TxRtyCfg.word = mt7610u_read32(pAd, TX_RTY_CFG);
@@ -439,16 +439,16 @@ void StaQuickResponeForRateUpExec(
 	void *SystemSpecific3)
 {
 	struct rtmp_adapter *		pAd = (struct rtmp_adapter *)FunctionContext;
-	ULONG					i;
+	unsigned long					i;
 	u8 *				pTable;
 	u8 				TableSize = 0;
 	u8 				CurrRateIdx;
-	ULONG					TxTotalCnt;
-	ULONG					TxErrorRatio = 0;
+	unsigned long					TxTotalCnt;
+	unsigned long					TxErrorRatio = 0;
 	RTMP_RA_LEGACY_TB *pCurrTxRate;
 	u8 				InitTxRateIdx, TrainUp, TrainDown;
 	CHAR					Rssi, ratio;
-	ULONG					TxSuccess, TxRetransmit, TxFailCount;
+	unsigned long					TxSuccess, TxRetransmit, TxFailCount;
 	MAC_TABLE_ENTRY			*pEntry;
 
 	pAd->StaCfg.StaQuickResponeForRateUpTimerRunning = false;
@@ -578,7 +578,7 @@ void StaQuickResponeForRateUpExec(
        /* Compare throughput */
 		do
 		{
-			ULONG OneSecTxNoRetryOKRationCount;
+			unsigned long OneSecTxNoRetryOKRationCount;
 
 			/*
 				Compare throughput.
@@ -686,9 +686,9 @@ void MlmeOldRateAdapt(
 	u8 		CurrRateIdx,
 	u8 		UpRateIdx,
 	u8 		DownRateIdx,
-	ULONG			TrainUp,
-	ULONG			TrainDown,
-	ULONG			TxErrorRatio)
+	unsigned long			TrainUp,
+	unsigned long			TrainDown,
+	unsigned long			TxErrorRatio)
 {
 	bool bTrainUp = false;
 

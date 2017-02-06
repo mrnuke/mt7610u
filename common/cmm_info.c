@@ -881,7 +881,7 @@ int RTMPWPARemoveKeyProc(
 	void *		pBuf)
 {
 	PNDIS_802_11_REMOVE_KEY pKey;
-	ULONG					KeyIdx;
+	unsigned long					KeyIdx;
 	int 			Status = NDIS_STATUS_FAILURE;
 	bool 	bTxKey; 		/* Set the key as transmit key*/
 	bool 	bPairwise;		/* Indicate the key is pairwise key*/
@@ -1042,7 +1042,7 @@ void RTMPWPARemoveAllKeys(
 */
 void RTMPSetPhyMode(
 	struct rtmp_adapter*pAd,
-	ULONG phymode)
+	unsigned long phymode)
 {
 	INT i;
 	/* the selected phymode must be supported by the RF IC encoded in E2PROM*/
@@ -1704,7 +1704,7 @@ INT	Set_BADecline_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG bBADecline;
+	unsigned long bBADecline;
 
 	bBADecline = simple_strtol(arg, 0, 10);
 
@@ -1838,7 +1838,7 @@ INT	Set_HtBw_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG HtBw;
+	unsigned long HtBw;
 
 	HtBw = simple_strtol(arg, 0, 10);
 
@@ -1861,7 +1861,7 @@ INT	Set_HtMcs_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG HtMcs, Mcs_tmp, ValidMcs = 15;
+	unsigned long HtMcs, Mcs_tmp, ValidMcs = 15;
 #ifdef CONFIG_STA_SUPPORT
     bool bAutoRate = false;
 #endif /* CONFIG_STA_SUPPORT */
@@ -1925,7 +1925,7 @@ INT	Set_HtGi_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG HtGi;
+	unsigned long HtGi;
 
 	HtGi = simple_strtol(arg, 0, 10);
 
@@ -1966,7 +1966,7 @@ INT	Set_HtDisallowTKIP_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -1990,7 +1990,7 @@ INT	Set_HtOpMode_Proc(
 	char *		arg)
 {
 
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2014,7 +2014,7 @@ INT	Set_HtStbc_Proc(
 	char *		arg)
 {
 
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2037,7 +2037,7 @@ INT	Set_HtHtc_Proc(
 	char *		arg)
 {
 
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2057,7 +2057,7 @@ INT	Set_HtExtcha_Proc(
 	char *		arg)
 {
 
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2079,7 +2079,7 @@ INT	Set_HtMpduDensity_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2099,7 +2099,7 @@ INT	Set_HtBaWinSize_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2126,7 +2126,7 @@ INT	Set_HtRdg_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2151,7 +2151,7 @@ INT	Set_HtLinkAdapt_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2173,7 +2173,7 @@ INT	Set_HtAmsdu_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2194,7 +2194,7 @@ INT	Set_HtAutoBa_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2224,7 +2224,7 @@ INT	Set_HtProtect_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2297,7 +2297,7 @@ INT	Set_HtMIMOPSmode_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2318,7 +2318,7 @@ INT	Set_ForceShortGI_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2341,7 +2341,7 @@ INT	Set_ForceGF_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2362,7 +2362,7 @@ INT	Set_HtMimoPs_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 	if (Value == 0)
@@ -2413,7 +2413,7 @@ INT	Set_VhtBw_Proc(
 	struct rtmp_adapter*pAd,
 	char *arg)
 {
-	ULONG vht_cw;
+	unsigned long vht_cw;
 	u8 cent_ch;
 	vht_cw = simple_strtol(arg, 0, 10);
 
@@ -2452,7 +2452,7 @@ direct_done:
 
 INT Set_VhtBwSignal_Proc(struct rtmp_adapter*pAd, char *arg)
 {
-	ULONG bw_signal = simple_strtol(arg, 0, 10);
+	unsigned long bw_signal = simple_strtol(arg, 0, 10);
 
 	if (bw_signal <= 2)
 		pAd->CommonCfg.vht_bw_signal = bw_signal;
@@ -2471,7 +2471,7 @@ INT	Set_VhtStbc_Proc(
 	struct rtmp_adapter*pAd,
 	char *arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -2521,7 +2521,7 @@ INT	Set_FixedTxMode_Proc(struct rtmp_adapter*pAd, char *arg)
 typedef
 struct {
 	u8 type;					/* type of data*/
-	ULONG timestamp;			/* sec/usec timestamp from gettimeofday*/
+	unsigned long timestamp;			/* sec/usec timestamp from gettimeofday*/
 	u8 data[DBQ_DATA_LENGTH];	/* data*/
 } DBQUEUE_ENTRY;
 
@@ -2540,9 +2540,9 @@ struct {
 #define DBQ_ENA_SIG		0x4442454E	/* 'DBEN' - dbqEnable enabled flag*/
 
 static DBQUEUE_ENTRY dbQueue[DBQ_LENGTH];
-static ULONG dbqTail=0;
-static ULONG dbqEnable=0;
-static ULONG dbqInit=0;
+static unsigned long dbqTail=0;
+static unsigned long dbqEnable=0;
+static unsigned long dbqInit=0;
 
 /* dbQueueInit - initialize Debug Queue variables and clear the queue*/
 void dbQueueInit(void)
@@ -2598,7 +2598,7 @@ void dbQueueEnqueueTxFrame(u8 *pTxWI, u8 *pHeader_802_11)
 	}
 }
 
-void dbQueueEnqueueRxFrame(u8 *pRxWI, u8 *pHeader_802_11, ULONG flags)
+void dbQueueEnqueueRxFrame(u8 *pRxWI, u8 *pHeader_802_11, unsigned long flags)
 {
 	/* Ignore Beacons if disabled */
 	if ((flags & DBF_DBQ_NO_BCN) && (pHeader_802_11[0] & 0xfc)==0x80)
@@ -2646,7 +2646,7 @@ static void dbQueueDump(
 {
 	DBQUEUE_ENTRY *oldTail;
 	int i, origMCS, succMCS;
-	ULONG lastTimestamp=0;
+	unsigned long lastTimestamp=0;
 	bool showTimestamp;
 	USHORT phyRate;
 
@@ -2793,8 +2793,8 @@ static void dbQueueDump(
 
 		if (showTimestamp)
 		{
-			ULONG t = oldTail->timestamp;
-			ULONG dt = oldTail->timestamp-lastTimestamp;
+			unsigned long t = oldTail->timestamp;
+			unsigned long dt = oldTail->timestamp-lastTimestamp;
 
 			DBGPRINT(RT_DEBUG_OFF, ("%lu.%06lu ", t/1000000L, t % 1000000L) );
 
@@ -2816,7 +2816,7 @@ INT Set_DebugQueue_Proc(
     struct rtmp_adapter *  pAd,
     char *        arg)
 {
-    ULONG argValue = simple_strtol(arg, 0, 10);
+    unsigned long argValue = simple_strtol(arg, 0, 10);
 
 	switch (argValue) {
 	case 0:
@@ -3020,7 +3020,7 @@ char *RTMPGetRalinkEncryModeStr(
 }
 #endif/*APCLI_SUPPORT*/
 
-void  getRate(HTTRANSMIT_SETTING HTSetting, ULONG* fLastTxRxRate)
+void  getRate(HTTRANSMIT_SETTING HTSetting, unsigned long* fLastTxRxRate)
 
 {
 	 INT MCSMappingRateTable[] =
@@ -3059,7 +3059,7 @@ void  getRate(HTTRANSMIT_SETTING HTSetting, ULONG* fLastTxRxRate)
         rate_index = rate_count-1;
 
     value = (MCSMappingRateTable[rate_index] * 5)/10;
-	*fLastTxRxRate=(ULONG)value;
+	*fLastTxRxRate=(unsigned long)value;
 	return;
 }
 
@@ -3123,7 +3123,7 @@ INT	Set_BurstMode_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	ULONG Value;
+	unsigned long Value;
 
 	Value = simple_strtol(arg, 0, 10);
 
@@ -3211,7 +3211,7 @@ INT Set_RateAdaptInterval(
 	u32 ra_time, ra_qtime;
 	char *token;
 	char sep = ':';
-	ULONG irqFlags;
+	unsigned long irqFlags;
 
 /*
 	The ra_interval inupt string format should be d:d, in units of ms.
@@ -3304,7 +3304,7 @@ INT set_force_vht_tx_stbc(struct rtmp_adapter*pAd, char *arg)
 
 INT set_force_ext_cca(struct rtmp_adapter*pAd, char *arg)
 {
-	ULONG cca_cfg;
+	unsigned long cca_cfg;
 	u32 mac_val;
 
 	cca_cfg = (simple_strtol(arg, 0, 10) > 0 ? true : false);

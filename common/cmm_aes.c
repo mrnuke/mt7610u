@@ -433,7 +433,7 @@ void construct_ctr_preload(
 bool RTMPSoftDecryptAES(
 	struct rtmp_adapter *pAd,
 	u8 *pData,
-	ULONG	DataByteCnt,
+	unsigned long	DataByteCnt,
 	PCIPHER_KEY	pWpaKey)
 {
 	UINT			HeaderLen;

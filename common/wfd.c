@@ -309,15 +309,15 @@ INT Set_PeerRtspPort_Proc(
 
 void WfdMakeWfdIE(
 	struct rtmp_adapter *pAd,
-	ULONG			WfdIeBitmap,
+	unsigned long			WfdIeBitmap,
 	u8 *		pOutBuf,
 	unsigned long			*pIeLen)
 {
 	PRT_WFD_CONFIG	pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u8 		WfdIEFixed[6] = {0xdd, 0x0c, 0x50, 0x6f, 0x9a, 0x0a};	 /* Length will be modified later */
 	u8 *		pData, pBuf;
-	ULONG			TempLen;
-	ULONG			Len = 0;
+	unsigned long			TempLen;
+	unsigned long			Len = 0;
 	INT 			index, i = 0;
 
 	pData = pOutBuf;
@@ -355,7 +355,7 @@ void WfdMakeWfdIE(
 }
 
 
-ULONG InsertWfdSubelmtTlv(
+unsigned long InsertWfdSubelmtTlv(
 	struct rtmp_adapter *	pAd,
 	u8 		SubId,
 	u8 *		pInBuffer,
@@ -364,7 +364,7 @@ ULONG InsertWfdSubelmtTlv(
 {
 	PRT_WFD_CONFIG	pWFDCtrl = &pAd->StaCfg.WfdCfg;
 	u8 *pDest;
-	ULONG	Length, tmpValue = 0;
+	unsigned long	Length, tmpValue = 0;
 	USHORT	EidLen = 0;
 
 	pDest = pOutBuffer;
@@ -624,7 +624,7 @@ void WfdParseSubElmt(
 	struct rtmp_adapter *	pAd,
 	PWFD_ENTRY_INFO	pWfdEntryInfo,
 	void 			*Msg,
-	ULONG 			MsgLen)
+	unsigned long 			MsgLen)
 {
 	PWFD_COUPLED_SINK_INFO pSinkInfo;
 	PWFD_DEVICE_INFO pWfd_info;
@@ -632,10 +632,10 @@ void WfdParseSubElmt(
 	PP2PEID_STRUCT pWfdEid;
 	PEID_STRUCT	pEid;
 	u8 *		pWfdIe = NULL;
-	ULONG		AccuWfdIELen;
-	ULONG		AccuIeLen = 0;
-	ULONG		Length = 0;
-	ULONG		AttriLen;
+	unsigned long		AccuWfdIELen;
+	unsigned long		AccuIeLen = 0;
+	unsigned long		Length = 0;
+	unsigned long		AttriLen;
 	u8 	offset;
 	bool 	bTdlsEntry = false;
 
@@ -650,7 +650,7 @@ void WfdParseSubElmt(
 	pEid = (PEID_STRUCT)Msg;
 	AccuIeLen = pEid->Len + 2;
 //	printk("MsgLen = %d. AccuIeLen = %d.\n", MsgLen, AccuIeLen);
-	while ((ULONG)(AccuIeLen) <= MsgLen)
+	while ((unsigned long)(AccuIeLen) <= MsgLen)
 	{
 		if (RTMPEqualMemory(&pEid->Octet[0], WIFIDISPLAY_OUI, 4))
 		{

@@ -82,10 +82,10 @@ bool RadarChannelCheck(
 	return result;
 }
 
-ULONG JapRadarType(
+unsigned long JapRadarType(
 	struct rtmp_adapter *pAd)
 {
-	ULONG		i;
+	unsigned long		i;
 	const u8 Channel[15]={52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140};
 
 	if (pAd->CommonCfg.RDDurRegion != JAP)

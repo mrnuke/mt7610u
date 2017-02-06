@@ -34,26 +34,26 @@ void RtmpUtilInit(void);
 
 /* OS Time */
 void RTMPusecDelay(
-	ULONG					usec);
+	unsigned long					usec);
 
-ULONG RTMPMsecsToJiffies(UINT msec);
+unsigned long RTMPMsecsToJiffies(UINT msec);
 
 void RTMP_GetCurrentSystemTick(
-	ULONG					*pNow);
+	unsigned long					*pNow);
 
 void RtmpOsWait(
 	u32					Time);
 
 u32 RtmpOsTimerAfter(
-	ULONG					a,
-	ULONG					b);
+	unsigned long					a,
+	unsigned long					b);
 
 u32 RtmpOsTimerBefore(
-	ULONG					a,
-	ULONG					b);
+	unsigned long					a,
+	unsigned long					b);
 
 void RtmpOsGetSystemUpTime(
-	ULONG					*pTime);
+	unsigned long					*pTime);
 
 u32 RtmpOsTickUnitGet(void);
 
@@ -62,25 +62,25 @@ u32 RtmpOsTickUnitGet(void);
 int os_alloc_mem_suspend(
 	void 				*pReserved,
 	u8 				**mem,
-	ULONG					size);
+	unsigned long					size);
 
 int AdapterBlockAllocateMemory(struct rtmp_adapter **ppAd, u32 SizeOfpAd);
 
 void *RtmpOsVmalloc(
-	ULONG					Size);
+	unsigned long					Size);
 
 void RtmpOsVfree(
 	void 				*pMem);
 
-ULONG RtmpOsCopyFromUser(
+unsigned long RtmpOsCopyFromUser(
 	void 				*to,
 	const void				*from,
-	ULONG					n);
+	unsigned long					n);
 
-ULONG RtmpOsCopyToUser(
+unsigned long RtmpOsCopyToUser(
 	void 				*to,
 	const void				*from,
-	ULONG					n);
+	unsigned long					n);
 
 bool RtmpOsStatsAlloc(
 	void 				**ppStats,
@@ -122,7 +122,7 @@ struct sk_buff * duplicate_pkt(
 	u8 *				pHeader802_3,
     UINT            		HdrLen,
 	u8 *				pData,
-	ULONG					DataSize,
+	unsigned long					DataSize,
 	u8 				FromWhichBSSID);
 
 struct sk_buff * duplicate_pkt_with_TKIP_MIC(
@@ -136,7 +136,7 @@ struct sk_buff * duplicate_pkt_with_VLAN(
 	u8 *				pHeader802_3,
     UINT            		HdrLen,
 	u8 *				pData,
-	ULONG					DataSize,
+	unsigned long					DataSize,
 	u8 				FromWhichBSSID,
 	u8 				*TPID);
 
@@ -164,7 +164,7 @@ struct sk_buff * ClonePacket(
 	void 				*pReserved,
 	struct sk_buff *			pPacket,
 	u8 *				pData,
-	ULONG					DataSize);
+	unsigned long					DataSize);
 
 void wlan_802_11_to_802_3_packet(
 	struct net_device *			pNetDev,
@@ -173,7 +173,7 @@ void wlan_802_11_to_802_3_packet(
 	USHORT					VLAN_Priority,
 	struct sk_buff *			pRxPacket,
 	u8 				*pData,
-	ULONG					DataSize,
+	unsigned long					DataSize,
 	u8 *				pHeader802_3,
 	u8 				FromWhichBSSID,
 	u8 				*TPID);
@@ -210,7 +210,7 @@ u8 VLAN_8023_Header_Copy(
 void RtmpOsPktBodyCopy(
 	struct net_device *			pNetDev,
 	struct sk_buff *			pNetPkt,
-	ULONG					ThisFrameLen,
+	unsigned long					ThisFrameLen,
 	u8 *				pData);
 
 INT RtmpOsIsPktCloned(
@@ -393,7 +393,7 @@ void RtmpOsMlmeUp(RTMP_OS_TASK *pMlmeQTask);
 void RtmpOsInitCompletion(RTMP_OS_COMPLETION *pCompletion);
 void RtmpOsExitCompletion(RTMP_OS_COMPLETION *pCompletion);
 void RtmpOsComplete(RTMP_OS_COMPLETION *pCompletion);
-ULONG RtmpOsWaitForCompletionTimeout(RTMP_OS_COMPLETION *pCompletion, ULONG Timeout);
+unsigned long RtmpOsWaitForCompletionTimeout(RTMP_OS_COMPLETION *pCompletion, unsigned long Timeout);
 
 /* OS Task */
 bool RtmpOsTaskletSche(RTMP_NET_TASK_STRUCT *pTasklet);
@@ -401,14 +401,14 @@ bool RtmpOsTaskletSche(RTMP_NET_TASK_STRUCT *pTasklet);
 bool RtmpOsTaskletInit(
 	RTMP_NET_TASK_STRUCT *pTasklet,
 	void (*pFunc)(unsigned long data),
-	ULONG Data,
+	unsigned long Data,
 	LIST_HEADER *pTaskletList);
 
 bool RtmpOsTaskletKill(RTMP_NET_TASK_STRUCT *pTasklet);
 
 void RtmpOsTaskletDataAssign(
 	RTMP_NET_TASK_STRUCT *pTasklet,
-	ULONG Data);
+	unsigned long Data);
 
 void RtmpOsTaskWakeUp(RTMP_OS_TASK *pTaskOrg);
 
@@ -435,7 +435,7 @@ void RtmpOSTaskCustomize(
 int RtmpOSTaskAttach(
 	RTMP_OS_TASK			*pTaskOrg,
 	RTMP_OS_TASK_CALLBACK	fn,
-	ULONG					arg);
+	unsigned long					arg);
 
 int RtmpOSTaskInit(
 	RTMP_OS_TASK			*pTaskOrg,
@@ -454,7 +454,7 @@ void *RtmpOsTaskDataGet(RTMP_OS_TASK *pTaskOrg);
 int32_t RtmpThreadPidKill(RTMP_OS_PID	 PID);
 
 /* OS Cache */
-void RtmpOsDCacheFlush(ULONG AddrStart, ULONG Size);
+void RtmpOsDCacheFlush(unsigned long AddrStart, unsigned long Size);
 
 /* OS Timer */
 void RTMP_SetPeriodicTimer(
@@ -503,20 +503,20 @@ void RtmpOsSpinLockBh(
 	spinlock_t			*pLockOrg);
 
 void RtmpOsSpinUnLockBh(spinlock_t *pLockOrg);
-void RtmpOsIntLock(spinlock_t *pLockOrg, ULONG *pIrqFlags);
-void RtmpOsIntUnLock(spinlock_t *pLockOrg, ULONG IrqFlags);
+void RtmpOsIntLock(spinlock_t *pLockOrg, unsigned long *pIrqFlags);
+void RtmpOsIntUnLock(spinlock_t *pLockOrg, unsigned long IrqFlags);
 
 /* OS PID */
-void RtmpOsGetPid(ULONG *pDst, ULONG PID);
+void RtmpOsGetPid(unsigned long *pDst, unsigned long PID);
 void RtmpOsTaskPidInit(RTMP_OS_PID *pPid);
 
 /* OS I/O */
-void RTMP_PCI_Writel(ULONG Value, void *pAddr);
-void RTMP_PCI_Writew(ULONG Value, void *pAddr);
-void RTMP_PCI_Writeb(ULONG Value, void *pAddr);
-ULONG RTMP_PCI_Readl(void *pAddr);
-ULONG RTMP_PCI_Readw(void *pAddr);
-ULONG RTMP_PCI_Readb(void *pAddr);
+void RTMP_PCI_Writel(unsigned long Value, void *pAddr);
+void RTMP_PCI_Writew(unsigned long Value, void *pAddr);
+void RTMP_PCI_Writeb(unsigned long Value, void *pAddr);
+unsigned long RTMP_PCI_Readl(void *pAddr);
+unsigned long RTMP_PCI_Readw(void *pAddr);
+unsigned long RTMP_PCI_Readb(void *pAddr);
 
 int RtmpOsPciConfigReadWord(
 	void 				*pDev,
@@ -548,7 +548,7 @@ int RtmpOsPciMsiEnable(void *pDev);
 void RtmpOsPciMsiDisable(void *pDev);
 
 /* OS Wireless */
-ULONG RtmpOsMaxScanDataGet(void);
+unsigned long RtmpOsMaxScanDataGet(void);
 
 /* OS Interrutp */
 int32_t RtmpOsIsInInterrupt(void);
@@ -556,7 +556,7 @@ int32_t RtmpOsIsInInterrupt(void);
 /* OS USB */
 void *RtmpOsUsbUrbDataGet(void *pUrb);
 int RtmpOsUsbUrbStatusGet(void *pUrb);
-ULONG RtmpOsUsbUrbLenGet(void *pUrb);
+unsigned long RtmpOsUsbUrbLenGet(void *pUrb);
 
 /* OS Atomic */
 bool RtmpOsAtomicInit(RTMP_OS_ATOMIC *pAtomic, LIST_HEADER *pAtomicList);
@@ -612,7 +612,7 @@ uint16_t RtmpOsGetUnaligned(uint16_t *pWord);
 
 u32 RtmpOsGetUnaligned32(u32 *pWord);
 
-ULONG RtmpOsGetUnalignedlong(ULONG *pWord);
+unsigned long RtmpOsGetUnalignedlong(unsigned long *pWord);
 
 long RtmpOsSimpleStrtol(
 	const char				*cp,
@@ -669,28 +669,28 @@ void    SendAssocIEsToWpaSupplicant(
 void RtmpAllocDescBuf(
 	PPCI_DEV pPciDev,
 	UINT Index,
-	ULONG Length,
+	unsigned long Length,
 	bool Cached,
 	void **VirtualAddress,
 	PNDIS_PHYSICAL_ADDRESS	PhysicalAddress);
 
 void RtmpFreeDescBuf(
 	PPCI_DEV pPciDev,
-	ULONG Length,
+	unsigned long Length,
 	void *VirtualAddress,
 	NDIS_PHYSICAL_ADDRESS	PhysicalAddress);
 
 void RTMP_AllocateFirstTxBuffer(
 	PPCI_DEV pPciDev,
 	UINT Index,
-	ULONG Length,
+	unsigned long Length,
 	bool Cached,
 	void **VirtualAddress,
 	PNDIS_PHYSICAL_ADDRESS	PhysicalAddress);
 
 void RTMP_FreeFirstTxBuffer(
 	PPCI_DEV				pPciDev,
-	ULONG					Length,
+	unsigned long					Length,
 	bool 				Cached,
 	void *				VirtualAddress,
 	NDIS_PHYSICAL_ADDRESS	PhysicalAddress);
@@ -698,7 +698,7 @@ void RTMP_FreeFirstTxBuffer(
 struct sk_buff * RTMP_AllocateRxPacketBuffer(
 	void 				*pReserved,
 	void 				*pPciDev,
-	ULONG					Length,
+	unsigned long					Length,
 	bool 				Cached,
 	void *				*VirtualAddress,
 	PNDIS_PHYSICAL_ADDRESS	PhysicalAddress);
@@ -754,13 +754,13 @@ void rausb_fill_bulk_urb(void *urb,
 						 USB_COMPLETE_HANDLER complete_fn,
 						 void *context);
 
-unsigned int rausb_sndctrlpipe(void *dev, ULONG address);
+unsigned int rausb_sndctrlpipe(void *dev, unsigned long address);
 
-unsigned int rausb_rcvctrlpipe(void *dev, ULONG address);
+unsigned int rausb_rcvctrlpipe(void *dev, unsigned long address);
 
 
-unsigned int rausb_sndbulkpipe(void *dev, ULONG address);
-unsigned int rausb_rcvbulkpipe(void *dev, ULONG address);
+unsigned int rausb_sndbulkpipe(void *dev, unsigned long address);
+unsigned int rausb_rcvbulkpipe(void *dev, unsigned long address);
 
 void rausb_kill_urb(void *urb);
 
@@ -775,7 +775,7 @@ void RtmpOsUsbInitHTTxDesc(
 	struct usb_device *pUsb_Dev,
 	UINT BulkOutEpAddr,
 	u8 *pSrc,
-	ULONG BulkOutSize,
+	unsigned long BulkOutSize,
 	USB_COMPLETE_HANDLER Func,
 	void *pTxContext,
 	dma_addr_t TransferDma);
@@ -833,12 +833,12 @@ bool CFG80211OS_SupBandReInit(
 void CFG80211OS_RegHint(
 	void 					*pCB,
 	u8 				*pCountryIe,
-	ULONG					CountryIeLen);
+	unsigned long					CountryIeLen);
 
 void CFG80211OS_RegHint11D(
 	void 					*pCB,
 	u8 				*pCountryIe,
-	ULONG					CountryIeLen);
+	unsigned long					CountryIeLen);
 
 bool CFG80211OS_BandInfoGet(
 	void 					*pCB,
@@ -905,9 +905,9 @@ extern u8 TPID[];
 extern u8 IPX[2];
 extern u8 APPLE_TALK[2];
 extern u8 NUM_BIT8[8];
-extern ULONG RTPktOffsetData, RTPktOffsetLen, RTPktOffsetCB;
+extern unsigned long RTPktOffsetData, RTPktOffsetLen, RTPktOffsetCB;
 
-extern ULONG OS_NumOfMemAlloc, OS_NumOfMemFree;
+extern unsigned long OS_NumOfMemAlloc, OS_NumOfMemFree;
 
 extern int32_t ralinkrate[];
 extern u32 RT_RateSize;

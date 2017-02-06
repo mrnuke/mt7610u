@@ -442,7 +442,7 @@ static void ba_refresh_reordering_mpdus(
 void ba_flush_reordering_timeout_mpdus(
 									struct rtmp_adapter *   pAd,
 									PBA_REC_ENTRY    pBAEntry,
-									ULONG            Now32)
+									unsigned long            Now32)
 
 {
 	USHORT Sequence;
@@ -503,7 +503,7 @@ void BAOriSessionSetUp(
 					  MAC_TABLE_ENTRY  *pEntry,
 					  u8            TID,
 					  USHORT           TimeOut,
-					  ULONG            DelayTime,
+					  unsigned long            DelayTime,
 					  bool          isForced)
 
 {
@@ -589,7 +589,7 @@ void BAOriSessionAdd(
 	u8         TID;
 	USHORT        Idx;
 	u8 *         pOutBuffer2 = NULL;
-	ULONG           FrameLen;
+	unsigned long           FrameLen;
 	FRAME_BAR       FrameBar;
 	u8 		MaxPeerBufSize;
 
@@ -823,7 +823,7 @@ done:
 
 void BATableFreeOriEntry(
 						struct rtmp_adapter *  pAd,
-						ULONG           Idx)
+						unsigned long           Idx)
 {
 	BA_ORI_ENTRY    *pBAEntry = NULL;
 	MAC_TABLE_ENTRY *pEntry;
@@ -863,7 +863,7 @@ void BATableFreeOriEntry(
 
 void BATableFreeRecEntry(
 						struct rtmp_adapter *  pAd,
-						ULONG           Idx)
+						unsigned long           Idx)
 {
 	BA_REC_ENTRY    *pBAEntry = NULL;
 	MAC_TABLE_ENTRY *pEntry;
@@ -898,7 +898,7 @@ void BAOriSessionTearDown(
 						 bool         bPassive,
 						 bool         bForceSend)
 {
-	ULONG           Idx = 0;
+	unsigned long           Idx = 0;
 	BA_ORI_ENTRY    *pBAEntry;
 	bool         Cancelled;
 
@@ -989,7 +989,7 @@ void BARecSessionTearDown(
 						 u8           TID,
 						 bool         bPassive)
 {
-	ULONG           Idx = 0;
+	unsigned long           Idx = 0;
 	BA_REC_ENTRY    *pBAEntry;
 
 	if (Wcid >= MAX_LEN_OF_MAC_TABLE)
@@ -1014,7 +1014,7 @@ void BARecSessionTearDown(
 	{
 		MLME_DELBA_REQ_STRUCT   DelbaReq;
 		bool 				Cancelled;
-		/*ULONG   offset; */
+		/*unsigned long   offset; */
 		/*u32  VALUE;*/
 
 		RTMPCancelTimer(&pBAEntry->RECBATimer, &Cancelled);
@@ -1186,7 +1186,7 @@ void BARecSessionIdleTimeout(
 
 	BA_REC_ENTRY    *pBAEntry = (BA_REC_ENTRY *)FunctionContext;
 	struct rtmp_adapter *  pAd;
-	ULONG           Now32;
+	unsigned long           Now32;
 
 	if (pBAEntry == NULL)
 		return;
@@ -1212,14 +1212,14 @@ void PeerAddBAReqAction(
 
 {
 	/*	7.4.4.1*/
-	/*ULONG	Idx;*/
+	/*unsigned long	Idx;*/
 	u8   Status = 1;
 	u8   pAddr[6];
 	FRAME_ADDBA_RSP ADDframe;
 	u8 *        pOutBuffer = NULL;
 	PFRAME_ADDBA_REQ  pAddreqFrame = NULL;
 	/*u8 	BufSize;*/
-	ULONG       FrameLen;
+	unsigned long       FrameLen;
 	unsigned long      *ptemp;
 	PMAC_TABLE_ENTRY	pMacEntry;
 
@@ -1394,8 +1394,8 @@ void PeerDelBAAction(
 
 bool CntlEnqueueForRecv(
 						  struct rtmp_adapter *	pAd,
-						  ULONG				Wcid,
-						  ULONG				MsgLen,
+						  unsigned long				Wcid,
+						  unsigned long				MsgLen,
 						  PFRAME_BA_REQ		pMsg)
 {
 	PFRAME_BA_REQ   pFrame = pMsg;
@@ -1403,7 +1403,7 @@ bool CntlEnqueueForRecv(
 	/*PRTMP_REORDERBUF	pDmaBuf;*/
 	PBA_REC_ENTRY pBAEntry;
 	/*bool 	Result;*/
-	ULONG   Idx;
+	unsigned long   Idx;
 	/*u8 NumRxPkt;*/
 	u8 TID;/*, i;*/
 
@@ -1465,7 +1465,7 @@ void SendPSMPAction(
 {
 	u8 *pOutBuffer = NULL;
 	FRAME_PSMP_ACTION Frame;
-	ULONG FrameLen;
+	unsigned long FrameLen;
 
 	pOutBuffer = kmalloc(MGMT_DMA_BUFFER_SIZE, GFP_ATOMIC);	 /*Get an unused nonpaged memory*/
 	if (!pOutBuffer)
@@ -1678,7 +1678,7 @@ void Indicate_AMPDU_Packet(
 	USHORT Idx;
 	PBA_REC_ENTRY pBAEntry = NULL;
 	uint16_t Sequence = pRxBlk->pHeader->Sequence;
-	ULONG Now32;
+	unsigned long Now32;
 	u8 Wcid = pRxBlk->pRxWI->RxWIWirelessCliID;
 	u8 TID = pRxBlk->pRxWI->RxWITID;
 
@@ -1815,7 +1815,7 @@ void Indicate_AMPDU_Packet(
 void BaReOrderingBufferMaintain(
     struct rtmp_adapter *pAd)
 {
-    ULONG Now32;
+    unsigned long Now32;
     u8 Wcid;
     USHORT Idx;
     u8 TID;

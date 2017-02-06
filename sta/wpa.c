@@ -52,7 +52,7 @@ void RTMPReportMicError(
 	struct rtmp_adapter *pAd,
 	PCIPHER_KEY 	pWpaKey)
 {
-	ULONG	Now;
+	unsigned long	Now;
     u8   unicastKey = (pWpaKey->Type == PAIRWISE_KEY ? 1:0);
 
 	/* Record Last MIC error time and count */
@@ -138,7 +138,7 @@ void WpaMicFailureReportFrame(
 {
 	u8 *             pOutBuffer = NULL;
 	u8               Header802_3[14];
-	ULONG               FrameLen = 0;
+	unsigned long               FrameLen = 0;
 	u8 			*mpool;
 	PEAPOL_PACKET       pPacket;
 	u8               Mic[16];

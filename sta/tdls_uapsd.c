@@ -40,7 +40,7 @@ static void TDLS_UAPSD_PeerTrafficRspAction(
     MLME_QUEUE_ELEM				*pElem);
 
 /* build the traffic indication frame */
-static ULONG TDLS_UAPSD_TrafficIndBuild(
+static unsigned long TDLS_UAPSD_TrafficIndBuild(
 	struct rtmp_adapter *			pAd,
 	u8 					*pPeerMac,
 	u8 					*pFrameBuf,
@@ -754,7 +754,7 @@ Return Value:
 Note:
 ========================================================================
 */
-static ULONG TDLS_UAPSD_TrafficIndBuild(
+static unsigned long TDLS_UAPSD_TrafficIndBuild(
 	struct rtmp_adapter *			pAd,
 	u8 					*pPeerMac,
 	u8 					*pFrameBuf,
@@ -762,7 +762,7 @@ static ULONG TDLS_UAPSD_TrafficIndBuild(
 {
 	RT_802_11_TDLS *pTDLS = NULL;
 	u8 TDLS_ETHERTYPE[] = {0x89, 0x0d};
-	ULONG	FrameLen = 0;
+	unsigned long	FrameLen = 0;
 	int32_t	LinkId;
 	bool TimerCancelled;
 
@@ -848,7 +848,7 @@ static void TDLS_UAPSD_TrafficIndPayloadBuild(
 	PRT_802_11_TDLS				pTDLS)
 {
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
-	ULONG TempLen;
+	unsigned long TempLen;
 	u8 Token;			// Dialog token
 
 
@@ -914,7 +914,7 @@ static int TDLS_UAPSD_TrafficIndSend(
 	u8 					*pPeerMac)
 {
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	u8 Header802_3[14];
 	int	NStatus = NDIS_STATUS_FAILURE;
 
@@ -977,8 +977,8 @@ static int TDLS_UAPSD_TrafficRspSend(
 	u8 TDLS_ETHERTYPE[] = {0x89, 0x0d};
 	u8 Header802_3[14];
 	u8 *pOutBuffer = NULL;
-	ULONG	FrameLen = 0;
-	ULONG	TempLen;
+	unsigned long	FrameLen = 0;
+	unsigned long	TempLen;
 	int32_t	LinkId;
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
 	int	NStatus = NDIS_STATUS_FAILURE;
@@ -1114,7 +1114,7 @@ static void TDLS_UAPSD_PeerTrafficIndAction(
 	u8 Token;
 	u8 PeerAddr[6];
 	u8 PeerAddr1[6];
-	ULONG OffsetPuBuff;
+	unsigned long OffsetPuBuff;
 	INT LinkId = 0xff;
 	PRT_802_11_TDLS	pTDLS = NULL;
 	PFRAME_802_11 pFrame = (PFRAME_802_11)pElem->Msg;
@@ -1435,8 +1435,8 @@ static void TDLS_UAPSD_CmdSimSetupReqSend(
 	u8 TDLS_ETHERTYPE[] = {0x89, 0x0d};
 	u8 Header802_3[14];
 	u8 *pOutBuffer = NULL;
-	ULONG	FrameLen = 0;
-	ULONG	TempLen;
+	unsigned long	FrameLen = 0;
+	unsigned long	TempLen;
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
 	int	NStatus = NDIS_STATUS_SUCCESS;
 	u8 PeerMac[6];
@@ -1615,12 +1615,12 @@ static void TDLS_UAPSD_CmdSimTrafficIndRcv(
 	u8 PeerMac[6];
 	MLME_QUEUE_ELEM *pElem = NULL;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	int32_t LinkId;
 	RT_802_11_TDLS *pTDLS = NULL;
 	int	NStatus = NDIS_STATUS_SUCCESS;
 	u8 RemoteFrameType = PROTO_NAME_TDLS;
-	ULONG TempLen;
+	unsigned long TempLen;
 	u8 Token;			// Dialog token
 
 

@@ -33,7 +33,7 @@
 struct rtmp_queue_elem {
 	UINT command;
 	void *buffer;
-	ULONG bufferlength;
+	unsigned long bufferlength;
 	bool SetOperation;
 	struct rtmp_queue_elem *next;
 };
@@ -337,7 +337,7 @@ typedef struct __CMD_RTPRIV_IOCTL_80211_BEACON {
 	u32 assocresp_ies_len;
 	u8 *probe_resp;
 	u32 probe_resp_len;
-	ULONG ssid_len;
+	unsigned long ssid_len;
 	u8 hidden_ssid;
 	struct cfg80211_crypto_settings crypto;
 	bool privacy;
@@ -377,7 +377,7 @@ typedef struct __CMD_RTPRIV_IOCTL_80211_IBSS {
 typedef struct __CMD_RTPRIV_IOCTL_80211_STA {
 
 	u8 MAC[6];
-	ULONG DataRate;
+	unsigned long DataRate;
 
 #define RT_CMD_80211_TXRATE_LEGACY		0x01
 #define RT_CMD_80211_TXRATE_BW_40		0x02
@@ -623,7 +623,7 @@ typedef struct __RT_CMD_PCIE_INIT {
 
 typedef struct __RT_CMD_AP_IOCTL_CONFIG {
 	void *net_dev;
-	ULONG priv_flags;
+	unsigned long priv_flags;
 	char *pCmdData;
 	int32_t CmdId_RTPRIV_IOCTL_SET;
 	char *name;
@@ -633,7 +633,7 @@ typedef struct __RT_CMD_AP_IOCTL_CONFIG {
 } RT_CMD_AP_IOCTL_CONFIG;
 
 typedef struct __RT_CMD_AP_IOCTL_SSID {
-	ULONG priv_flags;
+	unsigned long priv_flags;
 	INT apidx;
 
 	char *pSsidStr;
@@ -641,7 +641,7 @@ typedef struct __RT_CMD_AP_IOCTL_SSID {
 } RT_CMD_AP_IOCTL_SSID;
 
 typedef struct __RT_CMD_IOCTL_RATE {
-	ULONG priv_flags;
+	unsigned long priv_flags;
 	u32 BitRate;
 } RT_CMD_IOCTL_RATE;
 
@@ -707,7 +707,7 @@ typedef struct __RT_CMD_STA_IOCTL_BSS_TABLE {
 } RT_CMD_STA_IOCTL_BSS_TABLE;
 
 typedef struct __RT_CMD_STA_IOCTL_SCAN_TABLE {
-	ULONG priv_flags;
+	unsigned long priv_flags;
 	u32 BssNr;
 	RT_CMD_STA_IOCTL_BSS_TABLE *pBssTable;	/* must be freed by caller */
 	u8 MainSharedKey[4][16];

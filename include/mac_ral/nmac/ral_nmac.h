@@ -617,8 +617,8 @@ typedef struct _WLAN_BT_COEX_SETTING
 	bool 				coexSettingRunning;
 	bool 				RateSelectionForceToUseRSSI;
 	u8 				TxQualityFlag;
-	ULONG					alc;
-	ULONG					slna;
+	unsigned long					alc;
+	unsigned long					slna;
 }WLAN_BT_COEX_SETTING, *PWLAN_BT_COEX_SETTING;
 
 

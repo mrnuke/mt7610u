@@ -1771,7 +1771,7 @@ void BuildBeaconChList(
 	unsigned long *pBufLen)
 {
 	INT i;
-	ULONG TmpLen;
+	unsigned long TmpLen;
 	PCH_REGION pChRegion;
 	PCH_DESP pChDesp;
 	u8 ChType;
@@ -2024,7 +2024,7 @@ void RTMP_MapChannelID2KHZ(
 
 /* for OS_ABL */
 void RTMP_MapKHZ2ChannelID(
-	ULONG Freq,
+	unsigned long Freq,
 	INT *pCh)
 {
 	int chIdx;

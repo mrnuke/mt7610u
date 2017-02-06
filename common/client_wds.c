@@ -33,7 +33,7 @@ void CliWds_ProxyTabInit(
 	struct rtmp_adapter *pAd)
 {
 	INT idx;
-	ULONG i;
+	unsigned long i;
 
 	spin_lock_init(pAd, &pAd->ApCfg.CliWdsTabLock);
 
@@ -45,7 +45,7 @@ void CliWds_ProxyTabInit(
 		memset(pAd->ApCfg.pCliWdsEntryPool, 0, sizeof(CLIWDS_PROXY_ENTRY) * CLIWDS_POOL_SIZE);
 		initList(&pAd->ApCfg.CliWdsEntryFreeList);
 		for (i = 0; i < CLIWDS_POOL_SIZE; i++)
-			insertTailList(&pAd->ApCfg.CliWdsEntryFreeList, (PLIST_ENTRY)(pAd->ApCfg.pCliWdsEntryPool + (ULONG)i));
+			insertTailList(&pAd->ApCfg.CliWdsEntryFreeList, (PLIST_ENTRY)(pAd->ApCfg.pCliWdsEntryPool + (unsigned long)i));
 	}
 	else
 	{
@@ -128,7 +128,7 @@ u8 *CliWds_ProxyLookup(
 	{
 		if (MAC_ADDR_EQUAL(pMac, pCliWdsEntry->Addr))
 		{
-			ULONG Now;
+			unsigned long Now;
 			NdisGetSystemUpTime(&Now);
 
 			pCliWdsEntry->LastRefTime = Now;
@@ -157,7 +157,7 @@ void CliWds_ProxyTabUpdate(
 	pCliWdsEntry = CliWdsEntyAlloc(pAd);
 	if (pCliWdsEntry)
 	{
-		ULONG Now;
+		unsigned long Now;
 		NdisGetSystemUpTime(&Now);
 
 		pCliWdsEntry->Aid = Aid;
@@ -173,9 +173,9 @@ void CliWds_ProxyTabUpdate(
 void CliWds_ProxyTabMaintain(
 	struct rtmp_adapter *pAd)
 {
-	ULONG idx;
+	unsigned long idx;
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;
-	ULONG Now;
+	unsigned long Now;
 
 	NdisGetSystemUpTime(&Now);
 	for (idx = 0; idx < CLIWDS_HASH_TAB_SIZE; idx++)

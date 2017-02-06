@@ -42,12 +42,12 @@
 extern INT RtmpIoctl_rt_ioctl_siwauth(
 	struct rtmp_adapter                   *pAd,
 	void                            *pData,
-	ULONG                            Data);
+	unsigned long                            Data);
 
 extern INT RtmpIoctl_rt_ioctl_siwauth(
 	struct rtmp_adapter                   *pAd,
 	void                            *pData,
-	ULONG                            Data);
+	unsigned long                            Data);
 
 INT CFG80211DRV_IoctlHandle(
 	void 				*pAdSrc,
@@ -55,7 +55,7 @@ INT CFG80211DRV_IoctlHandle(
 	INT						cmd,
 	USHORT					subcmd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdSrc;
 
@@ -430,7 +430,7 @@ bool CFG80211DRV_StaGet(
 #ifdef CONFIG_STA_SUPPORT
 {
 	HTTRANSMIT_SETTING PhyInfo;
-	ULONG DataRate = 0;
+	unsigned long DataRate = 0;
 	u32 RSSI;
 
 
@@ -934,7 +934,7 @@ Note:
 void CFG80211_RegHint(
 	void 					*pAdCB,
 	u8 				*pCountryIe,
-	ULONG					CountryIeLen)
+	unsigned long					CountryIeLen)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
 
@@ -963,7 +963,7 @@ Note:
 void CFG80211_RegHint11D(
 	void 					*pAdCB,
 	u8 				*pCountryIe,
-	ULONG					CountryIeLen)
+	unsigned long					CountryIeLen)
 {
 	/* no regulatory_hint_11d() in 2.6.32 */
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
@@ -1003,7 +1003,7 @@ void CFG80211_RegRuleApply(
 	u32 IdBand, IdChan, IdPwr;
 	u32 ChanNum, ChanId, Power, RecId, DfsType;
 	bool FlgIsRadar;
-	ULONG IrqFlags;
+	unsigned long IrqFlags;
 #ifdef DFS_SUPPORT
 	RADAR_DETECT_STRUCT	*pRadarDetect;
 #endif /* DFS_SUPPORT */

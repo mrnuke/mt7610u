@@ -74,7 +74,7 @@ void PeerAuthSimpleRspGenAndSend(
 	USHORT Status)
 {
 	HEADER_802_11 AuthHdr;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	u8 *pOutBuffer = NULL;
 
 	if (Reason != MLME_SUCCESS) {

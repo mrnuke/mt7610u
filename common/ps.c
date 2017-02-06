@@ -50,7 +50,7 @@ int RtmpInsertPsQueue(
 	MAC_TABLE_ENTRY *pMacEntry,
 	u8 QueIdx)
 {
-	ULONG IrqFlags;
+	unsigned long IrqFlags;
 #ifdef UAPSD_SUPPORT
 	/* put the U-APSD packet to its U-APSD queue by AC ID */
 	u32 ac_id = QueIdx - QID_AC_BE; /* should be >= 0 */
@@ -97,7 +97,7 @@ void RtmpCleanupPsQueue(
 	PQUEUE_ENTRY pEntry;
 	struct sk_buff * pPacket;
 
-	DBGPRINT(RT_DEBUG_TRACE, ("RtmpCleanupPsQueue (0x%08lx)...\n", (ULONG)pQueue));
+	DBGPRINT(RT_DEBUG_TRACE, ("RtmpCleanupPsQueue (0x%08lx)...\n", (unsigned long)pQueue));
 
 	while (pQueue->Head)
 	{
@@ -109,7 +109,7 @@ void RtmpCleanupPsQueue(
 		pPacket = QUEUE_ENTRY_TO_PACKET(pEntry);
 		RTMPFreeNdisPacket(pAd, pPacket);
 
-		DBGPRINT(RT_DEBUG_TRACE, ("RtmpCleanupPsQueue pkt = %lx...\n", (ULONG)pPacket));
+		DBGPRINT(RT_DEBUG_TRACE, ("RtmpCleanupPsQueue pkt = %lx...\n", (unsigned long)pPacket));
 	}
 }
 
@@ -291,7 +291,7 @@ void RtmpHandleRxPsPoll(
 bool RtmpPsIndicate(
 	struct rtmp_adapter *pAd,
 	u8 *pAddr,
-	ULONG Wcid,
+	unsigned long Wcid,
 	u8 Psm)
 {
 	MAC_TABLE_ENTRY *pEntry;

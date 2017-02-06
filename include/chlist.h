@@ -109,7 +109,7 @@ void RTMP_MapChannelID2KHZ(
 	u32 *pFreq);
 
 void RTMP_MapKHZ2ChannelID(
-	ULONG Freq,
+	unsigned long Freq,
 	INT *pCh);
 
 u8 GetChannel_5GHZ(

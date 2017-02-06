@@ -168,7 +168,7 @@ void MlmeForceJoinReqAction(
 {
 	bool        TimerCancelled;
 	HEADER_802_11 Hdr80211;
-	ULONG         FrameLen = 0;
+	unsigned long         FrameLen = 0;
 	u8 *       pOutBuffer = NULL;
 	u8 *       pSupRate = NULL;
 	u8         SupRateLen;
@@ -246,7 +246,7 @@ void MlmeForceJoinReqAction(
 
 		if (ExtRateLen)
 		{
-			ULONG Tmp;
+			unsigned long Tmp;
 			MakeOutgoingFrame(pOutBuffer + FrameLen,            &Tmp,
 							  1,                                &ExtRateIe,
 							  1,                                &ExtRateLen,
@@ -262,7 +262,7 @@ void MlmeForceJoinReqAction(
 			(pAd->StaCfg.WpaSupplicantUP != WPA_SUPPLICANT_DISABLE) &&
 			(pAd->StaCfg.WpsProbeReqIeLen != 0))
 	{
-			ULONG 		WpsTmpLen = 0;
+			unsigned long 		WpsTmpLen = 0;
 
 			MakeOutgoingFrame(pOutBuffer + FrameLen,              &WpsTmpLen,
 							pAd->StaCfg.WpsProbeReqIeLen,	pAd->StaCfg.pWpsProbeReqIe,
@@ -290,7 +290,7 @@ void MlmeForceScanReqAction(
 {
 	u8          Ssid[MAX_LEN_OF_SSID], SsidLen, ScanType, BssType;
 	bool        TimerCancelled;
-	ULONG		   Now;
+	unsigned long		   Now;
 	USHORT         Status;
 
 #ifdef RTMP_MAC_USB
@@ -412,7 +412,7 @@ void MlmeScanReqAction(
 {
 	u8          Ssid[MAX_LEN_OF_SSID], SsidLen, ScanType, BssType;
 	bool        TimerCancelled;
-	ULONG		   Now;
+	unsigned long		   Now;
 	USHORT         Status;
 
 #ifdef RTMP_MAC_USB
@@ -532,7 +532,7 @@ void MlmeJoinReqAction(
 	BSS_ENTRY    *pBss;
 	bool       TimerCancelled;
 	HEADER_802_11 Hdr80211;
-	ULONG         FrameLen = 0;
+	unsigned long         FrameLen = 0;
 	u8 *       pOutBuffer = NULL;
 	u8 *       pSupRate = NULL;
 	u8         SupRateLen;
@@ -654,7 +654,7 @@ void MlmeJoinReqAction(
 
 			if (ExtRateLen)
 			{
-				ULONG Tmp;
+				unsigned long Tmp;
 				MakeOutgoingFrame(pOutBuffer + FrameLen,            &Tmp,
 								  1,                                &ExtRateIe,
 								  1,                                &ExtRateLen,
@@ -670,7 +670,7 @@ void MlmeJoinReqAction(
 				(pAd->StaCfg.WpaSupplicantUP != WPA_SUPPLICANT_DISABLE) &&
 				(pAd->StaCfg.WpsProbeReqIeLen != 0))
 			{
-				ULONG 		WpsTmpLen = 0;
+				unsigned long 		WpsTmpLen = 0;
 
 				MakeOutgoingFrame(pOutBuffer + FrameLen,              &WpsTmpLen,
 								pAd->StaCfg.WpsProbeReqIeLen,	pAd->StaCfg.pWpsProbeReqIe,
@@ -828,7 +828,7 @@ void rtmp_dbg_sanity_diff(struct rtmp_adapter*pAd, MLME_QUEUE_ELEM *Elem)
 	u8 SupRateLen, ExtRateLen;
 	QBSS_LOAD_PARM QbssLoad;
 	QOS_CAPABILITY_PARM QosCapability = {0};
-	ULONG RalinkIe;
+	unsigned long RalinkIe;
 	u8 		AddHtInfoLen;
 	EXT_CAP_INFO_ELEMENT	ExtCapInfo;
 	HT_CAPABILITY_IE		*pHtCapability = NULL;
@@ -1166,7 +1166,7 @@ void PeerBeaconAtScanAction(
 						Elem->Channel,
 						ie_list, &LenVIE, pVIE))
 	{
-		ULONG Idx = 0;
+		unsigned long Idx = 0;
 		CHAR Rssi = 0;
 
 		Idx = BssTableSearch(&pAd->ScanTab, &ie_list->Bssid[0], ie_list->Channel);
@@ -1283,7 +1283,7 @@ void PeerBeaconAtJoinAction(
 	USHORT Status;
 	u8 *VarIE = NULL;
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
-	ULONG Idx = 0;
+	unsigned long Idx = 0;
 	CHAR Rssi = 0;
 
 #ifdef DOT11_N_SUPPORT
@@ -1676,7 +1676,7 @@ void PeerBeacon(
 								pVIE))
 	{
 		bool is_my_bssid, is_my_ssid;
-		ULONG Bssidx, Now;
+		unsigned long Bssidx, Now;
 		BSS_ENTRY *pBss;
 		CHAR RealRssi = RTMPMaxRssi(pAd, ConvertToRssi(pAd, Elem->Rssi0, RSSI_0),
 									ConvertToRssi(pAd, Elem->Rssi1, RSSI_1),
@@ -2324,7 +2324,7 @@ void PeerProbeReqAction(
 #endif /* DOT11_N_SUPPORT */
 	HEADER_802_11 ProbeRspHdr;
 	u8 *       pOutBuffer = NULL;
-	ULONG         FrameLen = 0;
+	unsigned long         FrameLen = 0;
 	LARGE_INTEGER FakeTimestamp;
 	u8         DsLen = 1, IbssLen = 2;
 	u8         LocalErpIe[3] = {IE_ERP, 1, 0};
@@ -2373,7 +2373,7 @@ void PeerProbeReqAction(
 
 			if (pAd->StaActive.ExtRateLen)
 			{
-				ULONG tmp;
+				unsigned long tmp;
 				MakeOutgoingFrame(pOutBuffer + FrameLen,        &tmp,
 								  3,                            LocalErpIe,
 								  1,                            &ExtRateIe,
@@ -2387,7 +2387,7 @@ void PeerProbeReqAction(
         	if ((pAd->StaCfg.AuthMode == Ndis802_11AuthModeWPANone)
                 )
         	{
-        		ULONG   tmp;
+        		unsigned long   tmp;
        	        u8   RSNIe = IE_WPA;
 
 
@@ -2402,7 +2402,7 @@ void PeerProbeReqAction(
 #ifdef DOT11_N_SUPPORT
 			if (WMODE_CAP_N(pAd->CommonCfg.PhyMode))
 			{
-				ULONG TmpLen;
+				unsigned long TmpLen;
 				USHORT  epigram_ie_len;
 				u8 BROADCOM[4] = {0x0, 0x90, 0x4c, 0x33};
 				HtLen = sizeof(pAd->CommonCfg.HtCapability);
@@ -2598,7 +2598,7 @@ void EnqueueProbeRequest(
 	struct rtmp_adapter *pAd)
 {
 	u8 *         pOutBuffer;
-	ULONG           FrameLen = 0;
+	unsigned long           FrameLen = 0;
 	HEADER_802_11   Hdr80211;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("force out a ProbeRequest ...\n"));

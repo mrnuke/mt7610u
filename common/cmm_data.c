@@ -250,7 +250,7 @@ int MiniportMMRequest(
 {
 	struct sk_buff * pPacket;
 	int Status = NDIS_STATUS_SUCCESS;
-	ULONG FreeNum;
+	unsigned long FreeNum;
 	u8 TXWISize = sizeof(struct txwi_nmac);
 	u8 rtmpHwHdr[40];
 	bool bUseDataQ = false, FlgDataQForce = false, FlgIsLocked = false;
@@ -974,7 +974,7 @@ void RTMPDeQueuePacket(
 	int Status = NDIS_STATUS_SUCCESS;
 	u8 Count=0;
 	PQUEUE_HEADER   pQueue;
-	ULONG FreeNumber[NUM_OF_TX_RING];
+	unsigned long FreeNumber[NUM_OF_TX_RING];
 	u8 QueIdx, sQIdx, eQIdx;
 	unsigned long	IrqFlags = 0;
 	bool hasTxDesc = false;
@@ -1182,9 +1182,9 @@ void RTMPDeQueuePacket(
 USHORT	RTMPCalcDuration(
 	struct rtmp_adapter *pAd,
 	u8 		Rate,
-	ULONG			Size)
+	unsigned long			Size)
 {
-	ULONG	Duration = 0;
+	unsigned long	Duration = 0;
 
 	if (Rate < RATE_FIRST_OFDM_RATE) /* CCK*/
 	{
@@ -1304,7 +1304,7 @@ UINT deaggregate_AMSDU_announce(
 	struct rtmp_adapter *pAd,
 	struct sk_buff *		pPacket,
 	u8 *		pData,
-	ULONG			DataSize,
+	unsigned long			DataSize,
 	u8 		OpMode)
 {
 	USHORT 			PayloadSize;
@@ -1457,7 +1457,7 @@ void AssocParmFill(
 	MLME_ASSOC_REQ_STRUCT *AssocReq,
 	u8 *                    pAddr,
 	USHORT                     CapabilityInfo,
-	ULONG                      Timeout,
+	unsigned long                      Timeout,
 	USHORT                     ListenIntv)
 {
 	memcpy(AssocReq->Addr, pAddr, ETH_ALEN);
@@ -1805,7 +1805,7 @@ void Indicate_Legacy_Packet(
 	if (pAd->CommonCfg.bDisableReordering == 0)
 	{
 		PBA_REC_ENTRY		pBAEntry;
-		ULONG				Now32;
+		unsigned long				Now32;
 		u8 			Wcid = pRxBlk->pRxWI->RxWIWirelessCliID;
 		u8 			TID = pRxBlk->pRxWI->RxWITID;
 		USHORT				Idx;
@@ -2220,7 +2220,7 @@ void RtmpEnqueueNullFrame(
 {
 	PHEADER_802_11 pNullFr;
 	u8 *pFrame;
-	ULONG		   Length;
+	unsigned long		   Length;
 
 	/* since TxRate may change, we have to change Duration each time */
 	pFrame = kmalloc(MGMT_DMA_BUFFER_SIZE, GFP_ATOMIC);
@@ -2287,10 +2287,10 @@ typedef struct ip_v4_hdr {
 } IP_V4_HDR;
 
 
-INT ip_assembly_timeout(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, ULONG Now, u8 QueIdx)
+INT ip_assembly_timeout(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, unsigned long Now, u8 QueIdx)
 {
 	QUEUE_HEADER *queue;
-	ULONG *ip_pkt_jiffies;
+	unsigned long *ip_pkt_jiffies;
 	INT i;
 	struct ip_frag_q *fragQ;
 
@@ -2346,10 +2346,10 @@ INT ip_assembly(
 {
 	QUEUE_HEADER *pAC_Queue1, *pAC_Queue2;
 	int32_t *pAC_ID1, *pAC_ID2, *pAC_ID1_FragSize, *pAC_ID2_FragSize;
-	ULONG *pAC_Jiffies1, *pAC_Jiffies2;
+	unsigned long *pAC_Jiffies1, *pAC_Jiffies2;
 	IP_V4_HDR *pIpv4Hdr, Ipv4Hdr;
 	IP_FLAGS_FRAG_OFFSET *pFlags_frag_offset, Flags_frag_offset;
-	ULONG Now;
+	unsigned long Now;
 	u32 i;
 	QUEUE_HEADER *pTempqueue;
 	PQUEUE_ENTRY pBackupPktEntry;

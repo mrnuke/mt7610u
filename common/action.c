@@ -98,9 +98,9 @@ void MlmeADDBAAction(
 	MLME_ADDBA_REQ_STRUCT *pInfo;
 	u8           Addr[6];
 	u8 *        pOutBuffer = NULL;
-	ULONG		Idx;
+	unsigned long		Idx;
 	FRAME_ADDBA_REQ  Frame;
-	ULONG		FrameLen;
+	unsigned long		FrameLen;
 	BA_ORI_ENTRY			*pBAEntry = NULL;
 
 	pInfo = (MLME_ADDBA_REQ_STRUCT *)Elem->Msg;
@@ -196,9 +196,9 @@ void MlmeDELBAAction(
 	MLME_DELBA_REQ_STRUCT *pInfo;
 	u8 *        pOutBuffer = NULL;
 	u8 *	   pOutBuffer2 = NULL;
-	ULONG		Idx;
+	unsigned long		Idx;
 	FRAME_DELBA_REQ  Frame;
-	ULONG		FrameLen;
+	unsigned long		FrameLen;
 	FRAME_BAR	FrameBar;
 
 	pInfo = (MLME_DELBA_REQ_STRUCT *)Elem->Msg;
@@ -396,12 +396,12 @@ void StaPublicAction(
 Description : Build Intolerant Channel Rerpot from Trigger event table.
 return : how many bytes copied.
 */
-ULONG BuildIntolerantChannelRep(
+unsigned long BuildIntolerantChannelRep(
 	struct rtmp_adapter *pAd,
 	u8 * pDest)
 {
-	ULONG			FrameLen = 0;
-	ULONG			ReadOffset = 0;
+	unsigned long			FrameLen = 0;
+	unsigned long			ReadOffset = 0;
 	u8 		i, j, k, idx = 0;
 	/*u8 		LastRegClass = 0xff;*/
 	u8 		ChannelList[MAX_TRIGGER_EVENT];
@@ -503,7 +503,7 @@ void Send2040CoexistAction(
 {
 	u8 *		pOutBuffer = NULL;
 	FRAME_ACTION_HDR	Frame;
-	ULONG			FrameLen;
+	unsigned long			FrameLen;
 	u32			IntolerantChaRepLen;
 	u8 		HtLen = 1;
 
@@ -795,7 +795,7 @@ static void respond_ht_information_exchange_action(
 	MLME_QUEUE_ELEM *Elem)
 {
 	u8 *		pOutBuffer = NULL;
-	ULONG			FrameLen;
+	unsigned long			FrameLen;
 	FRAME_HT_INFO	HTINFOframe, *pFrame;
 	u8   		*pAddr;
 
@@ -937,7 +937,7 @@ void ORIBATimerTimeout(
 	MAC_TABLE_ENTRY	*pEntry;
 	INT			i, total;
 /*	FRAME_BAR			FrameBar;*/
-/*	ULONG			FrameLen;*/
+/*	unsigned long			FrameLen;*/
 /*	int 	NStatus;*/
 /*	u8 *		pOutBuffer = NULL;*/
 /*	USHORT			Sequence;*/
@@ -964,7 +964,7 @@ void SendRefreshBAR(
 	MAC_TABLE_ENTRY	*pEntry)
 {
 	FRAME_BAR		FrameBar;
-	ULONG			FrameLen;
+	unsigned long			FrameLen;
 	u8 *		pOutBuffer = NULL;
 	USHORT			Sequence;
 	u8 		i, TID;
@@ -1081,7 +1081,7 @@ void InsertActField(
 	u8 Category,
 	u8 ActCode)
 {
-	ULONG TempLen;
+	unsigned long TempLen;
 
 	MakeOutgoingFrame(	pFrameBuf,		&TempLen,
 						1,				&Category,

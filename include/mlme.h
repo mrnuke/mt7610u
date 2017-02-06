@@ -327,47 +327,47 @@ typedef struct __attribute__ ((packed)) _EXT_HT_CAP_INFO{
 /* HT Beamforming field in HT Cap IE */
 typedef struct __attribute__ ((packed)) _HT_BF_CAP{
 #ifdef RT_BIG_ENDIAN
-	ULONG	rsv:3;
-	ULONG	ChanEstimation:2;
-	ULONG	CSIRowBFSup:2;
-	ULONG	ComSteerBFAntSup:2;
-	ULONG	NoComSteerBFAntSup:2;
-	ULONG	CSIBFAntSup:2;
-	ULONG	MinGrouping:2;
-	ULONG	ExpComBF:2;
-	ULONG	ExpNoComBF:2;
-	ULONG	ExpCSIFbk:2;
-	ULONG	ExpComSteerCapable:1;
-	ULONG	ExpNoComSteerCapable:1;
-	ULONG	ExpCSICapable:1;
-	ULONG	Calibration:2;
-	ULONG	ImpTxBFCapable:1;
-	ULONG	TxNDPCapable:1;
-	ULONG	RxNDPCapable:1;
-	ULONG	TxSoundCapable:1;
-	ULONG	RxSoundCapable:1;
-	ULONG	TxBFRecCapable:1;
+	unsigned long	rsv:3;
+	unsigned long	ChanEstimation:2;
+	unsigned long	CSIRowBFSup:2;
+	unsigned long	ComSteerBFAntSup:2;
+	unsigned long	NoComSteerBFAntSup:2;
+	unsigned long	CSIBFAntSup:2;
+	unsigned long	MinGrouping:2;
+	unsigned long	ExpComBF:2;
+	unsigned long	ExpNoComBF:2;
+	unsigned long	ExpCSIFbk:2;
+	unsigned long	ExpComSteerCapable:1;
+	unsigned long	ExpNoComSteerCapable:1;
+	unsigned long	ExpCSICapable:1;
+	unsigned long	Calibration:2;
+	unsigned long	ImpTxBFCapable:1;
+	unsigned long	TxNDPCapable:1;
+	unsigned long	RxNDPCapable:1;
+	unsigned long	TxSoundCapable:1;
+	unsigned long	RxSoundCapable:1;
+	unsigned long	TxBFRecCapable:1;
 #else
-	ULONG	TxBFRecCapable:1;
-	ULONG	RxSoundCapable:1;
-	ULONG	TxSoundCapable:1;
-	ULONG	RxNDPCapable:1;
-	ULONG	TxNDPCapable:1;
-	ULONG	ImpTxBFCapable:1;
-	ULONG	Calibration:2;
-	ULONG	ExpCSICapable:1;
-	ULONG	ExpNoComSteerCapable:1;
-	ULONG	ExpComSteerCapable:1;
-	ULONG	ExpCSIFbk:2;
-	ULONG	ExpNoComBF:2;
-	ULONG	ExpComBF:2;
-	ULONG	MinGrouping:2;
-	ULONG	CSIBFAntSup:2;
-	ULONG	NoComSteerBFAntSup:2;
-	ULONG	ComSteerBFAntSup:2;
-	ULONG	CSIRowBFSup:2;
-	ULONG	ChanEstimation:2;
-	ULONG	rsv:3;
+	unsigned long	TxBFRecCapable:1;
+	unsigned long	RxSoundCapable:1;
+	unsigned long	TxSoundCapable:1;
+	unsigned long	RxNDPCapable:1;
+	unsigned long	TxNDPCapable:1;
+	unsigned long	ImpTxBFCapable:1;
+	unsigned long	Calibration:2;
+	unsigned long	ExpCSICapable:1;
+	unsigned long	ExpNoComSteerCapable:1;
+	unsigned long	ExpComSteerCapable:1;
+	unsigned long	ExpCSIFbk:2;
+	unsigned long	ExpNoComBF:2;
+	unsigned long	ExpComBF:2;
+	unsigned long	MinGrouping:2;
+	unsigned long	CSIBFAntSup:2;
+	unsigned long	NoComSteerBFAntSup:2;
+	unsigned long	ComSteerBFAntSup:2;
+	unsigned long	CSIRowBFSup:2;
+	unsigned long	ChanEstimation:2;
+	unsigned long	rsv:3;
 #endif /* RT_BIG_ENDIAN */
 } HT_BF_CAP, *PHT_BF_CAP;
 
@@ -469,7 +469,7 @@ typedef struct  _TRIGGER_EVENTA{
 typedef struct  _TRIGGER_EVENT_TAB{
 	u8 EventANo;
 	TRIGGER_EVENTA	EventA[MAX_TRIGGER_EVENT];
-	ULONG			EventBCountDown;	/* Count down counter for Event B. */
+	unsigned long			EventBCountDown;	/* Count down counter for Event B. */
 } TRIGGER_EVENT_TAB, *PTRIGGER_EVENT_TAB;
 
 
@@ -1146,8 +1146,8 @@ typedef struct {
     CHAR    Ssid[MAX_LEN_OF_SSID];
 
 	u8 SameRxTimeCount;
-	ULONG   LastBeaconRxTimeA; /* OS's timestamp */
-    ULONG   LastBeaconRxTime; /* OS's timestamp */
+	unsigned long   LastBeaconRxTimeA; /* OS's timestamp */
+    unsigned long   LastBeaconRxTime; /* OS's timestamp */
 
 	bool bSES;
 
@@ -1191,7 +1191,7 @@ typedef struct {
 #endif /* CONFIG_STA_SUPPORT */
 
 	u8   MacAddr[ETH_ALEN];
-	ULONG ClientStatusFlags;
+	unsigned long ClientStatusFlags;
 } BSS_ENTRY, *PBSS_ENTRY;
 
 typedef struct {
@@ -1203,9 +1203,9 @@ typedef struct {
 
 typedef struct _MLME_QUEUE_ELEM {
 	u8             Msg[MGMT_DMA_BUFFER_SIZE];	/* move here to fix alignment issue for ARM CPU */
-    ULONG             Machine;
-    ULONG             MsgType;
-    ULONG             MsgLen;
+    unsigned long             Machine;
+    unsigned long             MsgType;
+    unsigned long             MsgLen;
     LARGE_INTEGER     TimeStamp;
     u8             Rssi0;
     u8             Rssi1;
@@ -1215,13 +1215,13 @@ typedef struct _MLME_QUEUE_ELEM {
     u8             Wcid;
     bool           Occupied;
 	u8 		  OpMode;
-	ULONG             Priv;
+	unsigned long             Priv;
 } MLME_QUEUE_ELEM, *PMLME_QUEUE_ELEM;
 
 typedef struct _MLME_QUEUE {
-    ULONG             Num;
-    ULONG             Head;
-    ULONG             Tail;
+    unsigned long             Num;
+    unsigned long             Head;
+    unsigned long             Tail;
     spinlock_t   Lock;
     MLME_QUEUE_ELEM  Entry[MAX_LEN_OF_MLME_QUEUE];
 } MLME_QUEUE, *PMLME_QUEUE;
@@ -1229,10 +1229,10 @@ typedef struct _MLME_QUEUE {
 typedef void (*STATE_MACHINE_FUNC)(void *pAd, MLME_QUEUE_ELEM *Elem);
 
 typedef struct _STATE_MACHINE {
-    ULONG				Base;
-    ULONG				NrState;
-    ULONG				NrMsg;
-    ULONG				CurrState;
+    unsigned long				Base;
+    unsigned long				NrState;
+    unsigned long				NrMsg;
+    unsigned long				CurrState;
     STATE_MACHINE_FUNC	*TransFunc;
 } STATE_MACHINE, *PSTATE_MACHINE;
 
@@ -1287,12 +1287,12 @@ typedef struct _MLME_AUX {
     QBSS_LOAD_PARM      APQbssLoad;         /* QBSS load of the current associated AP */
 
     /* new to keep Ralink specific feature */
-    ULONG               APRalinkIe;
+    unsigned long               APRalinkIe;
 
     BSS_TABLE           SsidBssTab;     /* AP list for the same SSID */
     BSS_TABLE           RoamTab;        /* AP list eligible for roaming */
-    ULONG               BssIdx;
-    ULONG               RoamIdx;
+    unsigned long               BssIdx;
+    unsigned long               RoamIdx;
 
 	bool 			CurrReqIsFromNdis;
 
@@ -1328,7 +1328,7 @@ typedef struct _MLME_ASSOC_REQ_STRUCT{
     u8     Addr[ETH_ALEN];
     USHORT    CapabilityInfo;
     USHORT    ListenIntv;
-    ULONG     Timeout;
+    unsigned long     Timeout;
 } MLME_ASSOC_REQ_STRUCT, *PMLME_ASSOC_REQ_STRUCT, MLME_REASSOC_REQ_STRUCT, *PMLME_REASSOC_REQ_STRUCT;
 
 typedef struct _MLME_DISASSOC_REQ_STRUCT{
@@ -1339,7 +1339,7 @@ typedef struct _MLME_DISASSOC_REQ_STRUCT{
 typedef struct _MLME_AUTH_REQ_STRUCT {
     u8        Addr[ETH_ALEN];
     USHORT       Alg;
-    ULONG        Timeout;
+    unsigned long        Timeout;
 } MLME_AUTH_REQ_STRUCT, *PMLME_AUTH_REQ_STRUCT;
 
 typedef struct _MLME_DEAUTH_REQ_STRUCT {
@@ -1348,7 +1348,7 @@ typedef struct _MLME_DEAUTH_REQ_STRUCT {
 } MLME_DEAUTH_REQ_STRUCT, *PMLME_DEAUTH_REQ_STRUCT;
 
 typedef struct {
-    ULONG      BssIdx;
+    unsigned long      BssIdx;
 } MLME_JOIN_REQ_STRUCT;
 
 typedef struct _MLME_SCAN_REQ_STRUCT {
@@ -1439,7 +1439,7 @@ typedef struct _IE_lists {
 	u8 RSN_IE[MAX_LEN_OF_RSNIE];
 	u8 RSNIE_Len;
 	bool bWmmCapable;
-	ULONG RalinkIe;
+	unsigned long RalinkIe;
 	EXT_CAP_INFO_ELEMENT ExtCapInfo;
 	u8 ht_cap_len;
 	HT_CAPABILITY_IE HTCapability;
@@ -1480,7 +1480,7 @@ typedef struct _bcn_ie_list {
 	EDCA_PARM EdcaParm;
 	QBSS_LOAD_PARM QbssLoad;
 	QOS_CAPABILITY_PARM QosCapability;
-	ULONG RalinkIe;
+	unsigned long RalinkIe;
 	EXT_CAP_INFO_ELEMENT ExtCapInfo;
 	u8 HtCapabilityLen;
 	u8 PreNHtCapabilityLen;

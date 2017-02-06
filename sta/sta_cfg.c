@@ -437,7 +437,7 @@ INT Set_DefaultKeyID_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
-    ULONG                               KeyIdx;
+    unsigned long                               KeyIdx;
 
     KeyIdx = simple_strtol(arg, 0, 10);
     if((KeyIdx >= 1 ) && (KeyIdx <= 4))
@@ -1074,7 +1074,7 @@ INT Set_BeaconLostTime_Proc(
     struct rtmp_adapter *  pAd,
     char *        arg)
 {
-	ULONG ltmp = (ULONG)simple_strtol(arg, 0, 10);
+	unsigned long ltmp = (unsigned long)simple_strtol(arg, 0, 10);
 
 	if ((ltmp != 0) && (ltmp <= 60))
 		pAd->StaCfg.BeaconLostTime = (ltmp * OS_HZ);
@@ -1131,7 +1131,7 @@ void RTMPAddKey(
 	struct rtmp_adapter *    pAd,
 	PNDIS_802_11_KEY    pKey)
 {
-	ULONG				KeyIdx;
+	unsigned long				KeyIdx;
 	MAC_TABLE_ENTRY  	*pEntry;
 
     DBGPRINT(RT_DEBUG_TRACE, ("RTMPAddKey ------>\n"));
@@ -1681,11 +1681,11 @@ INT
 RtmpIoctl_rt_ioctl_siwfreq(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_FREQ *pIoctlFreq = (RT_CMD_STA_IOCTL_FREQ *)pData;
 	int 	chan = -1;
-	ULONG	freq;
+	unsigned long	freq;
 
 	if ( pIoctlFreq->m > 100000000 )
 		freq = pIoctlFreq->m / 100000;
@@ -1738,17 +1738,17 @@ INT
 RtmpIoctl_rt_ioctl_giwfreq(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	u8 ch;
-	ULONG	m = 2412000;
+	unsigned long	m = 2412000;
 
 		ch = pAd->CommonCfg.Channel;
 
 	DBGPRINT(RT_DEBUG_TRACE,("==>rt_ioctl_giwfreq  %d\n", ch));
 
 	MAP_CHANNEL_ID_TO_KHZ(ch, m);
-	*(ULONG *)pData = m;
+	*(unsigned long *)pData = m;
 	return NDIS_STATUS_SUCCESS;
 }
 
@@ -1773,7 +1773,7 @@ INT
 RtmpIoctl_rt_ioctl_siwmode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	switch(Data)
 	{
@@ -1814,16 +1814,16 @@ INT
 RtmpIoctl_rt_ioctl_giwmode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	if (ADHOC_ON(pAd))
-		*(ULONG *)pData = RTMP_CMD_STA_MODE_ADHOC;
+		*(unsigned long *)pData = RTMP_CMD_STA_MODE_ADHOC;
 	else if (INFRA_ON(pAd))
-		*(ULONG *)pData = RTMP_CMD_STA_MODE_INFRA;
+		*(unsigned long *)pData = RTMP_CMD_STA_MODE_INFRA;
 	else if (MONITOR_ON(pAd))
-		*(ULONG *)pData = RTMP_CMD_STA_MODE_MONITOR;
+		*(unsigned long *)pData = RTMP_CMD_STA_MODE_MONITOR;
 	else
-		*(ULONG *)pData = RTMP_CMD_STA_MODE_AUTO;
+		*(unsigned long *)pData = RTMP_CMD_STA_MODE_AUTO;
 	return NDIS_STATUS_SUCCESS;
 }
 
@@ -1848,7 +1848,7 @@ INT
 RtmpIoctl_rt_ioctl_siwap(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	u8 *pBssid = (u8 *)pData;
 
@@ -1904,7 +1904,7 @@ INT
 RtmpIoctl_rt_ioctl_giwap(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	if (INFRA_ON(pAd) || ADHOC_ON(pAd))
 		memmove(pData, pAd->CommonCfg.Bssid, ETH_ALEN);
@@ -1939,7 +1939,7 @@ INT
 RtmpIoctl_rt_ioctl_siwscan(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	/*
 		Can not use SIOCGIWSCAN definition, it is used in wireless.h
@@ -2063,7 +2063,7 @@ INT
 RtmpIoctl_rt_ioctl_giwscan(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SCAN_TABLE *pIoctlScan = (RT_CMD_STA_IOCTL_SCAN_TABLE *)pData;
 	RT_CMD_STA_IOCTL_BSS_TABLE *pBssTable;
@@ -2154,7 +2154,7 @@ INT
 RtmpIoctl_rt_ioctl_siwessid(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SSID *pSsid = (RT_CMD_STA_IOCTL_SSID *)pData;
 
@@ -2216,7 +2216,7 @@ INT
 RtmpIoctl_rt_ioctl_giwessid(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SSID *pSsid = (RT_CMD_STA_IOCTL_SSID *)pData;
 
@@ -2270,7 +2270,7 @@ INT
 RtmpIoctl_rt_ioctl_siwrts(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	pAd->CommonCfg.RtsThreshold = Data;
 	return NDIS_STATUS_SUCCESS;
@@ -2297,7 +2297,7 @@ INT
 RtmpIoctl_rt_ioctl_giwrts(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	*(USHORT *)pData = pAd->CommonCfg.RtsThreshold;
 	return NDIS_STATUS_SUCCESS;
@@ -2324,7 +2324,7 @@ INT
 RtmpIoctl_rt_ioctl_siwfrag(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	pAd->CommonCfg.FragmentThreshold = Data;
 	return NDIS_STATUS_SUCCESS;
@@ -2351,7 +2351,7 @@ INT
 RtmpIoctl_rt_ioctl_giwfrag(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	*(USHORT *)pData = pAd->CommonCfg.FragmentThreshold;
 	return NDIS_STATUS_SUCCESS;
@@ -2381,7 +2381,7 @@ INT
 RtmpIoctl_rt_ioctl_siwencode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SECURITY *pIoctlSec = (RT_CMD_STA_IOCTL_SECURITY *)pData;
 
@@ -2498,7 +2498,7 @@ INT
 RtmpIoctl_rt_ioctl_giwencode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SECURITY *pIoctlSec = (RT_CMD_STA_IOCTL_SECURITY *)pData;
 	int kid;
@@ -2566,13 +2566,13 @@ INT
 RtmpIoctl_rt_ioctl_siwmlme(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data,
+	unsigned long					Data,
 	u32					Subcmd)
 {
 	MLME_QUEUE_ELEM				*pMsgElem = NULL;
 	MLME_DISASSOC_REQ_STRUCT	DisAssocReq;
 	MLME_DEAUTH_REQ_STRUCT      DeAuthReq;
-	ULONG						reason_code = (ULONG)Data;
+	unsigned long						reason_code = (unsigned long)Data;
 
 
 	/* allocate memory */
@@ -2646,7 +2646,7 @@ INT
 RtmpIoctl_rt_ioctl_siwauth(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SECURITY_ADV *pIoctlWpa = (RT_CMD_STA_IOCTL_SECURITY_ADV *)pData;
 
@@ -2815,7 +2815,7 @@ INT
 RtmpIoctl_rt_ioctl_giwauth(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SECURITY_ADV *pIoctlWpa = (RT_CMD_STA_IOCTL_SECURITY_ADV *)pData;
 
@@ -2930,7 +2930,7 @@ INT
 RtmpIoctl_rt_ioctl_siwencodeext(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SECURITY *pIoctlSec = (RT_CMD_STA_IOCTL_SECURITY *)pData;
     int keyIdx;
@@ -3084,7 +3084,7 @@ INT
 RtmpIoctl_rt_ioctl_giwencodeext(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_SECURITY *pIoctlSec = (RT_CMD_STA_IOCTL_SECURITY *)pData;
 	int idx;
@@ -3182,10 +3182,10 @@ INT
 RtmpIoctl_rt_ioctl_siwgenie(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 #ifdef WPA_SUPPLICANT_SUPPORT
-	ULONG length = (ULONG)Data;
+	unsigned long length = (unsigned long)Data;
 
 
 	if (pAd->StaCfg.WpaSupplicantUP != WPA_SUPPLICANT_DISABLE)
@@ -3242,7 +3242,7 @@ INT
 RtmpIoctl_rt_ioctl_giwgenie(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_RSN_IE *IoctlRsnIe = (RT_CMD_STA_IOCTL_RSN_IE *)pData;
 
@@ -3313,7 +3313,7 @@ INT
 RtmpIoctl_rt_ioctl_siwpmksa(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_PMA_SA *pIoctlPmaSa = (RT_CMD_STA_IOCTL_PMA_SA *)pData;
 	INT	CachedIdx = 0, idx = 0;
@@ -3402,7 +3402,7 @@ INT
 RtmpIoctl_rt_ioctl_siwrate(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	RT_CMD_RATE_SET *pCmdRate = (RT_CMD_RATE_SET *)pData;
 	u32 rate = pCmdRate->Rate;
@@ -3474,7 +3474,7 @@ INT
 RtmpIoctl_rt_ioctl_giwrate(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
     int rate_index = 0, rate_count = 0;
 	HTTRANSMIT_SETTING ht_setting;
@@ -3518,7 +3518,7 @@ RtmpIoctl_rt_ioctl_giwrate(
     if (rate_index >= rate_count)
         rate_index = rate_count-1;
 
-	*(ULONG *)pData = ralinkrate[rate_index] * 500000;
+	*(unsigned long *)pData = ralinkrate[rate_index] * 500000;
 
 	return NDIS_STATUS_SUCCESS;
 }
@@ -3544,7 +3544,7 @@ INT
 RtmpIoctl_rt_ioctl_gifhwaddr(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	memcpy(pData, pAd->CurrentAddress, ETH_ALEN);
 	return NDIS_STATUS_SUCCESS;
@@ -3570,7 +3570,7 @@ INT
 RtmpIoctl_rt_ioctl_rssi(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 
         (*(CHAR *)pData) =  pAd->StaCfg.RssiSample.AvgRssi0;
@@ -3598,7 +3598,7 @@ INT
 RtmpIoctl_rt_ioctl_setparam(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 	struct os_cookie *pObj;
 
@@ -3633,7 +3633,7 @@ INT
 RtmpIoctl_rt_private_set_wsc_u32_item(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 
     return NDIS_STATUS_SUCCESS;
@@ -3660,7 +3660,7 @@ INT
 RtmpIoctl_rt_private_set_wsc_string_item(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
-	ULONG					Data)
+	unsigned long					Data)
 {
 
     return NDIS_STATUS_SUCCESS;
@@ -3692,7 +3692,7 @@ INT RTMP_STA_IoctlHandle(
 	INT						Command,
 	USHORT					Subcmd,
 	void 				*pData,
-	ULONG					Data,
+	unsigned long					Data,
 	USHORT                  priv_flags)
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdSrc;

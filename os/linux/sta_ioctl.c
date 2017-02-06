@@ -118,7 +118,7 @@ int rt_ioctl_giwfreq(struct net_device *dev,
 {
 	void *pAd = NULL;
 /*	u8 ch; */
-	ULONG	m = 2412000;
+	unsigned long	m = 2412000;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 
@@ -189,7 +189,7 @@ int rt_ioctl_giwmode(struct net_device *dev,
 		   __u32 *mode, char *extra)
 {
 	void *pAd = NULL;
-	ULONG Mode;
+	unsigned long Mode;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 
@@ -259,7 +259,7 @@ int rt_ioctl_giwrange(struct net_device *dev,
 	struct iw_range *range = (struct iw_range *) extra;
 	u16 val;
 	int i;
-	ULONG Mode, ChannelListNum;
+	unsigned long Mode, ChannelListNum;
 	u8 *pChannel;
 	u32 *pFreq;
 
@@ -788,7 +788,7 @@ int rt_ioctl_giwscan(struct net_device *dev,
 		iwe.cmd = SIOCGIWFREQ;
 		{
 			u8 ch = pIoctlScan->pBssTable[i].Channel;
-			ULONG	m = 0;
+			unsigned long	m = 0;
 /*			MAP_CHANNEL_ID_TO_KHZ(ch, m); */
 			RTMP_STA_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_CHID_2_FREQ, 0,
 								(void *)&m, ch, RT_DEV_PRIV_FLAGS_GET(dev));
@@ -1372,7 +1372,7 @@ int rt_ioctl_siwmlme(struct net_device *dev,
 /*	MLME_QUEUE_ELEM				*pMsgElem = NULL; */
 /*	MLME_DISASSOC_REQ_STRUCT	DisAssocReq; */
 /*	MLME_DEAUTH_REQ_STRUCT      DeAuthReq; */
-	ULONG Subcmd = 0;
+	unsigned long Subcmd = 0;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 
@@ -1842,7 +1842,7 @@ int rt_ioctl_giwrate(struct net_device *dev,
     struct rtmp_adapter *pAd = NULL;
 /*    int rate_index = 0, rate_count = 0; */
 /*    HTTRANSMIT_SETTING ht_setting; */
-	ULONG Rate;
+	unsigned long Rate;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
 

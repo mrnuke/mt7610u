@@ -185,9 +185,9 @@ void MlmeOldRateAdapt(
 	u8 		CurrRateIdx,
 	u8 		UpRateIdx,
 	u8 		DownRateIdx,
-	ULONG			TrainUp,
-	ULONG			TrainDown,
-	ULONG			TxErrorRatio);
+	unsigned long			TrainUp,
+	unsigned long			TrainDown,
+	unsigned long			TxErrorRatio);
 
 void MlmeRestoreLastRate(
 	struct _MAC_TABLE_ENTRY *pEntry);
@@ -241,17 +241,17 @@ bool MlmeRAHybridRule(
 	struct rtmp_adapter *pAd,
 	struct _MAC_TABLE_ENTRY *pEntry,
 	RTMP_RA_GRP_TB *pCurrTxRate,
-	ULONG			NewTxOkCount,
-	ULONG			TxErrorRatio);
+	unsigned long			NewTxOkCount,
+	unsigned long			TxErrorRatio);
 
 void MlmeNewRateAdapt(
 	struct rtmp_adapter *pAd,
 	struct _MAC_TABLE_ENTRY *pEntry,
 	u8 		UpRateIdx,
 	u8 		DownRateIdx,
-	ULONG			TrainUp,
-	ULONG			TrainDown,
-	ULONG			TxErrorRatio);
+	unsigned long			TrainUp,
+	unsigned long			TrainDown,
+	unsigned long			TxErrorRatio);
 
 INT	Set_PerThrdAdj_Proc(
 	struct rtmp_adapter *pAd,
@@ -285,15 +285,15 @@ INT Set_RateTable_Proc(
 #ifdef CONFIG_STA_SUPPORT
 void StaQuickResponeForRateUpExecAdapt(
 	struct rtmp_adapter *pAd,
-	ULONG i,
+	unsigned long i,
 	CHAR Rssi);
 
 void MlmeDynamicTxRateSwitchingAdapt(
 	struct rtmp_adapter *pAd,
-	ULONG i,
-	ULONG TxSuccess,
-	ULONG TxRetransmit,
-	ULONG TxFailCount);
+	unsigned long i,
+	unsigned long TxSuccess,
+	unsigned long TxRetransmit,
+	unsigned long TxFailCount);
 #endif /* CONFIG_STA_SUPPORT */
 #endif /* NEW_RATE_ADAPT_SUPPORT */
 
@@ -321,8 +321,8 @@ void MlmeRALog(
 	struct rtmp_adapter *pAd,
 	struct _MAC_TABLE_ENTRY *pEntry,
 	RA_LOG_TYPE raLogType,
-	ULONG TxErrorRatio,
-	ULONG TxTotalCnt);
+	unsigned long TxErrorRatio,
+	unsigned long TxTotalCnt);
 
 void MlmeSelectTxRateTable(
 	struct rtmp_adapter *pAd,

@@ -157,9 +157,9 @@ void MT76x0DisableTxRx(
 	}
 
 	DBGPRINT(RT_DEBUG_TRACE, ("%s Tx success = %ld\n",
-		__FUNCTION__, (ULONG)pAd->WlanCounters.TransmittedFragmentCount.u.LowPart));
+		__FUNCTION__, (unsigned long)pAd->WlanCounters.TransmittedFragmentCount.u.LowPart));
 	DBGPRINT(RT_DEBUG_TRACE, ("%s Rx success = %ld\n",
-		__FUNCTION__, (ULONG)pAd->WlanCounters.ReceivedFragmentCount.QuadPart));
+		__FUNCTION__, (unsigned long)pAd->WlanCounters.ReceivedFragmentCount.QuadPart));
 
 	StopDmaTx(pAd, Level);
 

@@ -1536,12 +1536,12 @@ void MlmeRALog(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY	pEntry,
 	RA_LOG_TYPE		raLogType,
-	ULONG			TxErrorRatio,
-	ULONG			TxTotalCnt)
+	unsigned long			TxErrorRatio,
+	unsigned long			TxTotalCnt)
 {
 #ifdef TIMESTAMP_RA_LOG
-	ULONG newTime;
-	static ULONG saveRATime;
+	unsigned long newTime;
+	static unsigned long saveRATime;
 	struct timeval tval;
 
 	do_gettimeofday(&tval);
@@ -1555,7 +1555,7 @@ void MlmeRALog(
 	)
 	{
 		bool stbc, csd=false;
-		ULONG tp;
+		unsigned long tp;
 
 		/*  Get STBC and StreamMode state */
 		stbc = (pEntry->HTPhyMode.field.STBC && pEntry->HTPhyMode.field.MCS<8);
@@ -1637,7 +1637,7 @@ void MlmeCheckRDG(
 		CLIENT_STATUS_TEST_FLAG(pEntry, fCLIENT_STATUS_RDG_CAPABLE))
 	{
 		TX_LINK_CFG_STRUC	TxLinkCfg;
-		ULONG				TxOpThres;
+		unsigned long				TxOpThres;
 		u8 			TableStep;
 		RTMP_RA_LEGACY_TB *pTempTxRate;
 

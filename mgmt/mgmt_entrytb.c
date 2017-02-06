@@ -76,7 +76,7 @@ MAC_TABLE_ENTRY *MacTableLookup(
 	struct rtmp_adapter *pAd,
 	u8 *pAddr)
 {
-	ULONG HashIdx;
+	unsigned long HashIdx;
 	MAC_TABLE_ENTRY *pEntry = NULL;
 
 	HashIdx = MAC_ADDR_HASH_INDEX(pAddr);
@@ -107,7 +107,7 @@ MAC_TABLE_ENTRY *MacTableInsertEntry(
 	int i, FirstWcid;
 	MAC_TABLE_ENTRY *pEntry = NULL, *pCurrEntry;
 /*	USHORT	offset;*/
-/*	ULONG	addr;*/
+/*	unsigned long	addr;*/
 	bool Cancelled;
 	u32 MaxWcidNum = MAX_LEN_OF_MAC_TABLE;
 #ifdef MAC_REPEATER_SUPPORT

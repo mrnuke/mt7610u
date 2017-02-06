@@ -77,11 +77,11 @@ INT Set_PeerRtspPort_Proc(
 
 void WfdMakeWfdIE(
 	struct rtmp_adapter *pAd,
-	ULONG			WfdIeBitmap,
+	unsigned long			WfdIeBitmap,
 	u8 *		pOutBuf,
 	unsigned long			*pIeLen);
 
-ULONG InsertWfdSubelmtTlv(
+unsigned long InsertWfdSubelmtTlv(
 	struct rtmp_adapter *	pAd,
 	u8 		SubId,
 	u8 *		pInBuffer,
@@ -92,7 +92,7 @@ void WfdParseSubElmt(
 	struct rtmp_adapter *	pAd,
 	PWFD_ENTRY_INFO	pWfdEntryInfo,
 	void 				*Msg,
-	ULONG 			MsgLen);
+	unsigned long 			MsgLen);
 
 void WfdCfgInit(
 	struct rtmp_adapter *pAd);

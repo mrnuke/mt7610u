@@ -463,11 +463,11 @@ INT RTMPGetKeyParameter(
     ========================================================================
 */
 
-static int rtmp_parse_key_buffer_from_file(struct rtmp_adapter *pAd, char *buffer, ULONG KeyType, INT BSSIdx, INT KeyIdx)
+static int rtmp_parse_key_buffer_from_file(struct rtmp_adapter *pAd, char *buffer, unsigned long KeyType, INT BSSIdx, INT KeyIdx)
 {
 	char *	keybuff;
 	/*INT			i = BSSIdx, idx = KeyIdx, retVal;*/
-	ULONG		KeyLen;
+	unsigned long		KeyLen;
 	/*u8 	CipherAlg = CIPHER_WEP64;*/
 	CIPHER_KEY	*pSharedKey;
 
@@ -1172,8 +1172,8 @@ int	RTMPSetProfileParameters(
 	char *pBuffer)
 {
 	char *				tmpbuf;
-	ULONG					RtsThresh;
-	ULONG					FragThresh;
+	unsigned long					RtsThresh;
+	unsigned long					FragThresh;
 	char *				macptr;
 	INT						i = 0, retval;
 
@@ -1284,8 +1284,8 @@ int	RTMPSetProfileParameters(
 	    /*BasicRate*/
 		if(RTMPGetKeyParameter("BasicRate", tmpbuf, 10, pBuffer, true))
 		{
-			pAd->CommonCfg.BasicRateBitmap = (ULONG) simple_strtol(tmpbuf, 0, 10);
-			pAd->CommonCfg.BasicRateBitmapOld = (ULONG) simple_strtol(tmpbuf, 0, 10);
+			pAd->CommonCfg.BasicRateBitmap = (unsigned long) simple_strtol(tmpbuf, 0, 10);
+			pAd->CommonCfg.BasicRateBitmapOld = (unsigned long) simple_strtol(tmpbuf, 0, 10);
 			DBGPRINT(RT_DEBUG_TRACE, ("BasicRate=%ld\n", pAd->CommonCfg.BasicRateBitmap));
 		}
 		/*BeaconPeriod*/
@@ -1307,7 +1307,7 @@ int	RTMPSetProfileParameters(
 	    /*TxPower*/
 		if(RTMPGetKeyParameter("TxPower", tmpbuf, 10, pBuffer, true))
 		{
-			pAd->CommonCfg.TxPowerPercentage = (ULONG) simple_strtol(tmpbuf, 0, 10);
+			pAd->CommonCfg.TxPowerPercentage = (unsigned long) simple_strtol(tmpbuf, 0, 10);
 #ifdef CONFIG_STA_SUPPORT
 			IF_DEV_CONFIG_OPMODE_ON_STA(pAd)
 				pAd->CommonCfg.TxPowerDefault = pAd->CommonCfg.TxPowerPercentage;
@@ -1618,7 +1618,7 @@ int	RTMPSetProfileParameters(
 					/* Beacon Lost Time*/
 					if (RTMPGetKeyParameter("BeaconLostTime", tmpbuf, 32, pBuffer, true))
 					{
-						ULONG lInfo = (ULONG)simple_strtol(tmpbuf, 0, 10);
+						unsigned long lInfo = (unsigned long)simple_strtol(tmpbuf, 0, 10);
 
 						if ((lInfo != 0) && (lInfo <= 60))
 							pAd->StaCfg.BeaconLostTime = (lInfo * OS_HZ);

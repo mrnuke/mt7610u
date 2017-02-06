@@ -402,8 +402,8 @@ struct rtmp_chip_cap {
 	CHAR RssiAvg;
 	u32 CCAThresholdA;
 	u32 CCAThresholdB;
-	ULONG CCARecordCnt; /* unit: second */
-	ULONG CCAAvg[CCA_AVG_MAX_COUNT];
+	unsigned long CCARecordCnt; /* unit: second */
+	unsigned long CCAAvg[CCA_AVG_MAX_COUNT];
 	u8 CCAAvgIdx;
 	void *pWeakestEntry;
 	/* 2nd CCA Detection -- */
@@ -452,7 +452,7 @@ struct rtmp_chip_cap {
 #endif /* MT76x0 */
 };
 
-typedef void (*CHIP_SPEC_FUNC)(void *pAd, void *pData, ULONG Data);
+typedef void (*CHIP_SPEC_FUNC)(void *pAd, void *pData, unsigned long Data);
 
 /* The chip specific function ID */
 typedef enum _CHIP_SPEC_ID
@@ -714,7 +714,7 @@ void RtmpChipWriteMemory(
 
 bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, INT round, INT wait_us);
 INT AsicSetPreTbttInt(struct rtmp_adapter *pAd, bool enable);
-INT AsicReadAggCnt(struct rtmp_adapter *pAd, ULONG *aggCnt, int cnt_len);
+INT AsicReadAggCnt(struct rtmp_adapter *pAd, unsigned long *aggCnt, int cnt_len);
 
 void StopDmaTx(struct rtmp_adapter *pAd, u8 Level);
 void StopDmaRx(struct rtmp_adapter *pAd, u8 Level);

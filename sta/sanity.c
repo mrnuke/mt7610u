@@ -47,7 +47,7 @@ extern u8 BROADCOM_OUI[];
 bool MlmeStartReqSanity(
 	struct rtmp_adapter *pAd,
 	void *Msg,
-	ULONG MsgLen,
+	unsigned long MsgLen,
 	CHAR Ssid[],
 	u8 *pSsidLen)
 {
@@ -81,7 +81,7 @@ bool MlmeStartReqSanity(
 bool PeerAssocRspSanity(
 	struct rtmp_adapter *pAd,
 	void *pMsg,
-	ULONG MsgLen,
+	unsigned long MsgLen,
 	u8 *pAddr2,
 	USHORT *pCapabilityInfo,
 	USHORT *pStatus,
@@ -103,7 +103,7 @@ bool PeerAssocRspSanity(
 	CHAR IeType, *Ptr;
 	PFRAME_802_11 pFrame = (PFRAME_802_11) pMsg;
 	PEID_STRUCT pEid;
-	ULONG Length = 0;
+	unsigned long Length = 0;
 
 	*pNewExtChannelOffset = 0xff;
 	*pHtCapabilityLen = 0;

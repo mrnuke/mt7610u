@@ -60,7 +60,7 @@ typedef struct wsc_ie_probreq_data
 bool MlmeAddBAReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr2)
 {
     PMLME_ADDBA_REQ_STRUCT   pInfo;
@@ -110,7 +110,7 @@ bool MlmeAddBAReqSanity(
 bool MlmeDelBAReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen)
+    unsigned long MsgLen)
 {
 	MLME_DELBA_REQ_STRUCT *pInfo;
 	pInfo = (MLME_DELBA_REQ_STRUCT *)Msg;
@@ -145,7 +145,7 @@ bool MlmeDelBAReqSanity(
 bool PeerAddBAReqActionSanity(
     struct rtmp_adapter *pAd,
     void *pMsg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
 	u8 *pAddr2)
 {
 	PFRAME_802_11 pFrame = (PFRAME_802_11)pMsg;
@@ -186,7 +186,7 @@ bool PeerAddBAReqActionSanity(
 bool PeerAddBARspActionSanity(
     struct rtmp_adapter *pAd,
     void *pMsg,
-    ULONG MsgLen)
+    unsigned long MsgLen)
 {
 	/*PFRAME_802_11 pFrame = (PFRAME_802_11)pMsg;*/
 	PFRAME_ADDBA_RSP pAddFrame;
@@ -226,7 +226,7 @@ bool PeerDelBAActionSanity(
     struct rtmp_adapter *pAd,
     u8 Wcid,
     void *pMsg,
-    ULONG MsgLen )
+    unsigned long MsgLen )
 {
 	/*PFRAME_802_11 pFrame = (PFRAME_802_11)pMsg;*/
 	PFRAME_DELBA_REQ  pDelFrame;
@@ -248,7 +248,7 @@ bool PeerDelBAActionSanity(
 bool PeerBeaconAndProbeRspSanity_Old(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8  MsgChannel,
     u8 *pAddr2,
     u8 *pBssid,
@@ -276,7 +276,7 @@ bool PeerBeaconAndProbeRspSanity_Old(
     PEDCA_PARM pEdcaParm,
     PQBSS_LOAD_PARM pQbssLoad,
     PQOS_CAPABILITY_PARM pQosCapability,
-    ULONG *pRalinkIe,
+    unsigned long *pRalinkIe,
     u8 *pHtCapabilityLen,
 #ifdef CONFIG_STA_SUPPORT
     u8 *pPreNHtCapabilityLen,
@@ -299,7 +299,7 @@ bool PeerBeaconAndProbeRspSanity_Old(
     u8 			Sanity;
     /*u8 			ECWMin, ECWMax;*/
     /*MAC_CSR9_STRUC		Csr9;*/
-    ULONG				Length = 0;
+    unsigned long				Length = 0;
 	u8 			*pPeerWscIe = NULL;
 	INT					PeerWscIeLen = 0;
     u8 			LatchRfChannel = 0;
@@ -867,7 +867,7 @@ SanityCheck:
 bool PeerBeaconAndProbeRspSanity(
 	struct rtmp_adapter *pAd,
 	void *Msg,
-	ULONG MsgLen,
+	unsigned long MsgLen,
 	u8  MsgChannel,
 	BCN_IE_LIST *ie_list,
 	USHORT *LengthVIE,
@@ -881,7 +881,7 @@ bool PeerBeaconAndProbeRspSanity(
 	PEID_STRUCT pEid;
 	u8 SubType;
 	u8 Sanity;
-	ULONG Length = 0;
+	unsigned long Length = 0;
 	u8 *pPeerWscIe = NULL;
 	INT PeerWscIeLen = 0;
 	u8 LatchRfChannel = 0;
@@ -1436,14 +1436,14 @@ SanityCheck:
 bool PeerBeaconAndProbeRspSanity2(
 	struct rtmp_adapter *pAd,
 	void *Msg,
-	ULONG MsgLen,
+	unsigned long MsgLen,
 	OVERLAP_BSS_SCAN_IE *BssScan,
 	u8 	*RegClass)
 {
 	CHAR				*Ptr;
 	PFRAME_802_11		pFrame;
 	PEID_STRUCT			pEid;
-	ULONG				Length = 0;
+	unsigned long				Length = 0;
 	bool 			brc;
 
 	pFrame = (PFRAME_802_11)Msg;
@@ -1522,7 +1522,7 @@ bool PeerBeaconAndProbeRspSanity2(
 bool MlmeScanReqSanity(
 	struct rtmp_adapter *pAd,
 	void *Msg,
-	ULONG MsgLen,
+	unsigned long MsgLen,
 	u8 *pBssType,
 	CHAR Ssid[],
 	u8 *pSsidLen,
@@ -1579,7 +1579,7 @@ u8 ChannelSanity(
 bool PeerDeauthSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr1,
     u8 *pAddr2,
     u8 *pAddr3,
@@ -1609,7 +1609,7 @@ bool PeerDeauthSanity(
 bool PeerAuthSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr,
     USHORT *pAlg,
     USHORT *pSeq,
@@ -1670,9 +1670,9 @@ bool PeerAuthSanity(
 bool MlmeAuthReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr,
-    ULONG *pTimeout,
+    unsigned long *pTimeout,
     USHORT *pAlg)
 {
     MLME_AUTH_REQ_STRUCT *pInfo;
@@ -1711,10 +1711,10 @@ bool MlmeAuthReqSanity(
 bool MlmeAssocReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pApAddr,
     USHORT *pCapabilityInfo,
-    ULONG *pTimeout,
+    unsigned long *pTimeout,
     USHORT *pListenIntv)
 {
     MLME_ASSOC_REQ_STRUCT *pInfo;
@@ -1742,7 +1742,7 @@ bool MlmeAssocReqSanity(
 bool PeerDisassocSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr2,
     USHORT *pReason)
 {
@@ -1841,7 +1841,7 @@ NDIS_802_11_NETWORK_TYPE NetworkTypeInUseSanity(
 bool MlmeDlsReqSanity(
 	struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     PRT_802_11_DLS *pDLS,
     PUSHORT pReason)
 {
@@ -1861,7 +1861,7 @@ bool MlmeDlsReqSanity(
 bool PeerDlsReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pDA,
     u8 *pSA,
     USHORT *pCapabilityInfo,
@@ -1984,7 +1984,7 @@ bool PeerDlsReqSanity(
 bool PeerDlsRspSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pDA,
     u8 *pSA,
     USHORT *pCapabilityInfo,
@@ -2112,7 +2112,7 @@ bool PeerDlsRspSanity(
 bool PeerDlsTearDownSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pDA,
     u8 *pSA,
     USHORT *pReason)
@@ -2155,7 +2155,7 @@ bool PeerDlsTearDownSanity(
 bool PeerProbeReqSanity(
     struct rtmp_adapter *pAd,
     void *Msg,
-    ULONG MsgLen,
+    unsigned long MsgLen,
     u8 *pAddr2,
     CHAR Ssid[],
     u8 *SsidLen,

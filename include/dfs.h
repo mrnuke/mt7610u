@@ -203,15 +203,15 @@ typedef struct _NewDFSValidRadar
 	USHORT WHigh;
 	USHORT W;  /* for fixed width radar*/
 	USHORT WMargin;
-	ULONG TLow;
-	ULONG THigh;
-	ULONG T;  /* for fixed period radar */
+	unsigned long TLow;
+	unsigned long THigh;
+	unsigned long T;  /* for fixed period radar */
 	USHORT TMargin;
 }NewDFSValidRadar, *pNewDFSValidRadar;
 
 typedef struct _NewDFSDebugPort {
-	ULONG counter;
-	ULONG timestamp;
+	unsigned long counter;
+	unsigned long timestamp;
 	USHORT width;
 	USHORT start_idx;	/* start index to period table */
 	USHORT end_idx;		/* end index to period table */
@@ -223,7 +223,7 @@ typedef struct _NewDFSMPeriod {
 	USHORT width;
 	USHORT idx2;
 	USHORT width2;
-	ULONG period;
+	unsigned long period;
 } NewDFSMPeriod, *pNewDFSMPeriod;
 
 
@@ -237,11 +237,11 @@ typedef struct _NewDFSParam {
 	USHORT WLow;
 	USHORT WHigh;
 	u8 EpsilonW;
-	ULONG TLow;
-	ULONG THigh;
+	unsigned long TLow;
+	unsigned long THigh;
 	u8 EpsilonT;
-	ULONG BLow;
-	ULONG BHigh;
+	unsigned long BLow;
+	unsigned long BHigh;
 } NewDFSParam, *pNewDFSParam;
 
 typedef struct _DFS_PROGRAM_PARAM{
@@ -253,7 +253,7 @@ typedef struct _DFS_PROGRAM_PARAM{
 	u8 VGA_Mask;
 	u8 Packet_End_Mask;
 	u8 Rx_PE_Mask;
-	ULONG RadarEventExpire[NEW_DFS_MAX_CHANNEL];
+	unsigned long RadarEventExpire[NEW_DFS_MAX_CHANNEL];
 }DFS_PROGRAM_PARAM, *PDFS_PROGRAM_PARAM;
 
 typedef struct _NewDFSTable
@@ -270,8 +270,8 @@ typedef struct _NewDFSDebugResult
 	char EH_shift;
 	char WL_shift;
 	char WH_shift;
-	ULONG hit_time;
-	ULONG false_time;
+	unsigned long hit_time;
+	unsigned long false_time;
 }NewDFSDebugResult, *pNewDFSDebugResult;
 #endif
 
@@ -294,13 +294,13 @@ typedef struct _DFS_SW_DETECT_PARAM{
 	USHORT dfs_width_diff_ch1_Shift;
 	USHORT dfs_width_diff_ch2_Shift;
 	USHORT dfs_period_err;
-	ULONG dfs_max_period;	/* Max possible Period */
+	unsigned long dfs_max_period;	/* Max possible Period */
 	USHORT dfs_width_diff;
 	USHORT dfs_width_ch0_err_L;
 	USHORT dfs_width_ch0_err_H;
 	u8 dfs_check_loop;
 	u8 dfs_declare_thres;
-	ULONG dfs_w_counter;
+	unsigned long dfs_w_counter;
 	DFS_EVENT PreDfsEvent;		/* previous radar event */
 	uint32_t EvtDropAdjTime;		/* timing threshold for adjacent event */
 	UINT sw_idx[NEW_DFS_MAX_CHANNEL];
@@ -313,21 +313,21 @@ typedef struct _DFS_SW_DETECT_PARAM{
 	NewDFSMPeriod DFS_T[NEW_DFS_MAX_CHANNEL][NEW_DFS_MPERIOD_ENT_NUM];	/* period table */
 	/*u8 ce_sw_id_check;*/
 	/*USHORT	ce_sw_t_diff;*/
-	/*ULONG fcc_5_counter;*/
+	/*unsigned long fcc_5_counter;*/
 	/* CE Staggered radar / weather radar */
 #ifdef DFS_DEBUG
 	/* Roger debug */
 	u8 DebugPort[384];
 	u8 DebugPortPrint;	/* 0 = stop, 1 = log req, 2 = loging, 3 = log done */
-	ULONG TotalEntries[4];
-	ULONG T_Matched_2;
-	ULONG T_Matched_3;
-	ULONG T_Matched_4;
-	ULONG T_Matched_5;
+	unsigned long TotalEntries[4];
+	unsigned long T_Matched_2;
+	unsigned long T_Matched_3;
+	unsigned long T_Matched_4;
+	unsigned long T_Matched_5;
 	u8 BBP127Repeat;
-	ULONG CounterStored[5];
-	ULONG CounterStored2[5];
-	ULONG CounterStored3;
+	unsigned long CounterStored[5];
+	unsigned long CounterStored2[5];
+	unsigned long CounterStored3;
 	NewDFSDebugPort CE_DebugCh0[NEW_DFS_DBG_PORT_ENT_NUM];
 	NewDFSMPeriod CE_TCh0[NEW_DFS_MPERIOD_ENT_NUM];
 #endif
@@ -338,13 +338,13 @@ typedef struct _DFS_SW_DETECT_PARAM{
   **************************************************************************/
 typedef struct _RADAR_DETECT_STRUCT {
 	u8 DFSAPRestart;
-	ULONG MCURadarRegion;
+	unsigned long MCURadarRegion;
 	CHAR  AvgRssiReq;
-	ULONG DfsLowerLimit;
-	ULONG DfsUpperLimit;
-	ULONG upperlimit;
-	ULONG lowerlimit;
-	ULONG TimeStamp; /*unit: 1us*/
+	unsigned long DfsLowerLimit;
+	unsigned long DfsUpperLimit;
+	unsigned long upperlimit;
+	unsigned long lowerlimit;
+	unsigned long TimeStamp; /*unit: 1us*/
 	u8 ChirpCheck; /* anounce on second detection of chirp radar */
 	u8 bChannelSwitchInProgress; /* RDMode could cover this*/
 	bool bDfsSwDisable; /* disable sotfwre check */
@@ -363,8 +363,8 @@ typedef struct _RADAR_DETECT_STRUCT {
 	u8 radarDeclared;
 	bool SymRoundFromCfg;
 	bool SymRoundCfgValid;
-	ULONG idle_time;
-	ULONG busy_time;
+	unsigned long idle_time;
+	unsigned long busy_time;
 	u8 ch_busy;
 	CHAR	ch_busy_countdown;
 	u8 busy_channel;
@@ -372,8 +372,8 @@ typedef struct _RADAR_DETECT_STRUCT {
 	bool BusyIdleFromCfg;
 	bool BusyIdleCfgValid;
 	u8 print_ch_busy_sta;
-	ULONG ch_busy_sta[CH_BUSY_SAMPLE];
-	ULONG ch_idle_sta[CH_BUSY_SAMPLE];
+	unsigned long ch_busy_sta[CH_BUSY_SAMPLE];
+	unsigned long ch_idle_sta[CH_BUSY_SAMPLE];
 	u8 ch_busy_sta_index;
 	INT		ch_busy_sum;
 	INT		ch_idle_sum;
@@ -382,8 +382,8 @@ typedef struct _RADAR_DETECT_STRUCT {
 	INT		rssi_threshold[MAX_FDF_NUMBER];
 	u8 McuRadarDebug;
 	USHORT McuRadarTick;
-	ULONG RadarTimeStampHigh;
-	ULONG RadarTimeStampLow;
+	unsigned long RadarTimeStampHigh;
+	unsigned long RadarTimeStampLow;
 	u8 EnabledChMask;				/* Bit-wise mask for enabled DFS channels */
 	DFS_PROGRAM_PARAM DfsProgramParam;
 	DFS_SW_DETECT_PARAM DfsSwParam;
@@ -399,11 +399,11 @@ typedef struct _NewDFSProgParam
 	USHORT WLow;		/* reg 0x28~0x29, Width Low[7:0] & Width Low[11:8]*/
 	USHORT WHigh;		/* reg 0x2a~0x2b, Width High[7:0] & Width High[11:8]*/
 	u8 EpsilonW;		/* reg 0x2c, Width Delta[7:0], (Width Measurement Uncertainty) */
-	ULONG TLow;			/* reg 0x17~0x1a, Period Low[7:0] & Period Low[15:8] & Period Low[23:16] & Period Low[31:24]*/
-	ULONG THigh;		/* reg 0x1b~0x1e, Period High[7:0] & Period High[15:8] & Period High[23:16] & Period High[31:24]*/
+	unsigned long TLow;			/* reg 0x17~0x1a, Period Low[7:0] & Period Low[15:8] & Period Low[23:16] & Period Low[31:24]*/
+	unsigned long THigh;		/* reg 0x1b~0x1e, Period High[7:0] & Period High[15:8] & Period High[23:16] & Period High[31:24]*/
 	u8 EpsilonT;		/* reg 0x27, Period Delt[7:0], (Period Measurement Uncertainty) */
-	ULONG BLow;			/* reg 0x1f~0x22, Burst Low[7:0] & Burst Low[15:8] & Burst Low[23:16] & Burst Low[31:24]*/
-	ULONG BHigh;		/* reg 0x23~0x26, Burst High[7:0] & Burst High[15:8] & Burst High[23:16] & Burst High[31:24]		*/
+	unsigned long BLow;			/* reg 0x1f~0x22, Burst Low[7:0] & Burst Low[15:8] & Burst Low[23:16] & Burst Low[31:24]*/
+	unsigned long BHigh;		/* reg 0x23~0x26, Burst High[7:0] & Burst High[15:8] & Burst High[23:16] & Burst High[31:24]		*/
 }NewDFSProgParam, *pNewDFSProgParam;
 
 #endif /* DFS_SUPPORT */

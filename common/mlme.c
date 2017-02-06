@@ -59,7 +59,7 @@ u8 RxwiMCSToOfdmRate[12] = {
 extern u8  OfdmRateToRxwiMCS[];
 /* since RT61 has better RX sensibility, we have to limit TX ACK rate not to exceed our normal data TX rate.*/
 /* otherwise the WLAN peer may not be able to receive the ACK thus downgrade its data TX rate*/
-ULONG BasicRateMask[12]				= {0xfffff001 /* 1-Mbps */, 0xfffff003 /* 2 Mbps */, 0xfffff007 /* 5.5 */, 0xfffff00f /* 11 */,
+unsigned long BasicRateMask[12]				= {0xfffff001 /* 1-Mbps */, 0xfffff003 /* 2 Mbps */, 0xfffff007 /* 5.5 */, 0xfffff00f /* 11 */,
 									  0xfffff01f /* 6 */	 , 0xfffff03f /* 9 */	  , 0xfffff07f /* 12 */ , 0xfffff0ff /* 18 */,
 									  0xfffff1ff /* 24 */	 , 0xfffff3ff /* 36 */	  , 0xfffff7ff /* 48 */ , 0xffffffff /* 54 */};
 
@@ -493,8 +493,8 @@ void MlmeResetRalinkCounters(
 
 	/* for performace enchanement */
 	memset(&pAd->RalinkCounters, 0,
-			(ULONG)&pAd->RalinkCounters.OneSecEnd -
-			(ULONG)&pAd->RalinkCounters.OneSecStart);
+			(unsigned long)&pAd->RalinkCounters.OneSecEnd -
+			(unsigned long)&pAd->RalinkCounters.OneSecStart);
 
 	return;
 }
@@ -523,7 +523,7 @@ void MlmePeriodicExec(
 	void *SystemSpecific2,
 	void *SystemSpecific3)
 {
-	ULONG			TxTotalCnt;
+	unsigned long			TxTotalCnt;
 	struct rtmp_adapter *pAd = (struct rtmp_adapter*)FunctionContext;
 
 	/* No More 0x84 MCU CMD from v.30 FW*/
@@ -813,7 +813,7 @@ bool MlmeValidateSSID(
 void STAMlmePeriodicExec(
 	struct rtmp_adapter *pAd)
 {
-	ULONG			    TxTotalCnt;
+	unsigned long			    TxTotalCnt;
 	int 	i;
 	bool bCheckBeaconLost = true;
 
@@ -865,7 +865,7 @@ void STAMlmePeriodicExec(
 	if (RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_BSS_SCAN_IN_PROGRESS)
 	)
 	{
-		ULONG Now;
+		unsigned long Now;
 		bCheckBeaconLost = false;
 		NdisGetSystemUpTime(&Now);
 		pAd->StaCfg.LastBeaconRxTime = Now;
@@ -940,7 +940,7 @@ void STAMlmePeriodicExec(
 			RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_BSS_SCAN_IN_PROGRESS) &&
 			(RTMP_TIME_AFTER(pAd->Mlme.Now32, pAd->StaCfg.LastBeaconRxTime + (1*OS_HZ))))
 		{
-			ULONG BPtoJiffies;
+			unsigned long BPtoJiffies;
 			LONG timeDiff;
 
 			BPtoJiffies = (((pAd->CommonCfg.BeaconPeriod * 1024 / 1000) * OS_HZ) / 1000);
@@ -1275,7 +1275,7 @@ void MlmeAutoScan(
  */
 void MlmeCheckForRoaming(
 	struct rtmp_adapter *pAd,
-	ULONG	Now32)
+	unsigned long	Now32)
 {
 	USHORT	   i;
 	BSS_TABLE  *pRoamTab = &pAd->MlmeAux.RoamTab;
@@ -1396,9 +1396,9 @@ bool MlmeCheckForFastRoaming(
  */
 void MlmeCheckPsmChange(
 	struct rtmp_adapter *pAd,
-	ULONG	Now32)
+	unsigned long	Now32)
 {
-	ULONG	PowerMode;
+	unsigned long	PowerMode;
 
 	/*
 		condition -
@@ -1474,10 +1474,10 @@ void MlmeSetPsmBit(
 void MlmeCalculateChannelQuality(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY pMacEntry,
-	ULONG Now32)
+	unsigned long Now32)
 {
-	ULONG TxOkCnt, TxCnt, TxPER, TxPRR;
-	ULONG RxCnt, RxPER;
+	unsigned long TxOkCnt, TxCnt, TxPER, TxPRR;
+	unsigned long RxCnt, RxPER;
 	u8 NorRssi;
 	CHAR  MaxRssi;
 	RSSI_SAMPLE *pRssiSample = NULL;
@@ -1486,10 +1486,10 @@ void MlmeCalculateChannelQuality(
 	u32 OneSecTxFailCount = 0;
 	u32 OneSecRxOkCnt = 0;
 	u32 OneSecRxFcsErrCnt = 0;
-	ULONG ChannelQuality = 0;  /* 0..100, Channel Quality Indication for Roaming*/
+	unsigned long ChannelQuality = 0;  /* 0..100, Channel Quality Indication for Roaming*/
 #ifdef CONFIG_STA_SUPPORT
-	ULONG LastBeaconRxTime = 0;
-	ULONG BeaconLostTime = pAd->StaCfg.BeaconLostTime;
+	unsigned long LastBeaconRxTime = 0;
+	unsigned long BeaconLostTime = pAd->StaCfg.BeaconLostTime;
 #endif /* CONFIG_STA_SUPPORT */
 
 #ifdef CONFIG_STA_SUPPORT
@@ -1638,7 +1638,7 @@ void UpdateBasicRateBitmap(
     u8 rate[] = { 2, 4,  11, 22, 12, 18, 24, 36, 48, 72, 96, 108 };
     u8 *sup_p = pAdapter->CommonCfg.SupRate;
     u8 *ext_p = pAdapter->CommonCfg.ExtRate;
-    ULONG bitmap = pAdapter->CommonCfg.BasicRateBitmap;
+    unsigned long bitmap = pAdapter->CommonCfg.BasicRateBitmap;
 
     /* if A mode, always use fix BasicRateBitMap */
     /*if (pAdapter->CommonCfg.Channel == WMODE_A)*/
@@ -1705,7 +1705,7 @@ void MlmeUpdateTxRates(
 	int i, num;
 	u8 Rate = RATE_6, MaxDesire = RATE_1, MaxSupport = RATE_1;
 	u8 MinSupport = RATE_54;
-	ULONG BasicRateBitmap = 0;
+	unsigned long BasicRateBitmap = 0;
 	u8 CurrBasicRate = RATE_1;
 	u8 *pSupRate, SupRateLen, *pExtRate, ExtRateLen;
 	HTTRANSMIT_SETTING *pHtPhy = NULL, *pMaxHtPhy = NULL, *pMinHtPhy = NULL;
@@ -2034,7 +2034,7 @@ void MlmeUpdateHtTxRates(
 	u8 StbcMcs;
 	RT_HT_CAPABILITY *pRtHtCap = NULL;
 	RT_PHY_INFO *pActiveHtPhy = NULL;
-	ULONG BasicMCS;
+	unsigned long BasicMCS;
 	RT_PHY_INFO *pDesireHtPhy = NULL;
 	PHTTRANSMIT_SETTING pHtPhy = NULL;
 	PHTTRANSMIT_SETTING pMaxHtPhy = NULL;
@@ -2273,7 +2273,7 @@ void BssTableInit(BSS_TABLE *Tab)
  IRQL = DISPATCH_LEVEL
 
  */
-ULONG BssTableSearch(
+unsigned long BssTableSearch(
 	BSS_TABLE *Tab,
 	u8 * pBssid,
 	u8  Channel)
@@ -2294,10 +2294,10 @@ ULONG BssTableSearch(
 			return i;
 		}
 	}
-	return (ULONG)BSS_NOT_FOUND;
+	return (unsigned long)BSS_NOT_FOUND;
 }
 
-ULONG BssSsidTableSearch(
+unsigned long BssSsidTableSearch(
 	BSS_TABLE *Tab,
 	u8 * pBssid,
 	u8 * pSsid,
@@ -2320,10 +2320,10 @@ ULONG BssSsidTableSearch(
 			return i;
 		}
 	}
-	return (ULONG)BSS_NOT_FOUND;
+	return (unsigned long)BSS_NOT_FOUND;
 }
 
-ULONG BssTableSearchWithSSID(
+unsigned long BssTableSearchWithSSID(
 	BSS_TABLE *Tab,
 	u8 * Bssid,
 	u8 * pSsid,
@@ -2344,11 +2344,11 @@ ULONG BssTableSearchWithSSID(
 			return i;
 		}
 	}
-	return (ULONG)BSS_NOT_FOUND;
+	return (unsigned long)BSS_NOT_FOUND;
 }
 
 
-ULONG BssSsidTableSearchBySSID(
+unsigned long BssSsidTableSearchBySSID(
 	BSS_TABLE *Tab,
 	u8 * pSsid,
 	u8  SsidLen)
@@ -2362,7 +2362,7 @@ ULONG BssSsidTableSearchBySSID(
 			return i;
 		}
 	}
-	return (ULONG)BSS_NOT_FOUND;
+	return (unsigned long)BSS_NOT_FOUND;
 }
 
 
@@ -2674,7 +2674,7 @@ void BssEntrySet(
  IRQL = DISPATCH_LEVEL
 
  */
-ULONG BssTableSetEntry(
+unsigned long BssTableSetEntry(
 	struct rtmp_adapter *pAd,
 	BSS_TABLE *Tab,
 	BCN_IE_LIST *ie_list,
@@ -2682,7 +2682,7 @@ ULONG BssTableSetEntry(
 	USHORT LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE)
 {
-	ULONG	Idx;
+	unsigned long	Idx;
 #ifdef APCLI_SUPPORT
 	bool bInsert = false;
 	PAPCLI_STRUCT pApCliEntry = NULL;
@@ -3523,13 +3523,13 @@ void MgtMacHeaderInit(
  IRQL = DISPATCH_LEVEL
 
  ****************************************************************************/
-ULONG MakeOutgoingFrame(
+unsigned long MakeOutgoingFrame(
 	u8 *Buffer,
-	ULONG *FrameLen, ...)
+	unsigned long *FrameLen, ...)
 {
 	u8   *p;
 	int 	leng;
-	ULONG	TotLeng;
+	unsigned long	TotLeng;
 	va_list Args;
 
 	/* calculates the total length*/
@@ -3605,11 +3605,11 @@ int MlmeQueueInit(
  */
 bool MlmeEnqueue(
 	struct rtmp_adapter *pAd,
-	ULONG Machine,
-	ULONG MsgType,
-	ULONG MsgLen,
+	unsigned long Machine,
+	unsigned long MsgType,
+	unsigned long MsgLen,
 	void *Msg,
-	ULONG Priv)
+	unsigned long Priv)
 {
 	INT Tail;
 	MLME_QUEUE	*Queue = (MLME_QUEUE *)&pAd->Mlme.Queue;
@@ -3672,13 +3672,13 @@ bool MlmeEnqueue(
  */
 bool MlmeEnqueueForRecv(
 	struct rtmp_adapter *pAd,
-	ULONG Wcid,
-	ULONG TimeStampHigh,
-	ULONG TimeStampLow,
+	unsigned long Wcid,
+	unsigned long TimeStampHigh,
+	unsigned long TimeStampLow,
 	u8 Rssi0,
 	u8 Rssi1,
 	u8 Rssi2,
-	ULONG MsgLen,
+	unsigned long MsgLen,
 	void *Msg,
 	u8 Signal,
 	u8 OpMode)
@@ -3741,7 +3741,7 @@ bool MlmeEnqueueForRecv(
 	Queue->Entry[Tail].Rssi2 = Rssi2;
 	Queue->Entry[Tail].Signal = Signal;
 	Queue->Entry[Tail].Wcid = (u8)Wcid;
-	Queue->Entry[Tail].OpMode = (ULONG)OpMode;
+	Queue->Entry[Tail].OpMode = (unsigned long)OpMode;
 	Queue->Entry[Tail].Priv = 0;
 
 	Queue->Entry[Tail].Channel = pAd->LatchRfRegs.Channel;
@@ -4059,13 +4059,13 @@ bool MsgTypeSubst(
 void StateMachineInit(
 	STATE_MACHINE *S,
 	STATE_MACHINE_FUNC Trans[],
-	ULONG StNr,
-	ULONG MsgNr,
+	unsigned long StNr,
+	unsigned long MsgNr,
 	STATE_MACHINE_FUNC DefFunc,
-	ULONG InitState,
-	ULONG Base)
+	unsigned long InitState,
+	unsigned long Base)
 {
-	ULONG i, j;
+	unsigned long i, j;
 
 	/* set number of states and messages*/
 	S->NrState = StNr;
@@ -4100,11 +4100,11 @@ void StateMachineInit(
  */
 void StateMachineSetAction(
 	STATE_MACHINE *S,
-	ULONG St,
-	ULONG Msg,
+	unsigned long St,
+	unsigned long Msg,
 	STATE_MACHINE_FUNC Func)
 {
-	ULONG MsgIdx;
+	unsigned long MsgIdx;
 
 	MsgIdx = Msg - S->Base;
 
@@ -4128,7 +4128,7 @@ void StateMachinePerformAction(
 	struct rtmp_adapter *pAd,
 	STATE_MACHINE *S,
 	MLME_QUEUE_ELEM *Elem,
-	ULONG CurrState)
+	unsigned long CurrState)
 {
 
 	if (S->TransFunc[(CurrState) * S->NrMsg + Elem->MsgType - S->Base])
@@ -4157,13 +4157,13 @@ void Drop(
 u8 RandomByte(
 	struct rtmp_adapter *pAd)
 {
-	ULONG i;
+	unsigned long i;
 	u8 R, Result;
 
 	R = 0;
 
 	if (pAd->Mlme.ShiftReg == 0)
-	NdisGetSystemUpTime((ULONG *)&pAd->Mlme.ShiftReg);
+	NdisGetSystemUpTime((unsigned long *)&pAd->Mlme.ShiftReg);
 
 	for (i = 0; i < 8; i++)
 	{
@@ -4719,7 +4719,7 @@ void AsicEvaluateRxAnt(
 			if (OPSTATUS_TEST_FLAG(pAd, fOP_STATUS_MEDIA_STATE_CONNECTED)
 			)
 			{
-				ULONG	TxTotalCnt = pAd->RalinkCounters.OneSecTxNoRetryOkCount +
+				unsigned long	TxTotalCnt = pAd->RalinkCounters.OneSecTxNoRetryOkCount +
 									pAd->RalinkCounters.OneSecTxRetryOkCount +
 									pAd->RalinkCounters.OneSecTxFailCount;
 

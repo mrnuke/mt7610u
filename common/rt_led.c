@@ -72,7 +72,7 @@ void RTMPSetLEDStatus(
 	struct rtmp_adapter *	pAd,
 	u8 		Status)
 {
-	/*ULONG			data; */
+	/*unsigned long			data; */
 	u8 		LedMode;
 	INT LED_CMD = -1;
 

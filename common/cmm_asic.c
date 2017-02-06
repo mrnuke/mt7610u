@@ -808,21 +808,21 @@ void AsicSetBssid(
 	struct rtmp_adapter *pAd,
 	u8 *pBssid)
 {
-	ULONG		  Addr4;
+	unsigned long		  Addr4;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("===> AsicSetBssid %x:%x:%x:%x:%x:%x\n",
 				PRINT_MAC(pBssid)));
 
-	Addr4 = (ULONG)(pBssid[0]) |
-			(ULONG)(pBssid[1] << 8)  |
-			(ULONG)(pBssid[2] << 16) |
-			(ULONG)(pBssid[3] << 24);
+	Addr4 = (unsigned long)(pBssid[0]) |
+			(unsigned long)(pBssid[1] << 8)  |
+			(unsigned long)(pBssid[2] << 16) |
+			(unsigned long)(pBssid[3] << 24);
 	mt7610u_write32(pAd, MAC_BSSID_DW0, Addr4);
 
 
 	Addr4 = 0;
 	/* always one BSSID in STA mode*/
-	Addr4 = (ULONG)(pBssid[4]) | (ULONG)(pBssid[5] << 8);
+	Addr4 = (unsigned long)(pBssid[4]) | (unsigned long)(pBssid[5] << 8);
 
 
 	mt7610u_write32(pAd, MAC_BSSID_DW1, Addr4);
@@ -974,7 +974,7 @@ void AsicEnableIbssSync(
 	BCN_TIME_CFG_STRUC csr9;
 	u8 *		ptr;
 	UINT i;
-	ULONG beaconBaseLocation = 0;
+	unsigned long beaconBaseLocation = 0;
 	USHORT			beaconLen = (USHORT) pAd->BeaconTxWI.TxWIMPDUByteCnt;
 	u8 TXWISize = sizeof(struct txwi_nmac);
 	u32 longptr;
@@ -1358,7 +1358,7 @@ void 	AsicSetSlotTime(
 	struct rtmp_adapter *pAd,
 	bool bUseShortSlotTime)
 {
-	ULONG	SlotTime;
+	unsigned long	SlotTime;
 	u32	RegValue = 0;
 
 #ifdef CONFIG_STA_SUPPORT
@@ -1437,7 +1437,7 @@ void AsicAddSharedKeyEntry(
 	u8 	 	KeyIdx,
 	PCIPHER_KEY		pCipherKey)
 {
-	ULONG offset; /*, csr0;*/
+	unsigned long offset; /*, csr0;*/
 	SHAREDKEY_MODE_STRUC csr1;
 	uint16_t SharedKeyTableBase, SharedKeyModeBase;
 
@@ -1536,7 +1536,7 @@ void AsicRemoveSharedKeyEntry(
 	u8 	 BssIndex,
 	u8 	 KeyIdx)
 {
-	/*ULONG SecCsr0;*/
+	/*unsigned long SecCsr0;*/
 	SHAREDKEY_MODE_STRUC csr1;
 	uint16_t SharedKeyTableBase, SharedKeyModeBase;
 
@@ -1587,10 +1587,10 @@ void AsicRemoveSharedKeyEntry(
 void AsicUpdateWCIDIVEIV(
 	struct rtmp_adapter *pAd,
 	USHORT		WCID,
-	ULONG        uIV,
-	ULONG        uEIV)
+	unsigned long        uIV,
+	unsigned long        uEIV)
 {
-	ULONG	offset;
+	unsigned long	offset;
 
 	offset = MAC_IVEIV_TABLE_BASE + (WCID * HW_IVEIV_ENTRY_SIZE);
 
@@ -1607,8 +1607,8 @@ void AsicUpdateRxWCIDTable(
 	USHORT		WCID,
 	u8 *       pAddr)
 {
-	ULONG offset;
-	ULONG Addr;
+	unsigned long offset;
+	unsigned long Addr;
 
 	offset = MAC_WCID_BASE + (WCID * HW_WCID_ENTRY_SIZE);
 	Addr = pAddr[0] + (pAddr[1] << 8) +(pAddr[2] << 16) +(pAddr[3] << 24);
@@ -1741,7 +1741,7 @@ void AsicAddPairwiseKeyEntry(
 	PCIPHER_KEY		pCipherKey)
 {
 	INT i;
-	ULONG 		offset;
+	unsigned long 		offset;
 	u8 *	 pKey = pCipherKey->Key;
 	u8 *	 pTxMic = pCipherKey->TxMic;
 	u8 *	 pRxMic = pCipherKey->RxMic;
@@ -1942,7 +1942,7 @@ bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, INT round, INT wait_us)
 #else
 #define MAX_AGG_CNT	8
 #endif
-INT AsicReadAggCnt(struct rtmp_adapter*pAd, ULONG *aggCnt, int cnt_len)
+INT AsicReadAggCnt(struct rtmp_adapter*pAd, unsigned long *aggCnt, int cnt_len)
 {
 	u32 reg_addr;
 	TX_AGG_CNT_STRUC reg_val;
@@ -1958,7 +1958,7 @@ INT AsicReadAggCnt(struct rtmp_adapter*pAd, ULONG *aggCnt, int cnt_len)
 	};
 
 
-	memset(aggCnt, 0, cnt_len * sizeof(ULONG));
+	memset(aggCnt, 0, cnt_len * sizeof(unsigned long));
 	seg = (sizeof(aggReg) /sizeof(USHORT));
 
 	cnt = 0;
@@ -2027,7 +2027,7 @@ void AsicSetApCliBssid(
 	mt7610u_write32(pAd, MAC_APCLI_BSSID_DW0, Addr4);
 
 	Addr4 = 0;
-	Addr4 = (ULONG)(pBssid[4]) | (ULONG)(pBssid[5] << 8);
+	Addr4 = (unsigned long)(pBssid[4]) | (unsigned long)(pBssid[5] << 8);
 	/* Enable APCLI mode */
 	Addr4 |= 0x10000;
 
@@ -2061,7 +2061,7 @@ void AsicSetExtendedMacAddr(
 	mt7610u_write32(pAd, MAC_ADDR_EXT0_31_0 + (Idx*8), Addr4);
 
 	Addr4 = 0;
-	Addr4 = (ULONG)(pMacAddr[4]) | (ULONG)(pMacAddr[5] << 8);
+	Addr4 = (unsigned long)(pMacAddr[4]) | (unsigned long)(pMacAddr[5] << 8);
 	/* Enable APCLI mode */
 	Addr4 |= 0x10000;
 

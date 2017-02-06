@@ -371,20 +371,20 @@ typedef struct _NDIS_802_11_STATUS_INDICATION {
 #define NDIS_802_11_AUTH_REQUEST_GROUP_ERROR        0x0E
 
 typedef struct _NDIS_802_11_AUTHENTICATION_REQUEST {
-	ULONG Length;		/* Length of structure */
+	unsigned long Length;		/* Length of structure */
 	NDIS_802_11_MAC_ADDRESS Bssid;
-	ULONG Flags;
+	unsigned long Flags;
 } NDIS_802_11_AUTHENTICATION_REQUEST, *PNDIS_802_11_AUTHENTICATION_REQUEST;
 
 /*Added new types for PMKID Candidate lists. */
 typedef struct _PMKID_CANDIDATE {
 	NDIS_802_11_MAC_ADDRESS BSSID;
-	ULONG Flags;
+	unsigned long Flags;
 } PMKID_CANDIDATE, *PPMKID_CANDIDATE;
 
 typedef struct _NDIS_802_11_PMKID_CANDIDATE_LIST {
-	ULONG Version;		/* Version of the structure */
-	ULONG NumCandidates;	/* No. of pmkid candidates */
+	unsigned long Version;		/* Version of the structure */
+	unsigned long NumCandidates;	/* No. of pmkid candidates */
 	PMKID_CANDIDATE CandidateList[1];
 } NDIS_802_11_PMKID_CANDIDATE_LIST, *PNDIS_802_11_PMKID_CANDIDATE_LIST;
 
@@ -416,7 +416,7 @@ typedef enum _NDIS_802_11_POWER_MODE {
 	Ndis802_11PowerModeMax	/* not a real mode, defined as an upper bound */
 } NDIS_802_11_POWER_MODE, *PNDIS_802_11_POWER_MODE;
 
-typedef ULONG NDIS_802_11_TX_POWER_LEVEL;	/* in milliwatts */
+typedef unsigned long NDIS_802_11_TX_POWER_LEVEL;	/* in milliwatts */
 
 /* */
 /* Received Signal Strength Indication */
@@ -424,22 +424,22 @@ typedef ULONG NDIS_802_11_TX_POWER_LEVEL;	/* in milliwatts */
 typedef LONG NDIS_802_11_RSSI;	/* in dBm */
 
 typedef struct _NDIS_802_11_CONFIGURATION_FH {
-	ULONG Length;		/* Length of structure */
-	ULONG HopPattern;	/* As defined by 802.11, MSB set */
-	ULONG HopSet;		/* to one if non-802.11 */
-	ULONG DwellTime;	/* units are Kusec */
+	unsigned long Length;		/* Length of structure */
+	unsigned long HopPattern;	/* As defined by 802.11, MSB set */
+	unsigned long HopSet;		/* to one if non-802.11 */
+	unsigned long DwellTime;	/* units are Kusec */
 } NDIS_802_11_CONFIGURATION_FH, *PNDIS_802_11_CONFIGURATION_FH;
 
 typedef struct _NDIS_802_11_CONFIGURATION {
-	ULONG Length;		/* Length of structure */
-	ULONG BeaconPeriod;	/* units are Kusec */
-	ULONG ATIMWindow;	/* units are Kusec */
-	ULONG DSConfig;		/* Frequency, units are kHz */
+	unsigned long Length;		/* Length of structure */
+	unsigned long BeaconPeriod;	/* units are Kusec */
+	unsigned long ATIMWindow;	/* units are Kusec */
+	unsigned long DSConfig;		/* Frequency, units are kHz */
 	NDIS_802_11_CONFIGURATION_FH FHConfig;
 } NDIS_802_11_CONFIGURATION, *PNDIS_802_11_CONFIGURATION;
 
 typedef struct _NDIS_802_11_STATISTICS {
-	ULONG Length;		/* Length of structure */
+	unsigned long Length;		/* Length of structure */
 	LARGE_INTEGER TransmittedFragmentCount;
 	LARGE_INTEGER MulticastTransmittedFrameCount;
 	LARGE_INTEGER FailedCount;
@@ -467,22 +467,22 @@ typedef struct _NDIS_802_11_STATISTICS {
 
 typedef struct _MBSS_STATISTICS {
 	LONG TxCount;
-	ULONG RxCount;
-	ULONG ReceivedByteCount;
-	ULONG TransmittedByteCount;
-	ULONG RxErrorCount;
-	ULONG RxDropCount;
-	ULONG TxErrorCount;
-	ULONG TxDropCount;
-	ULONG ucPktsTx;
-	ULONG ucPktsRx;
-	ULONG mcPktsTx;
-	ULONG mcPktsRx;
-	ULONG bcPktsTx;
-	ULONG bcPktsRx;
+	unsigned long RxCount;
+	unsigned long ReceivedByteCount;
+	unsigned long TransmittedByteCount;
+	unsigned long RxErrorCount;
+	unsigned long RxDropCount;
+	unsigned long TxErrorCount;
+	unsigned long TxDropCount;
+	unsigned long ucPktsTx;
+	unsigned long ucPktsRx;
+	unsigned long mcPktsTx;
+	unsigned long mcPktsRx;
+	unsigned long bcPktsTx;
+	unsigned long bcPktsRx;
 } MBSS_STATISTICS, *PMBSS_STATISTICS;
 
-typedef ULONG NDIS_802_11_KEY_INDEX;
+typedef unsigned long NDIS_802_11_KEY_INDEX;
 typedef uint64_t NDIS_802_11_KEY_RSC;
 
 #ifdef DOT1X_SUPPORT
@@ -601,11 +601,11 @@ typedef struct __attribute__ ((packed)) _NDIS_802_11_SSID {
 } NDIS_802_11_SSID, *PNDIS_802_11_SSID;
 
 typedef struct __attribute__ ((packed)) _NDIS_WLAN_BSSID {
-	ULONG Length;		/* Length of this structure */
+	unsigned long Length;		/* Length of this structure */
 	NDIS_802_11_MAC_ADDRESS MacAddress;	/* BSSID */
 	u8 Reserved[2];
 	NDIS_802_11_SSID Ssid;	/* SSID */
-	ULONG Privacy;		/* WEP encryption requirement */
+	unsigned long Privacy;		/* WEP encryption requirement */
 	NDIS_802_11_RSSI Rssi;	/* receive signal strength in dBm */
 	NDIS_802_11_NETWORK_TYPE NetworkTypeInUse;
 	NDIS_802_11_CONFIGURATION Configuration;
@@ -627,7 +627,7 @@ typedef struct {
 
 /* Added Capabilities, IELength and IEs for each BSSID */
 typedef struct __attribute__ ((packed)) _NDIS_WLAN_BSSID_EX {
-	ULONG Length;		/* Length of this structure */
+	unsigned long Length;		/* Length of this structure */
 	NDIS_802_11_MAC_ADDRESS MacAddress;	/* BSSID */
 	u8 WpsAP; /* 0x00: not support WPS, 0x01: support normal WPS, 0x02: support Ralink auto WPS, 0x04: support Samsung WAC */
 	CHAR MinSNR;
@@ -639,7 +639,7 @@ typedef struct __attribute__ ((packed)) _NDIS_WLAN_BSSID_EX {
 	NDIS_802_11_CONFIGURATION Configuration;
 	NDIS_802_11_NETWORK_INFRASTRUCTURE InfrastructureMode;
 	NDIS_802_11_RATES_EX SupportedRates;
-	ULONG IELength;
+	unsigned long IELength;
 	u8 IEs[1];
 
 } NDIS_WLAN_BSSID_EX, *PNDIS_WLAN_BSSID_EX;
@@ -661,11 +661,11 @@ typedef struct _NDIS_802_11_VARIABLE_IEs {
 	u8 data[1];
 } NDIS_802_11_VARIABLE_IEs, *PNDIS_802_11_VARIABLE_IEs;
 
-typedef ULONG NDIS_802_11_FRAGMENTATION_THRESHOLD;
+typedef unsigned long NDIS_802_11_FRAGMENTATION_THRESHOLD;
 
-typedef ULONG NDIS_802_11_RTS_THRESHOLD;
+typedef unsigned long NDIS_802_11_RTS_THRESHOLD;
 
-typedef ULONG NDIS_802_11_ANTENNA;
+typedef unsigned long NDIS_802_11_ANTENNA;
 
 typedef enum _NDIS_802_11_PRIVACY_FILTER {
 	Ndis802_11PrivFilterAcceptAll,
@@ -742,15 +742,15 @@ typedef struct _NDIS_802_11_AI_RESFI {
 } NDIS_802_11_AI_RESFI, *PNDIS_802_11_AI_RESFI;
 
 typedef struct _NDIS_802_11_ASSOCIATION_INFORMATION {
-	ULONG Length;
+	unsigned long Length;
 	USHORT AvailableRequestFixedIEs;
 	NDIS_802_11_AI_REQFI RequestFixedIEs;
-	ULONG RequestIELength;
-	ULONG OffsetRequestIEs;
+	unsigned long RequestIELength;
+	unsigned long OffsetRequestIEs;
 	USHORT AvailableResponseFixedIEs;
 	NDIS_802_11_AI_RESFI ResponseFixedIEs;
-	ULONG ResponseIELength;
-	ULONG OffsetResponseIEs;
+	unsigned long ResponseIELength;
+	unsigned long OffsetResponseIEs;
 } NDIS_802_11_ASSOCIATION_INFORMATION, *PNDIS_802_11_ASSOCIATION_INFORMATION;
 
 typedef struct _NDIS_802_11_AUTHENTICATION_EVENT {
@@ -761,8 +761,8 @@ typedef struct _NDIS_802_11_AUTHENTICATION_EVENT {
 /*
 typedef struct _NDIS_802_11_TEST
 {
-    ULONG Length;
-    ULONG Type;
+    unsigned long Length;
+    unsigned long Type;
     union
     {
         NDIS_802_11_AUTHENTICATION_EVENT AuthenticationEvent;
@@ -800,10 +800,10 @@ typedef struct _NDIS_802_11_AUTHENTICATION_ENCRYPTION {
 } NDIS_802_11_AUTHENTICATION_ENCRYPTION, *PNDIS_802_11_AUTHENTICATION_ENCRYPTION;
 
 typedef struct _NDIS_802_11_CAPABILITY {
-	ULONG Length;
-	ULONG Version;
-	ULONG NoOfPMKIDs;
-	ULONG NoOfAuthEncryptPairsSupported;
+	unsigned long Length;
+	unsigned long Version;
+	unsigned long NoOfPMKIDs;
+	unsigned long NoOfAuthEncryptPairsSupported;
 	NDIS_802_11_AUTHENTICATION_ENCRYPTION
 	    AuthenticationEncryptionSupported[1];
 } NDIS_802_11_CAPABILITY, *PNDIS_802_11_CAPABILITY;
@@ -956,11 +956,11 @@ typedef enum _RT_802_11_PHY_MODE {
 
 /* put all proprietery for-query objects here to reduce # of Query_OID */
 typedef struct _RT_802_11_LINK_STATUS {
-	ULONG CurrTxRate;	/* in units of 0.5Mbps */
-	ULONG ChannelQuality;	/* 0..100 % */
-	ULONG TxByteCount;	/* both ok and fail */
-	ULONG RxByteCount;	/* both ok and fail */
-	ULONG CentralChannel;	/* 40MHz central channel number */
+	unsigned long CurrTxRate;	/* in units of 0.5Mbps */
+	unsigned long ChannelQuality;	/* 0..100 % */
+	unsigned long TxByteCount;	/* both ok and fail */
+	unsigned long RxByteCount;	/* both ok and fail */
+	unsigned long CentralChannel;	/* 40MHz central channel number */
 } RT_802_11_LINK_STATUS, *PRT_802_11_LINK_STATUS;
 
 /* MIMO Tx parameter, ShortGI, MCS, STBC, etc.  these are fields in TXWI. Don't change this definition!!! */
@@ -990,38 +990,38 @@ typedef struct _RT_802_11_MAC_ENTRY {
 } RT_802_11_MAC_ENTRY, *PRT_802_11_MAC_ENTRY;
 
 typedef struct _RT_802_11_MAC_TABLE {
-	ULONG Num;
+	unsigned long Num;
 	RT_802_11_MAC_ENTRY Entry[MAX_NUMBER_OF_MAC];
 } RT_802_11_MAC_TABLE, *PRT_802_11_MAC_TABLE;
 
 /* structure for query/set hardware register - MAC, BBP, RF register */
 typedef struct _RT_802_11_HARDWARE_REGISTER {
-	ULONG HardwareType;	/* 0:MAC, 1:BBP, 2:RF register, 3:EEPROM */
-	ULONG Offset;		/* Q/S register offset addr */
-	ULONG Data;		/* R/W data buffer */
+	unsigned long HardwareType;	/* 0:MAC, 1:BBP, 2:RF register, 3:EEPROM */
+	unsigned long Offset;		/* Q/S register offset addr */
+	unsigned long Data;		/* R/W data buffer */
 } RT_802_11_HARDWARE_REGISTER, *PRT_802_11_HARDWARE_REGISTER;
 
 typedef struct _RT_802_11_AP_CONFIG {
-	ULONG EnableTxBurst;	/* 0-disable, 1-enable */
-	ULONG EnableTurboRate;	/* 0-disable, 1-enable 72/100mbps turbo rate */
-	ULONG IsolateInterStaTraffic;	/* 0-disable, 1-enable isolation */
-	ULONG HideSsid;		/* 0-disable, 1-enable hiding */
-	ULONG UseBGProtection;	/* 0-AUTO, 1-always ON, 2-always OFF */
-	ULONG UseShortSlotTime;	/* 0-no use, 1-use 9-us short slot time */
-	ULONG Rsv1;		/* must be 0 */
-	ULONG SystemErrorBitmap;	/* ignore upon SET, return system error upon QUERY */
+	unsigned long EnableTxBurst;	/* 0-disable, 1-enable */
+	unsigned long EnableTurboRate;	/* 0-disable, 1-enable 72/100mbps turbo rate */
+	unsigned long IsolateInterStaTraffic;	/* 0-disable, 1-enable isolation */
+	unsigned long HideSsid;		/* 0-disable, 1-enable hiding */
+	unsigned long UseBGProtection;	/* 0-AUTO, 1-always ON, 2-always OFF */
+	unsigned long UseShortSlotTime;	/* 0-no use, 1-use 9-us short slot time */
+	unsigned long Rsv1;		/* must be 0 */
+	unsigned long SystemErrorBitmap;	/* ignore upon SET, return system error upon QUERY */
 } RT_802_11_AP_CONFIG, *PRT_802_11_AP_CONFIG;
 
 /* structure to query/set STA_CONFIG */
 typedef struct _RT_802_11_STA_CONFIG {
-	ULONG EnableTxBurst;	/* 0-disable, 1-enable */
-	ULONG EnableTurboRate;	/* 0-disable, 1-enable 72/100mbps turbo rate */
-	ULONG UseBGProtection;	/* 0-AUTO, 1-always ON, 2-always OFF */
-	ULONG UseShortSlotTime;	/* 0-no use, 1-use 9-us short slot time when applicable */
-	ULONG AdhocMode;	/* 0-11b rates only (WIFI spec), 1 - b/g mixed, 2 - g only */
-	ULONG HwRadioStatus;	/* 0-OFF, 1-ON, default is 1, Read-Only */
-	ULONG Rsv1;		/* must be 0 */
-	ULONG SystemErrorBitmap;	/* ignore upon SET, return system error upon QUERY */
+	unsigned long EnableTxBurst;	/* 0-disable, 1-enable */
+	unsigned long EnableTurboRate;	/* 0-disable, 1-enable 72/100mbps turbo rate */
+	unsigned long UseBGProtection;	/* 0-AUTO, 1-always ON, 2-always OFF */
+	unsigned long UseShortSlotTime;	/* 0-no use, 1-use 9-us short slot time when applicable */
+	unsigned long AdhocMode;	/* 0-11b rates only (WIFI spec), 1 - b/g mixed, 2 - g only */
+	unsigned long HwRadioStatus;	/* 0-OFF, 1-ON, default is 1, Read-Only */
+	unsigned long Rsv1;		/* must be 0 */
+	unsigned long SystemErrorBitmap;	/* ignore upon SET, return system error upon QUERY */
 } RT_802_11_STA_CONFIG, *PRT_802_11_STA_CONFIG;
 
 /* */
@@ -1044,15 +1044,15 @@ typedef struct _RT_802_11_ACL_ENTRY {
 } RT_802_11_ACL_ENTRY, *PRT_802_11_ACL_ENTRY;
 
 typedef struct __attribute__ ((packed)) _RT_802_11_ACL {
-	ULONG Policy;		/* 0-disable, 1-positive list, 2-negative list */
-	ULONG Num;
+	unsigned long Policy;		/* 0-disable, 1-positive list, 2-negative list */
+	unsigned long Num;
 	RT_802_11_ACL_ENTRY Entry[MAX_NUMBER_OF_ACL];
 } RT_802_11_ACL, *PRT_802_11_ACL;
 
 typedef struct _RT_802_11_WDS {
-	ULONG Num;
+	unsigned long Num;
 	NDIS_802_11_MAC_ADDRESS Entry[24 /*MAX_NUM_OF_WDS_LINK */ ];
-	ULONG KeyLength;
+	unsigned long KeyLength;
 	u8 KeyMaterial[32];
 } RT_802_11_WDS, *PRT_802_11_WDS;
 

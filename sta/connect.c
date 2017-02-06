@@ -329,7 +329,7 @@ void CntlOidScanProc(
 	MLME_QUEUE_ELEM *Elem)
 {
 	MLME_SCAN_REQ_STRUCT ScanReq;
-	ULONG BssIdx = BSS_NOT_FOUND;
+	unsigned long BssIdx = BSS_NOT_FOUND;
 /*	BSS_ENTRY                  CurrBss; */
 	BSS_ENTRY *pCurrBss = NULL;
 
@@ -572,7 +572,7 @@ void CntlOidRTBssidProc(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE_ELEM *Elem)
 {
-	ULONG BssIdx;
+	unsigned long BssIdx;
 	u8 *pOidBssid = (u8 *) Elem->Msg;
 	MLME_DISASSOC_REQ_STRUCT DisassocReq;
 	MLME_JOIN_REQ_STRUCT JoinReq;
@@ -1411,7 +1411,7 @@ void LinkUp(
 	struct rtmp_adapter *pAd,
 	u8 BssType)
 {
-	ULONG Now;
+	unsigned long Now;
 	u32 Data;
 	bool Cancelled;
 	u8 idx = 0;
@@ -2380,7 +2380,7 @@ void IterateOnBssTab(
 {
 	MLME_START_REQ_STRUCT StartReq;
 	MLME_JOIN_REQ_STRUCT JoinReq;
-	ULONG BssIdx;
+	unsigned long BssIdx;
 	BSS_ENTRY *pInBss = NULL;
 
 	/* Change the wepstatus to original wepstatus */
@@ -2482,7 +2482,7 @@ void IterateOnBssTab2(
 	struct rtmp_adapter *pAd)
 {
 	MLME_REASSOC_REQ_STRUCT ReassocReq;
-	ULONG BssIdx;
+	unsigned long BssIdx;
 	BSS_ENTRY *pBss;
 
 	BssIdx = pAd->MlmeAux.RoamIdx;
@@ -2541,7 +2541,7 @@ void IterateOnBssTab2(
 void JoinParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_JOIN_REQ_STRUCT *JoinReq,
-	ULONG BssIdx)
+	unsigned long BssIdx)
 {
 	JoinReq->BssIdx = BssIdx;
 }
@@ -2641,7 +2641,7 @@ void AuthParmFill(
 
 void MlmeCntlConfirm(
 	struct rtmp_adapter *pAd,
-	ULONG MsgType,
+	unsigned long MsgType,
 	USHORT Msg)
 {
 	MlmeEnqueue(pAd, MLME_CNTL_STATE_MACHINE, MsgType, sizeof (USHORT),
@@ -2659,7 +2659,7 @@ void MlmeCntlConfirm(
 
 	==========================================================================
 */
-ULONG MakeIbssBeacon(
+unsigned long MakeIbssBeacon(
 	struct rtmp_adapter *pAd)
 {
 	u8 DsLen = 1, IbssLen = 2;
@@ -2667,7 +2667,7 @@ ULONG MakeIbssBeacon(
 	HEADER_802_11 BcnHdr;
 	USHORT CapabilityInfo;
 	LARGE_INTEGER FakeTimestamp;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	struct txwi_nmac *pTxWI = &pAd->BeaconTxWI;
 	u8 *pBeaconFrame = pAd->BeaconBuf;
 	bool Privacy;
@@ -2758,7 +2758,7 @@ ULONG MakeIbssBeacon(
 
 	/* add ERP_IE and EXT_RAE IE of in 802.11g */
 	if (ExtRateLen) {
-		ULONG tmp;
+		unsigned long tmp;
 
 		MakeOutgoingFrame(pBeaconFrame + FrameLen, &tmp,
 				  3, LocalErpIe,
@@ -2773,7 +2773,7 @@ ULONG MakeIbssBeacon(
 	if ((pAd->StaCfg.AuthMode == Ndis802_11AuthModeWPANone)
 	    ) {
 		u8 RSNIe = IE_WPA;
-		ULONG tmp;
+		unsigned long tmp;
 
 		RTMPMakeRSNIE(pAd, pAd->StaCfg.AuthMode, pAd->StaCfg.WepStatus,
 			      BSS0);
@@ -2789,7 +2789,7 @@ ULONG MakeIbssBeacon(
 #ifdef DOT11_N_SUPPORT
 	if (WMODE_CAP_N(pAd->CommonCfg.PhyMode)
 	    && (pAd->StaCfg.bAdhocN == true)) {
-		ULONG TmpLen;
+		unsigned long TmpLen;
 		u8 HtLen, HtLen1;
 
 #ifdef RT_BIG_ENDIAN
@@ -2910,13 +2910,13 @@ void InitChannelRelatedValue(struct rtmp_adapter*pAd)
 void MaintainBssTable(
 	struct rtmp_adapter *pAd,
 	BSS_TABLE *Tab,
-	ULONG MaxRxTimeDiff,
+	unsigned long MaxRxTimeDiff,
 	u8 MaxSameRxTimeCount)
 {
 	u8 i, j;
 	u8 total_bssNr = Tab->BssNr;
 	bool bDelEntry = false;
-	ULONG	now_time = 0;
+	unsigned long	now_time = 0;
 
 	for (i = 0; i < total_bssNr; i++)
 	{

@@ -113,7 +113,7 @@ void RtmpOsUsbInitHTTxDesc(
 	struct usb_device *pUsb_Dev,
 	UINT BulkOutEpAddr,
 	u8 *pSrc,
-	ULONG BulkOutSize,
+	unsigned long BulkOutSize,
 	USB_COMPLETE_HANDLER Func,
 	void *pTxContext,
 	dma_addr_t TransferDma)
@@ -217,7 +217,7 @@ Return Value:
 Note:
 ========================================================================
 */
-ULONG RtmpOsUsbUrbLenGet(
+unsigned long RtmpOsUsbUrbLenGet(
 	void 				*pUrb)
 {
 	return RTMP_USB_URB_LEN_GET(pUrb);

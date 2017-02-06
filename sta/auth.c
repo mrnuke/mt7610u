@@ -153,11 +153,11 @@ void PeerAuthRspAtSeq2Action(
 	u8 *ChlgText = NULL;
 /*    u8         CyperChlgText[CIPHER_TEXT_LEN + 8 + 8]; */
 	u8 *CyperChlgText = NULL;
-	ULONG c_len = 0;
+	unsigned long c_len = 0;
 	HEADER_802_11 AuthHdr;
 	bool TimerCancelled;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	USHORT Status2;
 	u8 ChallengeIe = IE_CHALLENGE_TEXT;
 	u8 len_challengeText = CIPHER_TEXT_LEN;
@@ -370,7 +370,7 @@ void MlmeDeauthReqAction(
 	MLME_DEAUTH_REQ_STRUCT *pInfo;
 	HEADER_802_11 DeauthHdr;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	USHORT Status;
 
 	pInfo = (MLME_DEAUTH_REQ_STRUCT *) Elem->Msg;
@@ -464,7 +464,7 @@ void Cls2errAction(
 {
 	HEADER_802_11 DeauthHdr;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	USHORT Reason = REASON_CLS2ERR;
 
 	pOutBuffer = kmalloc(MGMT_DMA_BUFFER_SIZE, GFP_ATOMIC);	/*Get an unused nonpaged memory */
@@ -491,15 +491,15 @@ bool AUTH_ReqSend(
 	char *pSMName,
 	USHORT SeqNo,
 	u8 *pNewElement,
-	ULONG ElementLen)
+	unsigned long ElementLen)
 {
 	USHORT Alg, Seq, Status;
 	u8 Addr[6];
-	ULONG Timeout;
+	unsigned long Timeout;
 	HEADER_802_11 AuthHdr;
 	bool TimerCancelled;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0, tmp = 0;
+	unsigned long FrameLen = 0, tmp = 0;
 
 	/* Block all authentication request durning WPA block period */
 	if (pAd->StaCfg.bBlockAssoc == true) {

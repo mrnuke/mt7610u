@@ -135,10 +135,10 @@ typedef	struct __attribute__ ((packed)) _IV_CONTROL_
 			}	CONTROL;
 		}	field;
 
-		ULONG	word;
+		unsigned long	word;
 	}	IV16;
 
-	ULONG	IV32;
+	unsigned long	IV32;
 }	TKIP_IV, *PTKIP_IV;
 
 
@@ -146,7 +146,7 @@ typedef	struct __attribute__ ((packed)) _IV_CONTROL_
 	========================================================================
 
 	Routine	Description:
-		Convert from UCHAR[] to ULONG in a portable way
+		Convert from UCHAR[] to unsigned long in a portable way
 
 	Arguments:
       pMICKey		pointer to MIC Key
@@ -158,10 +158,10 @@ typedef	struct __attribute__ ((packed)) _IV_CONTROL_
 
 	========================================================================
 */
-ULONG	RTMPTkipGetUInt32(
+unsigned long	RTMPTkipGetUInt32(
 	u8 *pMICKey)
 {
-	ULONG	res = 0;
+	unsigned long	res = 0;
 	INT		i;
 
 	for (i = 0; i < 4; i++)
@@ -176,10 +176,10 @@ ULONG	RTMPTkipGetUInt32(
 	========================================================================
 
 	Routine	Description:
-		Convert from ULONG to UCHAR[] in a portable way
+		Convert from unsigned long to UCHAR[] in a portable way
 
 	Arguments:
-      pDst			pointer to destination for convert ULONG to UCHAR[]
+      pDst			pointer to destination for convert unsigned long to UCHAR[]
       val			the value for convert
 
 	Return Value:
@@ -193,7 +193,7 @@ ULONG	RTMPTkipGetUInt32(
 */
 void RTMPTkipPutUInt32(
 	u8 *	pDst,
-	ULONG		val)
+	unsigned long		val)
 {
 	INT i;
 
@@ -381,7 +381,7 @@ void RTMPInitMICEngine(
 	u8           UserPriority,
 	u8 *		pMICKey)
 {
-	ULONG Priority = UserPriority;
+	unsigned long Priority = UserPriority;
 
 	/* Init MIC value calculation*/
 	RTMPTkipSetMICKey(&pAd->PrivateInfo.Tx, pMICKey);
@@ -427,7 +427,7 @@ bool RTMPTkipCompareMICValue(
 	UINT			Len)
 {
 	u8 OldMic[8];
-	ULONG	Priority = UserPriority;
+	unsigned long	Priority = UserPriority;
 
 	/* Init MIC value calculation*/
 	RTMPTkipSetMICKey(&pAd->PrivateInfo.Rx, pMICKey);
@@ -582,8 +582,8 @@ UINT rotr1(UINT a)
 void RTMPTkipMixKey(
 	u8 *key,
 	u8 *ta,
-	ULONG pnl, /* Least significant 16 bits of PN */
-	ULONG pnh, /* Most significant 32 bits of PN */
+	unsigned long pnl, /* Least significant 16 bits of PN */
+	unsigned long pnh, /* Most significant 32 bits of PN */
 	u8 *rc4key,
 	UINT *p1k)
 {
@@ -704,8 +704,8 @@ bool RTMPSoftDecryptTKIP(
 	u8 		SA[ETH_ALEN];
 	u8 		RC4Key[16];
 	UINT			p1k[5]; /*for mix_key;*/
-	ULONG			pnl;/* Least significant 16 bits of PN */
-	ULONG			pnh;/* Most significant 32 bits of PN */
+	unsigned long			pnl;/* Least significant 16 bits of PN */
+	unsigned long			pnh;/* Most significant 32 bits of PN */
 	ARC4_CTX_STRUC 	ARC4_CTX;
 	u8 *		plaintext_ptr;
 	u32			plaintext_len;

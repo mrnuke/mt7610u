@@ -92,7 +92,7 @@ void RTUSBInitHTTxDesc(
 	struct rtmp_adapter *pAd,
 	PHT_TX_CONTEXT	pTxContext,
 	u8 		BulkOutPipeId,
-	ULONG			BulkOutSize,
+	unsigned long			BulkOutSize,
 	usb_complete_t	Func)
 {
 	struct urb *			pUrb;
@@ -124,7 +124,7 @@ void RTUSBInitRxDesc(
 {
 	struct urb *			pUrb;
 	struct os_cookie *		pObj = pAd->OS_Cookie;
-	ULONG				RX_bulk_size;
+	unsigned long				RX_bulk_size;
 	struct rtmp_chip_cap *pChipCap = &pAd->chipCap;
 
 	pUrb = pRxContext->pUrb;
@@ -182,7 +182,7 @@ void RTUSBBulkOutDataPacket(
 	int				ret = 0;
 	union txinfo_nmac *pTxInfo, *pLastTxInfo = NULL;
 	struct txwi_nmac *pTxWI;
-	ULONG			TmpBulkEndPos, ThisBulkSize;
+	unsigned long			TmpBulkEndPos, ThisBulkSize;
 	unsigned long	IrqFlags = 0, IrqFlags2 = 0;
 	u8 *		pWirelessPkt, *pAppendant;
 
@@ -1219,7 +1219,7 @@ void RTUSBCancelPendingBulkInIRP(
 	PRX_CONTEXT pRxContext;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &pAd->CmdRspEventContext;
 	UINT i;
-	ULONG IrqFlags;
+	unsigned long IrqFlags;
 
 	DBGPRINT_RAW(RT_DEBUG_TRACE, ("--->RTUSBCancelPendingBulkInIRP\n"));
 	for ( i = 0; i < (RX_RING_SIZE); i++)

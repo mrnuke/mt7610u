@@ -1001,7 +1001,7 @@ static int ForceSleepAutoWakeupHdlr(struct rtmp_adapter *pAd, struct rtmp_queue_
 {
 	USHORT  TbttNumToNextWakeUp;
 	USHORT  NextDtim = pAd->StaCfg.DtimPeriod;
-	ULONG   Now;
+	unsigned long   Now;
 
 	NdisGetSystemUpTime(&Now);
 	NextDtim -= (USHORT)(Now - pAd->StaCfg.LastBeaconRxTime)/pAd->CommonCfg.BeaconPeriod;

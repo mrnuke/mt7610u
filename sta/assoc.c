@@ -261,12 +261,12 @@ void MlmeAssocReqAction(
 	HEADER_802_11 AssocHdr;
 	u8 WmeIe[9] = {IE_VENDOR_SPECIFIC, 0x07, 0x00, 0x50, 0xf2, 0x02, 0x00, 0x01, 0x00};
 	USHORT ListenIntv;
-	ULONG Timeout;
+	unsigned long Timeout;
 	USHORT CapabilityInfo;
 	bool TimerCancelled;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
-	ULONG tmp;
+	unsigned long FrameLen = 0;
+	unsigned long tmp;
 	USHORT VarIesOffset = 0;
 	USHORT Status;
 
@@ -370,7 +370,7 @@ void MlmeAssocReqAction(
 		/* HT */
 		if ((pAd->MlmeAux.HtCapabilityLen > 0)
 		    && WMODE_CAP_N(pAd->CommonCfg.PhyMode)) {
-			ULONG TmpLen;
+			unsigned long TmpLen;
 			u8 HtLen, BROADCOM[4] = { 0x0, 0x90, 0x4c, 0x33 };
 			PHT_CAPABILITY_IE pHtCapability;
 #ifdef RT_BIG_ENDIAN
@@ -414,7 +414,7 @@ void MlmeAssocReqAction(
 
 #if defined(DOT11N_DRAFT3) || defined(DOT11V_WNM_SUPPORT) || defined(DOT11Z_TDLS_SUPPORT)
 		{
-			ULONG TmpLen;
+			unsigned long TmpLen;
 			EXT_CAP_INFO_ELEMENT extCapInfo;
 			u8 extInfoLen;
 
@@ -451,14 +451,14 @@ void MlmeAssocReqAction(
 		if (pAd->CommonCfg.bAggregationCapable) {
 			if ((pAd->CommonCfg.bPiggyBackCapable)
 			    && ((pAd->MlmeAux.APRalinkIe & 0x00000003) == 3)) {
-				ULONG TmpLen;
+				unsigned long TmpLen;
 				u8 RalinkIe[9] = {IE_VENDOR_SPECIFIC, 7, 0x00, 0x0c, 0x43, 0x03, 0x00, 0x00, 0x00};
 				MakeOutgoingFrame(pOutBuffer + FrameLen,
 						  &TmpLen, 9, RalinkIe,
 						  END_OF_ARGS);
 				FrameLen += TmpLen;
 			} else if (pAd->MlmeAux.APRalinkIe & 0x00000001) {
-				ULONG TmpLen;
+				unsigned long TmpLen;
 				u8 RalinkIe[9] = {IE_VENDOR_SPECIFIC, 7, 0x00, 0x0c, 0x43, 0x01, 0x00, 0x00, 0x00};
 				MakeOutgoingFrame(pOutBuffer + FrameLen,
 						  &TmpLen, 9, RalinkIe,
@@ -466,7 +466,7 @@ void MlmeAssocReqAction(
 				FrameLen += TmpLen;
 			}
 		} else {
-			ULONG TmpLen;
+			unsigned long TmpLen;
 			u8 RalinkIe[9] = {IE_VENDOR_SPECIFIC, 7, 0x00, 0x0c, 0x43, 0x06, 0x00, 0x00, 0x00};
 			MakeOutgoingFrame(pOutBuffer + FrameLen, &TmpLen, 9,
 					  RalinkIe, END_OF_ARGS);
@@ -615,7 +615,7 @@ void MlmeAssocReqAction(
 /* #ifdef SIOCSIWGENIE */
 		if ((pAd->StaCfg.WpaSupplicantUP & WPA_SUPPLICANT_ENABLE) &&
 		    (pAd->StaCfg.bRSN_IE_FromWpaSupplicant == true)) {
-			ULONG TmpWpaAssocIeLen = 0;
+			unsigned long TmpWpaAssocIeLen = 0;
 			MakeOutgoingFrame(pOutBuffer + FrameLen,
 					  &TmpWpaAssocIeLen,
 					  pAd->StaCfg.WpaAssocIeLen,
@@ -675,10 +675,10 @@ void MlmeReassocReqAction(
 	HEADER_802_11 ReassocHdr;
 	u8 WmeIe[9] = {IE_VENDOR_SPECIFIC, 0x07, 0x00, 0x50, 0xf2, 0x02, 0x00, 0x01, 0x00};
 	USHORT CapabilityInfo, ListenIntv;
-	ULONG Timeout;
-	ULONG FrameLen = 0;
+	unsigned long Timeout;
+	unsigned long FrameLen = 0;
 	bool TimerCancelled;
-	ULONG tmp;
+	unsigned long tmp;
 	u8 *pOutBuffer = NULL;
 	USHORT Status;
 
@@ -770,7 +770,7 @@ void MlmeReassocReqAction(
 		/* HT */
 		if ((pAd->MlmeAux.HtCapabilityLen > 0)
 		    && WMODE_CAP_N(pAd->CommonCfg.PhyMode)) {
-			ULONG TmpLen;
+			unsigned long TmpLen;
 			u8 HtLen;
 			u8 BROADCOM[4] = {0x0, 0x90, 0x4c, 0x33};
 			PHT_CAPABILITY_IE pHtCapability;
@@ -817,7 +817,7 @@ void MlmeReassocReqAction(
 		if (false
 		 )
 		{
-			ULONG TmpLen;
+			unsigned long TmpLen;
 			EXT_CAP_INFO_ELEMENT extCapInfo;
 			u8 extInfoLen;
 
@@ -846,14 +846,14 @@ void MlmeReassocReqAction(
 		if (pAd->CommonCfg.bAggregationCapable) {
 			if ((pAd->CommonCfg.bPiggyBackCapable)
 			    && ((pAd->MlmeAux.APRalinkIe & 0x00000003) == 3)) {
-				ULONG TmpLen;
+				unsigned long TmpLen;
 				u8 RalinkIe[9] = {IE_VENDOR_SPECIFIC, 7, 0x00, 0x0c, 0x43, 0x03, 0x00, 0x00, 0x00 };
 				MakeOutgoingFrame(pOutBuffer + FrameLen,
 						  &TmpLen, 9, RalinkIe,
 						  END_OF_ARGS);
 				FrameLen += TmpLen;
 			} else if (pAd->MlmeAux.APRalinkIe & 0x00000001) {
-				ULONG TmpLen;
+				unsigned long TmpLen;
 				u8 RalinkIe[9] = {IE_VENDOR_SPECIFIC, 7, 0x00, 0x0c, 0x43, 0x01, 0x00, 0x00, 0x00 };
 				MakeOutgoingFrame(pOutBuffer + FrameLen,
 						  &TmpLen, 9, RalinkIe,
@@ -861,7 +861,7 @@ void MlmeReassocReqAction(
 				FrameLen += TmpLen;
 			}
 		} else {
-			ULONG TmpLen;
+			unsigned long TmpLen;
 			u8 RalinkIe[9] = {IE_VENDOR_SPECIFIC, 7, 0x00, 0x0c, 0x43, 0x04, 0x00, 0x00, 0x00 };
 			MakeOutgoingFrame(pOutBuffer + FrameLen, &TmpLen, 9,
 					  RalinkIe, END_OF_ARGS);
@@ -902,9 +902,9 @@ void MlmeDisassocReqAction(
 	HEADER_802_11 DisassocHdr;
 	PHEADER_802_11 pDisassocHdr;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	bool TimerCancelled;
-	ULONG Timeout = 500;
+	unsigned long Timeout = 500;
 	USHORT Status;
 
 #ifdef QOS_DLS_SUPPORT
@@ -1323,7 +1323,7 @@ void AssocPostProc(
 	u8 HtCapabilityLen,
 	ADD_HT_INFO_IE *pAddHtInfo)
 {				/* AP might use this additional ht info IE */
-	ULONG Idx;
+	unsigned long Idx;
 
 	pAd->MlmeAux.BssType = BSS_INFRA;
 	memcpy(pAd->MlmeAux.Bssid, pAddr2, ETH_ALEN);
@@ -1660,7 +1660,7 @@ void Cls3errAction(
 	HEADER_802_11 DisassocHdr;
 	PHEADER_802_11 pDisassocHdr;
 	u8 *pOutBuffer = NULL;
-	ULONG FrameLen = 0;
+	unsigned long FrameLen = 0;
 	USHORT Reason = REASON_CLS3ERR;
 
 	pOutBuffer = kmalloc(MGMT_DMA_BUFFER_SIZE, GFP_ATOMIC);	/*Get an unused nonpaged memory */

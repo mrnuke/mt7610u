@@ -133,9 +133,9 @@ static inline void __RTMP_OS_Release_Timer(
 
 
 /* Unify all delay routine by using udelay */
-void RTMPusecDelay(ULONG usec)
+void RTMPusecDelay(unsigned long usec)
 {
-	ULONG i;
+	unsigned long i;
 
 	for (i = 0; i < (usec / 50); i++)
 		udelay(50);
@@ -144,12 +144,12 @@ void RTMPusecDelay(ULONG usec)
 		udelay(usec % 50);
 }
 
-void RTMP_GetCurrentSystemTick(ULONG *pNow)
+void RTMP_GetCurrentSystemTick(unsigned long *pNow)
 {
 	*pNow = jiffies;
 }
 
-ULONG RTMPMsecsToJiffies(u32 m)
+unsigned long RTMPMsecsToJiffies(u32 m)
 {
 
 	return msecs_to_jiffies(m);
@@ -160,7 +160,7 @@ ULONG RTMPMsecsToJiffies(u32 m)
 int os_alloc_mem_suspend(
 	void *pReserved,
 	u8 **mem,
-	ULONG size)
+	unsigned long size)
 {
 	*mem = (u8 *) kmalloc(size, GFP_KERNEL);
 	if (*mem) {
@@ -308,7 +308,7 @@ struct sk_buff * duplicate_pkt(
 	u8 *pHeader802_3,
 	UINT HdrLen,
 	u8 *pData,
-	ULONG DataSize,
+	unsigned long DataSize,
 	u8 FromWhichBSSID)
 {
 	struct sk_buff *skb;
@@ -449,7 +449,7 @@ struct sk_buff * ClonePacket(
 	void *pReserved,
 	struct sk_buff * pPacket,
 	u8 *pData,
-	ULONG DataSize)
+	unsigned long DataSize)
 {
 	struct sk_buff *pRxPkt;
 	struct sk_buff *pClonedPkt;
@@ -495,7 +495,7 @@ void wlan_802_11_to_802_3_packet(
 	USHORT VLAN_Priority,
 	struct sk_buff * pRxPacket,
 	u8 *pData,
-	ULONG DataSize,
+	unsigned long DataSize,
 	u8 *pHeader802_3,
 	u8 FromWhichBSSID,
 	u8 *TPID)
@@ -931,7 +931,7 @@ static inline void __RtmpOSTaskCustomize(OS_TASK *pTask)
 static inline int __RtmpOSTaskAttach(
 	OS_TASK *pTask,
 	RTMP_OS_TASK_CALLBACK fn,
-	ULONG arg)
+	unsigned long arg)
 {
 	int status = NDIS_STATUS_SUCCESS;
 #ifndef KTHREAD_SUPPORT
@@ -1726,7 +1726,7 @@ Return Value:
 Note:
 ========================================================================
 */
-void *RtmpOsVmalloc(ULONG Size)
+void *RtmpOsVmalloc(unsigned long Size)
 {
 	return vmalloc(Size);
 }
@@ -2369,7 +2369,7 @@ Note:
 void CFG80211OS_RegHint(
 	void *pCB,
 	u8 *pCountryIe,
-	ULONG CountryIeLen)
+	unsigned long CountryIeLen)
 {
 	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
 
@@ -2410,7 +2410,7 @@ Note:
 void CFG80211OS_RegHint11D(
 	void *pCB,
 	u8 *pCountryIe,
-	ULONG CountryIeLen)
+	unsigned long CountryIeLen)
 {
 	/* no regulatory_hint_11d() in 2.6.32 */
 }
@@ -2737,8 +2737,8 @@ Note:
 ========================================================================
 */
 void RtmpOsDCacheFlush(
-	ULONG AddrStart,
-	ULONG Size)
+	unsigned long AddrStart,
+	unsigned long Size)
 {
 	RTMP_UTIL_DCACHE_FLUSH(AddrStart, Size);
 }
@@ -2939,7 +2939,7 @@ void RtmpOSTaskCustomize(RTMP_OS_TASK *pTask)
 int RtmpOSTaskAttach(
 	RTMP_OS_TASK *pTask,
 	RTMP_OS_TASK_CALLBACK fn,
-	ULONG arg)
+	unsigned long arg)
 {
 	return __RtmpOSTaskAttach(pTask, fn, arg);
 }
