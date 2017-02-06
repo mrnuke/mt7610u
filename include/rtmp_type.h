@@ -46,8 +46,6 @@ typedef unsigned int UINT;
 typedef unsigned long ULONG;
 #endif /* LINUX */
 
-typedef unsigned short *PUINT16;
-
 /* modified for fixing compile warning on Sigma 8634 platform */
 typedef char STRING;
 
