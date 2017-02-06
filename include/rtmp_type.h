@@ -35,7 +35,6 @@
 #ifdef LINUX
 /* Put platform dependent declaration here */
 /* For example, linux type definition */
-typedef short INT16;
 
 typedef unsigned short USHORT;
 typedef unsigned int UINT;
