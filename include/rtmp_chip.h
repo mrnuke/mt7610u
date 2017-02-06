@@ -398,8 +398,8 @@ struct rtmp_chip_cap {
 	u8 CCARatioA;
 	u8 CCARatioB;
 	u8 CCACheckPeriod; /* unit: second */
-	CHAR RssiThreshold;
-	CHAR RssiAvg;
+	char RssiThreshold;
+	char RssiAvg;
 	u32 CCAThresholdA;
 	u32 CCAThresholdB;
 	unsigned long CCARecordCnt; /* unit: second */

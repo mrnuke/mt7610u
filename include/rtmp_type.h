@@ -31,9 +31,6 @@
 
 #include <linux/types.h>
 
-/* modified for fixing compile warning on Sigma 8634 platform */
-typedef signed char CHAR;
-
 typedef unsigned int NDIS_MEDIA_STATE;
 
 typedef union _LARGE_INTEGER {

@@ -1682,10 +1682,10 @@ void Update_Rssi_Sample(
 	RSSI_SAMPLE *pRssi,
 	struct rxwi_nmac *pRxWI)
 {
-	CHAR rssi[3];
+	char rssi[3];
 	u8 snr[3];
 	bool bInitial = false;
-	CHAR Phymode = get_pkt_phymode_by_rxwi(pRxWI);
+	char Phymode = get_pkt_phymode_by_rxwi(pRxWI);
 
 
 	if (!(pRssi->AvgRssi0 | pRssi->AvgRssi0X8 | pRssi->LastRssi0))
@@ -1695,7 +1695,7 @@ void Update_Rssi_Sample(
 	get_pkt_snr_by_rxwi(pRxWI, 3, &snr[0]);
 	if (rssi[0] != 0)
 	{
-		pRssi->LastRssi0 = ConvertToRssi(pAd, (CHAR)rssi[0], RSSI_0);
+		pRssi->LastRssi0 = ConvertToRssi(pAd, (char)rssi[0], RSSI_0);
 		if (bInitial)
 		{
 			pRssi->AvgRssi0X8 = pRssi->LastRssi0 << 3;
@@ -1723,7 +1723,7 @@ void Update_Rssi_Sample(
 
 	if (rssi[1] != 0)
 	{
-		pRssi->LastRssi1 = ConvertToRssi(pAd, (CHAR)rssi[1], RSSI_1);
+		pRssi->LastRssi1 = ConvertToRssi(pAd, (char)rssi[1], RSSI_1);
 		if (bInitial)
 		{
 			pRssi->AvgRssi1X8 = pRssi->LastRssi1 << 3;
@@ -1751,7 +1751,7 @@ void Update_Rssi_Sample(
 
 	if (rssi[2] != 0)
 	{
-		pRssi->LastRssi2 = ConvertToRssi(pAd, (CHAR)rssi[2], RSSI_2);
+		pRssi->LastRssi2 = ConvertToRssi(pAd, (char)rssi[2], RSSI_2);
 
 		if (bInitial)
 		{

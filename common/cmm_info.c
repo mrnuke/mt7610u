@@ -690,7 +690,7 @@ int	Set_ResetStatCounter_Proc(
 
 
 bool RTMPCheckStrPrintAble(
-    CHAR *pInPutStr,
+    char *pInPutStr,
     u8 strLen)
 {
     u8 i=0;
@@ -1284,7 +1284,7 @@ Arguments:
     Note:
     ==========================================================================
 */
-char *GetEncryptType(CHAR enc)
+char *GetEncryptType(char enc)
 {
     if(enc == Ndis802_11WEPDisabled)
         return "NONE";
@@ -1300,7 +1300,7 @@ char *GetEncryptType(CHAR enc)
     	return "UNKNOW";
 }
 
-char *GetAuthMode(CHAR auth)
+char *GetAuthMode(char auth)
 {
     if(auth == Ndis802_11AuthModeOpen)
     	return "OPEN";
@@ -1357,7 +1357,7 @@ void RTMPCommSiteSurveyData(
 	int         Rssi = 0;
 	unsigned int        Rssi_Quality = 0;
 	NDIS_802_11_NETWORK_TYPE    wireless_mode;
-	CHAR		Ssid[MAX_LEN_OF_SSID +1];
+	char		Ssid[MAX_LEN_OF_SSID +1];
 	char		SecurityStr[32] = {0};
 	NDIS_802_11_ENCRYPTION_STATUS	ap_cipher = Ndis802_11EncryptionDisabled;
 	NDIS_802_11_AUTHENTICATION_MODE	ap_auth_mode = Ndis802_11AuthModeOpen;
@@ -1465,7 +1465,7 @@ void RTMPCommSiteSurveyData(
 				ap_cipher = pBss->WPA.PairCipher;
 		}
 
-		sprintf(SecurityStr, "%s/%s", GetAuthMode((CHAR)ap_auth_mode), GetEncryptType((CHAR)ap_cipher));
+		sprintf(SecurityStr, "%s/%s", GetAuthMode((char)ap_auth_mode), GetEncryptType((char)ap_cipher));
 	}
 	else
 	{
@@ -1476,7 +1476,7 @@ void RTMPCommSiteSurveyData(
 		else if (ap_cipher == Ndis802_11WEPEnabled)
 			sprintf(SecurityStr, "WEP");
 		else
-			sprintf(SecurityStr, "%s/%s", GetAuthMode((CHAR)ap_auth_mode), GetEncryptType((CHAR)ap_cipher));
+			sprintf(SecurityStr, "%s/%s", GetAuthMode((char)ap_auth_mode), GetEncryptType((char)ap_cipher));
 	}
 
 	sprintf(msg+strlen(msg), "%-23s", SecurityStr);
@@ -1594,8 +1594,8 @@ void RTMPIoctlGetMacTable(
 	}
 
 
-/*	msg = kmalloc(sizeof(CHAR)*(MAX_LEN_OF_MAC_TABLE*MAC_LINE_LEN), MEM_ALLOC_FLAG);*/
-	msg = kmalloc(sizeof(CHAR)*(MAX_LEN_OF_MAC_TABLE*MAC_LINE_LEN), GFP_ATOMIC);
+/*	msg = kmalloc(sizeof(char)*(MAX_LEN_OF_MAC_TABLE*MAC_LINE_LEN), MEM_ALLOC_FLAG);*/
+	msg = kmalloc(sizeof(char)*(MAX_LEN_OF_MAC_TABLE*MAC_LINE_LEN), GFP_ATOMIC);
 	if (!msg) {
 		DBGPRINT(RT_DEBUG_ERROR, ("%s():Alloc memory failed\n", __FUNCTION__));
 		goto LabelOK;
@@ -2626,7 +2626,7 @@ void dbQueueEnqueueRxFrame(u8 *pRxWI, u8 *pHeader_802_11, unsigned long flags)
 /* dbQueueDisplayPhy - Display PHY rate */
 static void dbQueueDisplayPHY(unsigned short phyRate)
 {
-	static CHAR *mode[4] = {" C", "oM","mM", "gM"};
+	static char *mode[4] = {" C", "oM","mM", "gM"};
 
 	DBGPRINT(RT_DEBUG_OFF, ("%2s%02d %c%c%c%c",
 		//(phyRate>>8) & 0xFF, phyRate & 0xFF,
@@ -2697,9 +2697,9 @@ static void dbQueueDump(
 		case 0x79:	/* RXWI - next 2 longs, MSB to LSB */
 			if (decode) {
 				DBGPRINT(RT_DEBUG_OFF, ("Rx2  %2d %2d %2d S:%d %d %d ",
-						ConvertToRssi(pAd, (CHAR)oldTail->data[0], RSSI_0),
-						ConvertToRssi(pAd, (CHAR)oldTail->data[1], RSSI_1),
-						ConvertToRssi(pAd, (CHAR)oldTail->data[2], RSSI_2),
+						ConvertToRssi(pAd, (char)oldTail->data[0], RSSI_0),
+						ConvertToRssi(pAd, (char)oldTail->data[1], RSSI_1),
+						ConvertToRssi(pAd, (char)oldTail->data[2], RSSI_2),
 						(oldTail->data[4]*3 + 8)/16,
 						(oldTail->data[5]*3 + 8)/16,
 						(oldTail->data[6]*3 + 8)/16) );
@@ -2725,7 +2725,7 @@ static void dbQueueDump(
 			u8 tCode;
 			struct _typeTableEntry {
 				u8 code;	/* Type/subtype*/
-				CHAR  str[4];
+				char  str[4];
 			} *pTab;
 			static struct _typeTableEntry typeTable[] = {
 				{0x00, "mARq"}, {0x01, "mARp"}, {0x02, "mRRq"}, {0x03, "mRRp"},

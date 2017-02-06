@@ -570,7 +570,7 @@ int rtmp_bbp_set_ctrlch(struct rtmp_adapter *pAd, int ext_ch);
 int rtmp_bbp_set_rxpath(struct rtmp_adapter *pAd, int rxpath);
 int rtmp_bbp_set_txdac(struct rtmp_adapter *pAd, int tx_dac);
 int rtmp_bbp_set_agc(struct rtmp_adapter *pAd, u8 agc, RX_CHAIN_IDX idx);
-int rtmp_bbp_get_agc(struct rtmp_adapter *pAd, CHAR *agc, RX_CHAIN_IDX idx);
+int rtmp_bbp_get_agc(struct rtmp_adapter *pAd, char *agc, RX_CHAIN_IDX idx);
 
 int NICInitBBP(struct rtmp_adapter *pAd);
 

@@ -57,11 +57,11 @@
 void AsicAdjustTxPower(
 	struct rtmp_adapter *pAd)
 {
-	CHAR		Rssi = -127;
-	CHAR		DeltaPwr = 0;
-	CHAR		TxAgcCompensate = 0;
-	CHAR		DeltaPowerByBbpR1 = 0;
-	CHAR		TotalDeltaPower = 0; /* (non-positive number) including the transmit power controlled by the MAC and the BBP R1 */
+	char		Rssi = -127;
+	char		DeltaPwr = 0;
+	char		TxAgcCompensate = 0;
+	char		DeltaPowerByBbpR1 = 0;
+	char		TotalDeltaPower = 0; /* (non-positive number) including the transmit power controlled by the MAC and the BBP R1 */
 
 #ifdef CONFIG_STA_SUPPORT
 	if (RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_IDLE_RADIO_OFF))
@@ -108,7 +108,7 @@ void AsicAdjustTxPower(
 
 void AsicPercentageDeltaPower(
 	struct rtmp_adapter *		pAd,
-	CHAR				Rssi,
+	char				Rssi,
 	char *			pDeltaPwr,
 	char *			pDeltaPowerByBbpR1)
 {

@@ -3573,7 +3573,7 @@ RtmpIoctl_rt_ioctl_rssi(
 	unsigned long					Data)
 {
 
-        (*(CHAR *)pData) =  pAd->StaCfg.RssiSample.AvgRssi0;
+        (*(char *)pData) =  pAd->StaCfg.RssiSample.AvgRssi0;
 	return NDIS_STATUS_SUCCESS;
 }
 

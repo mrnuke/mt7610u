@@ -210,7 +210,7 @@ int rtmp_bbp_set_bw(struct rtmp_adapter *pAd, int bw)
 }
 
 
-int rtmp_bbp_get_agc(struct rtmp_adapter *pAd, CHAR *agc, RX_CHAIN_IDX chain)
+int rtmp_bbp_get_agc(struct rtmp_adapter *pAd, char *agc, RX_CHAIN_IDX chain)
 {
 	u8 idx, val;
 	u32 bbp_val, bbp_reg = AGC1_R8;

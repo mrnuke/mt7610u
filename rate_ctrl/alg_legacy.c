@@ -61,7 +61,7 @@ void MlmeDynamicTxRateSwitching(
 	u8 				InitTxRateIdx, TrainUp, TrainDown;
 	TX_STA_CNT1_STRUC		StaTx1;
 	TX_STA_CNT0_STRUC		TxStaCnt0;
-	CHAR					Rssi, TmpIdx = 0;
+	char					Rssi, TmpIdx = 0;
 	unsigned long					TxRetransmit = 0, TxSuccess = 0, TxFailCount = 0;
 	RSSI_SAMPLE				*pRssi = &pAd->StaCfg.RssiSample;
 
@@ -352,8 +352,8 @@ void MlmeDynamicTxRateSwitching(
 		if (TxTotalCnt <= 15)
 		{
 			u8 TxRateIdx;
-			CHAR	mcs[24];
-			CHAR	RssiOffset = 0;
+			char	mcs[24];
+			char	RssiOffset = 0;
 
 			/* Check existence and get the index of each MCS */
 			MlmeGetSupportedMcs(pAd, pTable, mcs);
@@ -447,7 +447,7 @@ void StaQuickResponeForRateUpExec(
 	unsigned long					TxErrorRatio = 0;
 	RTMP_RA_LEGACY_TB *pCurrTxRate;
 	u8 				InitTxRateIdx, TrainUp, TrainDown;
-	CHAR					Rssi, ratio;
+	char					Rssi, ratio;
 	unsigned long					TxSuccess, TxRetransmit, TxFailCount;
 	MAC_TABLE_ENTRY			*pEntry;
 

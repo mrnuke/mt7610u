@@ -63,7 +63,7 @@ bool rtstrmactohex(char *s1, char *s2)
 bool rtstrcasecmp(char *s1, char *s2)
 {
 	char *p1 = s1, *p2 = s2;
-	CHAR c1, c2;
+	char c1, c2;
 
 	if (strlen(s1) != strlen(s2))
 		return false;
@@ -1598,7 +1598,7 @@ int	RTMPSetProfileParameters(
 						if (lInfo > 90 || lInfo < 60)
 							pAd->StaCfg.dBmToRoam = -70;
 						else
-							pAd->StaCfg.dBmToRoam = (CHAR)(-1)*lInfo;
+							pAd->StaCfg.dBmToRoam = (char)(-1)*lInfo;
 
 						DBGPRINT(RT_DEBUG_TRACE, ("RoamThreshold=%d  dBm\n", pAd->StaCfg.dBmToRoam));
 					}

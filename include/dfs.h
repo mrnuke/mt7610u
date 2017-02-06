@@ -339,7 +339,7 @@ typedef struct _DFS_SW_DETECT_PARAM{
 typedef struct _RADAR_DETECT_STRUCT {
 	u8 DFSAPRestart;
 	unsigned long MCURadarRegion;
-	CHAR  AvgRssiReq;
+	char  AvgRssiReq;
 	unsigned long DfsLowerLimit;
 	unsigned long DfsUpperLimit;
 	unsigned long upperlimit;
@@ -366,7 +366,7 @@ typedef struct _RADAR_DETECT_STRUCT {
 	unsigned long idle_time;
 	unsigned long busy_time;
 	u8 ch_busy;
-	CHAR	ch_busy_countdown;
+	char	ch_busy_countdown;
 	u8 busy_channel;
 	u8 ch_busy_idle_ratio;
 	bool BusyIdleFromCfg;

@@ -1121,7 +1121,7 @@ typedef struct {
 	u8 		AddHtInfoLen;
 	EXT_CAP_INFO_ELEMENT ExtCapInfo;	/* this is the extened capibility IE appreed in MGMT frames. Doesn't need to update once set in Init. */
 	u8 		NewExtChanOffset;
-	CHAR    Rssi;
+	char    Rssi;
 
 #ifdef DOT11_VHT_AC
 	u8 vht_cap_len;
@@ -1131,7 +1131,7 @@ typedef struct {
 #endif /* DOT11_VHT_AC */
 
 
-	CHAR	MinSNR;
+	char	MinSNR;
     u8   Privacy;			/* Indicate security function ON/OFF. Don't mess up with auth mode. */
 	u8 Hidden;
 
@@ -1143,7 +1143,7 @@ typedef struct {
     unsigned short  CfpMaxDuration;
     unsigned short  CfpDurRemaining;
     u8   SsidLen;
-    CHAR    Ssid[MAX_LEN_OF_SSID];
+    char    Ssid[MAX_LEN_OF_SSID];
 
 	u8 SameRxTimeCount;
 	unsigned long   LastBeaconRxTimeA; /* OS's timestamp */
@@ -1356,11 +1356,11 @@ typedef struct _MLME_SCAN_REQ_STRUCT {
     u8      BssType;
     u8      ScanType;
     u8      SsidLen;
-    CHAR       Ssid[MAX_LEN_OF_SSID];
+    char       Ssid[MAX_LEN_OF_SSID];
 } MLME_SCAN_REQ_STRUCT, *PMLME_SCAN_REQ_STRUCT;
 
 typedef struct _MLME_START_REQ_STRUCT {
-    CHAR        Ssid[MAX_LEN_OF_SSID];
+    char        Ssid[MAX_LEN_OF_SSID];
     u8       SsidLen;
 } MLME_START_REQ_STRUCT, *PMLME_START_REQ_STRUCT;
 
@@ -1456,7 +1456,7 @@ typedef struct _bcn_ie_list {
 	u8 Addr1[ETH_ALEN];
 	u8 Addr2[ETH_ALEN];
 	u8 Bssid[ETH_ALEN];
-	CHAR Ssid[MAX_LEN_OF_SSID];
+	char Ssid[MAX_LEN_OF_SSID];
 	u8 SsidLen;
 	u8 BssType;
 	unsigned short BeaconPeriod;

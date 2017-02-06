@@ -33,7 +33,7 @@ int get_pkt_phymode_by_rxwi(struct rxwi_nmac *rxwi)
 	return rxwi->phy_mode;
 }
 
-int get_pkt_rssi_by_rxwi(struct rxwi_nmac *rxwi, int size, CHAR *rssi)
+int get_pkt_rssi_by_rxwi(struct rxwi_nmac *rxwi, int size, char *rssi)
 {
 	if (size < sizeof(rxwi->rssi)/ sizeof(u8))
 		memmove(rssi, &rxwi->rssi[0], size);

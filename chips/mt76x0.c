@@ -1510,7 +1510,7 @@ static void MT76x0_ChipSwitchChannel(
 	u8 Channel,
 	bool bScan)
 {
-	CHAR TxPwer = 0; /* Bbp94 = BBPR94_DEFAULT, TxPwer2 = DEFAULT_RF_TX_POWER; */
+	char TxPwer = 0; /* Bbp94 = BBPR94_DEFAULT, TxPwer2 = DEFAULT_RF_TX_POWER; */
 	u8 RFValue = 0;
 	u32 RegValue = 0;
 	u32 Index;
@@ -1673,7 +1673,7 @@ int MT76x0_ReadChannelPwr(struct rtmp_adapter *pAd)
 {
 	u32 i, choffset, idx, ss_offset_g, ss_num;
 	EEPROM_TX_PWR_STRUC Power;
-	CHAR tx_pwr1, tx_pwr2;
+	char tx_pwr1, tx_pwr2;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("%s()--->\n", __FUNCTION__));
 
@@ -1830,9 +1830,9 @@ void MT76x0_AsicExtraPowerOverMAC(struct rtmp_adapter *pAd)
 }
 
 static void calc_bw_delta_pwr(bool is_dec_delta, unsigned short input_pwr,
-	unsigned short bw_delta, CHAR *tx_pwr1, CHAR *tx_pwr2)
+	unsigned short bw_delta, char *tx_pwr1, char *tx_pwr2)
 {
-	CHAR tp_pwr1 = 0, tp_pwr2 = 0;
+	char tp_pwr1 = 0, tp_pwr2 = 0;
 
 	if (is_dec_delta == false) {
 		if (input_pwr & 0x20) {
@@ -2612,12 +2612,12 @@ done:
 bool get_temp_tx_alc_level(
 	struct rtmp_adapter *pAd,
 	bool enable_tx_alc,
-	CHAR temp_ref,
+	char temp_ref,
 	char *temp_minus_bdy,
 	char *temp_plus_bdy,
 	u8 max_bdy_level,
 	u8 tx_alc_step,
-	CHAR current_temp,
+	char current_temp,
 	char *comp_level)
 {
 	int idx = 0;
@@ -2714,7 +2714,7 @@ void mt76x0_temp_tx_alc(struct rtmp_adapter *pAd)
 					2, pAd->CurrTemperature,
 					tx_alc_comp) == true) {
 			u32 mac_val;
-			CHAR last_delta_pwr, delta_pwr = 0;
+			char last_delta_pwr, delta_pwr = 0;
 
 			/* adjust compensation value by MP temperature readings (i.e., e2p[77h]) */
 			if (pAd->CommonCfg.Channel <= 14)
@@ -2761,11 +2761,11 @@ void mt76x0_temp_tx_alc(struct rtmp_adapter *pAd)
 }
 
 
-static void adjust_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
-	char *temp_minus_bdy, char *temp_plus_bdy, CHAR temp_reference)
+static void adjust_temp_tx_alc_table(struct rtmp_adapter *pAd, char band,
+	char *temp_minus_bdy, char *temp_plus_bdy, char temp_reference)
 {
 	int idx = 0;
-	CHAR upper_bound = 127, lower_bound = -128;
+	char upper_bound = 127, lower_bound = -128;
 
 	DBGPRINT(RT_DEBUG_OFF, ("%s: upper_bound = 0x%02x (%d), lower_bound = 0x%02x (%d)\n",
 		__FUNCTION__, upper_bound, upper_bound, lower_bound, lower_bound));
@@ -2775,7 +2775,7 @@ static void adjust_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
 		(band == A_BAND) ? "5G" : "2.4G",
 		temp_minus_bdy[7], temp_minus_bdy[6], temp_minus_bdy[5],
 		temp_minus_bdy[4], temp_minus_bdy[3], temp_minus_bdy[2], temp_minus_bdy[1],
-		(band == A_BAND) ? (CHAR)pAd->TssiRefA : (CHAR)pAd->TssiRefG,
+		(band == A_BAND) ? (char)pAd->TssiRefA : (char)pAd->TssiRefG,
 		temp_plus_bdy[1], temp_plus_bdy[2], temp_plus_bdy[3], temp_plus_bdy[4],
 		temp_plus_bdy[5], temp_plus_bdy[6], temp_plus_bdy[7], temp_reference));
 
@@ -2804,7 +2804,7 @@ static void adjust_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
 		(band == A_BAND) ? "5G" : "2.4G",
 		temp_minus_bdy[7], temp_minus_bdy[6], temp_minus_bdy[5],
 		temp_minus_bdy[4], temp_minus_bdy[3], temp_minus_bdy[2], temp_minus_bdy[1],
-		(band == A_BAND) ? (CHAR)pAd->TssiRefA : (CHAR)pAd->TssiRefG,
+		(band == A_BAND) ? (char)pAd->TssiRefA : (char)pAd->TssiRefG,
 		temp_plus_bdy[1], temp_plus_bdy[2], temp_plus_bdy[3], temp_plus_bdy[4],
 		temp_plus_bdy[5], temp_plus_bdy[6], temp_plus_bdy[7], temp_reference));
 }
@@ -2814,7 +2814,7 @@ static void adjust_mp_temp(struct rtmp_adapter *pAd, char *temp_minus_bdy,
 	char *temp_plus_bdy)
 {
 	EEPROM_TX_PWR_STRUC e2p_value;
-	CHAR mp_temp, idx = 0, mp_offset = 0;
+	char mp_temp, idx = 0, mp_offset = 0;
 
 	e2p_value.word = mt7610u_read_eeprom16(pAd, 0x10C);
 	mp_temp = e2p_value.field.Byte1;
@@ -2860,13 +2860,13 @@ static void adjust_mp_temp(struct rtmp_adapter *pAd, char *temp_minus_bdy,
 }
 
 
-bool load_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
+bool load_temp_tx_alc_table(struct rtmp_adapter *pAd, char band,
 	unsigned short e2p_start_addr, unsigned short e2p_end_addr,
 	u8 *bdy_table, const int start_idx, const u32 table_size)
 {
 	u16 e2p_value;
 	int e2p_idx = 0, table_idx = 0;
-	CHAR table_sign; /* +1 for plus table; -1 for minus table */
+	char table_sign; /* +1 for plus table; -1 for minus table */
 
 	table_sign = (e2p_start_addr < e2p_end_addr) ? 1 : (-1);
 
@@ -2919,7 +2919,7 @@ bool load_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
 	} else {
 		for (table_idx = 0; table_idx < table_size; table_idx++)
 			DBGPRINT(RT_DEBUG_TRACE, ("\tboundary_table[%d] = %3d (0x%02X)\n",
-				table_idx, (CHAR)bdy_table[table_idx], bdy_table[table_idx]));
+				table_idx, (char)bdy_table[table_idx], bdy_table[table_idx]));
 	}
 
 	return true;

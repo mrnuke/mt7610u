@@ -70,7 +70,7 @@ u8 ZERO_MAC_ADDR[ETH_ALEN]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 /*		this value, then it's quaranteed capable of operating in 36 mbps TX rate in*/
 /*		clean environment.*/
 /*								  TxRate: 1   2   5.5	11	 6	  9    12	18	 24   36   48	54	 72  100*/
-CHAR RssiSafeLevelForTxRate[] ={  -92, -91, -90, -87, -88, -86, -85, -83, -81, -78, -72, -71, -40, -40 };
+char RssiSafeLevelForTxRate[] ={  -92, -91, -90, -87, -88, -86, -85, -83, -81, -78, -72, -71, -40, -40 };
 
 u8  RateIdToMbps[]	 = { 1, 2, 5, 11, 6, 9, 12, 18, 24, 36, 48, 54, 72, 100};
 unsigned short RateIdTo500Kbps[] = { 2, 4, 11, 22, 12, 18, 24, 36, 48, 72, 96, 108, 144, 200};
@@ -1079,8 +1079,8 @@ void STAMlmePeriodicExec(
 		if (pAd->StaCfg.bAutoRoaming)
 		{
 			bool rv = false;
-			CHAR	dBmToRoam = pAd->StaCfg.dBmToRoam;
-			CHAR 	MaxRssi = RTMPMaxRssi(pAd,
+			char	dBmToRoam = pAd->StaCfg.dBmToRoam;
+			char 	MaxRssi = RTMPMaxRssi(pAd,
 										  pAd->StaCfg.RssiSample.LastRssi0,
 										  pAd->StaCfg.RssiSample.LastRssi1,
 										  pAd->StaCfg.RssiSample.LastRssi2);
@@ -1093,7 +1093,7 @@ void STAMlmePeriodicExec(
 				(pAd->Mlme.SyncMachine.CurrState == SYNC_IDLE) &&
 				(MaxRssi <= dBmToRoam))
 			{
-				DBGPRINT(RT_DEBUG_TRACE, ("Rssi=%d, dBmToRoam=%d\n", MaxRssi, (CHAR)dBmToRoam));
+				DBGPRINT(RT_DEBUG_TRACE, ("Rssi=%d, dBmToRoam=%d\n", MaxRssi, (char)dBmToRoam));
 
 
 				/* Add auto seamless roaming*/
@@ -1479,7 +1479,7 @@ void MlmeCalculateChannelQuality(
 	unsigned long TxOkCnt, TxCnt, TxPER, TxPRR;
 	unsigned long RxCnt, RxPER;
 	u8 NorRssi;
-	CHAR  MaxRssi;
+	char  MaxRssi;
 	RSSI_SAMPLE *pRssiSample = NULL;
 	u32 OneSecTxNoRetryOkCount = 0;
 	u32 OneSecTxRetryOkCount = 0;
@@ -2128,7 +2128,7 @@ void MlmeUpdateHtTxRates(
 	if ( (pAd->OpMode == OPMODE_STA) && (pDesireHtPhy->MCSSet[0] != 0xff)
 		)
 	{
-		CHAR i;
+		char i;
 		u8 j, bitmask;
 
 		if (pDesireHtPhy->MCSSet[4] != 0)
@@ -2138,7 +2138,7 @@ void MlmeUpdateHtTxRates(
 			DBGPRINT(RT_DEBUG_TRACE,("%s():<=== Use Fixed MCS = %d\n",__FUNCTION__, pMinHtPhy->field.MCS));
 		}
 
-		for (i=23; (CHAR)i >= 0; i--)
+		for (i=23; (char)i >= 0; i--)
 		{
 			j = i/8;
 			bitmask = (1<<(i-(j*8)));
@@ -2423,7 +2423,7 @@ void BssEntrySet(
 	struct rtmp_adapter *pAd,
 	BSS_ENTRY *pBss,
 	BCN_IE_LIST *ie_list,
-	CHAR Rssi,
+	char Rssi,
 	unsigned short LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE)
 {
@@ -2678,7 +2678,7 @@ unsigned long BssTableSetEntry(
 	struct rtmp_adapter *pAd,
 	BSS_TABLE *Tab,
 	BCN_IE_LIST *ie_list,
-	CHAR Rssi,
+	char Rssi,
 	unsigned short LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE)
 {
@@ -2828,7 +2828,7 @@ int TriEventTableSetEntry(
 void BssTableSsidSort(
 	struct rtmp_adapter *pAd,
 	BSS_TABLE *OutTab,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 SsidLen)
 {
 	int i;
@@ -4600,11 +4600,11 @@ void RTMPUpdateMlmeRate(
 }
 
 
-CHAR RTMPAvgRssi(
+char RTMPAvgRssi(
 	struct rtmp_adapter *pAd,
 	RSSI_SAMPLE 		*pRssi)
 {
-	CHAR Rssi;
+	char Rssi;
 
 	if(pAd->Antenna.field.RxPath == 3)
 	{
@@ -4623,13 +4623,13 @@ CHAR RTMPAvgRssi(
 }
 
 
-CHAR RTMPMaxRssi(
+char RTMPMaxRssi(
 	struct rtmp_adapter *pAd,
-	CHAR				Rssi0,
-	CHAR				Rssi1,
-	CHAR				Rssi2)
+	char				Rssi0,
+	char				Rssi1,
+	char				Rssi2)
 {
-	CHAR	larger = -127;
+	char	larger = -127;
 
 	if ((pAd->Antenna.field.RxPath == 1) && (Rssi0 != 0))
 	{
@@ -4653,12 +4653,12 @@ CHAR RTMPMaxRssi(
 }
 
 
-CHAR RTMPMinSnr(
+char RTMPMinSnr(
 	struct rtmp_adapter *pAd,
-	CHAR				Snr0,
-	CHAR				Snr1)
+	char				Snr0,
+	char				Snr1)
 {
-	CHAR	smaller = Snr0;
+	char	smaller = Snr0;
 
 	if (pAd->Antenna.field.RxPath == 1)
 	{
@@ -4762,7 +4762,7 @@ void AsicRxAntEvalTimeout(
 {
 	struct rtmp_adapter*pAd = (struct rtmp_adapter*)FunctionContext;
 #ifdef CONFIG_STA_SUPPORT
-	CHAR			larger = -127, rssi0, rssi1, rssi2;
+	char			larger = -127, rssi0, rssi1, rssi2;
 #endif /* CONFIG_STA_SUPPORT */
 
 	if (RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_RESET_IN_PROGRESS |
@@ -5042,7 +5042,7 @@ void AsicStaBbpTuning(
 	struct rtmp_adapter *pAd)
 {
 	u8 OrigR66Value = 0, R66;/*, R66UpperBound = 0x30, R66LowerBound = 0x30;*/
-	CHAR	Rssi;
+	char	Rssi;
 
 	/* 2860C did not support Fase CCA, therefore can't tune*/
 	if (pAd->MACVersion == 0x28600100)

@@ -1843,7 +1843,7 @@ static u8 GetExtCh(
 	u8 Channel,
 	u8 Direction)
 {
-	CHAR ExtCh;
+	char ExtCh;
 
 	if (Direction == EXTCHA_ABOVE)
 		ExtCh = Channel + 4;

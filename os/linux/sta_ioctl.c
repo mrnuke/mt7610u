@@ -580,7 +580,7 @@ int rt_ioctl_siwscan(struct net_device *dev,
 	pIoctlScan->FlgScanThisSsid = (wreq->data.length == sizeof(struct iw_scan_req) &&
 									wreq->data.flags & IW_SCAN_THIS_ESSID);
 	pIoctlScan->SsidLen = req->essid_len;
-	pIoctlScan->pSsid = (CHAR *)(req->essid);
+	pIoctlScan->pSsid = (char *)(req->essid);
 #endif /* WPA_SUPPLICANT_SUPPORT */
 	RTMP_STA_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_STA_SIOCSIWSCAN, 0,
 							pIoctlScan, 0, RT_DEV_PRIV_FLAGS_GET(dev));
@@ -1027,7 +1027,7 @@ int rt_ioctl_siwessid(struct net_device *dev,
 
 	pIoctlEssid->FlgAnySsid = data->flags;
 	pIoctlEssid->SsidLen = data->length;
-	pIoctlEssid->pSsid = (CHAR *)essid;
+	pIoctlEssid->pSsid = (char *)essid;
 	pIoctlEssid->Status = 0;
 	RTMP_STA_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_STA_SIOCSIWESSID, 0,
 						pIoctlEssid, 0, RT_DEV_PRIV_FLAGS_GET(dev));
@@ -1063,7 +1063,7 @@ int rt_ioctl_giwessid(struct net_device *dev,
 	data->flags = 1;
 
 
-	pIoctlEssid->pSsid = (CHAR *)essid;
+	pIoctlEssid->pSsid = (char *)essid;
 	pIoctlEssid->Status = 0;
 	RTMP_STA_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_STA_SIOCGIWESSID, 0,
 						pIoctlEssid, 0, RT_DEV_PRIV_FLAGS_GET(dev));
@@ -1125,7 +1125,7 @@ int rt_ioctl_giwnickn(struct net_device *dev,
 
 
 	pNickName->NameLen = data->length;
-	pNickName->pName = (CHAR *)nickname;
+	pNickName->pName = (char *)nickname;
 
 	RTMP_STA_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_STA_SIOCGIWNICKN, 0,
 							pNickName, 0, RT_DEV_PRIV_FLAGS_GET(dev));
@@ -1286,7 +1286,7 @@ int rt_ioctl_siwencode(struct net_device *dev,
     	}
 
 
-	pIoctlSec->pData = (CHAR *)extra;
+	pIoctlSec->pData = (char *)extra;
 	pIoctlSec->length = erq->length;
 	pIoctlSec->KeyIdx = (erq->flags & IW_ENCODE_INDEX) - 1;
 	pIoctlSec->flags = 0;
@@ -1337,7 +1337,7 @@ rt_ioctl_giwencode(struct net_device *dev,
 	}
 
 
-	pIoctlSec->pData = (CHAR *)key;
+	pIoctlSec->pData = (char *)key;
 	pIoctlSec->KeyIdx = erq->flags & IW_ENCODE_INDEX;
 	pIoctlSec->length = erq->length;
 
@@ -1597,7 +1597,7 @@ int rt_ioctl_siwencodeext(struct net_device *dev,
 	}
 
 
-	pIoctlSec->pData = (CHAR *)ext->key;
+	pIoctlSec->pData = (char *)ext->key;
 	pIoctlSec->length = ext->key_len;
 	pIoctlSec->KeyIdx = (encoding->flags & IW_ENCODE_INDEX) - 1;
 	if (alg == IW_ENCODE_ALG_NONE )
@@ -2036,12 +2036,12 @@ int rt28xx_sta_ioctl(
 		case SIOCGIWNICKN: /*get node name/nickname */
         {
 			RT_CMD_STA_IOCTL_NICK_NAME NickName, *pNickName = &NickName;
-			CHAR nickname[IW_ESSID_MAX_SIZE+1];
+			char nickname[IW_ESSID_MAX_SIZE+1];
 			struct iw_point	*erq = NULL;
         	erq = &wrqin->u.data;
 
 			pNickName->NameLen = IW_ESSID_MAX_SIZE+1;
-			pNickName->pName = (CHAR *)nickname;
+			pNickName->pName = (char *)nickname;
 			RTMP_STA_IoctlHandle(pAd, NULL, CMD_RTPRIV_IOCTL_STA_SIOCGIWNICKN, 0,
 							pNickName, 0, RT_DEV_PRIV_FLAGS_GET(net_dev));
 

@@ -1167,7 +1167,7 @@ void PeerBeaconAtScanAction(
 						ie_list, &LenVIE, pVIE))
 	{
 		unsigned long Idx = 0;
-		CHAR Rssi = 0;
+		char Rssi = 0;
 
 		Idx = BssTableSearch(&pAd->ScanTab, &ie_list->Bssid[0], ie_list->Channel);
 		if (Idx != BSS_NOT_FOUND)
@@ -1284,7 +1284,7 @@ void PeerBeaconAtJoinAction(
 	u8 *VarIE = NULL;
 	NDIS_802_11_VARIABLE_IEs *pVIE = NULL;
 	unsigned long Idx = 0;
-	CHAR Rssi = 0;
+	char Rssi = 0;
 
 #ifdef DOT11_N_SUPPORT
 	u8 CentralChannel;
@@ -1678,7 +1678,7 @@ void PeerBeacon(
 		bool is_my_bssid, is_my_ssid;
 		unsigned long Bssidx, Now;
 		BSS_ENTRY *pBss;
-		CHAR RealRssi = RTMPMaxRssi(pAd, ConvertToRssi(pAd, Elem->Rssi0, RSSI_0),
+		char RealRssi = RTMPMaxRssi(pAd, ConvertToRssi(pAd, Elem->Rssi0, RSSI_0),
 									ConvertToRssi(pAd, Elem->Rssi1, RSSI_1),
 									ConvertToRssi(pAd, Elem->Rssi2, RSSI_2));
 
@@ -2317,7 +2317,7 @@ void PeerProbeReqAction(
 	MLME_QUEUE_ELEM *Elem)
 {
 	u8         Addr2[ETH_ALEN];
-	CHAR          Ssid[MAX_LEN_OF_SSID];
+	char          Ssid[MAX_LEN_OF_SSID];
 	u8         SsidLen;
 #ifdef DOT11_N_SUPPORT
 	u8 	  HtLen, AddHtLen, NewExtLen;

@@ -349,7 +349,7 @@ void ChangeToCellPowerLimit(
 }
 
 
-CHAR ConvertToRssi(struct rtmp_adapter*pAd, CHAR Rssi, u8 rssi_idx)
+char ConvertToRssi(struct rtmp_adapter*pAd, char Rssi, u8 rssi_idx)
 {
 	u8 RssiOffset, LNAGain;
 
@@ -377,7 +377,7 @@ CHAR ConvertToRssi(struct rtmp_adapter*pAd, CHAR Rssi, u8 rssi_idx)
 }
 
 
-CHAR ConvertToSnr(struct rtmp_adapter*pAd, u8 Snr)
+char ConvertToSnr(struct rtmp_adapter*pAd, u8 Snr)
 {
 	if (pAd->chipCap.SnrFormula == SNR_FORMULA2)
 		return (Snr * 3 + 8) >> 4;

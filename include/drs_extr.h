@@ -159,14 +159,14 @@ extern u8 RateTableVht2S[];
 void MlmeGetSupportedMcs(
 	struct rtmp_adapter *pAd,
 	u8 *pTable,
-	CHAR mcs[]);
+	char mcs[]);
 
 u8 MlmeSelectTxRate(
 	struct rtmp_adapter *pAd,
 	struct _MAC_TABLE_ENTRY *pEntry,
-	CHAR mcs[],
-	CHAR Rssi,
-	CHAR RssiOffset);
+	char mcs[],
+	char Rssi,
+	char RssiOffset);
 
 void MlmeClearTxQuality(struct _MAC_TABLE_ENTRY *pEntry);
 void MlmeClearAllTxQuality(struct _MAC_TABLE_ENTRY *pEntry);
@@ -228,14 +228,14 @@ void MlmeGetSupportedMcsAdapt(
 	struct rtmp_adapter *pAd,
 	struct _MAC_TABLE_ENTRY *pEntry,
 	u8 mcs23GI,
-	CHAR 	mcs[]);
+	char 	mcs[]);
 
 u8 MlmeSelectTxRateAdapt(
 	struct rtmp_adapter *pAd,
 	struct _MAC_TABLE_ENTRY *pEntry,
-	CHAR		mcs[],
-	CHAR		Rssi,
-	CHAR		RssiOffset);
+	char		mcs[],
+	char		Rssi,
+	char		RssiOffset);
 
 bool MlmeRAHybridRule(
 	struct rtmp_adapter *pAd,
@@ -286,7 +286,7 @@ int Set_RateTable_Proc(
 void StaQuickResponeForRateUpExecAdapt(
 	struct rtmp_adapter *pAd,
 	unsigned long i,
-	CHAR Rssi);
+	char Rssi);
 
 void MlmeDynamicTxRateSwitchingAdapt(
 	struct rtmp_adapter *pAd,

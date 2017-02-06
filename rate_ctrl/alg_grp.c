@@ -295,9 +295,9 @@ void MlmeGetSupportedMcsAdapt(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY pEntry,
 	u8 mcs23GI,
-	CHAR mcs[])
+	char mcs[])
 {
-	CHAR idx;
+	char idx;
 	RTMP_RA_GRP_TB *pCurrTxRate;
 	u8 *pTable = pEntry->pTable;
 
@@ -482,9 +482,9 @@ void MlmeGetSupportedMcsAdapt(
 u8 MlmeSelectTxRateAdapt(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY	pEntry,
-	CHAR		mcs[],
-	CHAR		Rssi,
-	CHAR		RssiOffset)
+	char		mcs[],
+	char		Rssi,
+	char		RssiOffset)
 {
 	u8 TxRateIdx = 0;
 	u8 *pTable = pEntry->pTable;
@@ -942,7 +942,7 @@ void MlmeNewRateAdapt(
 void StaQuickResponeForRateUpExecAdapt(
 	struct rtmp_adapter *pAd,
 	unsigned long i,
-	CHAR  Rssi)
+	char  Rssi)
 {
 	u8 *				pTable;
 	u8 				CurrRateIdx;
@@ -951,7 +951,7 @@ void StaQuickResponeForRateUpExecAdapt(
 	PMAC_TABLE_ENTRY		pEntry;
 	RTMP_RA_GRP_TB *pCurrTxRate;
 	u8 				TrainUp, TrainDown;
-	CHAR					ratio;
+	char					ratio;
 	unsigned long					TxSuccess, TxRetransmit, TxFailCount;
 	unsigned long					OneSecTxNoRetryOKRationCount;
 	bool 				rateChanged;
@@ -1197,7 +1197,7 @@ void MlmeDynamicTxRateSwitchingAdapt(
 	MAC_TABLE_ENTRY	  *pEntry;
 	RTMP_RA_GRP_TB *pCurrTxRate;
 	u8 		  TrainUp, TrainDown;
-	CHAR			  Rssi;
+	char			  Rssi;
 
 	pEntry = &pAd->MacTab.Content[i];
 	pTable = pEntry->pTable;
@@ -1287,8 +1287,8 @@ void MlmeDynamicTxRateSwitchingAdapt(
 		if (pEntry->lowTrafficCount >= pAd->CommonCfg.lowTrafficThrd)
 		{
 			u8 TxRateIdx;
-			CHAR	mcs[24];
-			CHAR	RssiOffset = 0;
+			char	mcs[24];
+			char	RssiOffset = 0;
 
 			pEntry->lowTrafficCount = 0;
 

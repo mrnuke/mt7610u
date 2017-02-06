@@ -632,7 +632,7 @@ void STAHandleRxDataFrame(
 		{
 			pEntry->LastRxRate = pAd->LastRxRate;
 
-			pEntry->freqOffset = (CHAR)(pRxWI->RxWIFOFFSET);
+			pEntry->freqOffset = (char)(pRxWI->RxWIFOFFSET);
 			pEntry->freqOffsetValid = true;
 
 		}
@@ -736,7 +736,7 @@ void STAHandleRxMgmtFrame(
 		}
 
 
-		MinSNR = min((CHAR) pRxWI->RxWISNR0, (CHAR) pRxWI->RxWISNR1);
+		MinSNR = min((char) pRxWI->RxWISNR0, (char) pRxWI->RxWISNR1);
 		/* Signal in MLME_QUEUE isn't used, therefore take this item to save min SNR. */
 		REPORT_MGMT_FRAME_TO_MLME(pAd, pRxWI->RxWIWirelessCliID, pHeader,
 					  pRxWI->RxWIMPDUByteCnt,

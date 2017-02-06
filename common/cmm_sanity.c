@@ -252,7 +252,7 @@ bool PeerBeaconAndProbeRspSanity_Old(
     u8  MsgChannel,
     u8 *pAddr2,
     u8 *pBssid,
-    CHAR Ssid[],
+    char Ssid[],
     u8 *pSsidLen,
     u8 *pBssType,
     unsigned short *pBeaconPeriod,
@@ -1440,7 +1440,7 @@ bool PeerBeaconAndProbeRspSanity2(
 	OVERLAP_BSS_SCAN_IE *BssScan,
 	u8 	*RegClass)
 {
-	CHAR				*Ptr;
+	char				*Ptr;
 	PFRAME_802_11		pFrame;
 	PEID_STRUCT			pEid;
 	unsigned long				Length = 0;
@@ -1524,7 +1524,7 @@ bool MlmeScanReqSanity(
 	void *Msg,
 	unsigned long MsgLen,
 	u8 *pBssType,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 *pSsidLen,
 	u8 *pScanType)
 {
@@ -1614,7 +1614,7 @@ bool PeerAuthSanity(
     unsigned short *pAlg,
     unsigned short *pSeq,
     unsigned short *pStatus,
-    CHAR *pChlgText)
+    char *pChlgText)
 {
     PFRAME_802_11 pFrame = (PFRAME_802_11)Msg;
 
@@ -1871,7 +1871,7 @@ bool PeerDlsReqSanity(
 	u8 *pHtCapabilityLen,
     HT_CAPABILITY_IE *pHtCapability)
 {
-	CHAR            *Ptr;
+	char            *Ptr;
     PFRAME_802_11	Fr = (PFRAME_802_11)Msg;
 	PEID_STRUCT  eid_ptr;
 
@@ -1994,7 +1994,7 @@ bool PeerDlsRspSanity(
     u8 *pHtCapabilityLen,
     HT_CAPABILITY_IE *pHtCapability)
 {
-    CHAR            *Ptr;
+    char            *Ptr;
     PFRAME_802_11	Fr = (PFRAME_802_11)Msg;
 	PEID_STRUCT  eid_ptr;
 
@@ -2117,7 +2117,7 @@ bool PeerDlsTearDownSanity(
     u8 *pSA,
     unsigned short *pReason)
 {
-    CHAR            *Ptr;
+    char            *Ptr;
     PFRAME_802_11	Fr = (PFRAME_802_11)Msg;
 
     /* to prevent caller from using garbage output value*/
@@ -2157,7 +2157,7 @@ bool PeerProbeReqSanity(
     void *Msg,
     unsigned long MsgLen,
     u8 *pAddr2,
-    CHAR Ssid[],
+    char Ssid[],
     u8 *SsidLen,
     bool *bRssiRequested)
 {

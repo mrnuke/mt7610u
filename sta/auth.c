@@ -315,8 +315,8 @@ void PeerAuthRspAtSeq4Action(
 {
 	u8 Addr2[ETH_ALEN];
 	unsigned short Alg, Seq, Status;
-/*    CHAR          ChlgText[CIPHER_TEXT_LEN]; */
-	CHAR *ChlgText = NULL;
+/*    char          ChlgText[CIPHER_TEXT_LEN]; */
+	char *ChlgText = NULL;
 	bool TimerCancelled;
 
 	/* allocate memory */

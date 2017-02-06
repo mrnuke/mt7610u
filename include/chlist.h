@@ -51,7 +51,7 @@ typedef struct _COUNTRY_REGION_CH_DESC {
 typedef struct _CH_DESP {
 	u8 FirstChannel;
 	u8 NumOfCh;
-	CHAR MaxTxPwr;			/* dBm */
+	char MaxTxPwr;			/* dBm */
 	u8 Geography;			/* 0:out door, 1:in door, 2:both */
 	bool DfsReq;			/* Dfs require, 0: No, 1: yes. */
 } CH_DESP, *PCH_DESP;

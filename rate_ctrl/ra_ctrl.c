@@ -545,9 +545,9 @@ u8 RateTableVht2S[] =
 void MlmeGetSupportedMcs(
 	struct rtmp_adapter *pAd,
 	u8 *pTable,
-	CHAR 	mcs[])
+	char 	mcs[])
 {
-	CHAR	idx;
+	char	idx;
 	RTMP_RA_LEGACY_TB *pCurrTxRate;
 
 	for (idx = 0; idx < 24; idx++)
@@ -1308,9 +1308,9 @@ void MlmeSelectTxRateTable(
 u8 MlmeSelectTxRate(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY	pEntry,
-	CHAR		mcs[],
-	CHAR		Rssi,
-	CHAR		RssiOffset)
+	char		mcs[],
+	char		Rssi,
+	char		RssiOffset)
 {
 	u8 TxRateIdx = 0;
 	u8 *pTable = pEntry->pTable;
@@ -1892,7 +1892,7 @@ void RTMPSetSupportMCS(
 	{
 		RT_PHY_INFO *pDesired_ht_phy = NULL;
 		u8 j, bitmask;
-		CHAR i;
+		char i;
 
 #ifdef CONFIG_STA_SUPPORT
 		if (OpMode == OPMODE_STA)

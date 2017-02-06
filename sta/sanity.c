@@ -48,7 +48,7 @@ bool MlmeStartReqSanity(
 	struct rtmp_adapter *pAd,
 	void *Msg,
 	unsigned long MsgLen,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 *pSsidLen)
 {
 	MLME_START_REQ_STRUCT *Info;
@@ -100,7 +100,7 @@ bool PeerAssocRspSanity(
 	u8 *pCkipFlag,
 	IE_LISTS *ie_list)
 {
-	CHAR IeType, *Ptr;
+	char IeType, *Ptr;
 	PFRAME_802_11 pFrame = (PFRAME_802_11) pMsg;
 	PEID_STRUCT pEid;
 	unsigned long Length = 0;
@@ -285,7 +285,7 @@ bool PeerAssocRspSanity(
     ==========================================================================
  */
 bool GetTimBit(
-	CHAR *Ptr,
+	char *Ptr,
 	unsigned short Aid,
 	u8 *TimLen,
 	u8 *BcastFlag,
@@ -294,7 +294,7 @@ bool GetTimBit(
 	u8 *MessageToMe)
 {
 	u8 BitCntl, N1, N2, MyByte, MyBit;
-	CHAR *IdxPtr;
+	char *IdxPtr;
 
 	IdxPtr = Ptr;
 

@@ -1785,7 +1785,7 @@ static void PeerTpcReqAction(
 	u8 DialogToken;
 	u8 TxPwr = GetCurTxPwr(pAd, Elem->Wcid);
 	u8 LinkMargin = 0;
-	CHAR RealRssi;
+	char RealRssi;
 
 	/* link margin: Ratio of the received signal power to the minimum desired by the station (STA). The*/
 	/*				STA may incorporate rate information and channel conditions, including interference, into its computation*/

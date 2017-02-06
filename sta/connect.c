@@ -2600,7 +2600,7 @@ void DlsParmFill(
 void StartParmFill(
 	struct rtmp_adapter *pAd,
 	MLME_START_REQ_STRUCT *StartReq,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 SsidLen)
 {
 	ASSERT(SsidLen <= MAX_LEN_OF_SSID);

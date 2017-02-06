@@ -356,7 +356,7 @@ void CalculateMIC(
 	PEAPOL_PACKET pMsg);
 
 char *GetEapolMsgType(
-	CHAR msg);
+	char msg);
 
 #ifdef CONFIG_STA_SUPPORT
 #endif /* CONFIG_STA_SUPPORT */

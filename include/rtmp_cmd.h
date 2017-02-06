@@ -658,8 +658,8 @@ typedef struct __RT_CMD_STA_IOCTL_FREQ {
 typedef struct __RT_CMD_STA_IOCTL_BSS {
 	u8 Bssid[6];
 	u8 ChannelQuality;
-	CHAR Rssi;
-	CHAR Noise;
+	char Rssi;
+	char Noise;
 } RT_CMD_STA_IOCTL_BSS;
 
 typedef struct __RT_CMD_STA_IOCTL_BSS_LIST {
@@ -671,7 +671,7 @@ typedef struct __RT_CMD_STA_IOCTL_BSS_LIST {
 typedef struct __RT_CMD_STA_IOCTL_SCAN {
 	u8 FlgScanThisSsid;
 	u32 SsidLen;
-	CHAR *pSsid;
+	char *pSsid;
 	int32_t Status;
 } RT_CMD_STA_IOCTL_SCAN;
 
@@ -687,7 +687,7 @@ typedef struct __RT_CMD_STA_IOCTL_BSS_TABLE {
 	u8 ExtRateLen;
 
 	u8 SsidLen;
-	CHAR Ssid[32];
+	char Ssid[32];
 
 	unsigned short CapabilityInfo;
 	u8 ChannelWidth, ShortGIfor40, ShortGIfor20, MCSSet;
@@ -716,17 +716,17 @@ typedef struct __RT_CMD_STA_IOCTL_SCAN_TABLE {
 typedef struct __RT_CMD_STA_IOCTL_SSID {
 	u8 FlgAnySsid;
 	u32 SsidLen;
-	CHAR *pSsid;
+	char *pSsid;
 	int32_t Status;
 } RT_CMD_STA_IOCTL_SSID;
 
 typedef struct __RT_CMD_STA_IOCTL_NICK_NAME {
 	unsigned int NameLen;
-	CHAR *pName;
+	char *pName;
 } RT_CMD_STA_IOCTL_NICK_NAME;
 
 typedef struct __RT_CMD_STA_IOCTL_SECURITY {
-	CHAR *pData;
+	char *pData;
 	uint16_t length;
 	int32_t KeyIdx;
 	int32_t MaxKeyLen;
@@ -759,14 +759,14 @@ typedef struct __RT_CMD_STA_IOCTL_WSC_U32_ITEM {
 
 typedef struct __RT_CMD_STA_IOCTL_WSC_STR_ITEM {
 	u32 Subcmd;
-	CHAR *pData;
+	char *pData;
 	u32 length;
 
 	int32_t Status;
 } RT_CMD_STA_IOCTL_WSC_STR_ITEM;
 
 typedef struct __RT_CMD_STA_IOCTL_SHOW {
-	CHAR *pData;
+	char *pData;
 	u32 MaxSize;
 	u32 InfType;
 } RT_CMD_STA_IOCTL_SHOW;

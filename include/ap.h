@@ -396,7 +396,7 @@ bool APPeerAuthSanity(
     unsigned short *Alg,
     unsigned short *Seq,
     unsigned short *Status,
-    CHAR *ChlgText
+    char *ChlgText
 	);
 
 

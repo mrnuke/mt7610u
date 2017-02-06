@@ -2670,7 +2670,7 @@ bool RTMPCheckWPAframe(
 
     ==========================================================================
 */
-char *GetEapolMsgType(CHAR msg)
+char *GetEapolMsgType(char msg)
 {
     if(msg == EAPOL_PAIR_MSG_1)
         return "Pairwise Message 1";

@@ -158,27 +158,27 @@ extern u8 RALINK_OUI[];
 extern u8 PowerConstraintIE[];
 
 typedef struct _RSSI_SAMPLE {
-	CHAR LastRssi0;		/* last received RSSI */
-	CHAR LastRssi1;		/* last received RSSI */
-	CHAR LastRssi2;		/* last received RSSI */
-	CHAR AvgRssi0;
-	CHAR AvgRssi1;
-	CHAR AvgRssi2;
+	char LastRssi0;		/* last received RSSI */
+	char LastRssi1;		/* last received RSSI */
+	char LastRssi2;		/* last received RSSI */
+	char AvgRssi0;
+	char AvgRssi1;
+	char AvgRssi2;
 	short AvgRssi0X8;
 	short AvgRssi1X8;
 	short AvgRssi2X8;
-	CHAR LastSnr0;
-	CHAR LastSnr1;
-	CHAR LastSnr2;
-	CHAR AvgSnr0;
-	CHAR AvgSnr1;
-	CHAR AvgSnr2;
+	char LastSnr0;
+	char LastSnr1;
+	char LastSnr2;
+	char AvgSnr0;
+	char AvgSnr1;
+	char AvgSnr2;
 	short AvgSnr0X8;
 	short AvgSnr1X8;
 	short AvgSnr2X8;
-	CHAR LastNoiseLevel0;
-	CHAR LastNoiseLevel1;
-	CHAR LastNoiseLevel2;
+	char LastNoiseLevel0;
+	char LastNoiseLevel1;
+	char LastNoiseLevel2;
 } RSSI_SAMPLE;
 
 /* */
@@ -798,10 +798,10 @@ typedef struct _CHANNEL_TX_POWER {
 #ifdef DOT11N_DRAFT3
 	bool bEffectedChannel;	/* For BW 40 operating in 2.4GHz , the "effected channel" is the channel that is covered in 40Mhz. */
 #endif /* DOT11N_DRAFT3 */
-	CHAR Power;
-	CHAR Power2;
+	char Power;
+	char Power2;
 #ifdef DOT11N_SS3_SUPPORT
-	CHAR Power3;
+	char Power3;
 #endif /* DOT11N_SS3_SUPPORT */
 	u8 MaxTxPwr;
 	u8 DfsReq;
@@ -1260,10 +1260,10 @@ struct common_config {
 	unsigned long PacketFilter;	/* Packet filter for receiving */
 	u8 RegulatoryClass[MAX_NUM_OF_REGULATORY_CLASS];
 
-	CHAR Ssid[MAX_LEN_OF_SSID];	/* NOT NULL-terminated */
+	char Ssid[MAX_LEN_OF_SSID];	/* NOT NULL-terminated */
 	u8 SsidLen;		/* the actual ssid length in used */
 	u8 LastSsidLen;	/* the actual ssid length in used */
-	CHAR LastSsid[MAX_LEN_OF_SSID];	/* NOT NULL-terminated */
+	char LastSsid[MAX_LEN_OF_SSID];	/* NOT NULL-terminated */
 	u8 LastBssid[ETH_ALEN];
 
 	u8 Bssid[ETH_ALEN];
@@ -1695,7 +1695,7 @@ typedef struct _STA_ADMIN_CONFIG {
 	RALINK_TIMER_STRUCT WpaDisassocAndBlockAssocTimer;
 	/* Fast Roaming */
 	bool bAutoRoaming;	/* 0:disable auto roaming by RSSI, 1:enable auto roaming by RSSI */
-	CHAR dBmToRoam;		/* the condition to roam when receiving Rssi less than this value. It's negative value. */
+	char dBmToRoam;		/* the condition to roam when receiving Rssi less than this value. It's negative value. */
 
 #ifdef WPA_SUPPLICANT_SUPPORT
 	bool IEEE8021X;
@@ -1717,7 +1717,7 @@ typedef struct _STA_ADMIN_CONFIG {
 	unsigned int WpaAssocIeLen;
 #endif /* WPA_SUPPLICANT_SUPPORT */
 
-	CHAR dev_name[16];
+	char dev_name[16];
 	unsigned short OriDevType;
 
 	bool bTGnWifiTest;
@@ -1769,7 +1769,7 @@ typedef struct _STA_ADMIN_CONFIG {
 	u8   ConnectinfoBssid[ETH_ALEN];
 	u8   ConnectinfoChannel;
 	u8   ConnectinfoSsidLen;
-	CHAR    ConnectinfoSsid[MAX_LEN_OF_SSID];
+	char    ConnectinfoSsid[MAX_LEN_OF_SSID];
 	u8 ConnectinfoBssType;
 
 
@@ -1990,7 +1990,7 @@ typedef struct _MAC_TABLE_ENTRY {
 
 	bool fLastSecAccordingRSSI;
 	u8 LastSecTxRateChangeAction;	/* 0: no change, 1:rate UP, 2:rate down */
-	CHAR LastTimeTxRateChangeAction;	/* Keep last time value of LastSecTxRateChangeAction */
+	char LastTimeTxRateChangeAction;	/* Keep last time value of LastSecTxRateChangeAction */
 	unsigned long LastTxOkCount; /* TxSuccess count in last Rate Adaptation interval */
 	u8 LastTxPER;	/* Tx PER in last Rate Adaptation interval */
 	u8 PER[MAX_TX_RATE_INDEX + 1];
@@ -2382,7 +2382,7 @@ typedef struct tx_agc_ctrl{
 	u8 TssiPlusBoundary[5];	/* Tssi boundary for increase Tx power to compensate. */
 	u8 TssiMinusBoundary[5];	/* Tssi boundary for decrease Tx power to compensate. */
 	u8 TxAgcStep;	/* Store Tx TSSI delta increment / decrement value */
-	CHAR TxAgcComp;	/* Store the compensation (TxAgcStep * (idx-1)) */
+	char TxAgcComp;	/* Store the compensation (TxAgcStep * (idx-1)) */
 }TX_AGC_CTRL;
 
 
@@ -2557,7 +2557,7 @@ struct rtmp_adapter {
 	/* BBP Control */
 	/* --------------------------- */
 	u8 BbpWriteLatch[MAX_BBP_ID + 1];	/* record last BBP register value written via BBP_IO_WRITE/BBP_IO_WRITE_VY_REG_ID */
-	CHAR BbpRssiToDbmDelta;	/* change from u8 to CHAR for high power */
+	char BbpRssiToDbmDelta;	/* change from u8 to char for high power */
 	BBP_R66_TUNING BbpTuning;
 
 	/* ---------------------------- */
@@ -2594,30 +2594,30 @@ struct rtmp_adapter {
 	u8 TssiPlusBoundaryA[2][8];	/* Tssi boundary for increase Tx power to compensate. [Group][Boundary Index]*/
 	u8 TssiMinusBoundaryA[2][8];	/* Tssi boundary for decrease Tx power to compensate. [Group][Boundary Index]*/
 	u8 TxAgcStepA;	/* Store Tx TSSI delta increment / decrement value */
-	CHAR TxAgcCompensateA;	/* Store the compensation (TxAgcStep * (idx-1)) */
+	char TxAgcCompensateA;	/* Store the compensation (TxAgcStep * (idx-1)) */
 
 	bool bAutoTxAgcG;	/* Enable driver auto Tx Agc control */
 	u8 TssiRefG;		/* Store Tssi reference value as 25 temperature. */
 	u8 TssiPlusBoundaryG[8];	/* Tssi boundary for increase Tx power to compensate. */
 	u8 TssiMinusBoundaryG[8];	/* Tssi boundary for decrease Tx power to compensate. */
 	u8 TxAgcStepG;	/* Store Tx TSSI delta increment / decrement value */
-	CHAR TxAgcCompensateG;	/* Store the compensation (TxAgcStep * (idx-1)) */
+	char TxAgcCompensateG;	/* Store the compensation (TxAgcStep * (idx-1)) */
 
-	CHAR TssiCalibratedOffset;	/* reference temperature(e2p[D1h]) */
+	char TssiCalibratedOffset;	/* reference temperature(e2p[D1h]) */
 	u8 ChBndryIdx;			/* 5G Channel Group Boundary Index for Temperature Compensation */
 
-	CHAR mp_delta_pwr;			 /* calculated by MP ATE temperature */
-	CHAR CurrTemperature;
-	CHAR DeltaPwrBeforeTempComp;
-	CHAR LastTempCompDeltaPwr;
+	char mp_delta_pwr;			 /* calculated by MP ATE temperature */
+	char CurrTemperature;
+	char DeltaPwrBeforeTempComp;
+	char LastTempCompDeltaPwr;
 
 	signed char BGRssiOffset[3]; /* Store B/G RSSI #0/1/2 Offset value on EEPROM 0x46h */
 	signed char ARssiOffset[3]; /* Store A RSSI 0/1/2 Offset value on EEPROM 0x4Ah */
 
-	CHAR BLNAGain;		/* Store B/G external LNA#0 value on EEPROM 0x44h */
-	CHAR ALNAGain0;		/* Store A external LNA#0 value for ch36~64 */
-	CHAR ALNAGain1;		/* Store A external LNA#1 value for ch100~128 */
-	CHAR ALNAGain2;		/* Store A external LNA#2 value for ch132~165 */
+	char BLNAGain;		/* Store B/G external LNA#0 value on EEPROM 0x44h */
+	char ALNAGain0;		/* Store A external LNA#0 value for ch36~64 */
+	char ALNAGain1;		/* Store A external LNA#1 value for ch100~128 */
+	char ALNAGain2;		/* Store A external LNA#2 value for ch132~165 */
 
 
 #ifdef LED_CONTROL_SUPPORT
@@ -3853,7 +3853,7 @@ void AsicExtraPowerOverMAC(struct rtmp_adapter*pAd);
 
 void AsicPercentageDeltaPower(
 	struct rtmp_adapter *		pAd,
-	CHAR				Rssi,
+	char				Rssi,
 	char *			pDeltaPwr,
 	char *			pDeltaPowerByBbpR1);
 
@@ -4055,7 +4055,7 @@ unsigned long BssTableSetEntry(
 	struct rtmp_adapter *pAd,
 	BSS_TABLE *Tab,
 	BCN_IE_LIST *ie_list,
-	CHAR Rssi,
+	char Rssi,
 	unsigned short LengthVIE,
 	PNDIS_802_11_VARIABLE_IEs pVIE);
 
@@ -4097,7 +4097,7 @@ int TriEventTableSetEntry(
 void BssTableSsidSort(
 	struct rtmp_adapter *  pAd,
 	BSS_TABLE *OutTab,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 SsidLen);
 
 void  BssTableSortByRssi(
@@ -4491,7 +4491,7 @@ bool PeerProbeReqSanity(
     void *Msg,
     unsigned long MsgLen,
     u8 *pAddr2,
-    CHAR Ssid[],
+    char Ssid[],
     u8 *SsidLen,
     bool *bRequestRssi);
 
@@ -4650,7 +4650,7 @@ void DisassocParmFill(
 void StartParmFill(
 	struct rtmp_adapter *  pAd,
 	MLME_START_REQ_STRUCT *StartReq,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 SsidLen);
 
 void AuthParmFill(
@@ -4735,7 +4735,7 @@ bool MlmeScanReqSanity(
 	void *Msg,
 	unsigned long MsgLen,
 	u8 *BssType,
-	CHAR ssid[],
+	char ssid[],
 	u8 *SsidLen,
 	u8 *ScanType);
 
@@ -4747,7 +4747,7 @@ bool PeerBeaconAndProbeRspSanity_Old(
 	u8 MsgChannel,
 	u8 *pAddr2,
 	u8 *pBssid,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 *pSsidLen,
 	u8 *pBssType,
 	unsigned short *pBeaconPeriod,
@@ -4844,7 +4844,7 @@ bool MlmeStartReqSanity(
 	struct rtmp_adapter *  pAd,
 	void *Msg,
 	unsigned long MsgLen,
-	CHAR Ssid[],
+	char Ssid[],
 	u8 *Ssidlen);
 
 bool PeerAuthSanity(
@@ -4855,7 +4855,7 @@ bool PeerAuthSanity(
 	unsigned short *Alg,
 	unsigned short *Seq,
 	unsigned short *Status,
-	CHAR ChlgText[]);
+	char ChlgText[]);
 
 bool PeerAssocRspSanity(
 	struct rtmp_adapter *  pAd,
@@ -4896,7 +4896,7 @@ bool PeerDeauthSanity(
 	unsigned short *Reason);
 
 bool GetTimBit(
-	CHAR *Ptr,
+	char *Ptr,
 	unsigned short Aid,
 	u8 *TimLen,
 	u8 *BcastFlag,
@@ -5031,21 +5031,21 @@ bool RTMPCheckVht(
 void RTMPUpdateMlmeRate(
 	struct rtmp_adapter *pAd);
 
-CHAR RTMPMaxRssi(
+char RTMPMaxRssi(
 	struct rtmp_adapter *pAd,
-	CHAR				Rssi0,
-	CHAR				Rssi1,
-	CHAR				Rssi2);
+	char				Rssi0,
+	char				Rssi1,
+	char				Rssi2);
 
-CHAR RTMPAvgRssi(
+char RTMPAvgRssi(
         struct rtmp_adapter *pAd,
         RSSI_SAMPLE		*pRssi);
 
 
-CHAR RTMPMinSnr(
+char RTMPMinSnr(
 	struct rtmp_adapter *pAd,
-	CHAR				Snr0,
-	CHAR				Snr1);
+	char				Snr0,
+	char				Snr1);
 
 void eFusePhysicalReadRegisters(
 	struct rtmp_adapter *pAd,
@@ -5212,7 +5212,7 @@ void    RTMPWPARemoveAllKeys(
 	struct rtmp_adapter *  pAd);
 
 bool RTMPCheckStrPrintAble(
-    CHAR *pInPutStr,
+    char *pInPutStr,
     u8 strLen);
 
 void    RTMPSetPhyMode(
@@ -5233,10 +5233,10 @@ void RTMPAddWcidAttributeEntry(
 	MAC_TABLE_ENTRY *pEntry);
 
 char *GetEncryptType(
-	CHAR enc);
+	char enc);
 
 char *GetAuthMode(
-	CHAR auth);
+	char auth);
 
 #ifdef DOT11_N_SUPPORT
 void RTMPSetHT(
@@ -5261,12 +5261,12 @@ int get_ht_max_mcs(struct rtmp_adapter*pAd, u8 *desire_mcs, u8 *cap_mcs);
 void RTMPDisableDesiredHtInfo(
 	struct rtmp_adapter *pAd);
 
-CHAR    ConvertToRssi(
+char    ConvertToRssi(
 	struct rtmp_adapter * pAd,
-	CHAR				Rssi,
+	char				Rssi,
 	u8    RssiNumber);
 
-CHAR    ConvertToSnr(
+char    ConvertToSnr(
 	struct rtmp_adapter * pAd,
 	u8 			Snr);
 
@@ -6576,7 +6576,7 @@ void ieee80211_notify_michael_failure(
 	unsigned int            keyix,
 	int              report);
 
-const CHAR* ether_sprintf(const u8 *mac);
+const char* ether_sprintf(const u8 *mac);
 #endif/*HOSTAPD_SUPPORT*/
 
 int WaitForAsicReady(
