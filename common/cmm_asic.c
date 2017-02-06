@@ -973,7 +973,7 @@ void AsicEnableIbssSync(
 {
 	BCN_TIME_CFG_STRUC csr9;
 	u8 *		ptr;
-	UINT i;
+	unsigned int i;
 	unsigned long beaconBaseLocation = 0;
 	USHORT			beaconLen = (USHORT) pAd->BeaconTxWI.TxWIMPDUByteCnt;
 	u8 TXWISize = sizeof(struct txwi_nmac);

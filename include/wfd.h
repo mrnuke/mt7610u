@@ -86,7 +86,7 @@ unsigned long InsertWfdSubelmtTlv(
 	u8 		SubId,
 	u8 *		pInBuffer,
 	u8 *		pOutBuffer,
-	UINT				Action);
+	unsigned int				Action);
 
 void WfdParseSubElmt(
 	struct rtmp_adapter *	pAd,

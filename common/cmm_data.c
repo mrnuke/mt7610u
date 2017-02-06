@@ -246,7 +246,7 @@ int MiniportMMRequest(
 	struct rtmp_adapter*pAd,
 	u8 QueIdx,
 	u8 *pData,
-	UINT Length)
+	unsigned int Length)
 {
 	struct sk_buff * pPacket;
 	int Status = NDIS_STATUS_SUCCESS;
@@ -361,7 +361,7 @@ int MlmeHardTransmit(
 {
 	PACKET_INFO 	PacketInfo;
 	u8 *		pSrcBufVA;
-	UINT			SrcBufLen;
+	unsigned int			SrcBufLen;
 
 	if ((pAd->Dot11_H.RDMode != RD_NORMAL_MODE)
 		)
@@ -386,7 +386,7 @@ int MlmeHardTransmitMgmtRing(
 {
 	PACKET_INFO PacketInfo;
 	u8 *pSrcBufVA;
-	UINT SrcBufLen;
+	unsigned int SrcBufLen;
 	HEADER_802_11 *pHeader_802_11;
 	bool bAckRequired, bInsertTimestamp;
 	u8 MlmeRate;
@@ -1300,7 +1300,7 @@ void RTMPResumeMsduTransmission(
 
 
 #ifdef DOT11_N_SUPPORT
-UINT deaggregate_AMSDU_announce(
+unsigned int deaggregate_AMSDU_announce(
 	struct rtmp_adapter *pAd,
 	struct sk_buff *		pPacket,
 	u8 *		pData,
@@ -1310,7 +1310,7 @@ UINT deaggregate_AMSDU_announce(
 	USHORT 			PayloadSize;
 	USHORT 			SubFrameSize;
 	PHEADER_802_3 	pAMSDUsubheader;
-	UINT			nMSDU;
+	unsigned int			nMSDU;
     u8 		Header802_3[14];
 
 	u8 *pPayload, *pDA, *pSA, *pRemovedLLCSNAP;
@@ -1413,14 +1413,14 @@ UINT deaggregate_AMSDU_announce(
 }
 
 
-UINT BA_Reorder_AMSDU_Annnounce(
+unsigned int BA_Reorder_AMSDU_Annnounce(
 	struct rtmp_adapter *pAd,
 	struct sk_buff *	pPacket,
 	u8 		OpMode)
 {
 	u8 *		pData;
 	USHORT			DataSize;
-	UINT			nMSDU = 0;
+	unsigned int			nMSDU = 0;
 
 	pData = pPacket->data;
 	DataSize = pPacket->len;
@@ -1435,7 +1435,7 @@ void Indicate_AMSDU_Packet(
 	RX_BLK			*pRxBlk,
 	u8 		FromWhichBSSID)
 {
-	UINT			nMSDU;
+	unsigned int			nMSDU;
 
 	RTMP_UPDATE_OS_PACKET_INFO(pAd, pRxBlk, FromWhichBSSID);
 	RTMP_SET_PACKET_IF(pRxBlk->pRxPacket, FromWhichBSSID);

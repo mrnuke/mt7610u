@@ -1218,7 +1218,7 @@ void RTUSBCancelPendingBulkInIRP(
 {
 	PRX_CONTEXT pRxContext;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &pAd->CmdRspEventContext;
-	UINT i;
+	unsigned int i;
 	unsigned long IrqFlags;
 
 	DBGPRINT_RAW(RT_DEBUG_TRACE, ("--->RTUSBCancelPendingBulkInIRP\n"));
@@ -1267,7 +1267,7 @@ void RTUSBCancelPendingBulkOutIRP(
 	PTX_CONTEXT			pMLMEContext;
 	PTX_CONTEXT			pNullContext;
 	PTX_CONTEXT			pPsPollContext;
-	UINT				i, Idx;
+	unsigned int				i, Idx;
 /*	unsigned int 		IrqFlags;*/
 /*	spinlock_t		*pLock;*/
 /*	bool 			*pPending;*/

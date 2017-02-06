@@ -909,7 +909,7 @@ void PeerDlsTearDownAction(
 {
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
 	USHORT ReasonCode;
-	UINT i;
+	unsigned int i;
 	bool TimerCancelled;
 
 	if (!pAd->CommonCfg.bDLSCapable)
@@ -1793,7 +1793,7 @@ from index MAX_AID_BA.
 MAC_TABLE_ENTRY *MacTableInsertDlsEntry(
 	struct rtmp_adapter *pAd,
 	u8 *pAddr,
-	UINT DlsEntryIdx)
+	unsigned int DlsEntryIdx)
 {
 	PMAC_TABLE_ENTRY pEntry = NULL;
 

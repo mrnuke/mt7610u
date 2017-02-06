@@ -80,7 +80,7 @@ extern u8 EpToQueue[6];
 
 
 
-/*#define NDIS_OID	UINT */
+/*#define NDIS_OID	unsigned int */
 #ifndef USB_ST_NOERROR
 #define USB_ST_NOERROR     0
 #endif

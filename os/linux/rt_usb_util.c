@@ -111,7 +111,7 @@ void RtmpOsUsbEmptyUrbCheck(
 void RtmpOsUsbInitHTTxDesc(
 	struct urb *pUrb,
 	struct usb_device *pUsb_Dev,
-	UINT BulkOutEpAddr,
+	unsigned int BulkOutEpAddr,
 	u8 *pSrc,
 	unsigned long BulkOutSize,
 	USB_COMPLETE_HANDLER Func,
@@ -138,7 +138,7 @@ void RtmpOsUsbInitHTTxDesc(
 void RtmpOsUsbInitRxDesc(
 	struct urb *pUrb,
 	struct usb_device *pUsb_Dev,
-	UINT BulkInEpAddr,
+	unsigned int BulkInEpAddr,
 	u8 *pTransferBuffer,
 	u32 BufSize,
 	USB_COMPLETE_HANDLER Func,

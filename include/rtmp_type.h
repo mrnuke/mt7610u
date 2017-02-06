@@ -37,7 +37,6 @@
 /* For example, linux type definition */
 
 typedef unsigned short USHORT;
-typedef unsigned int UINT;
 #endif /* LINUX */
 
 /* modified for fixing compile warning on Sigma 8634 platform */
@@ -60,9 +59,9 @@ typedef union _LARGE_INTEGER {
 	struct {
 #ifdef RT_BIG_ENDIAN
 		int32_t HighPart;
-		UINT LowPart;
+		unsigned int LowPart;
 #else
-		UINT LowPart;
+		unsigned int LowPart;
 		int32_t HighPart;
 #endif
 	} u;

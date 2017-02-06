@@ -667,7 +667,7 @@ bool BARecSessionAdd(
 	u8                   TID;
 	u8                   BAWinSize;
 	/*u32                  Value;*/
-	/*UINT                    offset;*/
+	/*unsigned int                    offset;*/
 
 
 	ASSERT(pEntry);

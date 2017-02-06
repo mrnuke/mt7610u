@@ -972,7 +972,7 @@ int RtmpUSBMgmtKickOut(
 	u8 QueIdx,
 	struct sk_buff * pPacket,
 	u8 *pSrcBufVA,
-	UINT SrcBufLen)
+	unsigned int SrcBufLen)
 {
 	union txinfo_nmac *pTxInfo;
 	unsigned long BulkOutSize;

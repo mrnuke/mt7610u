@@ -382,7 +382,7 @@ typedef struct __attribute__ ((packed)) _VHT_OP_IE{
 */
 typedef struct __attribute__ ((packed)) _WIDE_BW_CH_SWITCH_IE{
 	u8 e_id;
-	UINT len;
+	unsigned int len;
 	u8 new_ch_width;
 	u8 center_freq_1;
 	u8 center_freq_2;

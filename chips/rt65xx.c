@@ -424,7 +424,7 @@ void MT76x0_WLAN_ChipOnOff(
 
 	if (bOn == true)
 	{
-		UINT index = 0;
+		unsigned int index = 0;
 		CMB_CTRL_STRUC CmbCtrl;
 
 		CmbCtrl.word = 0;

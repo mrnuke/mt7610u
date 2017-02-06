@@ -36,7 +36,7 @@ void RtmpUtilInit(void);
 void RTMPusecDelay(
 	unsigned long					usec);
 
-unsigned long RTMPMsecsToJiffies(UINT msec);
+unsigned long RTMPMsecsToJiffies(unsigned int msec);
 
 void RTMP_GetCurrentSystemTick(
 	unsigned long					*pNow);
@@ -92,9 +92,9 @@ int RTMPAllocateNdisPacket(
 	void 				*pReserved,
 	struct sk_buff *			*ppPacket,
 	u8 *				pHeader,
-	UINT					HeaderLen,
+	unsigned int					HeaderLen,
 	u8 *				pData,
-	UINT					DataLen);
+	unsigned int					DataLen);
 
 void RTMPFreeNdisPacket(
 	void 				*pReserved,
@@ -110,7 +110,7 @@ void RTMP_QueryPacketInfo(
 	struct sk_buff *			pPacket,
 	PACKET_INFO  			*pPacketInfo,
 	u8 *	 			*pSrcBufVA,
-	UINT		 			*pSrcBufLen);
+	unsigned int		 			*pSrcBufLen);
 
 struct sk_buff * DuplicatePacket(
 	struct net_device *			pNetDev,
@@ -120,7 +120,7 @@ struct sk_buff * DuplicatePacket(
 struct sk_buff * duplicate_pkt(
 	struct net_device *			pNetDev,
 	u8 *				pHeader802_3,
-    UINT            		HdrLen,
+    unsigned int            		HdrLen,
 	u8 *				pData,
 	unsigned long					DataSize,
 	u8 				FromWhichBSSID);
@@ -134,7 +134,7 @@ struct sk_buff * duplicate_pkt_with_VLAN(
 	USHORT					VLAN_VID,
 	USHORT					VLAN_Priority,
 	u8 *				pHeader802_3,
-    UINT            		HdrLen,
+    unsigned int            		HdrLen,
 	u8 *				pData,
 	unsigned long					DataSize,
 	u8 				FromWhichBSSID,
@@ -202,7 +202,7 @@ u8 VLAN_8023_Header_Copy(
 	USHORT					VLAN_VID,
 	USHORT					VLAN_Priority,
 	u8 *				pHeader802_3,
-	UINT            		HdrLen,
+	unsigned int            		HdrLen,
 	u8 *				pData,
 	u8 				FromWhichBSSID,
 	u8 				*TPID);
@@ -232,19 +232,19 @@ void RtmpOsPktLenAssign(
 
 void RtmpOsPktTailAdjust(
 	struct sk_buff *			pNetPkt,
-	UINT					removedTagLen);
+	unsigned int					removedTagLen);
 
 u8 *RtmpOsPktTailBufExtend(
 	struct sk_buff *			pNetPkt,
-	UINT					Len);
+	unsigned int					Len);
 
 u8 *RtmpOsPktHeadBufExtend(
 	struct sk_buff *			pNetPkt,
-	UINT					Len);
+	unsigned int					Len);
 
 void RtmpOsPktReserve(
 	struct sk_buff *			pNetPkt,
-	UINT					Len);
+	unsigned int					Len);
 
 void RtmpOsPktProtocolAssign(
 	struct sk_buff *			pNetPkt);
@@ -582,7 +582,7 @@ int RtmpOSWrielessEventSendExt(
 	u32					dataLen,
 	u32					family);
 
-UINT RtmpOsWirelessExtVerGet(void);
+unsigned int RtmpOsWirelessExtVerGet(void);
 
 void RtmpDrvAllMacPrint(
 	void 					*pReserved,
@@ -668,7 +668,7 @@ void    SendAssocIEsToWpaSupplicant(
 /* ============================ rt_rbus_pci_util.c ========================== */
 void RtmpAllocDescBuf(
 	PPCI_DEV pPciDev,
-	UINT Index,
+	unsigned int Index,
 	unsigned long Length,
 	bool Cached,
 	void **VirtualAddress,
@@ -682,7 +682,7 @@ void RtmpFreeDescBuf(
 
 void RTMP_AllocateFirstTxBuffer(
 	PPCI_DEV pPciDev,
-	UINT Index,
+	unsigned int Index,
 	unsigned long Length,
 	bool Cached,
 	void **VirtualAddress,
@@ -773,7 +773,7 @@ void RtmpOsUsbEmptyUrbCheck(
 void RtmpOsUsbInitHTTxDesc(
 	struct urb *pUrb,
 	struct usb_device *pUsb_Dev,
-	UINT BulkOutEpAddr,
+	unsigned int BulkOutEpAddr,
 	u8 *pSrc,
 	unsigned long BulkOutSize,
 	USB_COMPLETE_HANDLER Func,
@@ -783,7 +783,7 @@ void RtmpOsUsbInitHTTxDesc(
 void RtmpOsUsbInitRxDesc(
 	struct urb *pUrb,
 	struct usb_device *pUsb_Dev,
-	UINT BulkInEpAddr,
+	unsigned int BulkInEpAddr,
 	u8 *pTransferBuffer,
 	u32 BufSize,
 	USB_COMPLETE_HANDLER Func,

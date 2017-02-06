@@ -240,7 +240,7 @@ PMEASURE_REQ_ENTRY MeasureReqLookUp(
 	struct rtmp_adapter *pAd,
 	u8			DialogToken)
 {
-	UINT HashIdx;
+	unsigned int HashIdx;
 	PMEASURE_REQ_TAB pTab = pAd->CommonCfg.pMeasureReqTab;
 	PMEASURE_REQ_ENTRY pEntry = NULL;
 	PMEASURE_REQ_ENTRY pPrevEntry = NULL;
@@ -463,7 +463,7 @@ static PTPC_REQ_ENTRY TpcReqLookUp(
 	struct rtmp_adapter *pAd,
 	u8			DialogToken)
 {
-	UINT HashIdx;
+	unsigned int HashIdx;
 	PTPC_REQ_TAB pTab = pAd->CommonCfg.pTpcReqTab;
 	PTPC_REQ_ENTRY pEntry = NULL;
 	PTPC_REQ_ENTRY pPrevEntry = NULL;
@@ -1930,8 +1930,8 @@ INT Set_MeasureReq_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	UINT Aid = 1;
-	UINT ArgIdx;
+	unsigned int Aid = 1;
+	unsigned int ArgIdx;
 	char *thisChar;
 
 	MEASURE_REQ_MODE MeasureReqMode;
@@ -2016,7 +2016,7 @@ INT Set_MeasureReq_Proc(
 		FrameLen += TempLen;
 	}
 
-	MiniportMMRequest(pAd, QID_AC_BE, pOutBuffer, (UINT)FrameLen);
+	MiniportMMRequest(pAd, QID_AC_BE, pOutBuffer, (unsigned int)FrameLen);
 
 END_OF_MEASURE_REQ:
 	kfree(pOutBuffer);
@@ -2028,11 +2028,11 @@ INT Set_TpcReq_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
-	UINT Aid;
+	unsigned int Aid;
 
 	u8 TpcReqToken = RandomByte(pAd);
 
-	Aid = (UINT) simple_strtol(arg, 0, 16);
+	Aid = (unsigned int) simple_strtol(arg, 0, 16);
 
 	DBGPRINT(RT_DEBUG_TRACE, ("%s::Aid = %d\n", __FUNCTION__, Aid));
 	if (!VALID_WCID(Aid))

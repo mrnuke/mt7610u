@@ -436,23 +436,23 @@ bool RTMPSoftDecryptAES(
 	unsigned long	DataByteCnt,
 	PCIPHER_KEY	pWpaKey)
 {
-	UINT			HeaderLen;
+	unsigned int			HeaderLen;
 	u8 		PN[6];
-	UINT			payload_len;
-	UINT			num_blocks;
-	UINT			payload_remainder;
+	unsigned int			payload_len;
+	unsigned int			num_blocks;
+	unsigned int			payload_remainder;
 	USHORT			fc;
 	u8 		fc0;
 	u8 		fc1;
-	UINT			frame_type;
-	UINT			frame_subtype;
-	UINT			from_ds;
-	UINT			to_ds;
+	unsigned int			frame_type;
+	unsigned int			frame_subtype;
+	unsigned int			from_ds;
+	unsigned int			to_ds;
 	INT				a4_exists;
 	INT				qc_exists;
 	u8 		aes_out[16];
 	int 			payload_index;
-	UINT 			i;
+	unsigned int 			i;
 	u8 			ctr_preload[16];
 	u8 			chain_buffer[16];
 	u8 			padded_buffer[16];
@@ -665,9 +665,9 @@ void RTMPConstructCCMPAAD(
 	u8 a4_exists,
 	u8 qc_exists,
 	u8 *aad_hdr,
-	UINT *aad_len)
+	unsigned int *aad_len)
 {
-	UINT len = 0;
+	unsigned int len = 0;
 
 	/* Frame control -
 		Subtype bits (bits 4 5 6) in a Data MPDU masked to 0
@@ -745,9 +745,9 @@ void RTMPConstructCCMPNonce(
 	bool isMgmtFrame,
 	u8 *pn,
 	u8 *nonce_hdr,
-	UINT *nonce_hdr_len)
+	unsigned int *nonce_hdr_len)
 {
-	UINT n_offset = 0;
+	unsigned int n_offset = 0;
 	INT i;
 
 	/* Decide the Priority Octet
@@ -834,7 +834,7 @@ bool RTMPSoftEncryptCCMP(
 	u8 from_ds, to_ds;
 	u8 a4_exists, qc_exists;
 	u8 aad_hdr[30];
-	UINT aad_len = 0;
+	unsigned int aad_len = 0;
 	u8 nonce_hdr[13];
 	u32 nonce_hdr_len = 0;
 	u32 out_len = DataLen + 8;
@@ -925,7 +925,7 @@ bool RTMPSoftDecryptCCMP(
 	u8 from_ds, to_ds;
 	u8 a4_exists, qc_exists;
 	u8 aad_hdr[30];
-	UINT aad_len = 0;
+	unsigned int aad_len = 0;
 	u8 pn[LEN_PN];
 	u8 *cipherData_ptr;
 	u32 cipherData_len;
@@ -1057,7 +1057,7 @@ void CCMP_test_vector(
 							 0x3c, 0x04, 0xd0, 0x19, 0x78, 0x45, 0xce, 0x0b,
 							 0x16, 0xf9, 0x76, 0x23};
 	u8 res_buf[100];
-	UINT res_len = 0;
+	unsigned int res_len = 0;
 
 	printk("== CCMP test vector == \n");
 

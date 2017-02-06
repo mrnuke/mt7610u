@@ -46,7 +46,7 @@ int rlt_rf_write(
 		RF_RANDOM_WRITE(pAd, &reg, 1);
 	} else {
 		RLT_RF_CSR_CFG rfcsr = { { 0 } };
-		UINT i = 0;
+		unsigned int i = 0;
 
 
 #ifdef RTMP_MAC_USB
@@ -132,7 +132,7 @@ int rlt_rf_read(
 	} else {
 
 		RLT_RF_CSR_CFG rfcsr = { { 0 } };
-		UINT i=0, k=0;
+		unsigned int i=0, k=0;
 
 
 #ifdef RTMP_MAC_USB

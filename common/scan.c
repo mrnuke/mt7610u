@@ -372,10 +372,10 @@ void ScanNextChannel(
 	u8 OpMode)
 {
 	u8 ScanType = pAd->MlmeAux.ScanType;
-	UINT ScanTimeIn5gChannel = SHORT_CHANNEL_TIME;
+	unsigned int ScanTimeIn5gChannel = SHORT_CHANNEL_TIME;
 	bool ScanPending = false;
 	RALINK_TIMER_STRUCT *sc_timer;
-	UINT stay_time = 0;
+	unsigned int stay_time = 0;
 	u8 ImprovedScan_MaxScanChannelCnt;
 
 

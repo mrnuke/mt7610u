@@ -57,10 +57,10 @@ static bool RT_isLegalCmdBeforeInfUp(
 
 
 INT ComputeChecksum(
-	UINT PIN)
+	unsigned int PIN)
 {
 	INT digit_s;
-    UINT accum = 0;
+    unsigned int accum = 0;
 
 	PIN *= 10;
 	accum += 3 * ((PIN / 10000000) % 10);
@@ -75,14 +75,14 @@ INT ComputeChecksum(
 	return ((10 - digit_s) % 10);
 } /* ComputeChecksum*/
 
-UINT GenerateWpsPinCode(
+unsigned int GenerateWpsPinCode(
 	struct rtmp_adapter *pAd,
     bool         bFromApcli,
 	u8 		apidx)
 {
 	u8 macAddr[ETH_ALEN];
-	UINT 	iPin;
-	UINT	checksum;
+	unsigned int 	iPin;
+	unsigned int	checksum;
 
 	memset(macAddr, 0, ETH_ALEN);
 

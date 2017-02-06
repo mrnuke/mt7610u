@@ -51,118 +51,118 @@ typedef struct {
 /* AES operations */
 void RT_AES_KeyExpansion (
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     AES_CTX_STRUC *paes_ctx);
 
 void RT_AES_Encrypt (
     u8 PlainBlock[],
-    UINT PlainBlockSize,
+    unsigned int PlainBlockSize,
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     u8 CipherBlock[],
-    UINT *CipherBlockSize);
+    unsigned int *CipherBlockSize);
 
 void RT_AES_Decrypt (
     u8 CipherBlock[],
-    UINT CipherBlockSize,
+    unsigned int CipherBlockSize,
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     u8 PlainBlock[],
-    UINT *PlainBlockSize);
+    unsigned int *PlainBlockSize);
 
 /* AES Counter with CBC-MAC operations */
 void AES_CCM_MAC (
     u8 Payload[],
-    UINT  PayloadLength,
+    unsigned int  PayloadLength,
     u8 Key[],
-    UINT  KeyLength,
+    unsigned int  KeyLength,
     u8 Nonce[],
-    UINT  NonceLength,
+    unsigned int  NonceLength,
     u8 AAD[],
-    UINT  AADLength,
-    UINT  MACLength,
+    unsigned int  AADLength,
+    unsigned int  MACLength,
     u8 MACText[]);
 
 INT AES_CCM_Encrypt (
     u8 PlainText[],
-    UINT  PlainTextLength,
+    unsigned int  PlainTextLength,
     u8 Key[],
-    UINT  KeyLength,
+    unsigned int  KeyLength,
     u8 Nonce[],
-    UINT  NonceLength,
+    unsigned int  NonceLength,
     u8 AAD[],
-    UINT  AADLength,
-    UINT  MACLength,
+    unsigned int  AADLength,
+    unsigned int  MACLength,
     u8 CipherText[],
-    UINT *CipherTextLength);
+    unsigned int *CipherTextLength);
 
 INT AES_CCM_Decrypt (
     u8 CipherText[],
-    UINT  CipherTextLength,
+    unsigned int  CipherTextLength,
     u8 Key[],
-    UINT  KeyLength,
+    unsigned int  KeyLength,
     u8 Nonce[],
-    UINT  NonceLength,
+    unsigned int  NonceLength,
     u8 AAD[],
-    UINT  AADLength,
-    UINT  MACLength,
+    unsigned int  AADLength,
+    unsigned int  MACLength,
     u8 PlainText[],
-    UINT *PlainTextLength);
+    unsigned int *PlainTextLength);
 
 /* AES-CMAC operations */
 void AES_CMAC_GenerateSubKey (
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     u8 SubKey1[],
     u8 SubKey2[]);
 
 void AES_CMAC (
     u8 PlainText[],
-    UINT PlainTextLength,
+    unsigned int PlainTextLength,
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     u8 MACText[],
-    UINT *MACTextLength);
+    unsigned int *MACTextLength);
 
 
 
 /* AES-CBC operations */
 void AES_CBC_Encrypt (
     u8 PlainText[],
-    UINT PlainTextLength,
+    unsigned int PlainTextLength,
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     u8 IV[],
-    UINT IVLength,
+    unsigned int IVLength,
     u8 CipherText[],
-    UINT *CipherTextLength);
+    unsigned int *CipherTextLength);
 
 void AES_CBC_Decrypt (
     u8 CipherText[],
-    UINT CipherTextLength,
+    unsigned int CipherTextLength,
     u8 Key[],
-    UINT KeyLength,
+    unsigned int KeyLength,
     u8 IV[],
-    UINT IVLength,
+    unsigned int IVLength,
     u8 PlainText[],
-    UINT *PlainTextLength);
+    unsigned int *PlainTextLength);
 
 /* AES key wrap operations */
 INT AES_Key_Wrap (
     u8 PlainText[],
-    UINT  PlainTextLength,
+    unsigned int  PlainTextLength,
     u8 Key[],
-    UINT  KeyLength,
+    unsigned int  KeyLength,
     u8 CipherText[],
-    UINT *CipherTextLength);
+    unsigned int *CipherTextLength);
 
 INT AES_Key_Unwrap (
     u8 CipherText[],
-    UINT  CipherTextLength,
+    unsigned int  CipherTextLength,
     u8 Key[],
-    UINT  KeyLength,
+    unsigned int  KeyLength,
     u8 PlainText [],
-    UINT *PlainTextLength);
+    unsigned int *PlainTextLength);
 
 
 #endif /* __CRYPT_AES_H__ */

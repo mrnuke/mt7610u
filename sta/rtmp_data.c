@@ -1036,7 +1036,7 @@ Routine Description:
 Arguments:
     NDIS_HANDLE 	MiniportAdapterContext	Pointer refer to the device handle, i.e., the pAd.
 	PPNDIS_PACKET	ppPacketArray			The packet array need to do transmission.
-	UINT			NumberOfPackets			Number of packet in packet array.
+	unsigned int			NumberOfPackets			Number of packet in packet array.
 
 Return Value:
 	NONE
@@ -1130,8 +1130,8 @@ int STASendPacket(
 {
 	PACKET_INFO PacketInfo;
 	u8 *pSrcBufVA;
-	UINT SrcBufLen;
-	UINT AllowFragSize;
+	unsigned int SrcBufLen;
+	unsigned int AllowFragSize;
 	u8 NumberOfFrag;
 	u8 RTSRequired;
 	u8 QueIdx, UserPriority;
@@ -2567,7 +2567,7 @@ void STA_Fragment_Frame_Tx(
 	USHORT EncryptionOverhead = 0;
 	u32 FreeMpduSize, SrcRemainingBytes;
 	USHORT AckDuration;
-	UINT NextMpduSize;
+	unsigned int NextMpduSize;
 	bool bVLANPkt;
 	PQUEUE_ENTRY pQEntry;
 	HTTRANSMIT_SETTING *pTransmit;
@@ -2797,8 +2797,8 @@ void STA_Fragment_Frame_Tx(
 			pTxBlk->SrcBufLen = FreeMpduSize;
 
 			NextMpduSize =
-			    min(((UINT) SrcRemainingBytes - pTxBlk->SrcBufLen),
-				((UINT) pAd->CommonCfg.FragmentThreshold));
+			    min(((unsigned int) SrcRemainingBytes - pTxBlk->SrcBufLen),
+				((unsigned int) pAd->CommonCfg.FragmentThreshold));
 			pHeader_802_11->FC.MoreFrag = 1;
 			pHeader_802_11->Duration =
 			    (3 * pAd->CommonCfg.Dsifs) + (2 * AckDuration) +

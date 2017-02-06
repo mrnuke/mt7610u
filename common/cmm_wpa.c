@@ -199,7 +199,7 @@ void WpaEAPOLKeyAction(
     PHEADER_802_11      pHeader;
     PEAPOL_PACKET       pEapol_packet;
 	KEY_INFO			peerKeyInfo;
-	UINT				eapol_len;
+	unsigned int				eapol_len;
 
 #ifdef CONFIG_STA_SUPPORT
 #endif /* CONFIG_STA_SUPPORT */
@@ -369,9 +369,9 @@ void RTMPToWirelessSta(
     struct rtmp_adapter *  	pAd,
     PMAC_TABLE_ENTRY 	pEntry,
     u8 *         	pHeader802_3,
-    UINT            	HdrLen,
+    unsigned int            	HdrLen,
     u8 *         	pData,
-    UINT            	DataLen,
+    unsigned int            	DataLen,
     bool 			bClearFrame)
 {
     struct sk_buff *    pPacket;
@@ -523,7 +523,7 @@ bool PeerWpaMessageSanity(
 	if (MsgType != EAPOL_PAIR_MSG_1)
 	{
 		u8 		rcvd_mic[LEN_KEY_DESC_MIC];
-		UINT			eapol_len = CONV_ARRARY_TO_UINT16(pMsg->Body_Len) + 4;
+		unsigned int			eapol_len = CONV_ARRARY_TO_UINT16(pMsg->Body_Len) + 4;
 
 		/* Record the received MIC for check later*/
 		memmove(rcvd_mic, pMsg->KeyDesc.KeyMic, LEN_KEY_DESC_MIC);
@@ -540,7 +540,7 @@ bool PeerWpaMessageSanity(
         }
                 else if (EapolKeyInfo.KeyDescVer == KEY_DESC_EXT)	/* AES-128 */
                 {
-                        UINT mlen = AES_KEY128_LENGTH;
+                        unsigned int mlen = AES_KEY128_LENGTH;
                         AES_CMAC((u8 *)pMsg, eapol_len, pEntry->PTK, LEN_PTK_KCK, mic, &mlen);
                 }
 
@@ -571,7 +571,7 @@ bool PeerWpaMessageSanity(
 		{
 			if((EapolKeyInfo.KeyDescVer == KEY_DESC_EXT) || (EapolKeyInfo.KeyDescVer == KEY_DESC_AES))
 			{
-				UINT aes_unwrap_len = 0;
+				unsigned int aes_unwrap_len = 0;
 
 				/* AES */
 				AES_Key_Unwrap(pMsg->KeyDesc.KeyData,
@@ -747,7 +747,7 @@ void PeerPairMsg1Action(
 	u8 			PTK[80];
 	u8               Header802_3[14];
 	PEAPOL_PACKET		pMsg1;
-	UINT            	MsgLen;
+	unsigned int            	MsgLen;
 	u8   			*mpool;
     PEAPOL_PACKET		pEapolFrame;
 	u8 *				pCurrentAddr = NULL;
@@ -869,7 +869,7 @@ void PeerPairMsg2Action(
 	u8   			*mpool;
 	PEAPOL_PACKET		pEapolFrame;
 	PEAPOL_PACKET       pMsg2;
-	UINT            	MsgLen;
+	unsigned int            	MsgLen;
     u8               Header802_3[LENGTH_802_3];
 	u8 				TxTsc[6];
 	u8 *				pBssid = NULL;
@@ -1010,7 +1010,7 @@ void PeerPairMsg3Action(
 	u8 			*mpool;
 	PEAPOL_PACKET		pEapolFrame;
 	PEAPOL_PACKET		pMsg3;
-	UINT            	MsgLen;
+	unsigned int            	MsgLen;
 	u8 *				pCurrentAddr = NULL;
 	u8 			group_cipher = Ndis802_11WEPDisabled;
 
@@ -1140,7 +1140,7 @@ void PeerPairMsg4Action(
 {
 	PEAPOL_PACKET   	pMsg4;
     PHEADER_802_11      pHeader;
-    UINT            	MsgLen;
+    unsigned int            	MsgLen;
     bool             Cancelled;
 	u8 			group_cipher = Ndis802_11WEPDisabled;
 
@@ -1301,7 +1301,7 @@ void PeerGroupMsg1Action(
 	u8 			*mpool;
 	PEAPOL_PACKET		pEapolFrame;
 	PEAPOL_PACKET		pGroup;
-	UINT            	MsgLen;
+	unsigned int            	MsgLen;
 	u8 			default_key = 0;
 	u8 			group_cipher = Ndis802_11WEPDisabled;
 	u8 *				pCurrentAddr = NULL;
@@ -1486,9 +1486,9 @@ void PeerGroupMsg2Action(
     struct rtmp_adapter *   pAd,
     MAC_TABLE_ENTRY  *pEntry,
     void             *Msg,
-    UINT             MsgLen)
+    unsigned int             MsgLen)
 {
-    UINT            	Len;
+    unsigned int            	Len;
     u8 *         	pData;
     bool         	Cancelled;
 	PEAPOL_PACKET       pMsg2;
@@ -1598,7 +1598,7 @@ bool WpaMsgTypeSubst(
  * rolling over to more significant bytes if the byte was incremented from
  * 0xff to 0x00.
  */
-void inc_iv_byte(u8 *iv, UINT len, UINT cnt)
+void inc_iv_byte(u8 *iv, unsigned int len, unsigned int cnt)
 {
 	int 	pos = 0;
 	int 	carry = 0;
@@ -1802,7 +1802,7 @@ void KDF(
     u8   *input;
 	INT		currentindex = 0;
 	INT		total_len;
-	UINT	len_in_bits = (len << 3);
+	unsigned int	len_in_bits = (len << 3);
 
 	input = kmalloc(1024, GFP_ATOMIC);
 
@@ -1918,10 +1918,10 @@ void WpaDerivePTK(
 	u8 *SNonce,
 	u8 *SA,
 	u8 *output,
-	UINT	len)
+	unsigned int	len)
 {
 	u8 concatenation[76];
-	UINT	CurrPos = 0;
+	unsigned int	CurrPos = 0;
 	u8 temp[32];
 	u8 Prefix[] = {'P', 'a', 'i', 'r', 'w', 'i', 's', 'e', ' ', 'k', 'e', 'y', ' ',
 						'e', 'x', 'p', 'a', 'n', 's', 'i', 'o', 'n'};
@@ -1976,10 +1976,10 @@ void WpaDeriveGTK(
     u8   *GNonce,
     u8   *AA,
     u8   *output,
-    UINT    len)
+    unsigned int    len)
 {
     u8   concatenation[76];
-    UINT    CurrPos=0;
+    unsigned int    CurrPos=0;
     u8   Prefix[19];
     u8   temp[80];
 
@@ -2095,7 +2095,7 @@ void GenRandom(
 static void RTMPMakeRsnIeCipher(
 	struct rtmp_adapter *  pAd,
 	u8 		ElementID,
-	UINT			WepStatus,
+	unsigned int			WepStatus,
 	u8 		apidx,
 	bool 		bMixCipher,
 	u8 		FlexibleCipher,
@@ -2168,7 +2168,7 @@ static void RTMPMakeRsnIeCipher(
 			(pAd->StaCfg.GroupCipher != Ndis802_11Encryption3Enabled)
 			)
 		{
-			UINT	GroupCipher = pAd->StaCfg.GroupCipher;
+			unsigned int	GroupCipher = pAd->StaCfg.GroupCipher;
 			switch(GroupCipher)
 			{
 				case Ndis802_11GroupWEP40Enabled:
@@ -2247,7 +2247,7 @@ static void RTMPMakeRsnIeCipher(
 			(pAd->StaCfg.GroupCipher != Ndis802_11Encryption3Enabled)
 			)
 		{
-			UINT	GroupCipher = pAd->StaCfg.GroupCipher;
+			unsigned int	GroupCipher = pAd->StaCfg.GroupCipher;
 			switch(GroupCipher)
 			{
 				case Ndis802_11GroupWEP40Enabled:
@@ -2288,7 +2288,7 @@ static void RTMPMakeRsnIeCipher(
 static void RTMPMakeRsnIeAKM(
 	struct rtmp_adapter *  pAd,
 	u8 		ElementID,
-	UINT			AuthMode,
+	unsigned int			AuthMode,
 	u8 		apidx,
 	u8 *		pRsnIe,
 	u8 		*rsn_len)
@@ -2435,8 +2435,8 @@ static void RTMPMakeRsnIeCap(
 */
 void RTMPMakeRSNIE(
     struct rtmp_adapter *  pAd,
-    UINT            AuthMode,
-    UINT            WepStatus,
+    unsigned int            AuthMode,
+    unsigned int            WepStatus,
 	u8 		apidx)
 {
 	u8 *	pRsnIe = NULL;			/* primary RSNIE*/
@@ -2456,7 +2456,7 @@ void RTMPMakeRSNIE(
 #ifdef APCLI_SUPPORT
 		if (apidx >= MIN_NET_DEVICE_FOR_APCLI)
 		{
-			UINT	apcliIfidx = 0;
+			unsigned int	apcliIfidx = 0;
 
 			/* Only support WPAPSK or WPA2PSK for AP-Client mode */
 #ifdef APCLI_WPA_SUPPLICANT_SUPPORT
@@ -3275,7 +3275,7 @@ void ConstructEapolKeyData(
 		{
 			u8 	remainder = 0;
 			u8 pad_len = 0;
-			UINT	wrap_len =0;
+			unsigned int	wrap_len =0;
 
 			/* Key Descriptor Version 2 or 3: AES key wrap, defined in IETF RFC 3394, */
 			/* shall be used to encrypt the Key Data field using the KEK field from */
@@ -3297,7 +3297,7 @@ void ConstructEapolKeyData(
 				data_offset += pad_len;
 			}
 
-			AES_Key_Wrap(Key_Data, (UINT) data_offset,
+			AES_Key_Wrap(Key_Data, (unsigned int) data_offset,
 						 &pEntry->PTK[LEN_PTK_KCK], LEN_PTK_KEK,
 						 eGTK, &wrap_len);
 			data_offset = wrap_len;
@@ -3385,7 +3385,7 @@ void CalculateMIC(
 	}
 	else if (KeyDescVer == KEY_DESC_EXT)
 	{
-		UINT	mlen = AES_KEY128_LENGTH;
+		unsigned int	mlen = AES_KEY128_LENGTH;
 		AES_CMAC(OutBuffer, FrameLen, PTK, LEN_PTK_KCK, mic, &mlen);
 	}
 
@@ -3610,7 +3610,7 @@ void RTMPSoftEncryptionAction(
 
 u8 *	WPA_ExtractSuiteFromRSNIE(
 		u8 *	rsnie,
-		UINT	rsnie_len,
+		unsigned int	rsnie_len,
 		u8	type,
 		u8	*count)
 {
@@ -3861,7 +3861,7 @@ out:
 
 void WpaShowAllsuite(
 	u8 *	rsnie,
-	UINT	rsnie_len)
+	unsigned int	rsnie_len)
 {
 	u8 * pSuite = NULL;
 	u8 count;

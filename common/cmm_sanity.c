@@ -2164,7 +2164,7 @@ bool PeerProbeReqSanity(
     PFRAME_802_11 Fr = (PFRAME_802_11)Msg;
     u8 	*Ptr;
     u8 	eid =0, eid_len = 0, *eid_data;
-	UINT		total_ie_len = 0;
+	unsigned int		total_ie_len = 0;
 
     /* to prevent caller from using garbage output value*/
     *SsidLen = 0;

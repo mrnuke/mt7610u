@@ -177,9 +177,9 @@ int RTMPAllocateNdisPacket(
 	void *pReserved,
 	struct sk_buff * *ppPacket,
 	u8 *pHeader,
-	UINT HeaderLen,
+	unsigned int HeaderLen,
 	u8 *pData,
-	UINT DataLen)
+	unsigned int DataLen)
 {
 	struct sk_buff *pPacket;
 
@@ -246,7 +246,7 @@ void RTMP_QueryPacketInfo(
 	struct sk_buff * pPacket,
 	PACKET_INFO *info,
 	u8 **pSrcBufVA,
-	UINT *pSrcBufLen)
+	unsigned int *pSrcBufLen)
 {
 	info->BufferCount = 1;
 	info->pFirstBuffer = pPacket->data;
@@ -306,7 +306,7 @@ struct sk_buff * DuplicatePacket(
 struct sk_buff * duplicate_pkt(
 	struct net_device *pNetDev,
 	u8 *pHeader802_3,
-	UINT HdrLen,
+	unsigned int HdrLen,
 	u8 *pData,
 	unsigned long DataSize,
 	u8 FromWhichBSSID)
@@ -1458,7 +1458,7 @@ int AdapterBlockAllocateMemory(struct rtmp_adapter **ppAd, u32 SizeOfpAd)
 
 /* ========================================================================== */
 
-UINT RtmpOsWirelessExtVerGet(void)
+unsigned int RtmpOsWirelessExtVerGet(void)
 {
 	return WIRELESS_EXT;
 }

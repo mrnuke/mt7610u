@@ -31,7 +31,7 @@
 #include "rtmp_type.h"
 
 struct rtmp_queue_elem {
-	UINT command;
+	unsigned int command;
 	void *buffer;
 	unsigned long bufferlength;
 	bool SetOperation;
@@ -39,7 +39,7 @@ struct rtmp_queue_elem {
 };
 
 struct rtmp_command_queue {
-	UINT size;
+	unsigned int size;
 	struct rtmp_queue_elem *head;
 	struct rtmp_queue_elem *tail;
 	u32 CmdQState;
@@ -56,7 +56,7 @@ struct rtmp_command_queue {
 	cmdq->size++;						\
 }
 
-#define NDIS_OID	UINT
+typedef unsigned int NDIS_OID;
 
 /* OS_RTCMDUp is only used in UTIL/NETIF module */
 #define OS_RTCMDUp						RtmpOsCmdUp
@@ -552,7 +552,7 @@ typedef struct __RT_CMD_MBSS_KICKOUT {
 } RT_CMD_MBSS_KICKOUT;
 
 typedef struct __RT_CMD_USB_DEV_CONFIG {
-	UINT NumberOfPipes;
+	unsigned int NumberOfPipes;
 	u8 BulkInEpAddr[2];
 	USHORT BulkInMaxPacketSize;
 	u8 BulkOutEpAddr[6];
@@ -721,7 +721,7 @@ typedef struct __RT_CMD_STA_IOCTL_SSID {
 } RT_CMD_STA_IOCTL_SSID;
 
 typedef struct __RT_CMD_STA_IOCTL_NICK_NAME {
-	UINT NameLen;
+	unsigned int NameLen;
 	CHAR *pName;
 } RT_CMD_STA_IOCTL_NICK_NAME;
 

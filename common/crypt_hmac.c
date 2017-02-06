@@ -50,17 +50,17 @@ Note:
 */
 void RT_HMAC_SHA1 (
     const u8 Key[],
-    UINT KeyLen,
+    unsigned int KeyLen,
     const u8 Message[],
-    UINT MessageLen,
+    unsigned int MessageLen,
     u8 MAC[],
-    UINT MACLen)
+    unsigned int MACLen)
 {
     SHA1_CTX_STRUC sha_ctx1;
     SHA1_CTX_STRUC sha_ctx2;
     u8 K0[SHA1_BLOCK_SIZE];
     u8 Digest[SHA1_DIGEST_SIZE];
-    UINT index;
+    unsigned int index;
 
     memset(&sha_ctx1, 0, sizeof(SHA1_CTX_STRUC));
     memset(&sha_ctx2, 0, sizeof(SHA1_CTX_STRUC));
@@ -133,17 +133,17 @@ Note:
 */
 void RT_HMAC_SHA256 (
     const u8 Key[],
-    UINT KeyLen,
+    unsigned int KeyLen,
     const u8 Message[],
-    UINT MessageLen,
+    unsigned int MessageLen,
     u8 MAC[],
-    UINT MACLen)
+    unsigned int MACLen)
 {
     SHA256_CTX_STRUC sha_ctx1;
     SHA256_CTX_STRUC sha_ctx2;
     u8 K0[SHA256_BLOCK_SIZE];
     u8 Digest[SHA256_DIGEST_SIZE];
-    UINT index;
+    unsigned int index;
 
     memset(&sha_ctx1, 0, sizeof(SHA256_CTX_STRUC));
     memset(&sha_ctx2, 0, sizeof(SHA256_CTX_STRUC));
@@ -217,17 +217,17 @@ Note:
 */
 void RT_HMAC_MD5(
     const u8 Key[],
-    UINT KeyLen,
+    unsigned int KeyLen,
     const u8 Message[],
-    UINT MessageLen,
+    unsigned int MessageLen,
     u8 MAC[],
-    UINT MACLen)
+    unsigned int MACLen)
 {
     MD5_CTX_STRUC md5_ctx1;
     MD5_CTX_STRUC md5_ctx2;
     u8 K0[MD5_BLOCK_SIZE];
     u8 Digest[MD5_DIGEST_SIZE];
-    UINT index;
+    unsigned int index;
 
     memset(&md5_ctx1, 0, sizeof(MD5_CTX_STRUC));
     memset(&md5_ctx2, 0, sizeof(MD5_CTX_STRUC));

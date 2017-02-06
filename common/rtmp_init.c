@@ -1778,9 +1778,9 @@ void UserCfgExit(
 */
 void UserCfgInit(struct rtmp_adapter*pAd)
 {
-	UINT i;
+	unsigned int i;
 /*	EDCA_PARM DefaultEdcaParm;*/
-    UINT key_index, bss_index;
+    unsigned int key_index, bss_index;
 	u8 TXWISize = sizeof(struct txwi_nmac);
 
 	DBGPRINT(RT_DEBUG_TRACE, ("--> UserCfgInit\n"));

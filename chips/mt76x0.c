@@ -1826,7 +1826,7 @@ void MT76x0_AsicExtraPowerOverMAC(struct rtmp_adapter *pAd)
 	mt7610u_write32(pAd, TX_PWR_CFG_9, ExtraPwrOverTxPwrCfg9);
 
 	DBGPRINT(RT_DEBUG_INFO, ("0x13D4 = 0x%08X, 0x13D8 = 0x%08X, 0x13D4 = 0x%08X\n",
-			(UINT)ExtraPwrOverTxPwrCfg7, (UINT)ExtraPwrOverTxPwrCfg8, (UINT)ExtraPwrOverTxPwrCfg9));
+			(unsigned int)ExtraPwrOverTxPwrCfg7, (unsigned int)ExtraPwrOverTxPwrCfg8, (unsigned int)ExtraPwrOverTxPwrCfg9));
 }
 
 static void calc_bw_delta_pwr(bool is_dec_delta, USHORT input_pwr,

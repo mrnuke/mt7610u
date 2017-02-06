@@ -54,9 +54,9 @@ typedef struct __attribute__ ((packed)) _RT_VERSION_INFO{
     u8       DriverVersionX;
     u8       DriverVersionY;
     u8       DriverVersionZ;
-    UINT        DriverBuildYear;
-    UINT        DriverBuildMonth;
-    UINT        DriverBuildDay;
+    unsigned int        DriverBuildYear;
+    unsigned int        DriverBuildMonth;
+    unsigned int        DriverBuildDay;
 } RT_VERSION_INFO, *PRT_VERSION_INFO;
 
 extern int32_t ralinkrate[];

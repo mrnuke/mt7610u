@@ -224,10 +224,10 @@ Note:
 void RT_SHA1_Append (
     SHA1_CTX_STRUC *pSHA_CTX,
     const u8 Message[],
-    UINT MessageLen)
+    unsigned int MessageLen)
 {
-    UINT appendLen = 0;
-    UINT diffLen   = 0;
+    unsigned int appendLen = 0;
+    unsigned int diffLen   = 0;
 
     while (appendLen != MessageLen) {
         diffLen = MessageLen - appendLen;
@@ -271,7 +271,7 @@ void RT_SHA1_End (
     SHA1_CTX_STRUC *pSHA_CTX,
     u8 DigestMessage[])
 {
-    UINT index;
+    unsigned int index;
     uint64_t message_length_bits;
 
     /* Append bit 1 to end of the message */
@@ -314,7 +314,7 @@ Note:
 */
 void RT_SHA1 (
     const u8 Message[],
-    UINT MessageLen,
+    unsigned int MessageLen,
     u8 DigestMessage[])
 {
 
@@ -447,10 +447,10 @@ Note:
 void RT_SHA256_Append (
     SHA256_CTX_STRUC *pSHA_CTX,
     const u8 Message[],
-    UINT MessageLen)
+    unsigned int MessageLen)
 {
-    UINT appendLen = 0;
-    UINT diffLen   = 0;
+    unsigned int appendLen = 0;
+    unsigned int diffLen   = 0;
 
     while (appendLen != MessageLen) {
         diffLen = MessageLen - appendLen;
@@ -494,7 +494,7 @@ void RT_SHA256_End (
     SHA256_CTX_STRUC *pSHA_CTX,
     u8 DigestMessage[])
 {
-    UINT index;
+    unsigned int index;
     uint64_t message_length_bits;
 
     /* Append bit 1 to end of the message */
@@ -537,7 +537,7 @@ Note:
 */
 void RT_SHA256 (
     const u8 Message[],
-    UINT MessageLen,
+    unsigned int MessageLen,
     u8 DigestMessage[])
 {
     SHA256_CTX_STRUC sha_ctx;

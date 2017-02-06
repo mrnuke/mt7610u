@@ -32,7 +32,7 @@
 	( ((A) << (n)) | ( ((A)>>(32-(n))) & ( (1UL << (n)) - 1 ) ) )
 #define ROR32( A, n ) ROL32( (A), 32-(n) )
 
-UINT Tkip_Sbox_Lower[256] =
+unsigned int Tkip_Sbox_Lower[256] =
 {
 	0xA5,0x84,0x99,0x8D,0x0D,0xBD,0xB1,0x54,
 	0x50,0x03,0xA9,0x7D,0x19,0x62,0xE6,0x9A,
@@ -68,7 +68,7 @@ UINT Tkip_Sbox_Lower[256] =
 	0xC3,0xB0,0x77,0x11,0xCB,0xFC,0xD6,0x3A
 };
 
-UINT Tkip_Sbox_Upper[256] =
+unsigned int Tkip_Sbox_Upper[256] =
 {
 	0xC6,0xF8,0xEE,0xF6,0xFF,0xD6,0xDE,0x91,
 	0x60,0x02,0xCE,0x56,0xE7,0xB5,0x4D,0xEC,
@@ -304,7 +304,7 @@ void RTMPTkipAppendByte(
 void RTMPTkipAppend(
 	PTKIP_KEY_INFO	pTkip,
 	u8 *		pSrc,
-	UINT			nBytes)
+	unsigned int			nBytes)
 {
 	/* This is simple */
 	while(nBytes > 0)
@@ -424,7 +424,7 @@ bool RTMPTkipCompareMICValue(
 	u8 *		pSA,
 	u8 *		pMICKey,
 	u8 		UserPriority,
-	UINT			Len)
+	unsigned int			Len)
 {
 	u8 OldMic[8];
 	unsigned long	Priority = UserPriority;
@@ -490,7 +490,7 @@ void RTMPCalculateMICValue(
 {
 	PACKET_INFO		PacketInfo;
 	u8 *		pSrcBufVA;
-	UINT			SrcBufLen;
+	unsigned int			SrcBufLen;
 	u8 *		pSrc;
     u8           UserPriority;
 	u8 		vlan_offset = 0;
@@ -548,11 +548,11 @@ void RTMPCalculateMICValue(
 /* is synthesized from two 256 entry byte wide tables.		*/
 /************************************************************/
 
-UINT tkip_sbox(UINT index)
+unsigned int tkip_sbox(unsigned int index)
 {
-	UINT index_low;
-	UINT index_high;
-	UINT left, right;
+	unsigned int index_low;
+	unsigned int index_high;
+	unsigned int left, right;
 
 	index_low = (index % 256);
 	index_high = ((index >> 8) % 256);
@@ -563,7 +563,7 @@ UINT tkip_sbox(UINT index)
 	return (left ^ right);
 }
 
-UINT rotr1(UINT a)
+unsigned int rotr1(unsigned int a)
 {
 	unsigned int b;
 
@@ -585,19 +585,19 @@ void RTMPTkipMixKey(
 	unsigned long pnl, /* Least significant 16 bits of PN */
 	unsigned long pnh, /* Most significant 32 bits of PN */
 	u8 *rc4key,
-	UINT *p1k)
+	unsigned int *p1k)
 {
 
-	UINT tsc0;
-	UINT tsc1;
-	UINT tsc2;
+	unsigned int tsc0;
+	unsigned int tsc1;
+	unsigned int tsc2;
 
-	UINT ppk0;
-	UINT ppk1;
-	UINT ppk2;
-	UINT ppk3;
-	UINT ppk4;
-	UINT ppk5;
+	unsigned int ppk0;
+	unsigned int ppk1;
+	unsigned int ppk2;
+	unsigned int ppk3;
+	unsigned int ppk4;
+	unsigned int ppk5;
 
 	INT i;
 	INT j;
@@ -609,9 +609,9 @@ void RTMPTkipMixKey(
 	/* Phase 1, step 1 */
 	p1k[0] = tsc1;
 	p1k[1] = tsc0;
-	p1k[2] = (UINT)(ta[0] + (ta[1]*256));
-	p1k[3] = (UINT)(ta[2] + (ta[3]*256));
-	p1k[4] = (UINT)(ta[4] + (ta[5]*256));
+	p1k[2] = (unsigned int)(ta[0] + (ta[1]*256));
+	p1k[3] = (unsigned int)(ta[2] + (ta[3]*256));
+	p1k[4] = (unsigned int)(ta[4] + (ta[5]*256));
 
 	/* Phase 1, step 2 */
 	for (i=0; i<8; i++)
@@ -703,7 +703,7 @@ bool RTMPSoftDecryptTKIP(
 	u8 		DA[ETH_ALEN];
 	u8 		SA[ETH_ALEN];
 	u8 		RC4Key[16];
-	UINT			p1k[5]; /*for mix_key;*/
+	unsigned int			p1k[5]; /*for mix_key;*/
 	unsigned long			pnl;/* Least significant 16 bits of PN */
 	unsigned long			pnh;/* Most significant 32 bits of PN */
 	ARC4_CTX_STRUC 	ARC4_CTX;
@@ -711,8 +711,8 @@ bool RTMPSoftDecryptTKIP(
 	u32			plaintext_len;
 	u8 *		ciphertext_ptr;
 	u32			ciphertext_len;
-	UINT			crc32 = 0;
-	UINT			trailfcs = 0;
+	unsigned int			crc32 = 0;
+	unsigned int			trailfcs = 0;
 	u8 		MIC[8];
 	u8 		TrailMIC[8];
 

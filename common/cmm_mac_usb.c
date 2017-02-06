@@ -89,7 +89,7 @@ static int RTMPFreeUsbBulkBufStruct(
 void RTMPResetTxRxRingMemory(
 	struct rtmp_adapter* pAd)
 {
-	UINT index, i, acidx;
+	unsigned int index, i, acidx;
 	PTX_CONTEXT pNullContext   = &pAd->NullContext;
 	PTX_CONTEXT pPsPollContext = &pAd->PsPollContext;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &pAd->CmdRspEventContext;
@@ -207,7 +207,7 @@ Note:
 void RTMPFreeTxRxRingMemory(
 	struct rtmp_adapter *pAd)
 {
-	UINT                i, acidx;
+	unsigned int                i, acidx;
 	PTX_CONTEXT			pNullContext   = &pAd->NullContext;
 	PTX_CONTEXT			pPsPollContext = &pAd->PsPollContext;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &pAd->CmdRspEventContext;
@@ -1154,7 +1154,7 @@ Note:
 void RTMPFreeTxRxRingMemory(
 	struct rtmp_adapter *pAd)
 {
-	UINT                i, acidx;
+	unsigned int                i, acidx;
 	PTX_CONTEXT			pNullContext   = &pAd->NullContext;
 	PTX_CONTEXT			pPsPollContext = &pAd->PsPollContext;
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &(pAd->CmdRspEventContext);
@@ -1384,7 +1384,7 @@ void RT28xx_UpdateBeaconToAsic(
 {
 	u8 *       	pBeaconFrame = NULL;
 	u8  			*ptr;
-	UINT  			i, padding;
+	unsigned int  			i, padding;
 	BEACON_SYNC_STRUCT	*pBeaconSync = pAd->CommonCfg.pBeaconSync;
 	u32			longValue;
 /*	USHORT			shortValue;*/

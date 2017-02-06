@@ -55,9 +55,9 @@
 bool APBridgeToWirelessSta(
     struct rtmp_adapter *  pAd,
     u8 *         pHeader,
-    UINT            HdrLen,
+    unsigned int            HdrLen,
     u8 *         pData,
-    UINT            DataLen,
+    unsigned int            DataLen,
     unsigned long           fromwdsidx);
 
 void RTMP_BASetup(
@@ -68,7 +68,7 @@ void RTMP_BASetup(
 void APSendPackets(
 	struct rtmp_adapter *  pAd,
 	struct sk_buff **ppPacketArray,
-	UINT			NumberOfPackets);
+	unsigned int			NumberOfPackets);
 
 int APSendPacket(
     struct rtmp_adapter *  pAd,

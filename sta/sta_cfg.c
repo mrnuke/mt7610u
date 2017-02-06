@@ -866,7 +866,7 @@ INT Set_WPAPSK_Proc(
 	}
 	memset(pAd->StaCfg.WpaPassPhrase, 0, 64);
     memmove(pAd->StaCfg.WpaPassPhrase, arg, strlen(arg));
-    pAd->StaCfg.WpaPassPhraseLen = (UINT)strlen(arg);
+    pAd->StaCfg.WpaPassPhraseLen = (unsigned int)strlen(arg);
 
 
 

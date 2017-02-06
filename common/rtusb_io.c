@@ -279,7 +279,7 @@ int	RTUSBWriteRFRegister(
 	u32			Value)
 {
 	RF_CSR_CFG0_STRUC PhyCsr4;
-	UINT			i = 0;
+	unsigned int			i = 0;
 	int		status;
 
 	memset(&PhyCsr4, 0, sizeof(RF_CSR_CFG0_STRUC));

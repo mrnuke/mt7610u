@@ -29,7 +29,7 @@
 
 int rt28xx_init(struct rtmp_adapter *pAd)
 {
-	UINT index;
+	unsigned int index;
 	int Status;
 
 	if (pAd == NULL)

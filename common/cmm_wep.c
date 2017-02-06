@@ -27,7 +27,7 @@
 
 #include	"rt_config.h"
 
-UINT FCSTAB_32[256] =
+unsigned int FCSTAB_32[256] =
 {
 	0x00000000, 0x77073096, 0xee0e612c, 0x990951ba,
 	0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3,
@@ -107,7 +107,7 @@ UINT FCSTAB_32[256] =
 		Len         the length of the data
 
 	Return Value:
-		UINT - FCS 32 bits
+		unsigned int - FCS 32 bits
 
 	IRQL = DISPATCH_LEVEL
 
@@ -115,8 +115,8 @@ UINT FCSTAB_32[256] =
 
 	========================================================================
 */
-UINT	RTMP_CALC_FCS32(
-	UINT	Fcs,
+unsigned int	RTMP_CALC_FCS32(
+	unsigned int	Fcs,
 	u8 *Cp,
 	INT		Len)
 {
@@ -232,7 +232,7 @@ bool RTMPSoftEncryptWEP(
 	unsigned long			DataByteCnt)
 {
 	ARC4_CTX_STRUC *ARC4_CTX = NULL;
-	UINT 	FCSCRC32;
+	unsigned int 	FCSCRC32;
 
 	ARC4_CTX = kmalloc(sizeof(ARC4_CTX_STRUC), GFP_ATOMIC);
 	if (ARC4_CTX == NULL)
@@ -302,8 +302,8 @@ bool RTMPSoftDecryptWEP(
 	uint16_t			plaintext_len;
 	u8 *		ciphertext_ptr;
 	uint16_t			ciphertext_len;
-	UINT			trailfcs;
-	UINT    		crc32;
+	unsigned int			trailfcs;
+	unsigned int    		crc32;
 
 	ARC4_CTX = kmalloc(sizeof(ARC4_CTX_STRUC), GFP_ATOMIC);
 	if (ARC4_CTX == NULL)

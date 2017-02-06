@@ -169,8 +169,8 @@
   ========================================*/
 void inc_iv_byte(
 	u8 *iv,
-	UINT len,
-	UINT cnt);
+	unsigned int len,
+	unsigned int cnt);
 
 bool WpaMsgTypeSubst(
 	u8 EAPType,
@@ -204,13 +204,13 @@ int RtmpPasswordHash(
 
 u8 * WPA_ExtractSuiteFromRSNIE(
 	u8 * rsnie,
-	UINT rsnie_len,
+	unsigned int rsnie_len,
 	u8 type,
 	u8 *count);
 
 void WpaShowAllsuite(
 	u8 * rsnie,
-	UINT rsnie_len);
+	unsigned int rsnie_len);
 
 void RTMPInsertRSNIE(
 	u8 *pFrameBuf,
@@ -229,9 +229,9 @@ void RTMPToWirelessSta(
 	struct rtmp_adapter *pAd,
 	PMAC_TABLE_ENTRY pEntry,
 	u8 *pHeader802_3,
-	UINT HdrLen,
+	unsigned int HdrLen,
 	u8 *pData,
-	UINT DataLen,
+	unsigned int DataLen,
 	bool bClearFrame);
 
 void WpaDerivePTK(
@@ -242,14 +242,14 @@ void WpaDerivePTK(
 	u8 *SNonce,
 	u8 *SA,
 	u8 *output,
-	UINT len);
+	unsigned int len);
 
 void WpaDeriveGTK(
 	u8 *PMK,
 	u8 *GNonce,
 	u8 *AA,
 	u8 *output,
-	UINT len);
+	unsigned int len);
 
 void GenRandom(
 	struct rtmp_adapter *pAd,
@@ -322,8 +322,8 @@ void RTMPSoftEncryptionAction(
 
 void RTMPMakeRSNIE(
 	struct rtmp_adapter *pAd,
-	UINT AuthMode,
-	UINT WepStatus,
+	unsigned int AuthMode,
+	unsigned int WepStatus,
 	u8 apidx);
 
 void WPAInstallPairwiseKey(
@@ -366,8 +366,8 @@ char *GetEapolMsgType(
  	function prototype in cmm_wep.c
  =====================================
 */
-UINT RTMP_CALC_FCS32(
-	UINT Fcs,
+unsigned int RTMP_CALC_FCS32(
+	unsigned int Fcs,
 	u8 *Cp,
 	INT Len);
 

@@ -66,7 +66,7 @@ typedef	struct __attribute__ ((packed)) _WSC_IE
 typedef	struct __attribute__ ((packed)) _WSC_FRAME
 {
 	u8 SMI[3];
-	UINT	VendorType;
+	unsigned int	VendorType;
 	u8 OpCode;
 	u8 Flags;
 }	WSC_FRAME, *PWSC_FRAME;
