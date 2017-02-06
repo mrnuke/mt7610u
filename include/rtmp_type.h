@@ -36,7 +36,6 @@ typedef char STRING;
 
 typedef signed char CHAR;
 
-typedef signed short SHORT;
 typedef signed int INT;
 
 #ifdef LINUX

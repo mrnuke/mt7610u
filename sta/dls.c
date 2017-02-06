@@ -199,7 +199,7 @@ void PeerDlsReqAction(
 	unsigned short CapabilityInfo;
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
 	unsigned short DLSTimeOut;
-	SHORT i;
+	short i;
 	unsigned long Timeout;
 	bool TimerCancelled;
 	PRT_802_11_DLS pDLS = NULL;
@@ -489,7 +489,7 @@ void PeerDlsRspAction(
 	unsigned short CapabilityInfo;
 	u8 DA[ETH_ALEN], SA[ETH_ALEN];
 	unsigned short StatusCode;
-	SHORT i;
+	short i;
 	bool TimerCancelled;
 	u8 MaxSupportedRateIn500Kbps = 0;
 	u8 SupportedRatesLen;

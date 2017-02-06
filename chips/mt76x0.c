@@ -2421,7 +2421,7 @@ void MT76x0_TempSensor(struct rtmp_adapter *pAd)
 {
 	u8 rf_b7_73 = 0, rf_b0_66 = 0, rf_b0_67 = 0;
 	u32 reg_val = 0;
-	SHORT temperature = 0;
+	short temperature = 0;
 	int32_t Dout = 0;
 	u32 MTxCycle = 0;
 #ifdef RTMP_MAC_USB
@@ -2975,7 +2975,7 @@ void mt76x0_read_tx_alc_info_from_eeprom(struct rtmp_adapter *pAd)
 			if ((e2p_value & 0x80) == 0x80) /* Negative number */
 				e2p_value |= 0xFF00;
 
-			pAd->chipCap.TemperatureOffset = (SHORT)e2p_value;
+			pAd->chipCap.TemperatureOffset = (short)e2p_value;
 		}
 		DBGPRINT(RT_DEBUG_OFF, ("%s: TemperatureOffset = 0x%x\n",
 			__FUNCTION__, pAd->chipCap.TemperatureOffset));

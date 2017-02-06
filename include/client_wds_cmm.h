@@ -40,7 +40,7 @@
 typedef struct _CLIWDS_PROXY_ENTRY {
 	struct _CLIWDS_PROXY_ENTRY * pNext;
 	unsigned long LastRefTime;
-	SHORT Aid;
+	short Aid;
 	u8 Addr[ETH_ALEN];
 } CLIWDS_PROXY_ENTRY, *PCLIWDS_PROXY_ENTRY;
 

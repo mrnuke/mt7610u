@@ -442,10 +442,10 @@ struct rtmp_chip_cap {
 
 #ifdef MT76x0
 	bool bDoTemperatureSensor;
-	SHORT TemperatureOffset;
-	SHORT LastTemperatureforVCO;
-	SHORT LastTemperatureforCal;
-	SHORT NowTemperature;
+	short TemperatureOffset;
+	short LastTemperatureforVCO;
+	short LastTemperatureforCal;
+	short NowTemperature;
 	u8 a_band_mid_ch;
 	u8 a_band_high_ch;
 	u8 ext_pa_current_setting;

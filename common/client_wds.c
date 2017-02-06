@@ -145,7 +145,7 @@ u8 *CliWds_ProxyLookup(
 
 void CliWds_ProxyTabUpdate(
 	struct rtmp_adapter *pAd,
-	SHORT Aid,
+	short Aid,
 	u8 *pMac)
 {
 	u8 HashId = (*(pMac + 5) & (CLIWDS_HASH_TAB_SIZE - 1));

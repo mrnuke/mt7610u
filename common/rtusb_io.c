@@ -1175,7 +1175,7 @@ static CMDHdlr CMDHdlrTable[] = {
 
 static inline bool ValidCMD(struct rtmp_queue_elem *CMDQelmt)
 {
-	SHORT CMDIndex = CMDQelmt->command - CMDTHREAD_FIRST_CMD_ID;
+	short CMDIndex = CMDQelmt->command - CMDTHREAD_FIRST_CMD_ID;
 	unsigned short CMDHdlrTableLength= sizeof(CMDHdlrTable) / sizeof(CMDHdlr);
 
 	if ( (CMDIndex >= 0) && (CMDIndex < CMDHdlrTableLength))
