@@ -1236,6 +1236,22 @@ void CFG80211_Scaning(
 } /* End of CFG80211_Scaning */
 
 
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0))
+static void scan_end_cb(struct cfg80211_scan_request *req, bool is_aborted)
+{
+	struct cfg80211_scan_info info = {
+		.aborted = is_aborted,
+	};
+
+	cfg80211_scan_done(req, &info);
+}
+#else	/* (LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0)) */
+void scan_end_cb(struct cfg80211_scan_request *req, bool is_aborted)
+{
+	cfg80211_scan_done(req, is_aborted);
+}
+#endif	/* (LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0)) */
+
 /*
 ========================================================================
 Routine Description:
@@ -1257,6 +1273,7 @@ void CFG80211_ScanEnd(
 {
 #ifdef CONFIG_STA_SUPPORT
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdCB;
+	CFG80211_CB *cb = pAd->pCfg80211_CB;
 
 
 	if (!RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_INTERRUPT_IN_USE))
@@ -1277,7 +1294,8 @@ void CFG80211_ScanEnd(
 		FlgIsAborted = 0;
 	/* End of if */
 
-	CFG80211OS_ScanEnd(CFG80211CB, FlgIsAborted);
+	CFG80211DBG(RT_DEBUG_ERROR, ("80211> cfg80211_scan_done\n"));
+	scan_end_cb(cb->pCfg80211_ScanReq, FlgIsAborted);
 
 	pAd->FlgCfg80211Scanning = false;
 #endif /* CONFIG_STA_SUPPORT */

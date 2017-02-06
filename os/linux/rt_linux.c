@@ -2622,47 +2622,6 @@ void CFG80211OS_Scaning(
 #endif /* CONFIG_STA_SUPPORT */
 }
 
-
-/*
-========================================================================
-Routine Description:
-	Inform us that scan ends.
-
-Arguments:
-	pAdCB			- WLAN control block pointer
-	FlgIsAborted	- 1: scan is aborted
-
-Return Value:
-	NONE
-
-Note:
-========================================================================
-*/
-void CFG80211OS_ScanEnd(
-	void *pCB,
-	bool FlgIsAborted)
-{
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0))
-	struct cfg80211_scan_info info = {
-		.aborted = FlgIsAborted,
-	};
-#endif
-
-#ifdef CONFIG_STA_SUPPORT
-	CFG80211_CB *pCfg80211_CB = (CFG80211_CB *)pCB;
-
-
-	CFG80211DBG(RT_DEBUG_ERROR, ("80211> cfg80211_scan_done\n"));
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0))
-	cfg80211_scan_done(pCfg80211_CB->pCfg80211_ScanReq, &info);
-#else
-	cfg80211_scan_done(pCfg80211_CB->pCfg80211_ScanReq, FlgIsAborted);
-#endif
-
-#endif /* CONFIG_STA_SUPPORT */
-}
-
-
 /*
 ========================================================================
 Routine Description:
