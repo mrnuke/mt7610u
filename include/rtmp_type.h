@@ -61,8 +61,6 @@ typedef signed int INT;
 typedef signed long LONG;
 typedef signed long long LONGLONG;
 
-typedef unsigned long long ULONGLONG;
-
 #ifdef LINUX
 #endif /* LINUX */
 

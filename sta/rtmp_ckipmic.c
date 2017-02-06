@@ -28,7 +28,7 @@
 #include "rt_config.h"
 #include "rtmp_ckipmic.h"
 
-#define MIC_ACCUM(v)            pContext->accum += (ULONGLONG)v * RTMPMicGetCoefficient(pContext)
+#define MIC_ACCUM(v)            pContext->accum += (uint64_t)v * RTMPMicGetCoefficient(pContext)
 #define GB(p,i,s)               ( ((ULONG) *((u8 *)(p)+i) ) << (s) )
 #define GETBIG32(p)             GB(p,0,24)|GB(p,1,16)|GB(p,2,8)|GB(p,3,0)
 
@@ -435,7 +435,7 @@ void RTMPMicFinal(
 {
     INT             byte_position;
     ULONG           val;
-    ULONGLONG       sum, utmp;
+    uint64_t       sum, utmp;
     LONGLONG        stmp;
 
     /* deal with partial 32-bit word left over from last update */
