@@ -30,7 +30,7 @@
 
 int NICInitBBP(struct rtmp_adapter*pAd)
 {
-	INT idx;
+	int idx;
 
 	/* Read BBP register, make sure BBP is up and running before write new data*/
 	if (rlt_bbp_is_ready(pAd) == false)
@@ -48,7 +48,7 @@ int NICInitBBP(struct rtmp_adapter*pAd)
 }
 
 
-INT rtmp_bbp_set_txdac(struct rtmp_adapter *pAd, INT tx_dac)
+int rtmp_bbp_set_txdac(struct rtmp_adapter *pAd, int tx_dac)
 {
 	u32 txbe, txbe_r5 = 0;
 
@@ -73,7 +73,7 @@ INT rtmp_bbp_set_txdac(struct rtmp_adapter *pAd, INT tx_dac)
 }
 
 
-INT rtmp_bbp_set_rxpath(struct rtmp_adapter *pAd, INT rxpath)
+int rtmp_bbp_set_rxpath(struct rtmp_adapter *pAd, int rxpath)
 {
 	u32 agc, agc_r0 = 0;
 
@@ -123,7 +123,7 @@ static u8 vht_prim_ch_val[] = {
 };
 
 
-INT rtmp_bbp_set_ctrlch(struct rtmp_adapter *pAd, INT ext_ch)
+int rtmp_bbp_set_ctrlch(struct rtmp_adapter *pAd, int ext_ch)
 {
 	u32 agc, agc_r0 = 0;
 	u32 be, be_r0 = 0;
@@ -202,7 +202,7 @@ INT rtmp_bbp_set_ctrlch(struct rtmp_adapter *pAd, INT ext_ch)
 }
 
 
-INT rtmp_bbp_set_bw(struct rtmp_adapter *pAd, INT bw)
+int rtmp_bbp_set_bw(struct rtmp_adapter *pAd, int bw)
 {
 	mt7610u_mcu_fun_set(pAd, BW_SETTING, bw);
 	pAd->CommonCfg.BBPCurrentBW = bw;
@@ -210,7 +210,7 @@ INT rtmp_bbp_set_bw(struct rtmp_adapter *pAd, INT bw)
 }
 
 
-INT rtmp_bbp_get_agc(struct rtmp_adapter *pAd, CHAR *agc, RX_CHAIN_IDX chain)
+int rtmp_bbp_get_agc(struct rtmp_adapter *pAd, CHAR *agc, RX_CHAIN_IDX chain)
 {
 	u8 idx, val;
 	u32 bbp_val, bbp_reg = AGC1_R8;
@@ -245,7 +245,7 @@ INT rtmp_bbp_get_agc(struct rtmp_adapter *pAd, CHAR *agc, RX_CHAIN_IDX chain)
 }
 
 
-INT rtmp_bbp_set_agc(struct rtmp_adapter *pAd, u8 agc, RX_CHAIN_IDX chain)
+int rtmp_bbp_set_agc(struct rtmp_adapter *pAd, u8 agc, RX_CHAIN_IDX chain)
 {
 	u8 idx = 0;
 	u32 bbp_val, bbp_reg = AGC1_R8;
@@ -280,9 +280,9 @@ INT rtmp_bbp_set_agc(struct rtmp_adapter *pAd, u8 agc, RX_CHAIN_IDX chain)
 }
 
 
-INT rlt_bbp_is_ready(struct rtmp_adapter *pAd)
+int rlt_bbp_is_ready(struct rtmp_adapter *pAd)
 {
-	INT idx = 0;
+	int idx = 0;
 	u32 val;
 
 	do

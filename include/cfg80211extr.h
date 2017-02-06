@@ -81,10 +81,10 @@
 
 
 /* utilities used in DRV module */
-INT CFG80211DRV_IoctlHandle(
+int CFG80211DRV_IoctlHandle(
 	void 				*pAdSrc,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	INT						cmd,
+	int						cmd,
 	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data);
@@ -182,7 +182,7 @@ void CFG80211_UnRegister(
 	void 					*pNetDev);
 
 #ifdef RT_P2P_SPECIFIC_WIRELESS_EVENT
-INT CFG80211_SendWirelessEvent(
+int CFG80211_SendWirelessEvent(
 	void                                         *pAdCB,
 	u8 					*pMacAddr);
 #endif /* RT_P2P_SPECIFIC_WIRELESS_EVENT */

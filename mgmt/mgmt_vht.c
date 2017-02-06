@@ -41,7 +41,7 @@ void rtmp_set_vht(struct rtmp_adapter*pAd, RT_PHY_INFO *phy_info)
 }
 
 
-INT SetCommonVHT(struct rtmp_adapter*pAd)
+int SetCommonVHT(struct rtmp_adapter*pAd)
 {
 	u8 cent_ch = 0;
 

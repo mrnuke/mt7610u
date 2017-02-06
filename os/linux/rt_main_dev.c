@@ -54,7 +54,7 @@
 /* public function prototype */
 
 /* private function prototype */
-static INT rt28xx_send_packets(struct sk_buff *skb_p, struct net_device *net_dev);
+static int rt28xx_send_packets(struct sk_buff *skb_p, struct net_device *net_dev);
 
 
 
@@ -438,13 +438,13 @@ struct iw_statistics *rt28xx_get_wireless_stats(struct net_device *net_dev)
 }
 
 
-INT rt28xx_ioctl(
+int rt28xx_ioctl(
 	struct net_device *net_dev,
 	struct ifreq	*rq,
-	INT cmd)
+	int cmd)
 {
 	struct rtmp_adapter *pAd = NULL;
-	INT ret = 0;
+	int ret = 0;
 	unsigned long OpMode;
 
 	GET_PAD_FROM_NET_DEV(pAd, net_dev);

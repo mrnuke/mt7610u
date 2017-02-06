@@ -146,7 +146,7 @@ typedef struct _MT76x0_BBP_Table {
 } MT76x0_BBP_Table, *PMT76x0_BBP_Table;
 
 void MT76x0_Init(struct rtmp_adapter *pAd);
-INT MT76x0_ReadChannelPwr(struct rtmp_adapter *pAd);
+int MT76x0_ReadChannelPwr(struct rtmp_adapter *pAd);
 
 void MT76x0_AsicExtraPowerOverMAC(struct rtmp_adapter *pAd);
 

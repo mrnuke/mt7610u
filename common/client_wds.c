@@ -32,7 +32,7 @@
 void CliWds_ProxyTabInit(
 	struct rtmp_adapter *pAd)
 {
-	INT idx;
+	int idx;
 	unsigned long i;
 
 	spin_lock_init(pAd, &pAd->ApCfg.CliWdsTabLock);
@@ -62,7 +62,7 @@ void CliWds_ProxyTabInit(
 void CliWds_ProxyTabDestory(
 	struct rtmp_adapter *pAd)
 {
-	INT idx;
+	int idx;
 	PCLIWDS_PROXY_ENTRY pCliWdsEntry;
 
 	for (idx = 0; idx < CLIWDS_HASH_TAB_SIZE; idx++)

@@ -39,20 +39,20 @@
 #endif /* RT_CFG80211_DEBUG */
 
 
-extern INT RtmpIoctl_rt_ioctl_siwauth(
+extern int RtmpIoctl_rt_ioctl_siwauth(
 	struct rtmp_adapter                   *pAd,
 	void                            *pData,
 	unsigned long                            Data);
 
-extern INT RtmpIoctl_rt_ioctl_siwauth(
+extern int RtmpIoctl_rt_ioctl_siwauth(
 	struct rtmp_adapter                   *pAd,
 	void                            *pData,
 	unsigned long                            Data);
 
-INT CFG80211DRV_IoctlHandle(
+int CFG80211DRV_IoctlHandle(
 	void 				*pAdSrc,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	INT						cmd,
+	int						cmd,
 	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data)
@@ -771,7 +771,7 @@ bool CFG80211DRV_Connect(
 					("80211> pAd->StaCfg.DefaultKeyId = %d\n",
 					pAd->StaCfg.DefaultKeyId));
 
-		Set_Wep_Key_Proc(pAd, (char *)KeyBuf, (INT)pConnInfo->KeyLen, (INT)pConnInfo->KeyIdx);
+		Set_Wep_Key_Proc(pAd, (char *)KeyBuf, (int)pConnInfo->KeyLen, (int)pConnInfo->KeyIdx);
 
 	} /* End of if */
 
@@ -1365,7 +1365,7 @@ bool CFG80211_SupBandReInit(
 } /* End of CFG80211_SupBandReInit */
 
 #ifdef RT_P2P_SPECIFIC_WIRELESS_EVENT
-INT CFG80211_SendWirelessEvent(
+int CFG80211_SendWirelessEvent(
 	void                                         *pAdCB,
 	u8 					*pMacAddr)
 {

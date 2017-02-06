@@ -630,7 +630,7 @@ unsigned short RtmpUSB_WriteSingleTxResource(
 
 #ifdef TX_PKT_SG
 		if (pTxBlk->pkt_info.BufferCount > 1) {
-			INT i, len;
+			int i, len;
 			void *data;
 			PKT_SG_T *sg = &pTxBlk->pkt_info.sg_list[0];
 
@@ -1279,7 +1279,7 @@ int	RTMPCheckRxError(
 	struct rtmp_rxinfo *pRxInfo)
 {
 	PCIPHER_KEY pWpaKey;
-	INT dBm;
+	int dBm;
 
 	if(pRxInfo == NULL)
 		return(NDIS_STATUS_FAILURE);
@@ -1288,7 +1288,7 @@ int	RTMPCheckRxError(
 	if (pRxInfo->Crc)
 	{
 		/* Check RSSI for Noise Hist statistic collection.*/
-		dBm = (INT) (pRxWI->RxWIRSSI0) - pAd->BbpRssiToDbmDelta;
+		dBm = (int) (pRxWI->RxWIRSSI0) - pAd->BbpRssiToDbmDelta;
 		if (dBm <= -87)
 			pAd->StaCfg.RPIDensity[0] += 1;
 		else if (dBm <= -82)

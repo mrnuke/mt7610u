@@ -29,12 +29,12 @@
 
 
 #ifdef SCAN_SUPPORT
-static INT scan_ch_restore(struct rtmp_adapter*pAd, u8 OpMode)
+static int scan_ch_restore(struct rtmp_adapter*pAd, u8 OpMode)
 {
 #ifdef CONFIG_STA_SUPPORT
 	unsigned short Status;
 #endif /* CONFIG_STA_SUPPORT */
-	INT bw, ch;
+	int bw, ch;
 
 	//printk("pAd->hw_cfg.bbp_bw = %d\n", pAd->hw_cfg.bbp_bw);
 	if (pAd->CommonCfg.BBPCurrentBW != pAd->hw_cfg.bbp_bw)
@@ -144,7 +144,7 @@ static INT scan_ch_restore(struct rtmp_adapter*pAd, u8 OpMode)
 
 
 
-static INT scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
+static int scan_active(struct rtmp_adapter*pAd, u8 OpMode, u8 ScanType)
 {
 	u8 *frm_buf = NULL;
 	HEADER_802_11 Hdr80211;

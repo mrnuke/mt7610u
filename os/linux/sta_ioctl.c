@@ -1764,7 +1764,7 @@ int rt_ioctl_siwpmksa(struct net_device *dev,
 {
 	void   *pAd = NULL;
 	struct iw_pmksa *pPmksa = (struct iw_pmksa *)wrqu->data.pointer;
-/*	INT	CachedIdx = 0, idx = 0; */
+/*	int	CachedIdx = 0, idx = 0; */
 	RT_CMD_STA_IOCTL_PMA_SA IoctlPmaSa, *pIoctlPmaSa = &IoctlPmaSa;
 
 	GET_PAD_FROM_NET_DEV(pAd, dev);
@@ -1941,17 +1941,17 @@ const struct iw_handler_def rt28xx_iw_handler_def =
 };
 
 
-INT rt28xx_sta_ioctl(
+int rt28xx_sta_ioctl(
 	struct net_device	*net_dev,
 	struct ifreq	*rq,
-	INT					cmd)
+	int					cmd)
 {
 /*	struct os_cookie *		pObj; */
 	void        		*pAd = NULL;
 	struct iwreq        *wrqin = (struct iwreq *) rq;
 	RTMP_IOCTL_INPUT_STRUCT rt_wrq, *wrq = &rt_wrq;
 /*	bool 			StateMachineTouched = false; */
-	INT					Status = NDIS_STATUS_SUCCESS;
+	int					Status = NDIS_STATUS_SUCCESS;
 	unsigned short				subcmd;
 	u32				org_len;
 

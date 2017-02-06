@@ -32,46 +32,46 @@
 
 #include "rtmp_type.h"
 
-INT Set_WfdEnable_Proc(
+int Set_WfdEnable_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
 #ifdef RT_CFG80211_SUPPORT
-INT Set_WfdInsertIe_Proc
+int Set_WfdInsertIe_Proc
 (
 	struct rtmp_adapter *	pAd,
 	char *		arg);
 #endif /* RT_CFG80211_SUPPORT */
 
-INT Set_WfdDeviceType_Proc(
+int Set_WfdDeviceType_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT Set_WfdCouple_Proc(
+int Set_WfdCouple_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT Set_WfdSessionAvailable_Proc(
+int Set_WfdSessionAvailable_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT Set_WfdCP_Proc(
+int Set_WfdCP_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT	Set_WfdRtspPort_Proc(
+int	Set_WfdRtspPort_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT	Set_WfdMaxThroughput_Proc(
+int	Set_WfdMaxThroughput_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT Set_WfdLocalIp_Proc(
+int Set_WfdLocalIp_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 
-INT Set_PeerRtspPort_Proc(
+int Set_PeerRtspPort_Proc(
     struct rtmp_adapter *	pAd,
     char *		arg);
 

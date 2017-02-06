@@ -1757,7 +1757,7 @@ void PeerBeacon(
 		*/
 		if ((! is_my_bssid) && ADHOC_ON(pAd))
 		{
-			INT	i;
+			int	i;
 			/* Add the safeguard against the mismatch of adhoc wep status */
 			if ((pAd->StaCfg.WepStatus != pAd->ScanTab.BssEntry[Bssidx].WepStatus) ||
 				(pAd->StaCfg.AuthMode != pAd->ScanTab.BssEntry[Bssidx].AuthMode))

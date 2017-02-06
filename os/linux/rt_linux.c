@@ -900,7 +900,7 @@ static inline int __RtmpOSTaskKill(OS_TASK *pTask)
 
 }
 
-static inline INT __RtmpOSTaskNotifyToExit(OS_TASK *pTask)
+static inline int __RtmpOSTaskNotifyToExit(OS_TASK *pTask)
 {
 #ifndef KTHREAD_SUPPORT
 	pTask->taskPID = THREAD_PID_INIT_VALUE;
@@ -1052,7 +1052,7 @@ static u32 RtmpOSWirelessEventTranslate(u32 eventType)
 int RtmpOSWrielessEventSend(
 	struct net_device *pNetDev,
 	u32 eventType,
-	INT flags,
+	int flags,
 	u8 *pSrcMac,
 	u8 *pData,
 	u32 dataLen)
@@ -1082,7 +1082,7 @@ int RtmpOSWrielessEventSend(
 int RtmpOSWrielessEventSendExt(
 	struct net_device *pNetDev,
 	u32 eventType,
-	INT flags,
+	int flags,
 	u8 *pSrcMac,
 	u8 *pData,
 	u32 dataLen,
@@ -1147,7 +1147,7 @@ static int RtmpOSNetDevRequestName(
 	u32 *pIoctlIF,
 	struct net_device *dev,
 	char *pPrefixStr,
-	INT devIdx)
+	int devIdx)
 {
 	struct net_device *existNetDev;
 	char suffixName[IFNAMSIZ];
@@ -1214,7 +1214,7 @@ void RtmpOSNetDevFree(struct net_device *pNetDev)
 	free_netdev(pNetDev);
 }
 
-INT RtmpOSNetDevAlloc(
+int RtmpOSNetDevAlloc(
 	struct net_device **new_dev_p,
 	u32 privDataSize)
 {
@@ -1232,7 +1232,7 @@ INT RtmpOSNetDevAlloc(
 }
 
 
-INT RtmpOSNetDevOpsAlloc(void **pNetDevOps)
+int RtmpOSNetDevOpsAlloc(void **pNetDevOps)
 {
 	*pNetDevOps = (void *) vmalloc(sizeof (struct net_device_ops));
 	if (*pNetDevOps) {
@@ -1266,7 +1266,7 @@ void RtmpOSNetDeviceRefPut(struct net_device *pNetDev)
 }
 
 
-INT RtmpOSNetDevDestory(void *pReserved, struct net_device *pNetDev)
+int RtmpOSNetDevDestory(void *pReserved, struct net_device *pNetDev)
 {
 
 	/* TODO: Need to fix this */
@@ -1381,9 +1381,9 @@ int RtmpOSNetDevAttach(
 struct net_device *RtmpOSNetDevCreate(
 	int32_t MC_RowID,
 	u32 *pIoctlIF,
-	INT devType,
-	INT devNum,
-	INT privMemSize,
+	int devType,
+	int devNum,
+	int privMemSize,
 	char *pNamePrefix)
 {
 	struct net_device *pNetDev = NULL;
@@ -1861,7 +1861,7 @@ struct sk_buff * RtmpOsPktIappMakeUp(
 	u8 *pMac)
 {
 	RT_IAPP_L2_UPDATE_FRAME frame_body;
-	INT size = sizeof (RT_IAPP_L2_UPDATE_FRAME);
+	int size = sizeof (RT_IAPP_L2_UPDATE_FRAME);
 	struct sk_buff * pNetBuf;
 
 	if (pNetDev == NULL)
@@ -2924,7 +2924,7 @@ int RtmpOSTaskKill(RTMP_OS_TASK *pTask)
 }
 
 
-INT RtmpOSTaskNotifyToExit(RTMP_OS_TASK *pTask)
+int RtmpOSTaskNotifyToExit(RTMP_OS_TASK *pTask)
 {
 	return __RtmpOSTaskNotifyToExit(pTask);
 }

@@ -305,19 +305,19 @@ typedef enum _CMD_RTPRIV_IOCTL_COMMON {
 
 #ifdef RT_CFG80211_SUPPORT
 typedef struct __CMD_RTPRIV_IOCTL_80211_VIF_SET {
-	INT  vifType;
+	int  vifType;
 	char vifName[IFNAMSIZ];
-	INT  vifNameLen;
+	int  vifNameLen;
 } CMD_RTPRIV_IOCTL_80211_VIF_SET;
 
 typedef struct __CMD_RTPRIV_IOCTL_80211_BSS_PARM {
-	INT   use_cts_prot;
-	INT   use_short_preamble;
-	INT   use_short_slot_time;
+	int   use_cts_prot;
+	int   use_short_preamble;
+	int   use_short_slot_time;
 	u8 *basic_rates;
 	u8 basic_rates_len;
-	INT   ap_isolate;
-	INT   ht_opmode;
+	int   ap_isolate;
+	int   ht_opmode;
 
 } CMD_RTPRIV_IOCTL_80211_BSS_PARM;
 
@@ -547,7 +547,7 @@ typedef struct __RT_CMD_SHARED_KEY_ADD {
 } RT_CMD_SHARED_KEY_ADD;
 
 typedef struct __RT_CMD_MBSS_KICKOUT {
-	INT BssId;
+	int BssId;
 	unsigned short Reason;
 } RT_CMD_MBSS_KICKOUT;
 
@@ -627,14 +627,14 @@ typedef struct __RT_CMD_AP_IOCTL_CONFIG {
 	char *pCmdData;
 	int32_t CmdId_RTPRIV_IOCTL_SET;
 	char *name;
-	INT apidx;
+	int apidx;
 
 	int32_t Status;
 } RT_CMD_AP_IOCTL_CONFIG;
 
 typedef struct __RT_CMD_AP_IOCTL_SSID {
 	unsigned long priv_flags;
-	INT apidx;
+	int apidx;
 
 	char *pSsidStr;
 	int32_t length;

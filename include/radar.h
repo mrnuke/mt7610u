@@ -57,20 +57,20 @@ unsigned long JapRadarType(
 void RadarDetectPeriodic(
 	struct rtmp_adapter *pAd);
 
-INT	Set_CSPeriod_Proc(
+int	Set_CSPeriod_Proc(
 	struct rtmp_adapter *pAdapter,
 	char *		arg);
 
-INT Set_ChMovingTime_Proc(
+int Set_ChMovingTime_Proc(
 	struct rtmp_adapter *pAd,
 	char *arg);
 
-INT Set_BlockChReset_Proc(
+int Set_BlockChReset_Proc(
 	struct rtmp_adapter *pAd,
 	char *arg);
 
 #if defined(DFS_SUPPORT)
-INT	Set_RadarShow_Proc(
+int	Set_RadarShow_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 

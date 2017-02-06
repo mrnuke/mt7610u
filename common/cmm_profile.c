@@ -85,7 +85,7 @@ bool rtstrcasecmp(char *s1, char *s2)
 /* we assume the s1 (buffer) and s2 (key) both are strings.*/
 char *rtstrstruncasecmp(char *s1, char *s2)
 {
-	INT l1, l2, i;
+	int l1, l2, i;
 	char temp1, temp2;
 
 	l2 = strlen(s2);
@@ -129,7 +129,7 @@ char *rtstrstruncasecmp(char *s1, char *s2)
   */
 char *rtstrstr(char const *s1,const char *s2)
 {
-	INT l1, l2;
+	int l1, l2;
 
 	l2 = strlen(s2);
 	if (!l2)
@@ -187,9 +187,9 @@ char *rstrtok(char *s,const char *ct)
  * @ct: The delimiter to search for.
  * Notice : We suppose the delimiter is a single-char string(for example : ";").
  */
-INT delimitcnt(char *s,char *ct)
+int delimitcnt(char *s,char *ct)
 {
-	INT count = 0;
+	int count = 0;
 	/* point to the beginning of the line */
 	char *token = s;
 
@@ -367,10 +367,10 @@ char *RTMPFindSection(
 	For SSID and security key related parameters, we SHALL NOT trim the space(' ') character.
     ========================================================================
 */
-INT RTMPGetKeyParameter(
+int RTMPGetKeyParameter(
     char *key,
     char *dest,
-    INT destsize,
+    int destsize,
     char *buffer,
     bool bTrimSpace)
 {
@@ -378,7 +378,7 @@ INT RTMPGetKeyParameter(
 	char *start_ptr, *end_ptr;
 	char *ptr;
 	char *offset = NULL;
-	INT  len, keyLen;
+	int  len, keyLen;
 
 
 	keyLen = strlen(key);
@@ -463,10 +463,10 @@ INT RTMPGetKeyParameter(
     ========================================================================
 */
 
-static int rtmp_parse_key_buffer_from_file(struct rtmp_adapter *pAd, char *buffer, unsigned long KeyType, INT BSSIdx, INT KeyIdx)
+static int rtmp_parse_key_buffer_from_file(struct rtmp_adapter *pAd, char *buffer, unsigned long KeyType, int BSSIdx, int KeyIdx)
 {
 	char *	keybuff;
-	/*INT			i = BSSIdx, idx = KeyIdx, retVal;*/
+	/*int			i = BSSIdx, idx = KeyIdx, retVal;*/
 	unsigned long		KeyLen;
 	/*u8 	CipherAlg = CIPHER_WEP64;*/
 	CIPHER_KEY	*pSharedKey;
@@ -495,7 +495,7 @@ static int rtmp_parse_key_buffer_from_file(struct rtmp_adapter *pAd, char *buffe
 static void rtmp_read_sta_wmm_parms_from_file(struct rtmp_adapter *pAd, char *tmpbuf, char *buffer)
 {
 	char *				macptr;
-	INT						i=0;
+	int						i=0;
 	bool 				bWmmEnable = false;
 
 	/*WmmCapable*/
@@ -723,7 +723,7 @@ static void HTParametersHook(
             pAd->CommonCfg.BACapability.field.MMPSmode = MMPS_ENABLE;
 			/*pAd->CommonCfg.BACapability.field.MMPSmode = Value;*/
         }
-        DBGPRINT(RT_DEBUG_TRACE, ("HT: MIMOPS Mode  = %d\n", (INT) Value));
+        DBGPRINT(RT_DEBUG_TRACE, ("HT: MIMOPS Mode  = %d\n", (int) Value));
     }
 
     if (RTMPGetKeyParameter("HT_BADecline", pValueStr, 25, pInput, true))
@@ -816,7 +816,7 @@ static void HTParametersHook(
 		if (Value <=7 && Value >= 0)
 		{
 			pAd->CommonCfg.BACapability.field.MpduDensity = Value;
-			DBGPRINT(RT_DEBUG_TRACE, ("HT: MPDU Density = %d\n", (INT) Value));
+			DBGPRINT(RT_DEBUG_TRACE, ("HT: MPDU Density = %d\n", (int) Value));
 		}
 		else
 		{
@@ -834,7 +834,7 @@ static void HTParametersHook(
 		{
 			pAd->CommonCfg.REGBACapability.field.RxBAWinLimit = Value;
 			pAd->CommonCfg.BACapability.field.RxBAWinLimit = Value;
-			DBGPRINT(RT_DEBUG_TRACE, ("HT: BA Windw Size = %d\n", (INT) Value));
+			DBGPRINT(RT_DEBUG_TRACE, ("HT: BA Windw Size = %d\n", (int) Value));
 		}
 		else
 		{
@@ -1175,7 +1175,7 @@ int	RTMPSetProfileParameters(
 	unsigned long					RtsThresh;
 	unsigned long					FragThresh;
 	char *				macptr;
-	INT						i = 0, retval;
+	int						i = 0, retval;
 
 /*	tmpbuf = kmalloc(MAX_PARAM_BUFFER_SIZE, MEM_ALLOC_FLAG);*/
 	tmpbuf = kmalloc(MAX_PARAM_BUFFER_SIZE, GFP_ATOMIC);

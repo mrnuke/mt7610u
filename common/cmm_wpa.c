@@ -1564,7 +1564,7 @@ void PeerGroupMsg2Action(
 */
 bool WpaMsgTypeSubst(
 	u8 EAPType,
-	INT		*MsgType)
+	int		*MsgType)
 {
 	switch (EAPType)
 	{
@@ -1638,12 +1638,12 @@ void inc_iv_byte(u8 *iv, unsigned int len, unsigned int cnt)
 
 	Arguments:
 		u8 *key,		-	the key material for HMAC_SHA1 use
-		INT		key_len		-	the length of key
+		int		key_len		-	the length of key
 		u8 *prefix		-	a prefix label
-		INT		prefix_len	-	the length of the label
+		int		prefix_len	-	the length of the label
 		u8 *data		-	a specific data with variable length
-		INT		data_len	-	the length of a specific data
-		INT		len			-	the output lenght
+		int		data_len	-	the length of a specific data
+		int		len			-	the output lenght
 
 	Return Value:
 		u8 *output		-	the calculated result
@@ -1655,18 +1655,18 @@ void inc_iv_byte(u8 *iv, unsigned int len, unsigned int cnt)
 */
 void PRF(
 	u8 *key,
-	INT		key_len,
+	int		key_len,
 	u8 *prefix,
-	INT		prefix_len,
+	int		prefix_len,
 	u8 *data,
-	INT		data_len,
+	int		data_len,
 	u8 *output,
-	INT		len)
+	int		len)
 {
-	INT		i;
+	int		i;
     u8   *input;
-	INT		currentindex = 0;
-	INT		total_len;
+	int		currentindex = 0;
+	int		total_len;
 
 	/* Allocate memory for input*/
 	/* ULLI : need check return value ? */
@@ -1749,7 +1749,7 @@ static void F(char *password, unsigned char *ssid, int ssidlength, int iteration
 * ssidlength - length of ssid in octets
 * output must be 40 octets in length and outputs 256 bits of key
 */
-int RtmpPasswordHash(char *password, u8 *ssid, INT ssidlength, u8 *output)
+int RtmpPasswordHash(char *password, u8 *ssid, int ssidlength, u8 *output)
 {
     if ((strlen(password) > 63) || (ssidlength > 32))
         return 0;
@@ -1790,18 +1790,18 @@ int RtmpPasswordHash(char *password, u8 *ssid, INT ssidlength, u8 *output)
 */
 void KDF(
 	u8 *	key,
-	INT		key_len,
+	int		key_len,
 	u8 *	label,
-	INT		label_len,
+	int		label_len,
 	u8 *	data,
-	INT		data_len,
+	int		data_len,
 	u8 *	output,
 	unsigned short	len)
 {
 	unsigned short	i;
     u8   *input;
-	INT		currentindex = 0;
-	INT		total_len;
+	int		currentindex = 0;
+	int		total_len;
 	unsigned int	len_in_bits = (len << 3);
 
 	input = kmalloc(1024, GFP_ATOMIC);
@@ -2035,7 +2035,7 @@ void GenRandom(
 	u8 		*macAddr,
 	u8 		*random)
 {
-	INT		i, curr;
+	int		i, curr;
 	u8 local[80], KeyCounter[32];
 	u8 result[80];
 	unsigned long	CurrentTime;
@@ -3287,7 +3287,7 @@ void ConstructEapolKeyData(
 			/* a single octet 0xdd followed by zero or more 0x00 octets. */
 			if ((remainder = data_offset & 0x07) != 0)
 			{
-				INT		i;
+				int		i;
 
 				pad_len = (8 - remainder);
 				Key_Data[data_offset] = 0xDD;
@@ -3615,9 +3615,9 @@ u8 *	WPA_ExtractSuiteFromRSNIE(
 		u8	*count)
 {
 	PEID_STRUCT pEid;
-	INT			len;
+	int			len;
 	u8 *		pBuf;
-	INT			offset = 0;
+	int			offset = 0;
 
 	pEid = (PEID_STRUCT)rsnie;
 	len = rsnie_len - 2;	/* exclude IE and length*/
@@ -4119,7 +4119,7 @@ void RTMPSetWcidSecurityInfo(
 	/* Prepare initial IV value */
 	if (CipherAlg == CIPHER_WEP64 || CipherAlg == CIPHER_WEP128)
 	{
-		INT	i;
+		int	i;
 		u8 TxTsc[LEN_WEP_TSC];
 
 		/* Generate 3-bytes IV randomly for encryption using */

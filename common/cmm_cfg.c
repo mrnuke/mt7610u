@@ -56,10 +56,10 @@ static bool RT_isLegalCmdBeforeInfUp(
        char *SetCmd);
 
 
-INT ComputeChecksum(
+int ComputeChecksum(
 	unsigned int PIN)
 {
-	INT digit_s;
+	int digit_s;
     unsigned int accum = 0;
 
 	PIN *= 10;
@@ -133,10 +133,10 @@ char* get_bw_str(int bandwidth)
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT RT_CfgSetCountryRegion(
+int RT_CfgSetCountryRegion(
 	struct rtmp_adapter *pAd,
 	char *		arg,
-	INT				band)
+	int				band)
 {
 	long region;
 	u8 *pCountryRegion;
@@ -206,7 +206,7 @@ static char *WMODE_STR[]= {"", "A", "B", "G", "gN", "aN", "AC"};
 u8 *wmode_2_str(u8 wmode)
 {
 	u8 *str;
-	INT idx, pos, max_len;
+	int idx, pos, max_len;
 
 	max_len = WMODE_COMP * 3;
 	str = kmalloc(max_len, GFP_ATOMIC);
@@ -293,7 +293,7 @@ bool wmode_band_equal(u8 smode, u8 tmode)
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT RT_CfgSetWirelessMode(struct rtmp_adapter*pAd, char *arg)
+int RT_CfgSetWirelessMode(struct rtmp_adapter*pAd, char *arg)
 {
 	long cfg_mode;
 	u8 wmode, *mode_str;
@@ -351,7 +351,7 @@ static bool RT_isLegalCmdBeforeInfUp(
 }
 
 
-INT RT_CfgSetShortSlot(
+int RT_CfgSetShortSlot(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
@@ -378,14 +378,14 @@ INT RT_CfgSetShortSlot(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT	RT_CfgSetWepKey(
+int	RT_CfgSetWepKey(
 	struct rtmp_adapter *pAd,
 	char *		keyString,
 	CIPHER_KEY		*pSharedKey,
-	INT				keyIdx)
+	int				keyIdx)
 {
-	INT				KeyLen;
-	INT				i;
+	int				KeyLen;
+	int				i;
 	/*u8 		CipherAlg = CIPHER_NONE;*/
 	bool 		bKeyIsHex = false;
 
@@ -442,12 +442,12 @@ INT	RT_CfgSetWepKey(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT RT_CfgSetWPAPSKKey(
+int RT_CfgSetWPAPSKKey(
 	struct rtmp_adapter*pAd,
 	char *	keyString,
-	INT			keyStringLen,
+	int			keyStringLen,
 	u8 	*pHashStr,
-	INT			hashStrLen,
+	int			hashStrLen,
 	u8 *	pPMKBuf)
 {
 	u8 keyMaterial[40];
@@ -473,9 +473,9 @@ INT RT_CfgSetWPAPSKKey(
 	return true;
 }
 
-INT	RT_CfgSetFixedTxPhyMode(char *arg)
+int	RT_CfgSetFixedTxPhyMode(char *arg)
 {
-	INT fix_tx_mode = FIXED_TXMODE_HT;
+	int fix_tx_mode = FIXED_TXMODE_HT;
 	unsigned long value;
 
 
@@ -506,11 +506,11 @@ INT	RT_CfgSetFixedTxPhyMode(char *arg)
 
 }
 
-INT	RT_CfgSetMacAddress(
+int	RT_CfgSetMacAddress(
 	struct rtmp_adapter *	pAd,
 	char *		arg)
 {
-	INT	i, mac_len;
+	int	i, mac_len;
 
 	/* Mac address acceptable format 01:02:03:04:05:06 length 17 */
 	mac_len = strlen(arg);
@@ -536,10 +536,10 @@ INT	RT_CfgSetMacAddress(
 	return true;
 }
 
-INT	RT_CfgSetTxMCSProc(char *arg, bool *pAutoRate)
+int	RT_CfgSetTxMCSProc(char *arg, bool *pAutoRate)
 {
-	INT	Value = simple_strtol(arg, 0, 10);
-	INT	TxMcs;
+	int	Value = simple_strtol(arg, 0, 10);
+	int	TxMcs;
 
 	if ((Value >= 0 && Value <= 23) || (Value == 32)) /* 3*3*/
 	{
@@ -556,7 +556,7 @@ INT	RT_CfgSetTxMCSProc(char *arg, bool *pAutoRate)
 
 }
 
-INT	RT_CfgSetAutoFallBack(
+int	RT_CfgSetAutoFallBack(
 	struct rtmp_adapter *	pAd,
 	char *		arg)
 {
@@ -587,7 +587,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT RtmpIoctl_rt_ioctl_giwname(
+int RtmpIoctl_rt_ioctl_giwname(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
 	unsigned long					Data)
@@ -603,16 +603,16 @@ INT RtmpIoctl_rt_ioctl_giwname(
 }
 
 
-INT RTMP_COM_IoctlHandle(
+int RTMP_COM_IoctlHandle(
 	struct rtmp_adapter *pAd,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	INT						cmd,
+	int						cmd,
 	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
-	INT Status = NDIS_STATUS_SUCCESS, i;
+	int Status = NDIS_STATUS_SUCCESS, i;
 	u8 PermanentAddress[ETH_ALEN];
 	u16 Addr01, Addr23, Addr45;
 
@@ -1035,7 +1035,7 @@ INT RTMP_COM_IoctlHandle(
                1.) iwpriv ra0 set site_survey
     ==========================================================================
 */
-INT Set_SiteSurvey_Proc(
+int Set_SiteSurvey_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
@@ -1087,7 +1087,7 @@ INT Set_SiteSurvey_Proc(
 }
 
 #ifdef MT76x0
-INT set_temp_sensor_proc(
+int set_temp_sensor_proc(
 	struct rtmp_adapter	*pAd,
 	char *		arg)
 {

@@ -403,7 +403,7 @@ void RTMPWriteTxWI_Cache(
 }
 
 
-INT rtmp_mac_set_band(struct rtmp_adapter*pAd, int  band)
+int rtmp_mac_set_band(struct rtmp_adapter*pAd, int  band)
 {
 	u32 val, band_cfg;
 
@@ -428,7 +428,7 @@ INT rtmp_mac_set_band(struct rtmp_adapter*pAd, int  band)
 }
 
 
-INT rtmp_mac_set_ctrlch(struct rtmp_adapter*pAd, INT extch)
+int rtmp_mac_set_ctrlch(struct rtmp_adapter*pAd, int extch)
 {
 	u32 val, band_cfg;
 
@@ -455,7 +455,7 @@ INT rtmp_mac_set_ctrlch(struct rtmp_adapter*pAd, INT extch)
 }
 
 
-INT rtmp_mac_set_mmps(struct rtmp_adapter*pAd, INT ReduceCorePower)
+int rtmp_mac_set_mmps(struct rtmp_adapter*pAd, int ReduceCorePower)
 {
 	u32 mac_val, org_val;
 

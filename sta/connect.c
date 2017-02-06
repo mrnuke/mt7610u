@@ -807,7 +807,7 @@ void CntlOidDLSSetupProc(
 {
 	PRT_802_11_DLS pDLS = (PRT_802_11_DLS) Elem->Msg;
 	MLME_DLS_REQ_STRUCT MlmeDlsReq;
-	INT i;
+	int i;
 	unsigned short reason = REASON_UNSPECIFY;
 
 	DBGPRINT(RT_DEBUG_TRACE,
@@ -1571,7 +1571,7 @@ void LinkUp(
 							      &pAd->SharedKey[BSS0][idx]);
 
 					if (idx == pAd->StaCfg.DefaultKeyId) {
-						INT cnt;
+						int cnt;
 
 						/* Generate 3-bytes IV randomly for software encryption using */
 						for (cnt = 0; cnt < LEN_WEP_TSC; cnt++)
@@ -2507,7 +2507,7 @@ void IterateOnBssTab2(
 	} else {
 		/* no more BSS */
 		u8 rf_channel = 0, rf_bw;
-		INT ext_ch;
+		int ext_ch;
 
 #ifdef DOT11_N_SUPPORT
 #endif /* DOT11_N_SUPPORT */
@@ -2867,7 +2867,7 @@ unsigned long MakeIbssBeacon(
 void InitChannelRelatedValue(struct rtmp_adapter*pAd)
 {
 	u8 rf_channel, rf_bw;
-	INT ext_ch;
+	int ext_ch;
 
 
 	pAd->CommonCfg.CentralChannel = pAd->MlmeAux.CentralChannel;
@@ -2981,7 +2981,7 @@ void AdjustChannelRelatedValue(
 	u8 ExtraCh)
 {
 	u8 rf_channel, rf_bw = BW_20;
-	INT ext_ch;
+	int ext_ch;
 
 	// TODO: shiang-6590, this function need to revise to make sure two purpose can achieved!
 	//	1. Channel-binding rule between STA and P2P-GO mode

@@ -935,7 +935,7 @@ void ORIBATimerTimeout(
 	struct rtmp_adapter *pAd)
 {
 	MAC_TABLE_ENTRY	*pEntry;
-	INT			i, total;
+	int			i, total;
 /*	FRAME_BAR			FrameBar;*/
 /*	unsigned long			FrameLen;*/
 /*	int 	NStatus;*/

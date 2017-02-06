@@ -350,8 +350,8 @@ typedef struct _RADAR_DETECT_STRUCT {
 	bool bDfsSwDisable; /* disable sotfwre check */
 	bool bDfsInit;		/* to indicate if dfs regs has been initialized */
 	unsigned short PollTime;
-	INT DfsRssiHigh;
-	INT DfsRssiLow;
+	int DfsRssiHigh;
+	int DfsRssiLow;
 	bool DfsRssiHighFromCfg;
 	bool DfsRssiLowFromCfg;
 	bool DfsRssiHighCfgValid;
@@ -375,11 +375,11 @@ typedef struct _RADAR_DETECT_STRUCT {
 	unsigned long ch_busy_sta[CH_BUSY_SAMPLE];
 	unsigned long ch_idle_sta[CH_BUSY_SAMPLE];
 	u8 ch_busy_sta_index;
-	INT		ch_busy_sum;
-	INT		ch_idle_sum;
+	int		ch_busy_sum;
+	int		ch_idle_sum;
 	u8 fdf_num;
 	unsigned short ch_busy_threshold[MAX_FDF_NUMBER];
-	INT		rssi_threshold[MAX_FDF_NUMBER];
+	int		rssi_threshold[MAX_FDF_NUMBER];
 	u8 McuRadarDebug;
 	unsigned short McuRadarTick;
 	unsigned long RadarTimeStampHigh;

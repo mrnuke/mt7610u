@@ -37,7 +37,7 @@ static int RTMPAllocUsbBulkBufStruct(
 	struct rtmp_adapter*pAd,
 	struct urb **ppUrb,
 	void **ppXBuffer,
-	INT	bufLen,
+	int	bufLen,
 	dma_addr_t *pDmaAddr,
 	char *pBufName)
 {
@@ -65,7 +65,7 @@ static int RTMPFreeUsbBulkBufStruct(
 	struct rtmp_adapter*pAd,
 	struct urb **ppUrb,
 	u8 **ppXBuffer,
-	INT bufLen,
+	int bufLen,
 	dma_addr_t data_dma)
 {
 	struct os_cookie *pObj = pAd->OS_Cookie;
@@ -555,7 +555,7 @@ int	RTMPAllocTxRxRingMemory(
 	PTX_CONTEXT pNullContext   = &(pAd->NullContext);
 	PTX_CONTEXT pPsPollContext = &(pAd->PsPollContext);
 	PCMD_RSP_CONTEXT pCmdRspEventContext = &(pAd->CmdRspEventContext);
-	INT i, acidx;
+	int i, acidx;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("--> RTMPAllocTxRxRingMemory\n"));
 
@@ -680,7 +680,7 @@ err:
 int RTMPInitTxRxRingMemory
 	(struct rtmp_adapter*pAd)
 {
-	INT				num;
+	int				num;
 	int		Status;
 
 	/* Init the CmdQ and CmdQLock*/
@@ -1074,7 +1074,7 @@ int	RTMPAllocTxRxRingMemory(
 {
 /*	COUNTER_802_11	pCounter = &pAd->WlanCounters;*/
 	int		Status = NDIS_STATUS_SUCCESS;
-	INT				num;
+	int				num;
 
 
 	DBGPRINT(RT_DEBUG_TRACE, ("--> RTMPAllocTxRxRingMemory\n"));
@@ -1378,7 +1378,7 @@ Note:
 */
 void RT28xx_UpdateBeaconToAsic(
 	struct rtmp_adapter	*pAd,
-	INT				apidx,
+	int				apidx,
 	unsigned long			FrameLen,
 	unsigned long			UpdatePos)
 {
@@ -1474,7 +1474,7 @@ void RTUSBBssBeaconStop(
 	pBeaconSync = pAd->CommonCfg.pBeaconSync;
 	if (pBeaconSync && pBeaconSync->EnableBeacon)
 	{
-		INT NumOfBcn = 0;
+		int NumOfBcn = 0;
 
 
 #ifdef CONFIG_STA_SUPPORT
@@ -1514,7 +1514,7 @@ void RTUSBBssBeaconStart(
 	pBeaconSync = pAd->CommonCfg.pBeaconSync;
 	if (pBeaconSync && pBeaconSync->EnableBeacon)
 	{
-		INT NumOfBcn = 0;
+		int NumOfBcn = 0;
 
 
 #ifdef CONFIG_STA_SUPPORT
@@ -1830,7 +1830,7 @@ bool AsicCheckCommandOk(
 {
 	u32	CmdStatus, CID, i;
 	u32	ThisCIDMask = 0;
-	INT ret;
+	int ret;
 
 
 #ifdef RTMP_MAC_USB

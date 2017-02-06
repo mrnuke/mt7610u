@@ -74,7 +74,7 @@ void xor_32(
 	u8 * b,
 	u8 * out)
 {
-	INT i;
+	int i;
 
 	for (i=0;i<4; i++)
 	{
@@ -87,7 +87,7 @@ void xor_128(
 	u8 * b,
 	u8 * out)
 {
-	INT i;
+	int i;
 
 	for (i=0;i<16; i++)
 	{
@@ -103,7 +103,7 @@ u8 RTMPCkipSbox(
 
 void next_key(
 	u8 * key,
-	INT     round)
+	int     round)
 {
 	u8       rcon;
 	u8       sbox_key[4];
@@ -132,7 +132,7 @@ void byte_sub(
 	u8 * in,
 	u8 * out)
 {
-	INT i;
+	int i;
 
 	for (i=0; i< 16; i++)
 	{
@@ -180,7 +180,7 @@ void mix_column(
 	u8 * in,
 	u8 * out)
 {
-	INT         i;
+	int         i;
 	u8       add1b[4];
 	u8       add1bf7[4];
 	u8       rotl[4];
@@ -448,8 +448,8 @@ bool RTMPSoftDecryptAES(
 	unsigned int			frame_subtype;
 	unsigned int			from_ds;
 	unsigned int			to_ds;
-	INT				a4_exists;
-	INT				qc_exists;
+	int				a4_exists;
+	int				qc_exists;
 	u8 		aes_out[16];
 	int 			payload_index;
 	unsigned int 			i;
@@ -748,7 +748,7 @@ void RTMPConstructCCMPNonce(
 	unsigned int *nonce_hdr_len)
 {
 	unsigned int n_offset = 0;
-	INT i;
+	int i;
 
 	/* Decide the Priority Octet
 		The Priority sub-field of the Nonce Flags field shall
@@ -1031,7 +1031,7 @@ bool RTMPSoftDecryptCCMP(
 */
 void CCMP_test_vector(
 	struct rtmp_adapter *pAd,
-	INT input)
+	int input)
 {
 	u8 Key_ID = 0;
 	/*u8 A1[6] =  {0x0f, 0xd2, 0xe1, 0x28, 0xa5, 0x7c};*/

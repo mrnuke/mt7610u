@@ -1740,7 +1740,7 @@ void AsicAddPairwiseKeyEntry(
 	u8 		WCID,
 	PCIPHER_KEY		pCipherKey)
 {
-	INT i;
+	int i;
 	unsigned long 		offset;
 	u8 *	 pKey = pCipherKey->Key;
 	u8 *	 pTxMic = pCipherKey->TxMic;
@@ -1894,7 +1894,7 @@ void AsicDisableRalinkBurstMode(
 }
 #endif // DOT11_N_SUPPORT //
 
-INT AsicSetPreTbttInt(struct rtmp_adapter*pAd, bool enable)
+int AsicSetPreTbttInt(struct rtmp_adapter*pAd, bool enable)
 {
 	u32 val;
 
@@ -1911,9 +1911,9 @@ INT AsicSetPreTbttInt(struct rtmp_adapter*pAd, bool enable)
 }
 
 
-bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, INT round, INT wait_us)
+bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, int round, int wait_us)
 {
-	INT i = 0;
+	int i = 0;
 	WPDMA_GLO_CFG_STRUC GloCfg;
 
 
@@ -1942,7 +1942,7 @@ bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, INT round, INT wait_us)
 #else
 #define MAX_AGG_CNT	8
 #endif
-INT AsicReadAggCnt(struct rtmp_adapter*pAd, unsigned long *aggCnt, int cnt_len)
+int AsicReadAggCnt(struct rtmp_adapter*pAd, unsigned long *aggCnt, int cnt_len)
 {
 	u32 reg_addr;
 	TX_AGG_CNT_STRUC reg_val;
@@ -1986,7 +1986,7 @@ INT AsicReadAggCnt(struct rtmp_adapter*pAd, unsigned long *aggCnt, int cnt_len)
 #endif /* DOT11_N_SUPPORT */
 
 
-INT AsicSetChannel(struct rtmp_adapter*pAd, u8 ch, u8 bw, u8 ext_ch, bool bScan)
+int AsicSetChannel(struct rtmp_adapter*pAd, u8 ch, u8 bw, u8 ext_ch, bool bScan)
 {
 	rtmp_bbp_set_bw(pAd, bw);
 

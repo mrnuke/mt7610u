@@ -158,7 +158,7 @@ void dump_vht_op(struct rtmp_adapter*pAd, VHT_OP_IE *vht_ie)
 */
 u8 vht_prim_ch_idx(u8 vht_cent_ch, u8 prim_ch)
 {
-	INT idx = 0;
+	int idx = 0;
 	u8 bbp_idx = 0;
 
 	if (vht_cent_ch == prim_ch)
@@ -192,7 +192,7 @@ done:
 */
 u8 vht_cent_ch_freq(struct rtmp_adapter*pAd, u8 prim_ch)
 {
-	INT idx = 0;
+	int idx = 0;
 
 
 	if (pAd->CommonCfg.vht_bw < VHT_BW_80 || prim_ch < 36)
@@ -217,7 +217,7 @@ u8 vht_cent_ch_freq(struct rtmp_adapter*pAd, u8 prim_ch)
 }
 
 
-INT vht_mode_adjust(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, VHT_CAP_IE *cap, VHT_OP_IE *op)
+int vht_mode_adjust(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, VHT_CAP_IE *cap, VHT_OP_IE *op)
 {
 	pEntry->MaxHTPhyMode.field.MODE = MODE_VHT;
 	pAd->CommonCfg.AddHTInfo.AddHtInfo2.NonGfPresent = 1;
@@ -234,7 +234,7 @@ INT vht_mode_adjust(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, VHT_CAP_IE
 }
 
 
-INT get_vht_op_ch_width(struct rtmp_adapter*pAd)
+int get_vht_op_ch_width(struct rtmp_adapter*pAd)
 {
 
 	return true;
@@ -249,9 +249,9 @@ INT get_vht_op_ch_width(struct rtmp_adapter*pAd)
 
 	Appeared in Beacon, ProbResp frames
 */
-INT build_quiet_channel(struct rtmp_adapter*pAd, u8 *buf)
+int build_quiet_channel(struct rtmp_adapter*pAd, u8 *buf)
 {
-	INT len = 0;
+	int len = 0;
 
 
 	return len;
@@ -263,9 +263,9 @@ INT build_quiet_channel(struct rtmp_adapter*pAd, u8 *buf)
 
 	Appeared in Beacon, ProbResp frames
 */
-INT build_ext_bss_load(struct rtmp_adapter*pAd, u8 *buf)
+int build_ext_bss_load(struct rtmp_adapter*pAd, u8 *buf)
 {
-	INT len = 0;
+	int len = 0;
 
 
 	return len;
@@ -277,9 +277,9 @@ INT build_ext_bss_load(struct rtmp_adapter*pAd, u8 *buf)
 
 	Appeared in Beacon, ProbResp frames
 */
-INT build_ext_pwr_constraint(struct rtmp_adapter*pAd, u8 *buf)
+int build_ext_pwr_constraint(struct rtmp_adapter*pAd, u8 *buf)
 {
-	INT len = 0;
+	int len = 0;
 
 
 	return len;
@@ -291,9 +291,9 @@ INT build_ext_pwr_constraint(struct rtmp_adapter*pAd, u8 *buf)
 
 	Appeared in Beacon, ProbResp frames
 */
-INT build_vht_pwr_envelope(struct rtmp_adapter*pAd, u8 *buf)
+int build_vht_pwr_envelope(struct rtmp_adapter*pAd, u8 *buf)
 {
-	INT len = 0;
+	int len = 0;
 
 
 	return len;
@@ -305,7 +305,7 @@ INT build_vht_pwr_envelope(struct rtmp_adapter*pAd, u8 *buf)
 
 	Appeared in Beacon, (Re)AssocResp, ProbResp frames
 */
-INT build_vht_op_ie(struct rtmp_adapter*pAd, u8 *buf)
+int build_vht_op_ie(struct rtmp_adapter*pAd, u8 *buf)
 {
 	VHT_OP_IE vht_op;
 
@@ -366,7 +366,7 @@ INT build_vht_op_ie(struct rtmp_adapter*pAd, u8 *buf)
 
 	Appeared in Beacon, (Re)AssocReq, (Re)AssocResp, ProbReq/Resp frames
 */
-INT build_vht_cap_ie(struct rtmp_adapter*pAd, u8 *buf)
+int build_vht_cap_ie(struct rtmp_adapter*pAd, u8 *buf)
 {
 	VHT_CAP_IE vht_cap_ie;
 
@@ -473,9 +473,9 @@ INT build_vht_cap_ie(struct rtmp_adapter*pAd, u8 *buf)
 }
 
 
-INT build_vht_ies(struct rtmp_adapter*pAd, u8 *buf, u8 frm)
+int build_vht_ies(struct rtmp_adapter*pAd, u8 *buf, u8 frm)
 {
-	INT len = 0;
+	int len = 0;
 	EID_STRUCT eid_hdr;
 
 

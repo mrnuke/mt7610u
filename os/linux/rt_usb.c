@@ -106,7 +106,7 @@ Note:
 void RtmpMgmtTaskExit(
 	struct rtmp_adapter*pAd)
 {
-	INT			ret;
+	int			ret;
 	RTMP_OS_TASK	*pTask;
 
 	/* Sleep 50 milliseconds so pending io might finish normally */
@@ -841,7 +841,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT MlmeThread(
+int MlmeThread(
 	unsigned long Context)
 {
 	struct rtmp_adapter*pAd;
@@ -907,7 +907,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT RTUSBCmdThread(
+int RTUSBCmdThread(
 	unsigned long Context)
 {
 	struct rtmp_adapter*pAd;

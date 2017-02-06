@@ -180,9 +180,9 @@ void RTMPCkipMicInit(
 void RTMPMicUpdate(
     PMIC_CONTEXT        pContext,
     u8 *             pOctets,
-    INT                 len)
+    int                 len)
 {
-    INT     byte_position;
+    int     byte_position;
     unsigned long   val;
 
     byte_position = (pContext->position & 3);
@@ -205,7 +205,7 @@ unsigned long RTMPMicGetCoefficient(
     PMIC_CONTEXT         pContext)
 {
     u8   aes_counter[16];
-    INT     coeff_position;
+    int     coeff_position;
     u8   *p;
 
     coeff_position = (pContext->position - 1) >> 2;
@@ -236,7 +236,7 @@ void xor_128(
     u8 * b,
     u8 * out)
 {
-    INT i;
+    int i;
 
     for (i=0;i<16; i++)
     {
@@ -255,7 +255,7 @@ void xor_32(
     u8 * b,
     u8 * out)
 {
-    INT i;
+    int i;
 
     for (i=0;i<4; i++)
     {
@@ -265,7 +265,7 @@ void xor_32(
 
 void next_key(
     u8 * key,
-    INT     round)
+    int     round)
 {
     u8       rcon;
     u8       sbox_key[4];
@@ -294,7 +294,7 @@ void byte_sub(
     u8 * in,
     u8 * out)
 {
-    INT i;
+    int i;
 
     for (i=0; i< 16; i++)
     {
@@ -328,7 +328,7 @@ void mix_column(
     u8 * in,
     u8 * out)
 {
-    INT         i;
+    int         i;
     u8       add1b[4];
     u8       add1bf7[4];
     u8       rotl[4];
@@ -392,8 +392,8 @@ void RTMPAesEncrypt(
     u8 * data,
     u8 * ciphertext)
 {
-    INT             round;
-    INT             i;
+    int             round;
+    int             i;
     u8           intermediatea[16];
     u8           intermediateb[16];
     u8           round_key[16];
@@ -433,7 +433,7 @@ void RTMPMicFinal(
     PMIC_CONTEXT    pContext,
     u8           digest[4])
 {
-    INT             byte_position;
+    int             byte_position;
     unsigned long           val;
     uint64_t       sum, utmp;
     int64_t        stmp;

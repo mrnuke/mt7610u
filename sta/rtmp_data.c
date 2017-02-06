@@ -1582,7 +1582,7 @@ void STABuildCommon802_11Header(struct rtmp_adapter*pAd, TX_BLK *pTxBlk)
 	HEADER_802_11 *wifi_hdr;
 #ifdef QOS_DLS_SUPPORT
 	bool bDLSFrame = false;
-	INT DlsEntryIndex = 0;
+	int DlsEntryIndex = 0;
 #endif /* QOS_DLS_SUPPORT */
 	u8 TXWISize = sizeof(struct txwi_nmac);
 
@@ -1706,7 +1706,7 @@ void STABuildCache802_11Header(
 		   If packet can be sent through DLS, then force aggregation disable. (Hard to determine peer STA's capability) */
 #ifdef QOS_DLS_SUPPORT
 		bool bDLSFrame = false;
-		INT DlsEntryIndex = 0;
+		int DlsEntryIndex = 0;
 
 		DlsEntryIndex = RTMPCheckDLSFrame(pAd, pTxBlk->pSrcBufHeader);
 		if (DlsEntryIndex >= 0)

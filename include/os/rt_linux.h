@@ -379,7 +379,7 @@ do { \
 #define ATE_KILL_THREAD_PID(PID)		KILL_THREAD_PID(PID, SIGTERM, 1)
 
 typedef int (*cast_fn)(void *);
-typedef INT (*RTMP_OS_TASK_CALLBACK)(unsigned long);
+typedef int (*RTMP_OS_TASK_CALLBACK)(unsigned long);
 
 #ifdef WORKQUEUE_BH
 typedef struct work_struct OS_NET_TASK_STRUCT;
@@ -471,8 +471,8 @@ struct os_cookie {
 
 	RTMP_OS_PID			apd_pid; /*802.1x daemon pid */
 	unsigned long			apd_pid_nr;
-	INT						ioctl_if_type;
-	INT 					ioctl_if;
+	int						ioctl_if_type;
+	int 					ioctl_if;
 
 	 RTMP_OS_COMPLETION SentToMCUDone;
 };
@@ -914,10 +914,10 @@ void linux_pci_unmap_single(void *handle, dma_addr_t dma_addr, size_t size, int 
 int rt28xx_packet_xmit(void *skb);
 
 
-INT rt28xx_ioctl(
+int rt28xx_ioctl(
 	struct net_device *	net_dev,
 	struct ifreq	*rq,
-	INT			cmd);
+	int			cmd);
 
 extern int ra_mtd_write(int num, loff_t to, size_t len, const u_char *buf);
 extern int ra_mtd_read(int num, loff_t from, size_t len, u_char *buf);
@@ -1049,7 +1049,7 @@ USBHST_STATUS RTUSBBulkCmdRspEventComplete(URBCompleteStatus Status, struct urb 
 
 /*#endif // RTMP_USB_SUPPORT */
 
-INT RtmpOSNetDevOpsAlloc(
+int RtmpOSNetDevOpsAlloc(
 	void **pNetDevOps);
 
 #define RTMP_OS_MAX_SCAN_DATA_GET()		IW_SCAN_MAX_DATA

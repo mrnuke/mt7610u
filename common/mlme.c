@@ -102,9 +102,9 @@ u8 ZeroSsid[32] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 
-u8 dot11_max_sup_rate(INT SupRateLen, u8 *SupRate, INT ExtRateLen, u8 *ExtRate)
+u8 dot11_max_sup_rate(int SupRateLen, u8 *SupRate, int ExtRateLen, u8 *ExtRate)
 {
-	INT idx;
+	int idx;
 	u8 MaxSupportedRateIn500Kbps = 0;
 
 	/* supported rates array may not be sorted. sort it and find the maximum rate */
@@ -1633,7 +1633,7 @@ void MlmeSetTxPreamble(
 void UpdateBasicRateBitmap(
     struct rtmp_adapter *  pAdapter)
 {
-    INT  i, j;
+    int  i, j;
                   /* 1  2  5.5, 11,  6,  9, 12, 18, 24, 36, 48,  54 */
     u8 rate[] = { 2, 4,  11, 22, 12, 18, 24, 36, 48, 72, 96, 108 };
     u8 *sup_p = pAdapter->CommonCfg.SupRate;
@@ -2762,7 +2762,7 @@ void  TriEventInit(
 	pAd->CommonCfg.TriggerEventTab.EventBCountDown = 0;
 }
 
-INT TriEventTableSetEntry(
+int TriEventTableSetEntry(
 	struct rtmp_adapter *pAd,
 	TRIGGER_EVENT_TAB *Tab,
 	u8 *pBssid,
@@ -2831,7 +2831,7 @@ void BssTableSsidSort(
 	CHAR Ssid[],
 	u8 SsidLen)
 {
-	INT i;
+	int i;
 	BssTableInit(OutTab);
 
 	if ((SsidLen == 0) &&
@@ -3068,7 +3068,7 @@ void BssTableSsidSort(
 void BssTableSortByRssi(
 	BSS_TABLE *OutTab)
 {
-	INT 	  i, j;
+	int 	  i, j;
 /*	BSS_ENTRY TmpBss;*/
 	BSS_ENTRY *pTmpBss = NULL;
 
@@ -3109,7 +3109,7 @@ void BssCipherParse(
 	PCIPHER_SUITE_STRUCT			pCipher;
 	PAKM_SUITE_STRUCT				pAKM;
 	unsigned short							Count;
-	INT								Length;
+	int								Length;
 	NDIS_802_11_ENCRYPTION_STATUS	TmpCipher;
 
 
@@ -3142,7 +3142,7 @@ void BssCipherParse(
 	pBss->WPA2.bMixMode 	 = false;
 
 
-	Length = (INT) pBss->VarIELen;
+	Length = (int) pBss->VarIELen;
 
 	while (Length > 0)
 	{
@@ -3453,7 +3453,7 @@ void MacAddrRandomBssid(
 	struct rtmp_adapter *pAd,
 	u8 *pAddr)
 {
-	INT i;
+	int i;
 
 	for (i = 0; i < ETH_ALEN; i++)
 	{
@@ -3570,7 +3570,7 @@ int MlmeQueueInit(
 	struct rtmp_adapter *pAd,
 	MLME_QUEUE *Queue)
 {
-	INT i;
+	int i;
 
 	spin_lock_init(&Queue->Lock);
 
@@ -3611,7 +3611,7 @@ bool MlmeEnqueue(
 	void *Msg,
 	unsigned long Priv)
 {
-	INT Tail;
+	int Tail;
 	MLME_QUEUE	*Queue = (MLME_QUEUE *)&pAd->Mlme.Queue;
 
 	/* Do nothing if the driver is starting halt state.*/
@@ -3683,9 +3683,9 @@ bool MlmeEnqueueForRecv(
 	u8 Signal,
 	u8 OpMode)
 {
-	INT 		 Tail, Machine = 0xff;
+	int 		 Tail, Machine = 0xff;
 	PFRAME_802_11 pFrame = (PFRAME_802_11)Msg;
-	INT		 MsgType = 0x0;
+	int		 MsgType = 0x0;
 	MLME_QUEUE	*Queue = (MLME_QUEUE *)&pAd->Mlme.Queue;
 
 	/* Do nothing if the driver is starting halt state.*/
@@ -3930,8 +3930,8 @@ void MlmeQueueDestroy(
 bool MsgTypeSubst(
 	struct rtmp_adapter * pAd,
 	PFRAME_802_11 pFrame,
-	INT *Machine,
-	INT *MsgType)
+	int *Machine,
+	int *MsgType)
 {
 	unsigned short	Seq, Alg;
 	u8 EAPType;
@@ -3948,7 +3948,7 @@ bool MsgTypeSubst(
 		{
 	        *Machine = WPA_STATE_MACHINE;
 			EAPType = *((u8 *)pFrame + LENGTH_802_11 + LENGTH_802_1_H + 1);
-	        return (WpaMsgTypeSubst(EAPType, (INT *) MsgType));
+	        return (WpaMsgTypeSubst(EAPType, (int *) MsgType));
 		}
 	}
 

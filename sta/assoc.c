@@ -524,7 +524,7 @@ void MlmeAssocReqAction(
 
 				/* Check for WPA PMK cache list */
 				if (pAd->StaCfg.AuthMode == Ndis802_11AuthModeWPA2) {
-					INT idx;
+					int idx;
 					bool FoundPMK = false;
 					/* Search chched PMKID, append it if existed */
 					for (idx = 0; idx < PMKID_NO; idx++) {

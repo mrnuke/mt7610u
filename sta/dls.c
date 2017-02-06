@@ -1369,12 +1369,12 @@ bool RTMPRcvFrameDLSCheck(
 
 	========================================================================
 */
-INT RTMPCheckDLSFrame(
+int RTMPCheckDLSFrame(
 	struct rtmp_adapter *pAd,
 	u8 *pDA)
 {
-	INT rval = -1;
-	INT i;
+	int rval = -1;
+	int i;
 
 	if (!pAd->CommonCfg.bDLSCapable)
 		return rval;
@@ -1935,11 +1935,11 @@ MAC_TABLE_ENTRY *DlsEntryTableLookupByWcid(
 	return pEntry;
 }
 
-INT Set_DlsEntryInfo_Display_Proc(
+int Set_DlsEntryInfo_Display_Proc(
 	struct rtmp_adapter *pAd,
 	u8 *arg)
 {
-	INT i;
+	int i;
 
 	DBGPRINT(RT_DEBUG_OFF, ("\n%-19s%-8s\n", "MAC", "TIMEOUT\n"));
 	for (i = 0; i < MAX_NUM_OF_DLS_ENTRY; i++) {
@@ -2008,7 +2008,7 @@ INT Set_DlsEntryInfo_Display_Proc(
 	return true;
 }
 
-INT Set_DlsAddEntry_Proc(
+int Set_DlsAddEntry_Proc(
 	struct rtmp_adapter *pAd,
 	char *arg)
 {
@@ -2016,7 +2016,7 @@ INT Set_DlsAddEntry_Proc(
 	unsigned short Timeout;
 	char *token;
 	char sepValue[] = ":", DASH = '-';
-	INT i;
+	int i;
 	RT_802_11_DLS Dls;
 
 	if (strlen(arg) < 19)	/*Mac address acceptable format 01:02:03:04:05:06 length 17 plus the "-" and timeout value in decimal format. */
@@ -2058,13 +2058,13 @@ INT Set_DlsAddEntry_Proc(
 
 }
 
-INT Set_DlsTearDownEntry_Proc(
+int Set_DlsTearDownEntry_Proc(
 	struct rtmp_adapter *pAd,
 	char *arg)
 {
 	u8 macAddr[ETH_ALEN];
 	char *value;
-	INT i;
+	int i;
 	RT_802_11_DLS Dls;
 
 	if (strlen(arg) != 17)	/*Mac address acceptable format 01:02:03:04:05:06 length 17 */

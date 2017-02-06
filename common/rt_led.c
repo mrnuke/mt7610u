@@ -27,7 +27,7 @@
 
 #include	"rt_config.h"
 
-INT LED_Array[16][12]={
+int LED_Array[16][12]={
 	{	-1,	-1,	-1,	-1,	-1,	-1,	-1,	-1,	-1,	-1,	-1,	-1},
 	{ 	0, 	2,  	1,	0,	-1,	-1,	0, 	-1, 	5, 	-1, 	-1, 	17},
 	{	-1, 	-1, 	-1, 	-1, 	-1, 	-1, 	-1, 	-1, 	-1, 	-1, 	-1, 	-1},
@@ -74,7 +74,7 @@ void RTMPSetLEDStatus(
 {
 	/*unsigned long			data; */
 	u8 		LedMode;
-	INT LED_CMD = -1;
+	int LED_CMD = -1;
 
 	if(RTMP_TEST_FLAG(pAd, fRTMP_ADAPTER_IDLE_RADIO_OFF))
 		return;

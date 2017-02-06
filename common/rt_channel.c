@@ -94,7 +94,7 @@ CH_FREQ_MAP CH_HZ_ID_MAP[]=
 			{216, 5080},	/* Japan, means J16 */
 };
 
-INT	CH_HZ_ID_MAP_NUM = (sizeof(CH_HZ_ID_MAP)/sizeof(CH_FREQ_MAP));
+int	CH_HZ_ID_MAP_NUM = (sizeof(CH_HZ_ID_MAP)/sizeof(CH_FREQ_MAP));
 
 CH_DESC Country_Region0_ChDesc_2GHZ[] =
 {
@@ -1599,7 +1599,7 @@ CH_REGION ChRegion[] =
 static PCH_REGION GetChRegion(
 	u8 *CntryCode)
 {
-	INT loop = 0;
+	int loop = 0;
 	PCH_REGION pChRegion = NULL;
 
 	while (strcmp((char *) ChRegion[loop].CountReg, "") != 0)
@@ -1640,7 +1640,7 @@ static u8 FillChList(
 	u8 increment,
 	u8 regulatoryDomain)
 {
-	INT i, j, l;
+	int i, j, l;
 	u8 channel;
 
 	j = Offset;
@@ -1705,7 +1705,7 @@ static inline void CreateChList(
 	PCH_REGION pChRegion,
 	u8 Geography)
 {
-	INT i;
+	int i;
 	u8 offset = 0;
 	PCH_DESP pChDesp;
 	u8 ChType;
@@ -1770,7 +1770,7 @@ void BuildBeaconChList(
 	u8 *pBuf,
 	unsigned long *pBufLen)
 {
-	INT i;
+	int i;
 	unsigned long TmpLen;
 	PCH_REGION pChRegion;
 	PCH_DESP pChDesp;
@@ -1825,7 +1825,7 @@ static bool IsValidChannel(
 	u8 channel)
 
 {
-	INT i;
+	int i;
 
 	for (i = 0; i < pAd->ChannelListNum; i++)
 	{
@@ -1902,7 +1902,7 @@ bool N_ChannelGroupCheck(
 
 void N_ChannelCheck(struct rtmp_adapter*pAd)
 {
-	INT idx;
+	int idx;
 	u8 Channel = pAd->CommonCfg.Channel;
 	static const u8 wfa_ht_ch_ext[] = {
 			36, EXTCHA_ABOVE, 40, EXTCHA_BELOW,
@@ -2025,7 +2025,7 @@ void RTMP_MapChannelID2KHZ(
 /* for OS_ABL */
 void RTMP_MapKHZ2ChannelID(
 	unsigned long Freq,
-	INT *pCh)
+	int *pCh)
 {
 	int chIdx;
 	for (chIdx = 0; chIdx < CH_HZ_ID_MAP_NUM; chIdx++)

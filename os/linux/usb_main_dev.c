@@ -366,7 +366,7 @@ static int rt2870_probe(struct usb_interface *intf, struct usb_device *usb_dev,
 {
 	struct  net_device *net_dev = NULL;
 	struct rtmp_adapter  *pAd = NULL;
-	INT               	status, rv;
+	int               	status, rv;
 	struct os_cookie *handle;
 	RTMP_OS_NETDEV_OP_HOOK	netDevHook;
 	unsigned long 	OpMode;

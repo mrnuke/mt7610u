@@ -967,7 +967,7 @@ void RTMPDeQueuePacket(
 	struct rtmp_adapter*pAd,
 	bool bIntContext,
 	u8 QIdx,
-	INT Max_Tx_Packets)
+	int Max_Tx_Packets)
 {
 	PQUEUE_ENTRY pEntry = NULL;
 	struct sk_buff * pPacket;
@@ -2287,11 +2287,11 @@ typedef struct ip_v4_hdr {
 } IP_V4_HDR;
 
 
-INT ip_assembly_timeout(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, unsigned long Now, u8 QueIdx)
+int ip_assembly_timeout(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, unsigned long Now, u8 QueIdx)
 {
 	QUEUE_HEADER *queue;
 	unsigned long *ip_pkt_jiffies;
-	INT i;
+	int i;
 	struct ip_frag_q *fragQ;
 
 	if ((pEntry->ip_queue1[QueIdx].Number != 0)
@@ -2337,7 +2337,7 @@ INT ip_assembly_timeout(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, unsign
 }
 
 
-INT ip_assembly(
+int ip_assembly(
 	struct rtmp_adapter*pAd,
 	u8 QueIdx,
 	struct sk_buff * pPacket,

@@ -1488,7 +1488,7 @@ Note:
 static void NICInitMT76x0BbpRegisters(struct rtmp_adapter *pAd)
 {
 
-	INT IdReg;
+	int IdReg;
 
 	RANDOM_WRITE(pAd, MT76x0_BBP_Init_Tab, MT76x0_BBP_Init_Tab_Size);
 
@@ -1669,7 +1669,7 @@ static u8 mt76x0_txpwr_chlist[] = {
 	 42,  58, 106, 122, 155,
 };
 
-INT MT76x0_ReadChannelPwr(struct rtmp_adapter *pAd)
+int MT76x0_ReadChannelPwr(struct rtmp_adapter *pAd)
 {
 	u32 i, choffset, idx, ss_offset_g, ss_num;
 	EEPROM_TX_PWR_STRUC Power;
@@ -2620,7 +2620,7 @@ bool get_temp_tx_alc_level(
 	CHAR current_temp,
 	char *comp_level)
 {
-	INT idx = 0;
+	int idx = 0;
 
 	if ((temp_minus_bdy == NULL) || (temp_plus_bdy == NULL)) {
 		DBGPRINT(RT_DEBUG_ERROR, ("%s(): temp table boundary is NULL\n", __FUNCTION__));
@@ -2764,7 +2764,7 @@ void mt76x0_temp_tx_alc(struct rtmp_adapter *pAd)
 static void adjust_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
 	char *temp_minus_bdy, char *temp_plus_bdy, CHAR temp_reference)
 {
-	INT idx = 0;
+	int idx = 0;
 	CHAR upper_bound = 127, lower_bound = -128;
 
 	DBGPRINT(RT_DEBUG_OFF, ("%s: upper_bound = 0x%02x (%d), lower_bound = 0x%02x (%d)\n",
@@ -2862,10 +2862,10 @@ static void adjust_mp_temp(struct rtmp_adapter *pAd, char *temp_minus_bdy,
 
 bool load_temp_tx_alc_table(struct rtmp_adapter *pAd, CHAR band,
 	unsigned short e2p_start_addr, unsigned short e2p_end_addr,
-	u8 *bdy_table, const INT start_idx, const u32 table_size)
+	u8 *bdy_table, const int start_idx, const u32 table_size)
 {
 	u16 e2p_value;
-	INT e2p_idx = 0, table_idx = 0;
+	int e2p_idx = 0, table_idx = 0;
 	CHAR table_sign; /* +1 for plus table; -1 for minus table */
 
 	table_sign = (e2p_start_addr < e2p_end_addr) ? 1 : (-1);

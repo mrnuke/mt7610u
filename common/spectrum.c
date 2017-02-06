@@ -276,7 +276,7 @@ PMEASURE_REQ_ENTRY MeasureReqInsert(
 	struct rtmp_adapter *pAd,
 	u8			DialogToken)
 {
-	INT i;
+	int i;
 	unsigned long HashIdx;
 	PMEASURE_REQ_TAB pTab = pAd->CommonCfg.pMeasureReqTab;
 	PMEASURE_REQ_ENTRY pEntry = NULL, pCurrEntry;
@@ -500,7 +500,7 @@ static PTPC_REQ_ENTRY TpcReqInsert(
 	struct rtmp_adapter *pAd,
 	u8			DialogToken)
 {
-	INT i;
+	int i;
 	unsigned long HashIdx;
 	PTPC_REQ_TAB pTab = pAd->CommonCfg.pTpcReqTab;
 	PTPC_REQ_ENTRY pEntry = NULL, pCurrEntry;
@@ -1170,7 +1170,7 @@ static bool DfsRequirementCheck(
 	u8 Channel)
 {
 	bool Result = false;
-	INT i;
+	int i;
 
 	do
 	{
@@ -1926,7 +1926,7 @@ void PeerSpectrumAction(
 	Return	: None.
 	==========================================================================
  */
-INT Set_MeasureReq_Proc(
+int Set_MeasureReq_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
@@ -2024,7 +2024,7 @@ END_OF_MEASURE_REQ:
 	return true;
 }
 
-INT Set_TpcReq_Proc(
+int Set_TpcReq_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {

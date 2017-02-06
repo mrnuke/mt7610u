@@ -592,7 +592,7 @@ Return Value:
 	others			- FAIL
 ========================================================================
 */
-INT TDLS_Ioctl(
+int TDLS_Ioctl(
 	struct rtmp_adapter *			pAd,
 	char *					pArgvIn)
 {
@@ -726,7 +726,7 @@ Return Value:
 	others			- FAIL
 ========================================================================
 */
-INT Set_TdlsUapsdProc(
+int Set_TdlsUapsdProc(
 	struct rtmp_adapter *			pAd,
 	char *					pArgvIn)
 {
@@ -1115,7 +1115,7 @@ static void TDLS_UAPSD_PeerTrafficIndAction(
 	u8 PeerAddr[6];
 	u8 PeerAddr1[6];
 	unsigned long OffsetPuBuff;
-	INT LinkId = 0xff;
+	int LinkId = 0xff;
 	PRT_802_11_TDLS	pTDLS = NULL;
 	PFRAME_802_11 pFrame = (PFRAME_802_11)pElem->Msg;
 

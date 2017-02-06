@@ -109,7 +109,7 @@ static char *RT2870STA_dat =
 int	RTMPReadParametersHook(
 	struct rtmp_adapter *pAd)
 {
-	INT   retval = NDIS_STATUS_FAILURE;
+	int   retval = NDIS_STATUS_FAILURE;
 	char *buffer;
 
 #ifdef HOSTAPD_SUPPORT

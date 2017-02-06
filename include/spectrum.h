@@ -143,15 +143,15 @@ void PeerSpectrumAction(
 	Return	: None.
 	==========================================================================
  */
-INT Set_MeasureReq_Proc(
+int Set_MeasureReq_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 
-INT Set_TpcReq_Proc(
+int Set_TpcReq_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 
-INT Set_PwrConstraint(
+int Set_PwrConstraint(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 

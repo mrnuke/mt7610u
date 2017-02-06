@@ -213,7 +213,7 @@ void RtmpOsPktBodyCopy(
 	unsigned long					ThisFrameLen,
 	u8 *				pData);
 
-INT RtmpOsIsPktCloned(
+int RtmpOsIsPktCloned(
 	struct sk_buff *			pNetPkt);
 
 struct sk_buff * RtmpOsPktCopy(
@@ -312,11 +312,11 @@ void RtmpOSNetDevClose(
 void RtmpOSNetDevFree(
 	struct net_device *			pNetDev);
 
-INT RtmpOSNetDevAlloc(
+int RtmpOSNetDevAlloc(
 	struct net_device *			*new_dev_p,
 	u32					privDataSize);
 
-INT RtmpOSNetDevOpsAlloc(
+int RtmpOSNetDevOpsAlloc(
 	void *				*pNetDevOps);
 
 
@@ -327,7 +327,7 @@ struct net_device *RtmpOSNetDevGetByName(
 void RtmpOSNetDeviceRefPut(
 	struct net_device *			pNetDev);
 
-INT RtmpOSNetDevDestory(
+int RtmpOSNetDevDestory(
 	void 				*pReserved,
 	struct net_device *			pNetDev);
 
@@ -345,9 +345,9 @@ void RtmpOSNetDevProtect(
 struct net_device *RtmpOSNetDevCreate(
 	int32_t					MC_RowID,
 	u32					*pIoctlIF,
-	INT 					devType,
-	INT						devNum,
-	INT						privMemSize,
+	int 					devType,
+	int						devNum,
+	int						privMemSize,
 	char *				pNamePrefix);
 
 bool RtmpOSNetDevIsUp(
@@ -386,7 +386,7 @@ void RtmpOsCmdUp(RTMP_OS_TASK *pCmdQTask);
 bool RtmpOsSemaInitLocked(struct semaphore *pSemOrg, LIST_HEADER *pSemList);
 bool RtmpOsSemaInit(struct semaphore *pSemOrg, LIST_HEADER *pSemList);
 bool RtmpOsSemaDestroy(struct semaphore *pSemOrg);
-INT RtmpOsSemaWaitInterruptible(struct semaphore *pSemOrg);
+int RtmpOsSemaWaitInterruptible(struct semaphore *pSemOrg);
 void RtmpOsSemaWakeUp(struct semaphore *pSemOrg);
 void RtmpOsMlmeUp(RTMP_OS_TASK *pMlmeQTask);
 
@@ -426,7 +426,7 @@ void RtmpOSTaskFree(
 int RtmpOSTaskKill(
 	RTMP_OS_TASK			*pTaskOrg);
 
-INT RtmpOSTaskNotifyToExit(
+int RtmpOSTaskNotifyToExit(
 	RTMP_OS_TASK			*pTaskOrg);
 
 void RtmpOSTaskCustomize(
@@ -568,7 +568,7 @@ void RtmpOsAtomicInterlockedExchange(RTMP_OS_ATOMIC *pAtomicSrc, long Value);
 int RtmpOSWrielessEventSend(
 	struct net_device *			pNetDev,
 	u32					eventType,
-	INT						flags,
+	int						flags,
 	u8 *				pSrcMac,
 	u8 *				pData,
 	u32					dataLen);
@@ -576,7 +576,7 @@ int RtmpOSWrielessEventSend(
 int RtmpOSWrielessEventSendExt(
 	struct net_device *			pNetDev,
 	u32					eventType,
-	INT						flags,
+	int						flags,
 	u8 *				pSrcMac,
 	u8 *				pData,
 	u32					dataLen,

@@ -73,13 +73,13 @@ void RtmpNetOpsSet(void *pNetOpsOrg);
 int RTMPAllocAdapterBlock(struct os_cookie *handle, struct rtmp_adapter **ppAdapter);
 void RTMPFreeAdapter(struct rtmp_adapter *pAd);
 bool RtmpRaDevCtrlExit(struct rtmp_adapter *pAd);
-INT RtmpRaDevCtrlInit(struct rtmp_adapter *pAd, RTMP_INF_TYPE infType);
+int RtmpRaDevCtrlInit(struct rtmp_adapter *pAd, RTMP_INF_TYPE infType);
 void RTMPHandleInterrupt(struct rtmp_adapter *pAd);
 
-INT RTMP_COM_IoctlHandle(
+int RTMP_COM_IoctlHandle(
 	struct rtmp_adapter *pAd,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	INT						cmd,
+	int						cmd,
 	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data);
@@ -115,10 +115,10 @@ int P2P_PacketSend(
 
 
 #ifdef CONFIG_STA_SUPPORT
-INT RTMP_STA_IoctlHandle(
+int RTMP_STA_IoctlHandle(
 	void 				*pAd,
 	RTMP_IOCTL_INPUT_STRUCT	*wrq,
-	INT						cmd,
+	int						cmd,
 	unsigned short					subcmd,
 	void 				*pData,
 	unsigned long					Data,
@@ -143,10 +143,10 @@ int rt28xx_open(struct net_device *net_dev);
 
 
 #ifdef CONFIG_STA_SUPPORT
-INT rt28xx_sta_ioctl(
+int rt28xx_sta_ioctl(
 	struct net_device *	net_dev,
 	struct ifreq	*rq,
-	INT			cmd);
+	int			cmd);
 #endif /* CONFIG_STA_SUPPORT */
 
 struct net_device *RtmpPhyNetDevInit(
@@ -165,49 +165,49 @@ void RT28xx_MBSS_Init(
 	struct net_device *main_dev_p);
 void RT28xx_MBSS_Remove(
 	void *pAd);
-INT MBSS_VirtualIF_Open(
+int MBSS_VirtualIF_Open(
 	struct net_device *		dev_p);
-INT MBSS_VirtualIF_Close(
+int MBSS_VirtualIF_Close(
 	struct net_device *		dev_p);
-INT MBSS_VirtualIF_PacketSend(
+int MBSS_VirtualIF_PacketSend(
 	struct sk_buff *			skb_p,
 	struct net_device *			dev_p);
-INT MBSS_VirtualIF_Ioctl(
+int MBSS_VirtualIF_Ioctl(
 	struct net_device *			dev_p,
 	void 			*rq_p,
-	INT cmd);
+	int cmd);
 
 void RT28xx_WDS_Init(
 	void 				*pAd,
 	struct net_device *			net_dev);
-INT WdsVirtualIFSendPackets(
+int WdsVirtualIFSendPackets(
 	struct sk_buff *			pSkb,
 	struct net_device *			dev);
-INT WdsVirtualIF_open(
+int WdsVirtualIF_open(
 	struct net_device *		dev);
-INT WdsVirtualIF_close(
+int WdsVirtualIF_close(
 	struct net_device *			dev);
-INT WdsVirtualIF_ioctl(
+int WdsVirtualIF_ioctl(
 	struct net_device *			net_dev,
 	void 			*rq,
-	INT					cmd);
+	int					cmd);
 void RT28xx_WDS_Remove(
 	void 				*pAd);
 
 void RT28xx_ApCli_Init(
 	void 				*pAd,
 	struct net_device *			main_dev_p);
-INT ApCli_VirtualIF_Open(
+int ApCli_VirtualIF_Open(
 	struct net_device *			dev_p);
-INT ApCli_VirtualIF_Close(
+int ApCli_VirtualIF_Close(
 	struct net_device *		dev_p);
-INT ApCli_VirtualIF_PacketSend(
+int ApCli_VirtualIF_PacketSend(
 	struct sk_buff * 		pPktSrc,
 	struct net_device *			pDev);
-INT ApCli_VirtualIF_Ioctl(
+int ApCli_VirtualIF_Ioctl(
 	struct net_device *			dev_p,
 	void 			*rq_p,
-	INT 					cmd);
+	int 					cmd);
 void RT28xx_ApCli_Remove(
 	void 				*pAd);
 
@@ -217,36 +217,36 @@ void RTMP_Mesh_Init(
 	char *			pHostName);
 void RTMP_Mesh_Remove(
 	void 				*pAd);
-INT Mesh_VirtualIF_Open(
+int Mesh_VirtualIF_Open(
 	struct net_device *			pDev);
-INT Mesh_VirtualIF_Close(
+int Mesh_VirtualIF_Close(
 	struct net_device *		pDev);
-INT Mesh_VirtualIF_PacketSend(
+int Mesh_VirtualIF_PacketSend(
 	struct sk_buff * 		pPktSrc,
 	struct net_device *			pDev);
-INT Mesh_VirtualIF_Ioctl(
+int Mesh_VirtualIF_Ioctl(
 	struct net_device *			dev_p,
 	void 			*rq_p,
-	INT 					cmd);
+	int 					cmd);
 
 void RTMP_P2P_Init(
 		 void 		 *pAd,
 		 struct net_device *main_dev_p);
 
- INT P2P_VirtualIF_Open(
+ int P2P_VirtualIF_Open(
 	 struct net_device * dev_p);
 
- INT P2P_VirtualIF_Close(
+ int P2P_VirtualIF_Close(
 	 struct net_device * dev_p);
 
- INT P2P_VirtualIF_PacketSend(
+ int P2P_VirtualIF_PacketSend(
 	 struct sk_buff *	 skb_p,
 	 struct net_device *	 dev_p);
 
- INT P2P_VirtualIF_Ioctl(
+ int P2P_VirtualIF_Ioctl(
 	 struct net_device *		 dev_p,
 	 void  *rq_p,
-	 INT cmd);
+	 int cmd);
 
 void RTMP_P2P_Remove(
 	void 			*pAd);

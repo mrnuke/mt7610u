@@ -480,7 +480,7 @@ struct rtmp_chip_ops {
 	/* Power save */
 	void (*EnableAPMIMOPS)(struct rtmp_adapter *pAd, bool ReduceCorePower);
 	void (*DisableAPMIMOPS)(struct rtmp_adapter *pAd);
-	INT (*MCU_PwrSavingOP)(struct rtmp_adapter *pAd, u32 PwrOP, u32 PwrLevel,
+	int (*MCU_PwrSavingOP)(struct rtmp_adapter *pAd, u32 PwrOP, u32 PwrLevel,
 							u32 ListenInterval, u32 PreTBTTLeadTime,
 							u8 TIMByteOffset, u8 TIMBytePattern);
 
@@ -712,9 +712,9 @@ void RtmpChipWriteMemory(
 	u32			Value,
 	u8			Unit);
 
-bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, INT round, INT wait_us);
-INT AsicSetPreTbttInt(struct rtmp_adapter *pAd, bool enable);
-INT AsicReadAggCnt(struct rtmp_adapter *pAd, unsigned long *aggCnt, int cnt_len);
+bool AsicWaitPDMAIdle(struct rtmp_adapter *pAd, int round, int wait_us);
+int AsicSetPreTbttInt(struct rtmp_adapter *pAd, bool enable);
+int AsicReadAggCnt(struct rtmp_adapter *pAd, unsigned long *aggCnt, int cnt_len);
 
 void StopDmaTx(struct rtmp_adapter *pAd, u8 Level);
 void StopDmaRx(struct rtmp_adapter *pAd, u8 Level);

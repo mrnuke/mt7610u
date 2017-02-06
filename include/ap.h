@@ -127,7 +127,7 @@ void APAssocStateMachineInit(
 
 void MbssKickOutStas(
 	struct rtmp_adapter *pAd,
-	INT apidx,
+	int apidx,
 	unsigned short Reason);
 
 void APMlmeKickOutSta(
@@ -172,11 +172,11 @@ void APCls2errAction(
 
 void APMakeBssBeacon(
     struct rtmp_adapter *  pAd,
-	INT				apidx);
+	int				apidx);
 
 void  APUpdateBeaconFrame(
     struct rtmp_adapter *  pAd,
-	INT				apidx);
+	int				apidx);
 
 void APMakeAllBssBeacon(
     struct rtmp_adapter *  pAd);
@@ -249,7 +249,7 @@ bool ApScanRunning(
 void APOverlappingBSSScan(
 	struct rtmp_adapter*pAd);
 
-INT GetBssCoexEffectedChRange(
+int GetBssCoexEffectedChRange(
 	struct rtmp_adapter*pAd,
 	BSS_COEX_CH_RANGE *pCoexChRange);
 
@@ -268,8 +268,8 @@ void APMlmePeriodicExec(
 bool APMsgTypeSubst(
     struct rtmp_adapter *pAd,
     PFRAME_802_11 pFrame,
-    INT *Machine,
-    INT *MsgType);
+    int *Machine,
+    int *MsgType);
 
 void APQuickResponeForRateUpExec(
     void *SystemSpecific1,
@@ -367,7 +367,7 @@ bool PeerAssocReqCmmSanity(
     struct rtmp_adapter *pAd,
 	bool isRessoc,
     void *Msg,
-    INT MsgLen,
+    int MsgLen,
     IE_LISTS *ie_lists);
 
 
@@ -402,15 +402,15 @@ bool APPeerAuthSanity(
 
 #ifdef DOT1X_SUPPORT
 /* ap_cfg.h */
-INT	Set_OwnIPAddr_Proc(
+int	Set_OwnIPAddr_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 
-INT	Set_EAPIfName_Proc(
+int	Set_EAPIfName_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 
-INT	Set_PreAuthIfName_Proc(
+int	Set_PreAuthIfName_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg);
 
@@ -433,4 +433,4 @@ void AP_E2PROM_IOCTL_PostCtrl(
 void IAPP_L2_UpdatePostCtrl(
 	struct rtmp_adapter *pAd,
     u8 *mac_p,
-    INT  bssid);
+    int  bssid);

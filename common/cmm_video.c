@@ -56,7 +56,7 @@ void VideoTurbineUpdate(
 void TxSwQDepthAdjust(struct rtmp_adapter*pAd, u32 qLen)
 {
 	unsigned long IrqFlags;
-	INT qIdx;
+	int qIdx;
 	QUEUE_HEADER *pTxQ, *pEntry;
 	struct sk_buff * pPacket;
 

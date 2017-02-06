@@ -67,7 +67,7 @@ bool RadarChannelCheck(
 	struct rtmp_adapter *pAd,
 	u8 		Ch)
 {
-	INT 	i;
+	int 	i;
 	bool result = false;
 
 	for (i=0; i<pAd->ChannelListNum; i++)
@@ -119,7 +119,7 @@ unsigned long JapRadarType(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT	Set_CSPeriod_Proc(
+int	Set_CSPeriod_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {
@@ -147,7 +147,7 @@ INT	Set_CSPeriod_Proc(
                1.) iwpriv ra0 set ChMovTime=[value]
     ==========================================================================
 */
-INT Set_ChMovingTime_Proc(
+int Set_ChMovingTime_Proc(
 	struct rtmp_adapter *pAd,
 	char *arg)
 {
@@ -180,11 +180,11 @@ INT Set_ChMovingTime_Proc(
                1.) iwpriv ra0 set ChMovTime=[value]
     ==========================================================================
 */
-INT Set_BlockChReset_Proc(
+int Set_BlockChReset_Proc(
 	struct rtmp_adapter *pAd,
 	char *arg)
 {
-	INT i;
+	int i;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("%s: Reset channel block status.\n", __FUNCTION__));
 
@@ -197,7 +197,7 @@ INT Set_BlockChReset_Proc(
 
 #if defined(DFS_SUPPORT)
 
-INT	Set_RadarShow_Proc(
+int	Set_RadarShow_Proc(
 	struct rtmp_adapter *pAd,
 	char *		arg)
 {

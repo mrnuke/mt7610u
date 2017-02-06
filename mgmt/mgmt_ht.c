@@ -31,7 +31,7 @@
 #ifdef DOT11_N_SUPPORT
 
 
-INT ht_mode_adjust(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, HT_CAPABILITY_IE *peer, RT_HT_CAPABILITY *my)
+int ht_mode_adjust(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, HT_CAPABILITY_IE *peer, RT_HT_CAPABILITY *my)
 {
 	if ((peer->HtCapInfo.GF) && (my->GF))
 	{
@@ -60,7 +60,7 @@ INT ht_mode_adjust(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, HT_CAPABILI
 }
 
 
-INT set_ht_fixed_mcs(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, u8 fixed_mcs, u8 mcs_bound)
+int set_ht_fixed_mcs(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, u8 fixed_mcs, u8 mcs_bound)
 {
 	if (fixed_mcs == 32)
 	{
@@ -81,9 +81,9 @@ INT set_ht_fixed_mcs(struct rtmp_adapter*pAd, MAC_TABLE_ENTRY *pEntry, u8 fixed_
 }
 
 
-INT get_ht_max_mcs(struct rtmp_adapter*pAd, u8 *desire_mcs, u8 *cap_mcs)
+int get_ht_max_mcs(struct rtmp_adapter*pAd, u8 *desire_mcs, u8 *cap_mcs)
 {
-	INT i, j;
+	int i, j;
 	u8 bitmask;
 
 
@@ -105,7 +105,7 @@ INT get_ht_max_mcs(struct rtmp_adapter*pAd, u8 *desire_mcs, u8 *cap_mcs)
 }
 
 
-INT get_ht_cent_ch(struct rtmp_adapter*pAd, u8 *rf_bw, u8 *ext_ch)
+int get_ht_cent_ch(struct rtmp_adapter*pAd, u8 *rf_bw, u8 *ext_ch)
 {
 	if ((pAd->CommonCfg.HtCapability.HtCapInfo.ChannelWidth  == BW_40) &&
 		(pAd->CommonCfg.RegTransmitSetting.field.EXTCHA == EXTCHA_ABOVE)
@@ -171,7 +171,7 @@ void RTMPSetHT(
 	OID_SET_HT_PHYMODE *pHTPhyMode)
 {
 	u8 RxStream = pAd->CommonCfg.RxStream;
-	INT bw;
+	int bw;
 	RT_HT_CAPABILITY *rt_ht_cap = &pAd->CommonCfg.DesiredHtPhy;
 	HT_CAPABILITY_IE *ht_cap= &pAd->CommonCfg.HtCapability;
 
@@ -567,7 +567,7 @@ void RTMPDisableDesiredHtInfo(
 }
 
 
-INT	SetCommonHT(struct rtmp_adapter*pAd)
+int	SetCommonHT(struct rtmp_adapter*pAd)
 {
 	OID_SET_HT_PHYMODE SetHT;
 

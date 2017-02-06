@@ -126,7 +126,7 @@ void RtmpChipWriteMemory(
 	}
 }
 
-INT WaitForAsicReady(
+int WaitForAsicReady(
 	struct rtmp_adapter*pAd)
 {
 	u32 mac_val = 0, reg = MAC_CSR0;

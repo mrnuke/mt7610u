@@ -146,7 +146,7 @@ int RTMPAllocAdapterBlock(struct os_cookie *handle, struct rtmp_adapter **ppAdap
 {
 	struct rtmp_adapter *pAd = NULL;
 	int		Status;
-	INT 			index;
+	int 			index;
 	u8 		*pBeaconBuf = NULL;
 
 	DBGPRINT(RT_DEBUG_TRACE, ("--> RTMPAllocAdapterBlock\n"));
@@ -2608,9 +2608,9 @@ void CfgInitHook(struct rtmp_adapter *pAd)
 }
 
 
-static INT RtmpChipOpsRegister(
+static int RtmpChipOpsRegister(
 	struct rtmp_adapter*pAd,
-	INT			infType)
+	int			infType)
 {
 	struct rtmp_chip_ops  *pChipOps = &pAd->chipOps;
 	struct rtmp_chip_cap *pChipCap = &pAd->chipCap;
@@ -2631,7 +2631,7 @@ static INT RtmpChipOpsRegister(
 	return ret;
 }
 
-INT RtmpRaDevCtrlInit(struct rtmp_adapter *pAd, RTMP_INF_TYPE infType)
+int RtmpRaDevCtrlInit(struct rtmp_adapter *pAd, RTMP_INF_TYPE infType)
 {
 	u8 i;
 	int ret = 0;
@@ -2690,7 +2690,7 @@ INT RtmpRaDevCtrlInit(struct rtmp_adapter *pAd, RTMP_INF_TYPE infType)
 
 bool RtmpRaDevCtrlExit(struct rtmp_adapter *pAd)
 {
-	INT index;
+	int index;
 
 #ifdef RT65xx
 	if ((IS_MT76x0(pAd) || IS_MT76x2(pAd))&& (pAd->WlanFunCtrl.field.WLAN_EN == 1)) {

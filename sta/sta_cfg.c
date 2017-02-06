@@ -29,11 +29,11 @@
 
 
 
-INT Set_AutoReconnect_Proc(
+int Set_AutoReconnect_Proc(
     struct rtmp_adapter *pAd,
     char *		arg);
 
-INT Set_AdhocN_Proc(
+int Set_AdhocN_Proc(
     struct rtmp_adapter *pAd,
     char *		arg);
 
@@ -45,7 +45,7 @@ INT Set_AdhocN_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_SSID_Proc(
+int Set_SSID_Proc(
     struct rtmp_adapter *  pAd,
     char *         arg)
 {
@@ -143,7 +143,7 @@ INT Set_SSID_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_NetworkType_Proc(
+int Set_NetworkType_Proc(
     struct rtmp_adapter *  pAd,
     char *         arg)
 {
@@ -229,7 +229,7 @@ INT Set_NetworkType_Proc(
 	{
 		BCN_TIME_CFG_STRUC csr;
 		u8 rf_channel, rf_bw;
-		INT ext_ch;
+		int ext_ch;
 
 #ifdef MONITOR_FLAG_11N_SNIFFER_SUPPORT
 		if (strcmp(arg, "Monitor2") == 0)
@@ -331,7 +331,7 @@ INT Set_NetworkType_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_AuthMode_Proc(
+int Set_AuthMode_Proc(
     struct rtmp_adapter *  pAd,
     char *         arg)
 {
@@ -371,7 +371,7 @@ INT Set_AuthMode_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_EncrypType_Proc(
+int Set_EncrypType_Proc(
     struct rtmp_adapter *  pAd,
     char *         arg)
 {
@@ -433,7 +433,7 @@ INT Set_EncrypType_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_DefaultKeyID_Proc(
+int Set_DefaultKeyID_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -451,11 +451,11 @@ INT Set_DefaultKeyID_Proc(
 }
 
 
-INT Set_Wep_Key_Proc(
+int Set_Wep_Key_Proc(
     struct rtmp_adapter *  pAdapter,
     char *        Key,
-    INT             KeyLen,
-    INT             KeyId)
+    int             KeyLen,
+    int             KeyId)
 {
     int    i;
     u8  CipherAlg = CIPHER_WEP64;
@@ -537,7 +537,7 @@ INT Set_Wep_Key_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_Key1_Proc(
+int Set_Key1_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -615,7 +615,7 @@ INT Set_Key1_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_Key2_Proc(
+int Set_Key2_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -691,7 +691,7 @@ INT Set_Key2_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_Key3_Proc(
+int Set_Key3_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -767,7 +767,7 @@ INT Set_Key3_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_Key4_Proc(
+int Set_Key4_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -844,7 +844,7 @@ INT Set_Key4_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_WPAPSK_Proc(
+int Set_WPAPSK_Proc(
     struct rtmp_adapter *  pAd,
     char *         arg)
 {
@@ -892,7 +892,7 @@ INT Set_WPAPSK_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_PSMode_Proc(
+int Set_PSMode_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -969,7 +969,7 @@ INT Set_PSMode_Proc(
         true if all parameters are OK, false otherwise
     ==========================================================================
 */
-INT Set_Wpa_Support(
+int Set_Wpa_Support(
     struct rtmp_adapter *pAd,
 	char *		arg)
 {
@@ -991,7 +991,7 @@ INT Set_Wpa_Support(
 
 
 
-INT Set_TGnWifiTest_Proc(
+int Set_TGnWifiTest_Proc(
     struct rtmp_adapter *  pAd,
     char *         arg)
 {
@@ -1005,7 +1005,7 @@ INT Set_TGnWifiTest_Proc(
 }
 
 #ifdef EXT_BUILD_CHANNEL_LIST
-INT Set_Ieee80211dClientMode_Proc(
+int Set_Ieee80211dClientMode_Proc(
     struct rtmp_adapter *  pAdapter,
     char *         arg)
 {
@@ -1023,12 +1023,12 @@ INT Set_Ieee80211dClientMode_Proc(
 }
 #endif /* EXT_BUILD_CHANNEL_LIST */
 
-INT	Show_Adhoc_MacTable_Proc(
+int	Show_Adhoc_MacTable_Proc(
 	struct rtmp_adapter *pAd,
 	char *		extra,
 	u32			size)
 {
-	INT i;
+	int i;
 
 	sprintf(extra, "\n");
 
@@ -1070,7 +1070,7 @@ INT	Show_Adhoc_MacTable_Proc(
 }
 
 
-INT Set_BeaconLostTime_Proc(
+int Set_BeaconLostTime_Proc(
     struct rtmp_adapter *  pAd,
     char *        arg)
 {
@@ -1083,7 +1083,7 @@ INT Set_BeaconLostTime_Proc(
 	return true;
 }
 
-INT Set_AutoRoaming_Proc(
+int Set_AutoRoaming_Proc(
     struct rtmp_adapter *  pAd,
     char *        arg)
 {
@@ -1114,7 +1114,7 @@ INT Set_AutoRoaming_Proc(
     ==========================================================================
 */
 
-INT Set_ForceTxBurst_Proc(
+int Set_ForceTxBurst_Proc(
     struct rtmp_adapter *  pAd,
     char *        arg)
 {
@@ -1368,7 +1368,7 @@ void StaSiteSurvey(
 	RTMP_MLME_HANDLER(pAd);
 }
 
-INT Set_AdhocN_Proc(
+int Set_AdhocN_Proc(
     struct rtmp_adapter *pAd,
     char *		arg)
 {
@@ -1406,13 +1406,13 @@ void RTMPIoctlMAC(
 	RTMP_IOCTL_INPUT_STRUCT *wrq)
 {
 	char *this_char, *value;
-	INT j = 0, k = 0;
+	int j = 0, k = 0;
 	char *msg = NULL;
 	char *arg = NULL;
 	u32 macAddr = 0, macValue = 0;
 	u8 temp[16];
 	char temp2[16];
-	INT Status;
+	int Status;
 	bool bIsPrintAllMAC = false;
 
 
@@ -1616,7 +1616,7 @@ void	getBaInfo(
 	char *		pOutBuf,
 	u32			size)
 {
-	INT i, j;
+	int i, j;
 	BA_ORI_ENTRY *pOriBAEntry;
 	BA_REC_ENTRY *pRecBAEntry;
 
@@ -1677,7 +1677,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwfreq(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -1734,7 +1734,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwfreq(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -1769,7 +1769,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwmode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -1810,7 +1810,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwmode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -1844,7 +1844,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwap(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -1900,7 +1900,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwap(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -1935,7 +1935,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwscan(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2059,7 +2059,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwscan(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2150,7 +2150,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwessid(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2212,7 +2212,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwessid(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2266,7 +2266,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwrts(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2293,7 +2293,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwrts(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2320,7 +2320,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwfrag(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2347,7 +2347,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwfrag(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2377,7 +2377,7 @@ Note:
 #define NR_WEP_KEYS 				4
 #define MAX_WEP_KEY_SIZE			13
 #define MIN_WEP_KEY_SIZE			5
-INT
+int
 RtmpIoctl_rt_ioctl_siwencode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2494,7 +2494,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwencode(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2562,7 +2562,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwmlme(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2642,7 +2642,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwauth(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2811,7 +2811,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwauth(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -2858,7 +2858,7 @@ Note:
 */
 void fnSetCipherKey(
     struct rtmp_adapter *  pAd,
-    INT             keyIdx,
+    int             keyIdx,
     u8           CipherAlg,
     bool         bGTK,
     u8 		*pKey)
@@ -2926,7 +2926,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwencodeext(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3080,7 +3080,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwencodeext(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3178,7 +3178,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwgenie(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3238,7 +3238,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwgenie(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3309,14 +3309,14 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwpmksa(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
 	unsigned long					Data)
 {
 	RT_CMD_STA_IOCTL_PMA_SA *pIoctlPmaSa = (RT_CMD_STA_IOCTL_PMA_SA *)pData;
-	INT	CachedIdx = 0, idx = 0;
+	int	CachedIdx = 0, idx = 0;
 
 
 	switch(pIoctlPmaSa->Cmd)
@@ -3398,7 +3398,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_siwrate(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3470,7 +3470,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_giwrate(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3540,7 +3540,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_gifhwaddr(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3566,7 +3566,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_rssi(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3594,7 +3594,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_ioctl_setparam(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3629,7 +3629,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_private_set_wsc_u32_item(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3656,7 +3656,7 @@ Return Value:
 Note:
 ========================================================================
 */
-INT
+int
 RtmpIoctl_rt_private_set_wsc_string_item(
 	struct rtmp_adapter		*pAd,
 	void 				*pData,
@@ -3686,10 +3686,10 @@ Return Value:
 Note:
 ========================================================================
 */
-INT RTMP_STA_IoctlHandle(
+int RTMP_STA_IoctlHandle(
 	void 				*pAdSrc,
 	RTMP_IOCTL_INPUT_STRUCT	*pRequest,
-	INT						Command,
+	int						Command,
 	unsigned short					Subcmd,
 	void 				*pData,
 	unsigned long					Data,
@@ -3697,7 +3697,7 @@ INT RTMP_STA_IoctlHandle(
 {
 	struct rtmp_adapter *pAd = (struct rtmp_adapter *)pAdSrc;
 	struct os_cookie *pObj = pAd->OS_Cookie;
-	INT Status = NDIS_STATUS_SUCCESS;
+	int Status = NDIS_STATUS_SUCCESS;
 
 	{	/* determine this ioctl command is comming from which interface. */
 		pObj->ioctl_if_type = INT_MAIN;
