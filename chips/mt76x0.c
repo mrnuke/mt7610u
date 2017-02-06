@@ -1706,7 +1706,6 @@ int MT76x0_ReadChannelPwr(struct rtmp_adapter *pAd)
 	}
 
 	/* 1. U-NII lower/middle band: 36, 38, 40; 44, 46, 48; 52, 54, 56; 60, 62, 64 (including central frequency in BW 40MHz)*/
-	ASSERT((pAd->TxPower[choffset].Channel == 36));
 	choffset = 14;
 	ASSERT((pAd->TxPower[choffset].Channel == 36));
 	for (i = 0; i < 6; i++) {
