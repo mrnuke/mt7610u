@@ -47,9 +47,6 @@
 	CFG80211_Scaning((void *)__pAd, __BssIdx, __ChanId, __pFrame,			\
 						__FrameLen, __RSSI);
 
-#define RT_CFG80211_SCAN_END(__pAd, __FlgIsAborted)							\
-	CFG80211_ScanEnd((void *)__pAd, __FlgIsAborted);
-
 #define RT_CFG80211_REINIT(__pAd)											\
 	CFG80211_SupBandReInit((void *)__pAd);									\
 
@@ -142,9 +139,7 @@ void CFG80211_RegHint11D(
 	IN u8 				*pCountryIe,
 	IN ULONG					CountryIeLen);
 
-void CFG80211_ScanEnd(
-	IN void 					*pAdCB,
-	IN bool 				FlgIsAborted);
+void CFG80211_ScanEnd(struct rtmp_adapter *rtmp, bool is_aborted);
 
 void CFG80211_ConnectResultInform(
 	IN void 					*pAdCB,

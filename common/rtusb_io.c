@@ -989,7 +989,7 @@ static int RegHint11DHdlr(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *C
 
 static int RT_Mac80211_ScanEnd(IN struct rtmp_adapter *pAd, struct rtmp_queue_elem *CMDQelmt)
 {
-	RT_CFG80211_SCAN_END(pAd, false);
+	CFG80211_ScanEnd(pAd, false);
 	return NDIS_STATUS_SUCCESS;
 }
 
