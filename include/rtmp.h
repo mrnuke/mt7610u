@@ -4413,7 +4413,7 @@ bool MlmeDlsReqSanity(
     void *Msg,
     unsigned long MsgLen,
     PRT_802_11_DLS *pDLS,
-    PUSHORT pReason);
+    unsigned short *pReason);
 
 INT Set_DlsEntryInfo_Display_Proc(
 	struct rtmp_adapter *pAd,

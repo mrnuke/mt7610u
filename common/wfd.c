@@ -378,7 +378,7 @@ unsigned long InsertWfdSubelmtTlv(
 		case SUBID_WFD_DEVICE_INFO:
 		{
 			WFD_DEVICE_INFO DevInfo;
-			PUSHORT pDevInfo = &DevInfo;
+			unsigned short *pDevInfo = &DevInfo;
 
 			memset(&DevInfo, 0, sizeof(WFD_DEVICE_INFO));
 
@@ -604,7 +604,7 @@ unsigned long InsertWfdSubelmtTlv(
 			if (memcmp(AllZero, pAd->CurrentAddress, ETH_ALEN) != 0)
 			{
 				EidLen = SUBID_WFD_ALTERNATE_MAC_ADDR_LEN;
-				*((PUSHORT) (pDest)) = cpu2be16(EidLen);
+				*((unsigned short *) (pDest)) = cpu2be16(EidLen);
 				memmove(pDest + 2, pAd->CurrentAddress, ETH_ALEN);
 				Length = EidLen + 3;
 			}
@@ -679,19 +679,19 @@ void WfdParseSubElmt(
 						memmove(&pWfdEntryInfo->wfd_serv_disc_query_info.wfd_device_info_ie, pWfdEid->Octet, SUBID_WFD_DEVICE_INFO_LEN);
 						cpu2le16(&DevInfo);
 
-						pWfdEntryInfo->wfd_devive_type = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 0) & 0x3);
-						pWfdEntryInfo->source_coupled = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 2) & 0x1);
-						pWfdEntryInfo->sink_coupled = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 3) & 0x1);
-						pWfdEntryInfo->session_avail = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 4) & 0x3);
-						pWfdEntryInfo->wfd_service_discovery = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 6) & 0x1);
-						pWfdEntryInfo->wfd_PC = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 7) & 0x1);
-						pWfdEntryInfo->wfd_CP = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 8) & 0x1);
-						pWfdEntryInfo->wfd_time_sync = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 9) & 0x1);
-						pWfdEntryInfo->sink_audio_unsupport = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 10) & 0x1);
-						pWfdEntryInfo->source_audio_only= ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 11) & 0x1);
-						pWfdEntryInfo->tdls_persistent_group = ((be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[0]))) >> 12) & 0x1);
-						pWfdEntryInfo->rtsp_port = be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[2])));
-						pWfdEntryInfo->max_throughput = be2cpu16(get_unaligned((PUSHORT)(&pWfdEid->Octet[4])));
+						pWfdEntryInfo->wfd_devive_type = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 0) & 0x3);
+						pWfdEntryInfo->source_coupled = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 2) & 0x1);
+						pWfdEntryInfo->sink_coupled = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 3) & 0x1);
+						pWfdEntryInfo->session_avail = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 4) & 0x3);
+						pWfdEntryInfo->wfd_service_discovery = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 6) & 0x1);
+						pWfdEntryInfo->wfd_PC = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 7) & 0x1);
+						pWfdEntryInfo->wfd_CP = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 8) & 0x1);
+						pWfdEntryInfo->wfd_time_sync = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 9) & 0x1);
+						pWfdEntryInfo->sink_audio_unsupport = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 10) & 0x1);
+						pWfdEntryInfo->source_audio_only= ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 11) & 0x1);
+						pWfdEntryInfo->tdls_persistent_group = ((be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[0]))) >> 12) & 0x1);
+						pWfdEntryInfo->rtsp_port = be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[2])));
+						pWfdEntryInfo->max_throughput = be2cpu16(get_unaligned((unsigned short *)(&pWfdEid->Octet[4])));
 
 						DBGPRINT(RT_DEBUG_INFO, ("%s::SUBID_WFD_DEVICE_INFO\n", __FUNCTION__));
 						break;

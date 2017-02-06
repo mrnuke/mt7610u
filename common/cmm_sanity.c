@@ -1843,7 +1843,7 @@ bool MlmeDlsReqSanity(
     void *Msg,
     unsigned long MsgLen,
     PRT_802_11_DLS *pDLS,
-    PUSHORT pReason)
+    unsigned short *pReason)
 {
 	MLME_DLS_REQ_STRUCT *pInfo;
 

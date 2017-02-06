@@ -50,7 +50,7 @@ typedef signed int INT;
 #ifdef LINUX
 #endif /* LINUX */
 
-typedef USHORT *PUSHORT;
+typedef USHORT *unsigned short *;
 
 typedef unsigned int NDIS_MEDIA_STATE;
 

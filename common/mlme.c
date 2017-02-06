@@ -3202,7 +3202,7 @@ void BssCipherParse(
 				pTmp   += 1;
 
 				/* skip all unicast cipher suites*/
-				/*Count = *(PUSHORT) pTmp;				*/
+				/*Count = *(unsigned short *) pTmp;				*/
 				Count = (pTmp[1]<<8) + pTmp[0];
 				pTmp   += sizeof(USHORT);
 
@@ -3242,7 +3242,7 @@ void BssCipherParse(
 				}
 
 				/* 4. get AKM suite counts*/
-				/*Count	= *(PUSHORT) pTmp;*/
+				/*Count	= *(unsigned short *) pTmp;*/
 				Count = (pTmp[1]<<8) + pTmp[0];
 				pTmp   += sizeof(USHORT);
 				pTmp   += 3;
@@ -3322,7 +3322,7 @@ void BssCipherParse(
 				pTmp   += sizeof(CIPHER_SUITE_STRUCT);
 
 				/* 2. Get pairwise cipher counts*/
-				/*Count = *(PUSHORT) pTmp;*/
+				/*Count = *(unsigned short *) pTmp;*/
 				Count = (pTmp[1]<<8) + pTmp[0];
 				pTmp   += sizeof(USHORT);
 
@@ -3363,7 +3363,7 @@ void BssCipherParse(
 				}
 
 				/* 4. get AKM suite counts*/
-				/*Count	= *(PUSHORT) pTmp;*/
+				/*Count	= *(unsigned short *) pTmp;*/
 				Count = (pTmp[1]<<8) + pTmp[0];
 				pTmp   += sizeof(USHORT);
 
@@ -3423,7 +3423,7 @@ void BssCipherParse(
 				pBss->WepStatus   = pBss->WPA2.PairCipher;
 
 				/* 6. Get RSN capability*/
-				/*pBss->WPA2.RsnCapability = *(PUSHORT) pTmp;*/
+				/*pBss->WPA2.RsnCapability = *(unsigned short *) pTmp;*/
 				pBss->WPA2.RsnCapability = (pTmp[1]<<8) + pTmp[0];
 				pTmp += sizeof(USHORT);
 
